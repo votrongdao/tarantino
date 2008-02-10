@@ -1,0 +1,154 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.3077</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62382B68-2561-4921-8C1E-63AC484608FD}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>Tarantino.DatabaseManager.NAntTasks</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <RootNamespace>Tarantino.DatabaseManager.NAntTasks</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>true</Optimize>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SqlServer\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SqlServer\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="NAnt.Core, Version=0.85.1932.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Nant\NAnt.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Domain\ConnectionSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\TokenReplacer.cs" />
+    <Compile Include="Services\Impl\DatabaseTask.cs" />
+    <Compile Include="Services\Impl\Task.cs" />
+    <Compile Include="Services\ITokenReplacer.cs" />
+    <Compile Include="Services\IDatabaseConnectionDropper.cs" />
+    <Compile Include="Services\Impl\DatabaseAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IChangeScriptExecutor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IConnectionStringGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IDatabaseUpgrader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IDatabaseVersioner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IFileSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\ChangeScriptExecutor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\ConnectionStringGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\DatabaseConnectionDropper.cs" />
+    <Compile Include="Services\Impl\DatabaseUpgrader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\DatabaseVersioner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\FileSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\QueryExecutor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\ResourceFileLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\SchemaInitializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\ScriptExecutionTracker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\SqlFileLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IQueryExecutor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IResourceFileLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\ISchemaInitializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IScriptExecutionTracker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\ISqlFileLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\ITaskObserver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Impl\ManageDatabaseTask.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Files\CreateSchema.sql" />
+    <EmbeddedResource Include="Files\DropConnections.sql" />
+    <EmbeddedResource Include="Files\VersionDatabase.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

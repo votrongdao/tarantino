@@ -1,0 +1,93 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6713C30A-7C9D-43B0-97BC-DE19BF0B5CD4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tarantino.Deployer.IntegrationTests</RootNamespace>
+    <AssemblyName>Tarantino.Deployer.IntegrationTests</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate.Caches.SysCache, Version=1.2.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate\1.2.1\NHibernate.Caches.SysCache.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.4.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NUnit\2.4.3\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\StructureMap\2.0\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="StructureMap.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Deployer\Core\Services\Configuration\ApplicationRepositoryTester.cs" />
+    <Compile Include="Deployer\Infrastructure\DataAccess\Mappings\DeploymentMappingsTester.cs" />
+    <Compile Include="Deployer\Infrastructure\DataAccess\Repositories\DeploymentRepositoryTester.cs" />
+    <Compile Include="DeploymentDatabaseTester.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tarantino.Commons.Core\Tarantino.Commons.Core.csproj">
+      <Project>{8BDE9ED1-AD59-4A82-9A65-D24ABAE905D4}</Project>
+      <Name>Tarantino.Commons.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarantino.Commons.Infrastructure\Tarantino.Commons.Infrastructure.csproj">
+      <Project>{39ED49F2-85D7-4025-AF21-C75BFF4FD664}</Project>
+      <Name>Tarantino.Commons.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarantino.Deployer.Core\Tarantino.Deployer.Core.csproj">
+      <Project>{1470C026-FE8F-4F4F-B31D-75808C864088}</Project>
+      <Name>Tarantino.Deployer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarantino.Deployer.Infrastructure\Tarantino.Deployer.Infrastructure.csproj">
+      <Project>{090C5082-EBE6-4029-8E28-2B2F714807D5}</Project>
+      <Name>Tarantino.Deployer.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarantino.IntegrationTests\Tarantino.IntegrationTests.csproj">
+      <Project>{D283FF65-DE0E-492C-B9C0-985CD32FC3C9}</Project>
+      <Name>Tarantino.IntegrationTests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

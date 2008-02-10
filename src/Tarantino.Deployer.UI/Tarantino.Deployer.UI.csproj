@@ -1,0 +1,153 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D27B6EC9-4387-4CF5-BF41-DC1F25D9AE49}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tarantino.Deployer.UI</RootNamespace>
+    <AssemblyName>Tarantino.Deployer.UI</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=1.2.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate\1.2.1\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Caches.SysCache, Version=1.2.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate\1.2.1\NHibernate.Caches.SysCache.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\StructureMap\2.0\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AsyncOperation.cs" />
+    <Compile Include="DeploymentOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeploymentOutput.Designer.cs">
+      <DependentUpon>DeploymentOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeployPackage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeployPackage.Designer.cs">
+      <DependentUpon>DeployPackage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessCaller.cs" />
+    <Compile Include="ProcessProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <EmbeddedResource Include="DeploymentOutput.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DeploymentOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeployPackage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DeployPackage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcessProgressForm.resx">
+      <DependentUpon>ProcessProgressForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Deploy.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Deployer.build">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="StructureMap.Config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Services\IDeploymentFormValidator.cs" />
+    <Compile Include="Services\IDeploymentRowFactory.cs" />
+    <Compile Include="Services\IDeploymentSelectionValidator.cs" />
+    <Compile Include="Services\ILabelTextGenerator.cs" />
+    <Compile Include="Services\Impl\DeploymentFormValidator.cs" />
+    <Compile Include="Services\Impl\DeploymentRowFactory.cs" />
+    <Compile Include="Services\Impl\DeploymentSelectionValidator.cs" />
+    <Compile Include="Services\Impl\LabelTextGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tarantino.Commons.Core\Tarantino.Commons.Core.csproj">
+      <Project>{8BDE9ED1-AD59-4A82-9A65-D24ABAE905D4}</Project>
+      <Name>Tarantino.Commons.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarantino.Commons.Infrastructure\Tarantino.Commons.Infrastructure.csproj">
+      <Project>{39ED49F2-85D7-4025-AF21-C75BFF4FD664}</Project>
+      <Name>Tarantino.Commons.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarantino.Deployer.Core\Tarantino.Deployer.Core.csproj">
+      <Project>{1470C026-FE8F-4F4F-B31D-75808C864088}</Project>
+      <Name>Tarantino.Deployer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarantino.Deployer.Infrastructure\Tarantino.Deployer.Infrastructure.csproj">
+      <Project>{090C5082-EBE6-4029-8E28-2B2F714807D5}</Project>
+      <Name>Tarantino.Deployer.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(SolutionDir)..\lib\nant $(TargetDir)nant /s /i /y
+xcopy $(SolutionDir)..\lib\Subversion\1.4.3 $(TargetDir)Subversion /s /i /y</PostBuildEvent>
+  </PropertyGroup>
+</Project>
