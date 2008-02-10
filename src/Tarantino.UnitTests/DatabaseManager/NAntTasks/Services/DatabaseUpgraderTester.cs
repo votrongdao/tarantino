@@ -28,7 +28,7 @@ namespace Tarantino.UnitTests.DatabaseManager.NAntTasks.Services
 			IDatabaseVersioner versioner = mocks.CreateMock<IDatabaseVersioner>();
 			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
 
-			taskObserver.Log("Create db on server\n");
+			taskObserver.Log("Create db on server using scripts from c:\\scripts\n");
 			queryExecutor.ExecuteNonQuery(settingsWithoutDatabase, "create database db");
 			initializer.EnsureSchemaCreated(settings);
 			Expect.Call(fileLocator.GetSqlFilenames(scriptDirectory, DatabaseAction.Create)).Return(sqlFiles);
@@ -67,7 +67,7 @@ namespace Tarantino.UnitTests.DatabaseManager.NAntTasks.Services
 			IDatabaseVersioner versioner = mocks.CreateMock<IDatabaseVersioner>();
 			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
 
-			taskObserver.Log("Rebuild db on server\n");
+			taskObserver.Log("Rebuild db on server using scripts from c:\\scripts\n");
 			taskObserver.Log("Dropping connections for database db\n");
 			connectionDropper.Drop("db", settingsWithoutDatabase);
 			queryExecutor.ExecuteNonQuery(settingsWithoutDatabase, "drop database db");
@@ -107,7 +107,7 @@ namespace Tarantino.UnitTests.DatabaseManager.NAntTasks.Services
 			IDatabaseVersioner versioner = mocks.CreateMock<IDatabaseVersioner>();
 			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
 
-			taskObserver.Log("Update db on server\n");
+			taskObserver.Log("Update db on server using scripts from c:\\scripts\n");
 			initializer.EnsureSchemaCreated(settings);
 			Expect.Call(fileLocator.GetSqlFilenames(scriptDirectory, DatabaseAction.Update)).Return(sqlFiles);
 			scriptExecutor.Execute(createScript, settings, taskObserver);

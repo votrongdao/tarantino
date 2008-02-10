@@ -16,10 +16,10 @@ namespace Tarantino.DatabaseManager.UI
 			chkIntegratedSecurity.CheckedChanged += chkIntegratedSecurity_OnCheckedChanged;
 			btnBrowse.Click += btnBrowse_OnClick;
 
-			cboAction.Items.Add("Update");
 			cboAction.Items.Add("Create");
-			cboAction.Items.Add("Rebuild");
+			cboAction.Items.Add("Update");
 			cboAction.Items.Add("Drop");
+			cboAction.Items.Add("Rebuild");
 			cboAction.SelectedIndex = 0;
 
 			IConfigurationReader reader = new ConfigurationReader(new ApplicationConfiguration());
@@ -111,7 +111,9 @@ namespace Tarantino.DatabaseManager.UI
 			AddArgument(arguments, "database.password", txtPassword.Text);
 			AddArgument(arguments, "action", cboAction.SelectedItem.ToString());
 
-			RunCommandLine(@"nant\nant.exe", arguments.ToString());
+			IConfigurationReader reader = new ConfigurationReader(new ApplicationConfiguration());
+
+			RunCommandLine(string.Format(@"{0}\nant.exe", reader.GetRequiredSetting("NAntFolder")), arguments.ToString());
 		}
 	}
 }

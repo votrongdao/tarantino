@@ -11,5 +11,10 @@ namespace Tarantino.Commons.Core.Services.Configuration.Impl
 		}
 
 		public abstract string GetElementName();
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 }

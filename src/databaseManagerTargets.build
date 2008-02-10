@@ -32,7 +32,7 @@
 	</target>
 
 	<target name="manageDatabase">
-		<manageSqlDatabase
+		<manageDatabase
 			scriptDirectory="${database.script.directory}"
 			action="${action}"
 			server="${database.server}"

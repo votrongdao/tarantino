@@ -91,10 +91,6 @@
       <Project>{8BDE9ED1-AD59-4A82-9A65-D24ABAE905D4}</Project>
       <Name>Tarantino.Commons.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tarantino.DatabaseManager.NAntTasks\Tarantino.DatabaseManager.NAntTasks.csproj">
-      <Project>{62382B68-2561-4921-8C1E-63AC484608FD}</Project>
-      <Name>Tarantino.DatabaseManager.NAntTasks</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -105,7 +101,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>xcopy $(SolutionDir)..\lib\nant $(TargetDir)nant /y /i
-xcopy $(TargetDir)Tarantino.DatabaseManager.NAntTasks.dll $(TargetDir)nant /y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

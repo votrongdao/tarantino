@@ -36,7 +36,14 @@ namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 
 		public void Upgrade(string scriptDirectory, string server, string database, bool integrated, string username, string password, DatabaseAction action, ITaskObserver taskObserver, string databaseVersionPropertyName)
 		{
-			taskObserver.Log(string.Format("{0} {1} on {2}\n", action, database, server));
+			string scriptsClause = action != DatabaseAction.Drop
+			                       	? string.Format(" using scripts from {0}", scriptDirectory)
+			                       	: string.Empty;
+
+			string logMessage =
+				string.Format("{0} {1} on {2}{3}\n", action, database, server, scriptsClause);
+			
+			taskObserver.Log(logMessage);
 
 			ConnectionSettings settings = new ConnectionSettings(server, null, integrated, username, password);
 

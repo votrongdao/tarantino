@@ -13,11 +13,11 @@ using System.Runtime.InteropServices;
 //------------------------------------------------------------------------------
 
 [assembly: ComVisibleAttribute(false)]
-[assembly: AssemblyVersionAttribute("1.0.29.0")]
-[assembly: AssemblyFileVersionAttribute("1.0.29.0")]
-[assembly: AssemblyCopyrightAttribute("The Tarentino Project, 2008")]
+[assembly: AssemblyVersionAttribute("1.0.3.0")]
+[assembly: AssemblyFileVersionAttribute("1.0.3.0")]
+[assembly: AssemblyCopyrightAttribute("Tarantino, 2008")]
 [assembly: AssemblyProductAttribute("Tarantino")]
 [assembly: AssemblyCompanyAttribute("Tarantino")]
 [assembly: AssemblyConfigurationAttribute("release")]
-[assembly: AssemblyInformationalVersionAttribute("1.0.29.0")]
+[assembly: AssemblyInformationalVersionAttribute("1.0.3.0")]
 
