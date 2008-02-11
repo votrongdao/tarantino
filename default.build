@@ -139,6 +139,12 @@
 		</copy>
 
 		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.IntegrationTests\bin\${project.config}">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
 			<fileset basedir="src\Tarantino.Commons.Service\bin\${project.config}">
 				<include name="*.dll" />
 				<include name="*.exe" />
@@ -278,7 +284,7 @@
 
 		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
 
-		<property name="zipFile" value="LatestVersion/${project}.zip"/>
+		<!--property name="zipFile" value="LatestVersion/${project}.zip"/>
 
 		<delete file="${zipFile}" failonerror="false" />
 
@@ -288,7 +294,7 @@
 			</fileset>
 		</zip>
 
-		<exec program="${svn.exe}" workingdir="." commandline="ci LatestVersion ${svn.args} -m&quot;automatic check-in ${project.fullversion}&quot;" verbose="true"  />
+		<exec program="${svn.exe}" workingdir="." commandline="ci LatestVersion ${svn.args} -m&quot;automatic check-in ${project.fullversion}&quot;" verbose="true"  /-->
 
 	</target>
 

@@ -17,7 +17,7 @@ namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 		{
 			List<DatabaseAction> list = new List<DatabaseAction>();
 
-			if (chosenAction == DatabaseAction.Create)
+			if (chosenAction == DatabaseAction.Create || chosenAction == DatabaseAction.Rebuild)
 			{
 				list.Add(DatabaseAction.Create);
 			}

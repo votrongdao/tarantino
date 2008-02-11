@@ -42,7 +42,7 @@ namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 
 			string logMessage =
 				string.Format("{0} {1} on {2}{3}\n", action, database, server, scriptsClause);
-			
+
 			taskObserver.Log(logMessage);
 
 			ConnectionSettings settings = new ConnectionSettings(server, null, integrated, username, password);
