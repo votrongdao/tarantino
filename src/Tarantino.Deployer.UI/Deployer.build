@@ -10,7 +10,7 @@
 		<property name="svnArgs" value="--username ${username} --password ${password} --non-interactive" />
 
 		<if test="${defined.revision==''}">
-			<exec program="Subversion/svn.exe" commandline="info ${url} --non-interactive --xml" output="svninfo.xml" append="false" verbose="false"/>
+			<exec program="Subversion/svn.exe" commandline="info ${url} ${svnArgs} --xml" output="svninfo.xml" append="false" verbose="false"/>
 			<xmlpeek file="svninfo.xml" xpath="/info/entry/commit/@revision" property="defined.revision"/>
 		</if>
 
