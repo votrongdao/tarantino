@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--EXTERNAL_PROPERTIES: usdDatabaseVersion-->
-<project name="databaseManagerTargets" default="manageDatabase" xmlns="http://nant.sf.net/release/0.85-rc4/nant.xsd">
+<project name="databaseManagerTargets" default="manageSqlDatabase" xmlns="http://nant.sf.net/release/0.85-rc4/nant.xsd">
 
 	<!-- Database change management -->
 	<property name="database.script.directory" value="." overwrite="false" />
@@ -13,26 +13,26 @@
 
 	<target name="updateDatabase">
 		<property name="action" value="Update" />
-		<call target="manageDatabase" />
+		<call target="manageSqlDatabase" />
 	</target>
 
 	<target name="rebuildDatabase">
 		<property name="action" value="Rebuild" />
-		<call target="manageDatabase" />
+		<call target="manageSqlDatabase" />
 	</target>
 
 	<target name="createDatabase">
 		<property name="action" value="Create" />
-		<call target="manageDatabase" />
+		<call target="manageSqlDatabase" />
 	</target>
 
 	<target name="dropDatabase">
 		<property name="action" value="Drop" />
-		<call target="manageDatabase" />
+		<call target="manageSqlDatabase" />
 	</target>
 
-	<target name="manageDatabase">
-		<manageDatabase
+	<target name="manageSqlDatabase">
+		<manageSqlDatabase
 			scriptDirectory="${database.script.directory}"
 			action="${action}"
 			server="${database.server}"

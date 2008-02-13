@@ -309,7 +309,7 @@
 
 	<target name="updateDatabase">
 		<property name="action" value="Update" />
-		<call target="manageDatabase" />
+		<call target="manageSqlDatabase" />
 	</target>
 
 	<target name="rebuildAllDatabases" depends="rebuildCommonsDatabase, rebuildDeployerDatabase" />
@@ -328,21 +328,21 @@
 
 	<target name="rebuildDatabase">
 		<property name="action" value="Rebuild" />
-		<call target="manageDatabase" />
+		<call target="manageSqlDatabase" />
 	</target>
 
 	<target name="createDatabase">
 		<property name="action" value="Create" />
-		<call target="manageDatabase" />
+		<call target="manageSqlDatabase" />
 	</target>
 
 	<target name="dropDatabase">
 		<property name="action" value="Drop" />
-		<call target="manageDatabase" />
+		<call target="manageSqlDatabase" />
 	</target>
 
-	<target name="manageDatabase">
-		<manageDatabase
+	<target name="manageSqlDatabase">
+		<manageSqlDatabase
 			scriptDirectory="${database.script.directory}"
 			action="${action}"
 			server="${database.server}"

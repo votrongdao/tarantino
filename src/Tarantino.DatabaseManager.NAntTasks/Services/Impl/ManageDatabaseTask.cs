@@ -4,7 +4,7 @@ using NAnt.Core.Attributes;
 
 namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 {
-	[TaskName("manageDatabase")]
+	[TaskName("manageSqlDatabase")]
 	public class ManageDatabaseTask : DatabaseTask
 	{
 		private DatabaseAction _action = DatabaseAction.Update;
