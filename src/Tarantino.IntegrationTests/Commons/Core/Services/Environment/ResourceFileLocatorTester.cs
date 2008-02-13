@@ -13,7 +13,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 		public void CorrectlyReadsResourceFile()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			string contents = locator.ReadTextFile("Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.tab");
+			string contents = locator.ReadTextFile("Tarantino.Commons.Core", "Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.tab");
 
 			Assert.IsTrue(contents.Contains("Tarantino"));
 		}
@@ -22,7 +22,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 		public void Correctly_Reports_When_Resource_File_Does_Not_Exist()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			bool exists = locator.FileExists("Tarantino.Commons.Core.Services.BadFile.tab");
+			bool exists = locator.FileExists("Tarantino.Commons.Core", "Tarantino.Commons.Core.Services.BadFile.tab");
 
 			Assert.That(exists, Is.False);
 		}
@@ -31,14 +31,14 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 		public void CorrectlyThrowsExceptionWhenResourceNameNotFound()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			locator.ReadTextFile("BadResource.txt");
+			locator.ReadTextFile("Tarantino.Commons.Core", "BadResource.txt");
 		}
 
 		[Test]
 		public void CorrectlyReadsBinaryResourceFile()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			string contents = locator.ReadTextFile("Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.tab");
+			string contents = locator.ReadTextFile("Tarantino.Commons.Core", "Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.tab");
 
 			Assert.That(contents.Length, Is.GreaterThan(10));
 		}
@@ -47,7 +47,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 		public void CorrectlyThrowsExceptionWhenBinaryResourceNameNotFound()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			locator.ReadBinaryFile("BadResource.txt");
+			locator.ReadBinaryFile("Tarantino.Commons.Core", "BadResource.txt");
 		}
 	}
 }

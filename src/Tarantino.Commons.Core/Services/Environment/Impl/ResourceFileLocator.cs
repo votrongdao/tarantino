@@ -9,9 +9,9 @@ namespace Tarantino.Commons.Core.Services.Environment.Impl
 	[Pluggable(ServiceKeys.Default)]
 	public class ResourceFileLocator : IResourceFileLocator
 	{
-		public string ReadTextFile(string resourceName)
+		public string ReadTextFile(string assembly, string resourceName)
 		{
-			using (Stream stream = getStream(resourceName))
+			using (Stream stream = getStream(assembly, resourceName))
 			{
 				using (StreamReader reader = new StreamReader(stream, Encoding.Default))
 				{
@@ -21,9 +21,9 @@ namespace Tarantino.Commons.Core.Services.Environment.Impl
 			}
 		}
 
-		public byte[] ReadBinaryFile(string resourceName)
+		public byte[] ReadBinaryFile(string assembly, string resourceName)
 		{
-			using (Stream stream = getStream(resourceName))
+			using (Stream stream = getStream(assembly, resourceName))
 			{
 				using (BinaryReader reader = new BinaryReader(stream))
 				{
@@ -33,16 +33,16 @@ namespace Tarantino.Commons.Core.Services.Environment.Impl
 			}
 		}
 
-		public bool FileExists(string resourceName)
+		public bool FileExists(string assembly, string resourceName)
 		{
-			Stream stream = constructStream(resourceName);
+			Stream stream = constructStream(assembly, resourceName);
 			bool fileExists = stream != null;
 			return fileExists;
 		}
 
-		private Stream getStream(string resourceName)
+		private Stream getStream(string assembly, string resourceName)
 		{
-			Stream stream = constructStream(resourceName);
+			Stream stream = constructStream(assembly, resourceName);
 
 			if (stream == null)
 			{
@@ -53,9 +53,10 @@ namespace Tarantino.Commons.Core.Services.Environment.Impl
 			return stream;
 		}
 
-		private Stream constructStream(string resourceName)
+		private Stream constructStream(string assembly, string resourceName)
 		{
-			return Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+			Stream stream = Assembly.Load(assembly).GetManifestResourceStream(resourceName);
+			return stream;
 		}
 	}
 }

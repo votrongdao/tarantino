@@ -21,13 +21,13 @@ namespace Tarantino.UnitTests.Commons.Core.Services.DataFileManagement
 
 			MockRepository mocks = new MockRepository();
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
-			Expect.Call(fileLocator.ReadTextFile(_testDataFile)).Return(fileContents);
+			Expect.Call(fileLocator.ReadTextFile("MyCompany.MyAssembly", _testDataFile)).Return(fileContents);
 
 			mocks.ReplayAll();
 
 			using (IDataFileReader reader = new DataFileReader(fileLocator))
 			{
-				reader.Open("Test", "DataFilePath");
+				reader.Open("MyCompany.MyAssembly", "Test", "DataFilePath");
 
 				bool canRead = reader.Read();
 				Assert.That(canRead, Is.EqualTo(true));
@@ -51,13 +51,13 @@ namespace Tarantino.UnitTests.Commons.Core.Services.DataFileManagement
 
 			MockRepository mocks = new MockRepository();
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
-			Expect.Call(fileLocator.ReadTextFile(_testDataFile)).Return(fileContents);
+			Expect.Call(fileLocator.ReadTextFile("MyCompany.MyAssembly", _testDataFile)).Return(fileContents);
 
 			mocks.ReplayAll();
 
 			using (IDataFileReader reader = new DataFileReader(fileLocator))
 			{
-				reader.Open("Test", "DataFilePath");
+				reader.Open("MyCompany.MyAssembly", "Test", "DataFilePath");
 
 				bool canRead = reader.Read();
 				Assert.That(canRead, Is.EqualTo(true));
@@ -77,13 +77,13 @@ namespace Tarantino.UnitTests.Commons.Core.Services.DataFileManagement
 
 			MockRepository mocks = new MockRepository();
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
-			Expect.Call(fileLocator.ReadTextFile(_testDataFile)).Return(fileContents);
+			Expect.Call(fileLocator.ReadTextFile("MyCompany.MyAssembly", _testDataFile)).Return(fileContents);
 
 			mocks.ReplayAll();
 
 			using (IDataFileReader reader = new DataFileReader(fileLocator))
 			{
-				reader.Open("Test", "DataFilePath");
+				reader.Open("MyCompany.MyAssembly", "Test", "DataFilePath");
 
 				bool canRead = reader.Read();
 				Assert.That(canRead, Is.EqualTo(true));
@@ -104,13 +104,13 @@ namespace Tarantino.UnitTests.Commons.Core.Services.DataFileManagement
 
 			MockRepository mocks = new MockRepository();
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
-			Expect.Call(fileLocator.ReadTextFile(_testDataFile)).Return(fileContents);
+			Expect.Call(fileLocator.ReadTextFile("MyCompany.MyAssembly", _testDataFile)).Return(fileContents);
 
 			mocks.ReplayAll();
 
 			using (IDataFileReader reader = new DataFileReader(fileLocator))
 			{
-				reader.Open("Test", "DataFilePath");
+				reader.Open("MyCompany.MyAssembly", "Test", "DataFilePath");
 
 				bool canRead = reader.Read();
 				Assert.That(canRead, Is.EqualTo(true));
@@ -134,13 +134,13 @@ namespace Tarantino.UnitTests.Commons.Core.Services.DataFileManagement
 
 			MockRepository mocks = new MockRepository();
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
-			Expect.Call(fileLocator.ReadTextFile(_testDataFile)).Return(fileContents);
+			Expect.Call(fileLocator.ReadTextFile("MyCompany.MyAssembly", _testDataFile)).Return(fileContents);
 
 			mocks.ReplayAll();
 
 			using (IDataFileReader reader = new DataFileReader(fileLocator))
 			{
-				reader.Open("Test", "DataFilePath");
+				reader.Open("MyCompany.MyAssembly", "Test", "DataFilePath");
 
 				bool canRead = reader.Read();
 				Assert.That(canRead, Is.EqualTo(true));
@@ -164,13 +164,13 @@ namespace Tarantino.UnitTests.Commons.Core.Services.DataFileManagement
 
 			MockRepository mocks = new MockRepository();
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
-			Expect.Call(fileLocator.ReadTextFile(_testDataFile)).Return(fileContents);
+			Expect.Call(fileLocator.ReadTextFile("MyCompany.MyAssembly", _testDataFile)).Return(fileContents);
 
 			mocks.ReplayAll();
 
 			using (IDataFileReader reader = new DataFileReader(fileLocator))
 			{
-				reader.Open("Test", "DataFilePath");
+				reader.Open("MyCompany.MyAssembly", "Test", "DataFilePath");
 
 				bool canRead = reader.Read();
 				Assert.That(canRead, Is.EqualTo(true));
@@ -194,13 +194,13 @@ namespace Tarantino.UnitTests.Commons.Core.Services.DataFileManagement
 
 			MockRepository mocks = new MockRepository();
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
-			Expect.Call(fileLocator.ReadTextFile(_testDataFile)).Return(fileContents);
+			Expect.Call(fileLocator.ReadTextFile("MyCompany.MyAssembly", _testDataFile)).Return(fileContents);
 
 			mocks.ReplayAll();
 
 			using (IDataFileReader reader = new DataFileReader(fileLocator))
 			{
-				reader.Open("Test", "DataFilePath");
+				reader.Open("MyCompany.MyAssembly", "Test", "DataFilePath");
 				string[] columnHeaders = reader.GetColumnHeaders();
 
 				Assert.That(columnHeaders, Is.EqualTo(new string[] { "First Column", "Second Column" }));
@@ -223,13 +223,13 @@ namespace Tarantino.UnitTests.Commons.Core.Services.DataFileManagement
 
 			MockRepository mocks = new MockRepository();
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
-			Expect.Call(fileLocator.ReadTextFile(_testDataFile)).Return(fileContents);
+			Expect.Call(fileLocator.ReadTextFile("MyCompany.MyAssembly", _testDataFile)).Return(fileContents);
 
 			mocks.ReplayAll();
 
 			using (IDataFileReader reader = new DataFileReader(fileLocator))
 			{
-				reader.Open("Test", "DataFilePath");
+				reader.Open("MyCompany.MyAssembly", "Test", "DataFilePath");
 
 				reader.Read();
 				reader.GetInteger("My Bad Column Name");

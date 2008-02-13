@@ -1,3 +1,4 @@
+using Tarantino.Commons.Core.Services.Environment;
 using Tarantino.DatabaseManager.NAntTasks.Domain;
 
 namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
@@ -17,7 +18,7 @@ namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 
 		public void Drop(string databaseName, ConnectionSettings settings)
 		{
-			string sql = _fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks.Files.DropConnections.sql");
+			string sql = _fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", "Tarantino.DatabaseManager.NAntTasks.Files.DropConnections.sql");
 
 			_replacer.Text = sql;
 			_replacer.Replace("DatabaseName", databaseName);

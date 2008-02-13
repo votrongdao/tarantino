@@ -19,11 +19,11 @@ namespace Tarantino.Commons.Core.Services.DataFileManagement.Impl
 			_resourceFileLocator = resourceFileLocator;
 		}
 
-		public void Open(string resourceFilename, string filePath)
+		public void Open(string assembly, string resourceFilename, string filePath)
 		{
 			string resourceTemplate = "{0}.{1}.tab";
 			string fullResourceFilename = string.Format(resourceTemplate, filePath, resourceFilename);
-			string data = _resourceFileLocator.ReadTextFile(fullResourceFilename);
+			string data = _resourceFileLocator.ReadTextFile(assembly, fullResourceFilename);
 
 			_dataReader = new StringReader(data);
 

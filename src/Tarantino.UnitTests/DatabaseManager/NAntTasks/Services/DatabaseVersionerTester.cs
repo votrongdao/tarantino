@@ -1,4 +1,5 @@
 using System;
+using Tarantino.Commons.Core.Services.Environment;
 using Tarantino.DatabaseManager.NAntTasks.Domain;
 using Tarantino.DatabaseManager.NAntTasks.Services;
 using Tarantino.DatabaseManager.NAntTasks.Services.Impl;
@@ -22,7 +23,7 @@ namespace Tarantino.UnitTests.DatabaseManager.NAntTasks.Services
 			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
 			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
 
-			Expect.Call(fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks.Files.VersionDatabase.sql")).Return(sqlScript);
+			Expect.Call(fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", "Tarantino.DatabaseManager.NAntTasks.Files.VersionDatabase.sql")).Return(sqlScript);
 			Expect.Call(queryExecutor.ExecuteScalarInteger(settings, sqlScript)).Return(7);
 			taskObserver.SetVariable("usdDatabaseVersion", "7");
 

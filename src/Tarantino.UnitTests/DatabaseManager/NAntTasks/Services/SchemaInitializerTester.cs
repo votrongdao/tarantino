@@ -1,4 +1,5 @@
 using System;
+using Tarantino.Commons.Core.Services.Environment;
 using Tarantino.DatabaseManager.NAntTasks.Domain;
 using Tarantino.DatabaseManager.NAntTasks.Services;
 using Tarantino.DatabaseManager.NAntTasks.Services.Impl;
@@ -21,7 +22,7 @@ namespace Tarantino.UnitTests.DatabaseManager.NAntTasks.Services
 			IResourceFileLocator fileLocator = mocks.CreateMock<IResourceFileLocator>();
 			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
 
-			Expect.Call(fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks.Files.CreateSchema.sql")).Return(sqlScript);
+			Expect.Call(fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", "Tarantino.DatabaseManager.NAntTasks.Files.CreateSchema.sql")).Return(sqlScript);
 			queryExecutor.ExecuteNonQuery(settings, sqlScript);
 
 			mocks.ReplayAll();

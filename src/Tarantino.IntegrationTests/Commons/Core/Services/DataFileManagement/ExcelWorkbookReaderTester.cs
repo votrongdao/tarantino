@@ -18,7 +18,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.DataFileManagement
 			IResourceFileLocator fileLocator = ObjectFactory.GetInstance<IResourceFileLocator>();
 
 			byte[] excelFileBytes =
-				fileLocator.ReadBinaryFile("Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.xls");
+				fileLocator.ReadBinaryFile("Tarantino.Commons.Core", "Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.xls");
 
 			IExcelWorkbookReader reader = new ExcelWorkbookReader();
 

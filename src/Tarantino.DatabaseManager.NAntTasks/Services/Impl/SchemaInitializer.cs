@@ -1,4 +1,5 @@
-﻿using Tarantino.DatabaseManager.NAntTasks.Domain;
+﻿using Tarantino.Commons.Core.Services.Environment;
+using Tarantino.DatabaseManager.NAntTasks.Domain;
 
 namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 {
@@ -15,7 +16,7 @@ namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 
 		public void EnsureSchemaCreated(ConnectionSettings settings)
 		{
-			string sql = _locator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks.Files.CreateSchema.sql");
+			string sql = _locator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", "Tarantino.DatabaseManager.NAntTasks.Files.CreateSchema.sql");
 
 			_executor.ExecuteNonQuery(settings, sql);
 		}

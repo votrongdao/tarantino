@@ -1,4 +1,5 @@
-﻿using Tarantino.DatabaseManager.NAntTasks.Domain;
+﻿using Tarantino.Commons.Core.Services.Environment;
+using Tarantino.DatabaseManager.NAntTasks.Domain;
 
 namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 {
@@ -16,7 +17,7 @@ namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
 		public void VersionDatabase(ConnectionSettings settings, ITaskObserver taskObserver, string databaseVersionPropertyName)
 		{
 			string sqlFile = "Tarantino.DatabaseManager.NAntTasks.Files.VersionDatabase.sql";
-			string sql = _fileLocator.ReadTextFile(sqlFile);
+			string sql = _fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", sqlFile);
 			string version = _executor.ExecuteScalarInteger(settings, sql).ToString();
 			taskObserver.SetVariable(databaseVersionPropertyName, version);
 		}

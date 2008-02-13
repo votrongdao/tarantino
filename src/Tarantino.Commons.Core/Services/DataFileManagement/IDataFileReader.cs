@@ -7,7 +7,7 @@ namespace Tarantino.Commons.Core.Services.DataFileManagement
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IDataFileReader : IDisposable
 	{
-		void Open(string resourceFilename, string filePath);
+		void Open(string assembly, string resourceFilename, string filePath);
 		bool Read();
 		int GetInteger(string columnName);
 		T GetEnumerationByDisplayName<T>(string columnName) where T : Enumeration, new();

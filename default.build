@@ -25,9 +25,13 @@
 	<property name="package.dir" value="package" />
 
 	<!-- External targets -->
-	<target name="local" depends="rebuildAllDatabases, version, compile, move, test"/>
-	<target name="localWithCoverage" depends="rebuildAllDatabases, version, compile, move, coverage"/>
+	<target name="local" depends="debug, rebuildAllDatabases, version, compile, move, test"/>
+	<target name="localWithCoverage" depends="debug, rebuildAllDatabases, version, compile, move, coverage"/>
 	<target name="localWithPackage" depends="rebuildAllDatabases, rebuildDeployerDatabase, version, compile, move, test, package"/>
+
+	<target name="debug">
+		<property name="project.config" value="debug" />
+	</target>
 
 	<target name="compile">
 		<exec program="${framework::get-framework-directory(framework::get-target-framework())}\msbuild.exe" commandline="src\${project}.sln /t:Clean /p:Configuration=${project.config} /v:q" workingdir="." />
