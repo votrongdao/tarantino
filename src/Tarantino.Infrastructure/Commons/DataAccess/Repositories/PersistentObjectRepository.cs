@@ -22,7 +22,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 			_mapper = mapper;
 		}
 
-		public T[] GetAll<T>()
+		public IEnumerable<T> GetAll<T>()
 		{
 			T[] properties = _mapper.LoadAll<T>();
 			return properties;

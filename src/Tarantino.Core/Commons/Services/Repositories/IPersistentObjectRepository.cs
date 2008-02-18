@@ -9,7 +9,7 @@ namespace Tarantino.Core.Commons.Services.Repositories
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IPersistentObjectRepository
 	{
-		T[] GetAll<T>();
+		IEnumerable<T> GetAll<T>();
 		T GetById<T>(Guid id) where T : PersistentObject;
 		void PersistAll();
 		void Save(PersistentObject persistentObject);
