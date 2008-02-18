@@ -12,13 +12,15 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.DataFileManagement
 	[TestFixture]
 	public class ExcelWorkbookReaderTester
 	{
+		private const string _resourceTemplate = "Tarantino.IntegrationTests.Commons.Core.Services.DataFileManagement.Files.{0}";
+		private const string _testAssembly = "Tarantino.IntegrationTests";
+
 		[Test]
 		public void Correctly_Reads_Excel_File()
 		{
 			IResourceFileLocator fileLocator = ObjectFactory.GetInstance<IResourceFileLocator>();
 
-			byte[] excelFileBytes =
-				fileLocator.ReadBinaryFile("Tarantino.Commons.Core", "Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.xls");
+			byte[] excelFileBytes = fileLocator.ReadBinaryFile(_testAssembly, string.Format(_resourceTemplate, "Sample.xls"));
 
 			IExcelWorkbookReader reader = new ExcelWorkbookReader();
 

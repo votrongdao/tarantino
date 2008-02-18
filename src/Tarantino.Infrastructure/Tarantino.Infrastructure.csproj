@@ -1,0 +1,113 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{09CFC9B9-3915-4BB7-B5EB-E85D474D84A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tarantino.Infrastructure</RootNamespace>
+    <AssemblyName>Tarantino.Infrastructure</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate\1.2.1\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SqlServer\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SqlServer\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="NAnt.Core, Version=0.85.2478.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NAnt\NAnt.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=1.2.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate\1.2.1\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Caches.SysCache, Version=1.2.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NHibernate\1.2.1\NHibernate.Caches.SysCache.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\StructureMap\2.0\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commons\DataAccess\ORMapper\EnumerationType.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\HttpSessionScoper.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\IObjectMapper.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\ISessionFactoryManager.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\ISessionManager.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\ISessionScoper.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\NHibernateObjectMapper.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\SessionFactoryManager.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\SessionManager.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\ThreadSessionScoper.cs" />
+    <Compile Include="Commons\DataAccess\Repositories\PersistentObjectRepository.cs" />
+    <Compile Include="Commons\Logging\Logger.cs" />
+    <Compile Include="Commons\UI\Controls\BooleanDropDownList.cs" />
+    <Compile Include="Commons\UI\Controls\DecimalDropDownList.cs" />
+    <Compile Include="Commons\UI\Controls\EnumerationDropDownList.cs" />
+    <Compile Include="Commons\UI\Controls\IntegerDropDownList.cs" />
+    <Compile Include="Commons\UI\Controls\NonNegativeIntegerTextBox.cs" />
+    <Compile Include="Commons\UI\Controls\StringDropDownList.cs" />
+    <Compile Include="Commons\UI\Services\WebDataReader.cs" />
+    <Compile Include="DatabaseManager\BuildTasks\ManageSqlDatabaseTask.cs" />
+    <Compile Include="DatabaseManager\BuildTasks\Task.cs" />
+    <Compile Include="DatabaseManager\DataAccess\QueryExecutor.cs" />
+    <Compile Include="Deployer\DataAccess\Repositories\DeploymentRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Deployer\DataAccess\Mappings\Deployment.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tarantino.Core\Tarantino.Core.csproj">
+      <Project>{3F02EEBD-5B3B-4C5F-B2E7-4F5DFF6B3F03}</Project>
+      <Name>Tarantino.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Daemon\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

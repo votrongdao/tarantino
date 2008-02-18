@@ -176,7 +176,7 @@
 		</copy>
 
 		<copy todir="${package.dir}" verbose="false">
-			<fileset basedir="src\Tarantino.Deployer.Database">
+			<fileset basedir="src\Tarantino.Database">
 				<include name="**\*.sql" />
 			</fileset>
 		</copy>
@@ -237,7 +237,7 @@
 	</target>
 
 	<!-- Database change management -->
-	<property name="database.script.directory" value="src\Tarantino.Deployer.Database" overwrite="false" />
+	<property name="database.script.directory" value="src\Tarantino.Database" overwrite="false" />
 	<property name="database.server" value="." overwrite="false"/>
 	<property name="database.name" value="TarantinoDeployer" overwrite="false"/>
 	<property name="database.integrated" value="true" overwrite="false" />

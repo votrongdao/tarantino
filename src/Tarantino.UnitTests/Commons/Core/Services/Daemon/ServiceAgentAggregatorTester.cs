@@ -5,6 +5,7 @@ using Tarantino.Commons.Core.Services.Configuration;
 using Tarantino.Commons.Core.Services.Daemon;
 using Tarantino.Commons.Core.Services.Daemon.Impl;
 using Tarantino.Commons.Core.Services.Environment;
+using Tarantino.Core.Commons.Services.Logging;
 
 namespace Tarantino.UnitTests.Commons.Core.Services.Daemon
 {
@@ -19,11 +20,12 @@ namespace Tarantino.UnitTests.Commons.Core.Services.Daemon
 			IApplicationSettings settings = mocks.CreateMock<IApplicationSettings>();
 			ITypeActivator activator = mocks.CreateMock<ITypeActivator>();
 			IServiceAgentFactory factory = mocks.CreateMock<IServiceAgentFactory>();
-
 			IServiceAgent serviceAgent1 = mocks.CreateMock<IServiceAgent>();
 			IServiceAgent serviceAgent2 = mocks.CreateMock<IServiceAgent>();
-
+			ILogger logger = mocks.CreateMock<ILogger>();
 			IServiceAgent[] serviceAgents = new IServiceAgent[] { serviceAgent1, serviceAgent2 };
+
+			IServiceAgentAggregator aggregator = new ServiceAgentAggregator(settings, activator, logger);
 
 			using (mocks.Record())
 			{
@@ -31,14 +33,19 @@ namespace Tarantino.UnitTests.Commons.Core.Services.Daemon
 				Expect.Call(activator.ActivateType<IServiceAgentFactory>("serviceAgentType")).Return(factory);
 				Expect.Call(factory.GetServiceAgents()).Return(serviceAgents);
 
+				Expect.Call(serviceAgent1.AgentName).Return("FirstAgent").Repeat.Any();
+				logger.Debug(aggregator, "Executing agent: FirstAgent");
 				serviceAgent1.Run();
+				logger.Debug(aggregator, "Agent execution completed: FirstAgent");
+
+				Expect.Call(serviceAgent2.AgentName).Return("SecondAgent").Repeat.Any();
+				logger.Debug(aggregator, "Executing agent: SecondAgent");
 				serviceAgent2.Run();
+				logger.Debug(aggregator, "Agent execution completed: SecondAgent");
 			}
 
 			using (mocks.Playback())
 			{
-				IServiceAgentAggregator aggregator = new ServiceAgentAggregator(settings, activator);
-
 				aggregator.ExecuteServiceAgentCycle();
 			}
 
@@ -48,6 +55,8 @@ namespace Tarantino.UnitTests.Commons.Core.Services.Daemon
 		[Test]
 		public void Should_continue_with_next_agents_event_if_one_agent_fails()
 		{
+			ApplicationException exception = new ApplicationException("Test Exception");
+
 			MockRepository mocks = new MockRepository();
 
 			IApplicationSettings settings = mocks.CreateMock<IApplicationSettings>();
@@ -59,21 +68,30 @@ namespace Tarantino.UnitTests.Commons.Core.Services.Daemon
 
 			IServiceAgent[] serviceAgents = new IServiceAgent[] { serviceAgent1, serviceAgent2 };
 
+			ILogger logger = mocks.CreateMock<ILogger>();
+
+			IServiceAgentAggregator aggregator = new ServiceAgentAggregator(settings, activator, logger);
+
 			using (mocks.Record())
 			{
 				Expect.Call(settings.GetServiceAgentFactory()).Return("serviceAgentType");
 				Expect.Call(activator.ActivateType<IServiceAgentFactory>("serviceAgentType")).Return(factory);
 				Expect.Call(factory.GetServiceAgents()).Return(serviceAgents);
 
+				Expect.Call(serviceAgent1.AgentName).Return("FirstAgent").Repeat.Any();
+				logger.Debug(aggregator, "Executing agent: FirstAgent");
 				serviceAgent1.Run();
-				LastCall.On(serviceAgent1).Throw(new ApplicationException());
+				LastCall.On(serviceAgent1).Throw(exception);
+				logger.Error(aggregator, "Test Exception", exception);
+
+				Expect.Call(serviceAgent2.AgentName).Return("SecondAgent").Repeat.Any();
+				logger.Debug(aggregator, "Executing agent: SecondAgent");
 				serviceAgent2.Run();
+				logger.Debug(aggregator, "Agent execution completed: SecondAgent");
 			}
 
 			using (mocks.Playback())
 			{
-				IServiceAgentAggregator aggregator = new ServiceAgentAggregator(settings, activator);
-
 				aggregator.ExecuteServiceAgentCycle();
 			}
 

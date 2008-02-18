@@ -14,7 +14,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 			ITypeActivator typeActivator = ObjectFactory.GetInstance<ITypeActivator>();
 
 			IResourceFileLocator locator = typeActivator.ActivateType<IResourceFileLocator>(
-				"Tarantino.Commons.Core.Services.Environment.Impl.ResourceFileLocator, Tarantino.Commons.Core");
+				"Tarantino.Commons.Core.Services.Environment.Impl.ResourceFileLocator, Tarantino.Core");
 
 			Assert.That(locator, Is.Not.Null);
 		}

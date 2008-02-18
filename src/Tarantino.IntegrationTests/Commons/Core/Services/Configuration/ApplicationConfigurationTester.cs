@@ -14,7 +14,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Configuration
 		{
 			IApplicationConfiguration settings = new ApplicationConfiguration();
 
-			Assert.That(settings.GetSetting("MappingAssemblies"), Is.EqualTo("Tarantino.Deployer.Infrastructure"));
+			Assert.That(settings.GetSetting("MappingAssemblies"), Is.EqualTo("Tarantino.Infrastructure"));
 		}
 
 		[Test]

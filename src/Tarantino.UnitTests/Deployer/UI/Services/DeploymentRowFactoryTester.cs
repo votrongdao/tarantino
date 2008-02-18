@@ -1,8 +1,8 @@
 using System;
 using Tarantino.Deployer.Core.Model;
 using Tarantino.Deployer.Core.Model.Enumerations;
-using Tarantino.Deployer.UI.Services;
-using Tarantino.Deployer.UI.Services.Impl;
+using Tarantino.Deployer.Services;
+using Tarantino.Deployer.Services.Impl;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 

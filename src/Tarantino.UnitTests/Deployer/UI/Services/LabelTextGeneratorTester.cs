@@ -1,10 +1,10 @@
 using System;
 using Tarantino.Deployer.Core.Model;
-using Tarantino.Deployer.UI.Services;
-using Tarantino.Deployer.UI.Services.Impl;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rhino.Mocks;
+using Tarantino.Deployer.Services;
+using Tarantino.Deployer.Services.Impl;
 using Environment=Tarantino.Deployer.Core.Services.Configuration.Impl.Environment;
 
 namespace Tarantino.UnitTests.Deployer.UI.Services

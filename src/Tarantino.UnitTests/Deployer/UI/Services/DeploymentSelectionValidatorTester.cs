@@ -1,8 +1,8 @@
 using Tarantino.Deployer.Core.Model;
-using Tarantino.Deployer.UI.Services;
-using Tarantino.Deployer.UI.Services.Impl;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
+using Tarantino.Deployer.Services;
+using Tarantino.Deployer.Services.Impl;
 
 namespace Tarantino.UnitTests.Deployer.UI.Services
 {

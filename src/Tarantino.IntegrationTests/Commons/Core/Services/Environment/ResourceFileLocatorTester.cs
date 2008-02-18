@@ -9,11 +9,14 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 	[TestFixture]
 	public class ResourceFileLocatorTester
 	{
+		private const string _resourceTemplate = "Tarantino.IntegrationTests.Commons.Core.Services.DataFileManagement.Files.{0}";
+		private const string _testAssembly = "Tarantino.IntegrationTests";
+
 		[Test]
 		public void CorrectlyReadsResourceFile()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			string contents = locator.ReadTextFile("Tarantino.Commons.Core", "Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.tab");
+			string contents = locator.ReadTextFile(_testAssembly, string.Format(_resourceTemplate, "Sample.tab"));
 
 			Assert.IsTrue(contents.Contains("Tarantino"));
 		}
@@ -22,7 +25,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 		public void Correctly_Reports_When_Resource_File_Does_Not_Exist()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			bool exists = locator.FileExists("Tarantino.Commons.Core", "Tarantino.Commons.Core.Services.BadFile.tab");
+			bool exists = locator.FileExists(_testAssembly, string.Format(_resourceTemplate, "BadFile.tab"));
 
 			Assert.That(exists, Is.False);
 		}
@@ -31,14 +34,14 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 		public void CorrectlyThrowsExceptionWhenResourceNameNotFound()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			locator.ReadTextFile("Tarantino.Commons.Core", "BadResource.txt");
+			locator.ReadTextFile(_testAssembly, "BadResource.txt");
 		}
 
 		[Test]
 		public void CorrectlyReadsBinaryResourceFile()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			string contents = locator.ReadTextFile("Tarantino.Commons.Core", "Tarantino.Commons.Core.Services.DataFileManagement.Files.Sample.tab");
+			string contents = locator.ReadTextFile(_testAssembly, string.Format(_resourceTemplate, "Sample.tab"));
 
 			Assert.That(contents.Length, Is.GreaterThan(10));
 		}
@@ -47,7 +50,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Environment
 		public void CorrectlyThrowsExceptionWhenBinaryResourceNameNotFound()
 		{
 			IResourceFileLocator locator = new ResourceFileLocator();
-			locator.ReadBinaryFile("Tarantino.Commons.Core", "BadResource.txt");
+			locator.ReadBinaryFile(_testAssembly, "BadResource.txt");
 		}
 	}
 }
