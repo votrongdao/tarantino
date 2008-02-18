@@ -35,8 +35,6 @@ namespace Tarantino.IntegrationTests.Core.Commons.Services.Environment
 			IFileSystem fileSystem = new FileSystem(streamFactory);
 
 			fileSystem.ReadIntoFileStream(@"MyPath\test.txt");
-
-			mocks.VerifyAll();
 		}
 
 		[Test, ExpectedException(ExceptionType = typeof(ApplicationException), ExpectedMessage = "The file you chose cannot be read because it is open in another application.  Please close the file in the other application and try again.")]
@@ -51,8 +49,6 @@ namespace Tarantino.IntegrationTests.Core.Commons.Services.Environment
 			IFileSystem fileSystem = new FileSystem(streamFactory);
 
 			fileSystem.ReadIntoFileStream(@"MyPath\test.txt");
-
-			mocks.VerifyAll();
 		}
 
 		[Test]

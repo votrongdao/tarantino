@@ -91,6 +91,45 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 			mocks.VerifyAll();
 		}
 
+		[Test]
+		public void Correctly_handles_when_service_agent_aggregator_throws_exception()
+		{
+			ApplicationException exception = new ApplicationException();
+
+			MockRepository mocks = new MockRepository();
+			IApplicationSettings settings = mocks.CreateMock<IApplicationSettings>();
+			IServiceAgentAggregator aggregator = mocks.CreateMock<IServiceAgentAggregator>();
+			ILogger logger = mocks.CreateMock<ILogger>();
+
+			IServiceRunner runner = new ServiceRunner(aggregator, settings, logger);
+
+			using (mocks.Record())
+			{
+				logger.Debug(runner, "Service Runner thread initializing");
+				logger.Debug(runner, "Service Runner thread initialized");
+
+				logger.Debug(runner, "Starting Cycle");
+
+				aggregator.ExecuteServiceAgentCycle();
+				LastCall.Throw(exception);
+
+				logger.Fatal(runner, "Running service cycle failed", exception);
+
+				logger.Debug(runner, "Service Runner stopping");
+				logger.Debug(runner, "Service Runner thread stopped");
+				logger.Debug(runner, "Service Runner stopped");
+			}
+
+			using (mocks.Playback())
+			{
+				runner.Start();
+				Thread.Sleep(500);
+				runner.Stop();
+			}
+
+			mocks.VerifyAll();
+		}
+
 		private DateTime _startFired;
 		private DateTime _completedFired;
 

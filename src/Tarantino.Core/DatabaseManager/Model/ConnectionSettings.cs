@@ -58,8 +58,9 @@
 
 		public override int GetHashCode()
 		{
-			return (_server + _database + _username + _password + _integratedAuthentication).GetHashCode();
+			string combinedKey = _server + _database + _username + _password + _integratedAuthentication;
+			int hashCode = combinedKey.GetHashCode();
+			return hashCode;
 		}
-
 	}
 }

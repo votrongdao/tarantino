@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.SyntaxHelpers;
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.UnitTests.Core.DatabaseManager.Model
@@ -32,8 +33,16 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Model
 		{
 			ConnectionSettings settings1 = new ConnectionSettings("server", "database", true, "username", "password");
 			ConnectionSettings settings2 = new ConnectionSettings("server1", "database", true, "username", "password");
-			
+
 			Assert.AreNotEqual(settings1, settings2);
+		}
+
+		[Test]
+		public void Calculates_correct_hash_code()
+		{
+			ConnectionSettings settings1 = new ConnectionSettings("Server", "Database", true, "Username", "Password");
+			int expectedHashCode = "ServerDatabaseUsernamePasswordTrue".GetHashCode();
+			Assert.That(settings1.GetHashCode(), Is.EqualTo(expectedHashCode));
 		}
 	}
 }

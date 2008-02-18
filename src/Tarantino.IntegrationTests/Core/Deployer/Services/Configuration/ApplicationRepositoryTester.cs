@@ -26,8 +26,10 @@ namespace Tarantino.IntegrationTests.Core.Deployer.Services.Configuration
 			Assert.That(applications[0].Password, Is.EqualTo("password1"));
 			Assert.That(applications[0].Environments.Count, Is.EqualTo(2));
 			Assert.That(applications[0].Environments[0].Name, Is.EqualTo("Development"));
+			Assert.That(applications[0].Environments[0].ToString(), Is.EqualTo("Development"));
 			Assert.That(applications[0].Environments[0].Predecessor, Is.Empty);
 			Assert.That(applications[0].Environments[1].Name, Is.EqualTo("Production"));
+			Assert.That(applications[0].Environments[1].ToString(), Is.EqualTo("Production"));
 			Assert.That(applications[0].Environments[1].Predecessor, Is.EqualTo("Development"));
 
 			Assert.That(applications[1].Url, Is.EqualTo("http://svn.com/SampleApp2"));
@@ -36,8 +38,10 @@ namespace Tarantino.IntegrationTests.Core.Deployer.Services.Configuration
 			Assert.That(applications[1].Password, Is.EqualTo("password2"));
 			Assert.That(applications[1].Environments.Count, Is.EqualTo(2));
 			Assert.That(applications[1].Environments[0].Name, Is.EqualTo("Development"));
+			Assert.That(applications[1].Environments[0].ToString(), Is.EqualTo("Development"));
 			Assert.That(applications[1].Environments[0].Predecessor, Is.Empty);
 			Assert.That(applications[1].Environments[1].Name, Is.EqualTo("Production"));
+			Assert.That(applications[1].Environments[1].ToString(), Is.EqualTo("Production"));
 			Assert.That(applications[1].Environments[1].Predecessor, Is.EqualTo("Development"));
 		}
 	}
