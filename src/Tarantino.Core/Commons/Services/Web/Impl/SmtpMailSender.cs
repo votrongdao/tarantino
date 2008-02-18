@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.Mail;
-using Tarantino.Commons.Core.Services.Configuration;
+using Tarantino.Core.Commons.Services.Configuration;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Net.Impl
+namespace Tarantino.Core.Commons.Services.Web.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class SmtpMailSender : IMailSender

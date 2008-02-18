@@ -1,7 +1,7 @@
 ﻿using System;
-using Tarantino.DatabaseManager.NAntTasks.Domain;
+using Tarantino.DatabaseManager.Model;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
+namespace Tarantino.DatabaseManager.Services.Impl
 {
 	public class ScriptExecutionTracker : IScriptExecutionTracker
 	{

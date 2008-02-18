@@ -1,8 +1,7 @@
 using System;
-using Tarantino.Commons.Core;
 using StructureMap;
 
-namespace Tarantino.Deployer.Core.Services.Impl
+namespace Tarantino.Core.Deployer.Services.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class RevisionNumberParser : IRevisionNumberParser

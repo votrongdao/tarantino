@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Model.Enumerations;
+using Tarantino.Core.Commons.Model.Enumerations;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.ListManagement
+namespace Tarantino.Core.Commons.Services.ListManagement
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IEnumerationHelper

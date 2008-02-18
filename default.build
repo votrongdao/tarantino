@@ -117,13 +117,13 @@
 		</copy>
 
 		<copy todir="${package.dir}" verbose="false">
-			<fileset basedir="src\Tarantino.Commons.Core\bin\${project.config}">
+			<fileset basedir="src\Tarantino.Core\bin\${project.config}">
 				<include name="*.dll" />
 			</fileset>
 		</copy>
 
 		<copy todir="${package.dir}" verbose="false">
-			<fileset basedir="src\Tarantino.Commons.Infrastructure\bin\${project.config}">
+			<fileset basedir="src\Tarantino.Infrastructure\bin\${project.config}">
 				<include name="*.dll" />
 			</fileset>
 		</copy>
@@ -135,43 +135,31 @@
 		</copy>
 
 		<copy todir="${package.dir}" verbose="false">
-			<fileset basedir="src\Tarantino.Commons.Service\bin\${project.config}">
+			<fileset basedir="src\Tarantino.Daemon\bin\${project.config}">
 				<include name="*.dll" />
 				<include name="*.exe" />
-				<include name="Tarantino.Commons.Service.exe.config" />
+				<include name="*.config" />
 			</fileset>
 		</copy>
 
 		<copy todir="${package.dir}" verbose="false">
-			<fileset basedir="src\Tarantino.Commons.UI.Controls\bin\${project.config}">
-				<include name="*.dll" />
-			</fileset>
-		</copy>
-
-		<copy todir="${package.dir}" verbose="false">
-			<fileset basedir="src\Tarantino.DatabaseManager.NAntTasks\bin\${project.config}">
-				<include name="*.dll" />
-			</fileset>
-		</copy>
-
-		<copy todir="${package.dir}" verbose="false">
-			<fileset basedir="src\Tarantino.Deployer.UI\bin\${project.config}">
+			<fileset basedir="src\Tarantino.Deployer\bin\${project.config}">
 				<include name="*.dll" />
 				<include name="*.exe" />
 				<include name="*.build" />
 				<include name="*.bat" />
 				<include name="Subversion\**" />
-				<include name="Tarantino.Deployer.UI.exe.config" />
+				<include name="*.config" />
 				<include name="StructureMap.config" />
 			</fileset>
 		</copy>
 
 		<copy todir="${package.dir}" verbose="false">
-			<fileset basedir="src\Tarantino.DatabaseManager.UI\bin\${project.config}">
+			<fileset basedir="src\Tarantino.DatabaseManager\bin\${project.config}">
 				<include name="*.dll" />
 				<include name="*.exe" />
 				<include name="*.build" />
-				<include name="Tarantino.DatabaseManager.UI.exe.config" />
+				<include name="*.config" />
 			</fileset>
 		</copy>
 

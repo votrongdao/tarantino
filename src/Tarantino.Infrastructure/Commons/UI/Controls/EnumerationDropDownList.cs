@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
-using Tarantino.Commons.Core.Model.Enumerations;
+using Tarantino.Core.Commons.Model.Enumerations;
 
-namespace Tarantino.Commons.UI.Controls
+namespace Tarantino.Infrastructure.Commons.UI.Controls
 {
 	public class EnumerationDropDownList : DropDownList
 	{

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Tarantino.DatabaseManager.NAntTasks.Services.Impl;
+using Tarantino.DatabaseManager.Services.Impl;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
+namespace Tarantino.DatabaseManager.Services.Impl
 {
 	public class SqlFileLocator : ISqlFileLocator
 	{

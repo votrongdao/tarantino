@@ -1,11 +1,12 @@
 using System;
 using System.Text;
-using Tarantino.Deployer.Core.Model;
-using Tarantino.Commons.Core;
+using Tarantino.Core;
+using Tarantino.Core.Deployer.Model;
 using StructureMap;
-using Environment=Tarantino.Deployer.Core.Services.Configuration.Impl.Environment;
+using Tarantino.Deployer.Services.UI;
+using Environment=Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
 
-namespace Tarantino.Deployer.Services.Impl
+namespace Tarantino.Deployer.Services.UI.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class LabelTextGenerator : ILabelTextGenerator

@@ -1,8 +1,10 @@
 using System.Net;
 using System.Web;
 using StructureMap;
+using Tarantino.Core;
+using Tarantino.Core.Commons.Services.Web;
 
-namespace Tarantino.Commons.Core.Services.Net.Impl
+namespace Tarantino.Infrastructure.Commons.UI.Services
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class WebDataReader : IWebDataReader

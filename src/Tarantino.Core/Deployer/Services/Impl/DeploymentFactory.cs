@@ -1,9 +1,8 @@
-using Tarantino.Deployer.Core.Model;
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Services.Environment;
+using Tarantino.Core.Deployer.Model;
+using Tarantino.Core.Commons.Services.Environment;
 using StructureMap;
 
-namespace Tarantino.Deployer.Core.Services.Impl
+namespace Tarantino.Core.Deployer.Services.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentFactory : IDeploymentFactory

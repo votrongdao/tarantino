@@ -1,9 +1,9 @@
-using Tarantino.Deployer.Core.Model;
-using Tarantino.Deployer.Core.Services.Configuration.Impl;
-using Tarantino.Commons.Core;
+using Tarantino.Core;
+using Tarantino.Core.Deployer.Model;
+using Tarantino.Core.Deployer.Services.Configuration.Impl;
 using StructureMap;
 
-namespace Tarantino.Deployer.Services
+namespace Tarantino.Deployer.Services.UI
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface ILabelTextGenerator

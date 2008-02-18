@@ -1,6 +1,6 @@
 using System;
 using System.ServiceProcess;
-using Tarantino.Commons.Core.Services.Daemon;
+using Tarantino.Core.Daemon.Services;
 using StructureMap;
 using Tarantino.Core.Commons.Services.Logging;
 
@@ -8,8 +8,8 @@ namespace Tarantino.Daemon
 {
 	public class DefaultService : ServiceBase
 	{
-		public const string SERVICE_NAME = "Tarantino.Commons";
-		public const string SERVICE_DESCRIPTION = "This service manages the ticket offering workflow";
+		public const string SERVICE_NAME = "Tarantino.Daemon";
+		public const string SERVICE_DESCRIPTION = "This service manages the execution of daemon service agents";
 
 		private IServiceRunner _serviceRunner;
 
@@ -19,7 +19,7 @@ namespace Tarantino.Daemon
 
 			try
 			{
-				logger.Info(this, "Tarantino.Commons Service starting");
+				logger.Info(this, "Tarantino.Daemon Service starting");
 				ServiceName = SERVICE_NAME;
 				_serviceRunner = ObjectFactory.GetInstance<IServiceRunner>();
 				logger.Info(this, "Service Runner loaded");
@@ -53,7 +53,7 @@ namespace Tarantino.Daemon
 
 			try
 			{
-				logger.Info(this, "Tarantino.Commons Service stopping");
+				logger.Info(this, "Tarantino.Daemon Service stopping");
 				_serviceRunner.Stop();
 			}
 			catch (Exception exc)

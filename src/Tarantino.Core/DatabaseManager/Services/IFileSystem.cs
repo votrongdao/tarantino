@@ -1,8 +1,6 @@
-﻿namespace Tarantino.DatabaseManager.NAntTasks.Services
+﻿namespace Tarantino.DatabaseManager.Services
 {
 	public interface IFileSystem
 	{
-		string[] GetAllFilesWithExtensionWithinFolder(string folder, string fileExtension);
-		string ReadTextFile(string filename);
 	}
 }

@@ -2,7 +2,7 @@
 <hibernate-mapping
 	xmlns="urn:nhibernate-mapping-2.2"
 	auto-import="true"
-	namespace="Tarantino.Deployer.Core.Model"
+	namespace="Tarantino.Core.Deployer.Model"
 	assembly="Tarantino.Core"
 	default-access="field.camelcase-underscore"
 	default-lazy="false">
@@ -21,7 +21,7 @@
 		<property name="Revision" type="int" />
 		<property name="Output" />
 
-		<property name="Result" type="Tarantino.Commons.Infrastructure.DataAccess.ORMapper.EnumerationType`1[[Tarantino.Deployer.Core.Model.Enumerations.DeploymentResult, Tarantino.Core]], Tarantino.Infrastructure" />
+		<property name="Result" type="Tarantino.Infrastructure.Commons.DataAccess.ORMapper.EnumerationType`1[[Tarantino.Core.Deployer.Model.DeploymentResult, Tarantino.Core]], Tarantino.Infrastructure" />
 
 	</class>
 

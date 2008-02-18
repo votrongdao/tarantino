@@ -1,4 +1,6 @@
-namespace Tarantino.Commons.Core.Model.Repositories
+using Tarantino.Core.Commons.Model;
+
+namespace Tarantino.Core.Commons.Services.Repositories
 {
 	public interface ISystemUserRepository
 	{

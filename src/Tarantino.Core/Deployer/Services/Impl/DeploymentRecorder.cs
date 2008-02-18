@@ -1,10 +1,9 @@
-using Tarantino.Deployer.Core.Model;
-using Tarantino.Deployer.Core.Model.Enumerations;
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Services.Security;
+using Tarantino.Core.Commons.Services.Repositories;
+using Tarantino.Core.Deployer.Model;
+using Tarantino.Core.Commons.Services.Security;
 using StructureMap;
 
-namespace Tarantino.Deployer.Core.Services.Impl
+namespace Tarantino.Core.Deployer.Services.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentRecorder : IDeploymentRecorder

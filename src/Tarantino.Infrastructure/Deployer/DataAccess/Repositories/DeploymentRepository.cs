@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using Tarantino.Deployer.Core.Model;
-using Tarantino.Deployer.Core.Model.Enumerations;
-using Tarantino.Deployer.Core.Model.Repositories;
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Model.Enumerations;
-using Tarantino.Commons.Core.Model.Repositories;
+using Tarantino.Core;
+using Tarantino.Core.Commons.Services.Repositories;
+using Tarantino.Core.Deployer.Model;
+using Tarantino.Core.Commons.Model.Enumerations;
 using StructureMap;
+using Tarantino.Core.Deployer.Services;
 
-namespace Tarantino.Deployer.Infrastructure.DataAccess.Repositories
+namespace Tarantino.Infrastructure.Deployer.DataAccess.Repositories
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentRepository : IDeploymentRepository

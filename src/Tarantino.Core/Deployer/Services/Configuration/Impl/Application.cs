@@ -1,7 +1,7 @@
 using System.Configuration;
-using Tarantino.Commons.Core.Services.Configuration.Impl;
+using Tarantino.Core.Commons.Services.Configuration.Impl;
 
-namespace Tarantino.Deployer.Core.Services.Configuration.Impl
+namespace Tarantino.Core.Deployer.Services.Configuration.Impl
 {
 	public sealed class Application : NamedElement
 	{

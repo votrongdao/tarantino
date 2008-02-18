@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using Tarantino.Commons.Core.Model.Enumerations;
-using Tarantino.Commons.Core.Services.ListManagement.Impl;
+using Tarantino.Core.Commons.Model.Enumerations;
+using Tarantino.Core.Commons.Services.ListManagement.Impl;
+using Tarantino.Core.Commons.Services.Repositories;
 
-namespace Tarantino.Commons.Core.Model.Repositories
+namespace Tarantino.Core.Commons.Services.Repositories
 {
 	public class CriterionSet
 	{

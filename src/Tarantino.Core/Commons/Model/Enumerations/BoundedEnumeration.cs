@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tarantino.Commons.Core.Model.Enumerations
+namespace Tarantino.Core.Commons.Model.Enumerations
 {
 	public class BoundedEnumeration<T> : Enumeration
 	{

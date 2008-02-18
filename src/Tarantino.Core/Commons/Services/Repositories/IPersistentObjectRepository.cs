@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Model;
-using Tarantino.Commons.Core.Model.Repositories;
+using Tarantino.Core.Commons.Model;
 using StructureMap;
+using Tarantino.Core.Commons.Services.Repositories;
 
-namespace Tarantino.Commons.Core
+namespace Tarantino.Core.Commons.Services.Repositories
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IPersistentObjectRepository

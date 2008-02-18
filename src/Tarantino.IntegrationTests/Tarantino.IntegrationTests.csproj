@@ -57,26 +57,25 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Commons\Core\Services\Configuration\ApplicationConfigurationTester.cs" />
-    <Compile Include="Commons\Core\Services\Configuration\ServiceLocatorTester.cs" />
-    <Compile Include="Commons\Core\Services\DataFileManagement\ExcelWorkbookReaderTester.cs" />
-    <Compile Include="Commons\Core\Services\DataFileManagement\LookupRepositoryTester.cs" />
-    <Compile Include="Commons\Core\Services\Environment\ApplicationDomainTester.cs" />
-    <Compile Include="Commons\Core\Services\Environment\FileStreamFactoryTester.cs" />
-    <Compile Include="Commons\Core\Services\Environment\FileSystemTester.cs" />
-    <Compile Include="Commons\Core\Services\Environment\ResourceFileLocatorTester.cs" />
-    <Compile Include="Commons\Core\Services\Environment\SystemClockTester.cs" />
-    <Compile Include="Commons\Core\Services\Environment\TypeActivatorTester.cs" />
-    <Compile Include="Commons\Core\Services\ListManagement\EnumerationHelperTester.cs" />
-    <Compile Include="Commons\Core\Services\Net\WebDataReaderTester.cs" />
-    <Compile Include="Commons\Core\Services\Performance\CacheManagerTester.cs" />
-    <Compile Include="Commons\Core\Services\Security\WindowsIdentityTester.cs" />
+    <Compile Include="Core\Commons\Services\Configuration\ApplicationConfigurationTester.cs" />
+    <Compile Include="Core\Commons\Services\Configuration\ServiceLocatorTester.cs" />
+    <Compile Include="Core\Commons\Services\DataFileManagement\ExcelWorkbookReaderTester.cs" />
+    <Compile Include="Core\Commons\Services\Environment\ApplicationDomainTester.cs" />
+    <Compile Include="Core\Commons\Services\Environment\FileStreamFactoryTester.cs" />
+    <Compile Include="Core\Commons\Services\Environment\FileSystemTester.cs" />
+    <Compile Include="Core\Commons\Services\Environment\ResourceFileLocatorTester.cs" />
+    <Compile Include="Core\Commons\Services\Environment\SystemClockTester.cs" />
+    <Compile Include="Core\Commons\Services\Environment\TypeActivatorTester.cs" />
+    <Compile Include="Core\Commons\Services\ListManagement\EnumerationHelperTester.cs" />
+    <Compile Include="Core\Commons\Services\Web\WebDataReaderTester.cs" />
+    <Compile Include="Core\Commons\Services\Caching\CacheManagerTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\WindowsIdentityTester.cs" />
     <Compile Include="DeployerDatabaseTester.cs" />
     <Compile Include="DatabaseTesterBase.cs" />
-    <Compile Include="Commons\Infrastructure\DataAccess\Repositories\PersistentObjectRepositoryTester.cs" />
-    <Compile Include="Deployer\Core\Services\Configuration\ApplicationRepositoryTester.cs" />
-    <Compile Include="Deployer\Infrastructure\DataAccess\Mappings\DeploymentMappingsTester.cs" />
-    <Compile Include="Deployer\Infrastructure\DataAccess\Repositories\DeploymentRepositoryTester.cs" />
+    <Compile Include="Infrastructure\Commons\DataAccess\Repositories\PersistentObjectRepositoryTester.cs" />
+    <Compile Include="Core\Deployer\Services\Configuration\ApplicationRepositoryTester.cs" />
+    <Compile Include="Infrastructure\Deployer\DataAccess\Mappings\DeploymentMappingsTester.cs" />
+    <Compile Include="Infrastructure\Deployer\DataAccess\Repositories\DeploymentRepositoryTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,8 +86,8 @@
     <None Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <EmbeddedResource Include="Commons\Core\Services\DataFileManagement\Files\Sample.tab" />
-    <EmbeddedResource Include="Commons\Core\Services\DataFileManagement\Files\Sample.xls" />
+    <EmbeddedResource Include="Core\Commons\Services\DataFileManagement\Files\Sample.tab" />
+    <EmbeddedResource Include="Core\Commons\Services\DataFileManagement\Files\Sample.xls" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tarantino.Core\Tarantino.Core.csproj">

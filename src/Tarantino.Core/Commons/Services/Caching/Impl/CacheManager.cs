@@ -1,7 +1,7 @@
-using Tarantino.Commons.Core.Services.Performance.Impl;
+using Tarantino.Core.Commons.Services.Caching.Impl;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Performance.Impl
+namespace Tarantino.Core.Commons.Services.Caching.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class CacheManager : ICacheManager

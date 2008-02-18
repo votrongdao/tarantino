@@ -1,7 +1,8 @@
 using NAnt.Core;
 using NAnt.Core.Tasks;
+using Tarantino.DatabaseManager.Services;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
+namespace Tarantino.Infrastructure.DatabaseManager.BuildTasks
 {
 	public class Task : NAntTask, ITaskObserver
 	{

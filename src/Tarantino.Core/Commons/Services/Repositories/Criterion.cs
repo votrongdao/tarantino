@@ -1,6 +1,6 @@
-using Tarantino.Commons.Core.Model.Enumerations;
+using Tarantino.Core.Commons.Model.Enumerations;
 
-namespace Tarantino.Commons.Core.Model.Repositories
+namespace Tarantino.Core.Commons.Services.Repositories
 {
 	public class Criterion
 	{

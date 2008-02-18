@@ -1,8 +1,7 @@
-using Tarantino.Deployer.Core.Model;
-using Tarantino.Commons.Core;
+using Tarantino.Core.Deployer.Model;
 using StructureMap;
 
-namespace Tarantino.Deployer.Core.Services
+namespace Tarantino.Core.Deployer.Services
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IRevisionCertifier

@@ -1,9 +1,8 @@
-using Tarantino.Deployer.Core.Services.Configuration.Impl;
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Services.Configuration.Impl;
+using Tarantino.Core.Deployer.Services.Configuration.Impl;
+using Tarantino.Core.Commons.Services.Configuration.Impl;
 using StructureMap;
 
-namespace Tarantino.Deployer.Core.Services
+namespace Tarantino.Core.Deployer.Services.Configuration
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IApplicationRepository

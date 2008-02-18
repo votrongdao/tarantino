@@ -1,10 +1,10 @@
 using System;
 using System.Data;
-using Tarantino.Commons.Core.Model.Enumerations;
+using Tarantino.Core.Commons.Model.Enumerations;
 using NHibernate.SqlTypes;
 using NHibernate.Type;
 
-namespace Tarantino.Commons.Infrastructure.DataAccess.ORMapper
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public class EnumerationType<T> : ValueTypeType where T : Enumeration, new()
 	{

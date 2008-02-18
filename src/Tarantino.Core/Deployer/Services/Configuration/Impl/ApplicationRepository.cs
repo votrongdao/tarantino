@@ -1,9 +1,8 @@
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Services.Configuration;
-using Tarantino.Commons.Core.Services.Configuration.Impl;
+using Tarantino.Core.Commons.Services.Configuration;
+using Tarantino.Core.Commons.Services.Configuration.Impl;
 using StructureMap;
 
-namespace Tarantino.Deployer.Core.Services.Configuration.Impl
+namespace Tarantino.Core.Deployer.Services.Configuration.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class ApplicationRepository : IApplicationRepository

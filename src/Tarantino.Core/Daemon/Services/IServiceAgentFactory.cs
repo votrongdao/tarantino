@@ -1,4 +1,4 @@
-namespace Tarantino.Commons.Core.Services.Daemon
+namespace Tarantino.Core.Daemon.Services
 {
 	public interface IServiceAgentFactory
 	{

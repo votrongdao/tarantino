@@ -1,6 +1,6 @@
 using System.Configuration;
 
-namespace Tarantino.Commons.Core.Services.Configuration.Impl
+namespace Tarantino.Core.Commons.Services.Configuration.Impl
 {
 	public class ElementCollection<T> : ConfigurationElementCollection where T : NamedElement, new()
 	{

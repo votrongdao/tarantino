@@ -1,8 +1,8 @@
 using System;
-using Tarantino.Commons.Core.Services.Environment;
+using Tarantino.Core.Commons.Services.Environment;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Environment.Impl
+namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class ApplicationDomain : IApplicationDomain

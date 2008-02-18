@@ -1,16 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Model;
-using Tarantino.Commons.Core.Model.Enumerations;
-using Tarantino.Commons.Core.Model.Repositories;
-using Tarantino.Commons.Infrastructure.DataAccess.ORMapper;
+using Tarantino.Core;
+using Tarantino.Core.Commons.Model;
+using Tarantino.Core.Commons.Model.Enumerations;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 using NHibernate;
 using NHibernate.Expression;
 using StructureMap;
+using Tarantino.Core.Commons.Services.Repositories;
 
-namespace Tarantino.Commons.Infrastructure.DataAccess.Repositories
+namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class PersistentObjectRepository : IPersistentObjectRepository

@@ -1,6 +1,5 @@
 using System;
 using StructureMap;
-using Tarantino.Commons.Core;
 
 namespace Tarantino.Core.Commons.Services.Logging
 {

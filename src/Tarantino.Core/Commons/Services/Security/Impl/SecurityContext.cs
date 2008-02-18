@@ -1,7 +1,7 @@
 using System;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Security.Impl
+namespace Tarantino.Core.Commons.Services.Security.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class SecurityContext : ISecurityContext

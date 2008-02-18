@@ -1,6 +1,6 @@
-using Tarantino.Commons.Core.Model.Enumerations;
+using Tarantino.Core.Commons.Model.Enumerations;
 
-namespace Tarantino.Deployer.Core.Model.Enumerations
+namespace Tarantino.Core.Deployer.Model
 {
 	public class DeploymentResult : Enumeration
 	{

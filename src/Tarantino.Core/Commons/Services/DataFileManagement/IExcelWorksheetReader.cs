@@ -1,7 +1,7 @@
 using System.Data;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.DataFileManagement
+namespace Tarantino.Core.Commons.Services.DataFileManagement
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IExcelWorksheetReader

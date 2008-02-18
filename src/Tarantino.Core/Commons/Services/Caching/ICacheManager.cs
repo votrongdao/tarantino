@@ -1,6 +1,6 @@
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Performance
+namespace Tarantino.Core.Commons.Services.Caching
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface ICacheManager

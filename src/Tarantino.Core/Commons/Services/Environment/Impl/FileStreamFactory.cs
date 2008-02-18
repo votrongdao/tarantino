@@ -1,7 +1,7 @@
 using System.IO;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Environment.Impl
+namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class FileStreamFactory : IFileStreamFactory

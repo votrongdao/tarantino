@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Tarantino.Commons.Core;
 using StructureMap;
+using Tarantino.Core.Deployer.Model;
 
-namespace Tarantino.Deployer.Core.Model.Repositories
+namespace Tarantino.Core.Deployer.Services
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IDeploymentRepository

@@ -1,6 +1,6 @@
-﻿using Tarantino.DatabaseManager.NAntTasks.Services.Impl;
+﻿using Tarantino.DatabaseManager.Services.Impl;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services
+namespace Tarantino.DatabaseManager.Services
 {
 	public interface ISqlFileLocator
 	{

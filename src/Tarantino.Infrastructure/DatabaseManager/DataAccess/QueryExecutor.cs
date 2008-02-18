@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
-using ConnectionSettings = Tarantino.DatabaseManager.NAntTasks.Domain.ConnectionSettings;
+using StructureMap;
+using Tarantino.Core;
+using Tarantino.DatabaseManager.Services;
+using ConnectionSettings=Tarantino.DatabaseManager.Model.ConnectionSettings;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
+namespace Tarantino.Infrastructure.DatabaseManager.DataAccess
 {
+	[Pluggable(ServiceKeys.Default)]
 	public class QueryExecutor : IQueryExecutor
 	{
 		private IConnectionStringGenerator _connectionStringGenerator;

@@ -1,8 +1,7 @@
 using System;
-using Tarantino.Deployer.Core.Model.Enumerations;
-using Tarantino.Commons.Core.Model;
+using Tarantino.Core.Commons.Model;
 
-namespace Tarantino.Deployer.Core.Model
+namespace Tarantino.Core.Deployer.Model
 {
 	public class Deployment : PersistentObject
 	{

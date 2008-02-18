@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Tarantino.Commons.Core.Model;
+using Tarantino.Core.Commons.Model;
 using NUnit.Framework;
 using StructureMap;
-using Tarantino.Commons.Infrastructure.DataAccess.ORMapper;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.IntegrationTests
 {

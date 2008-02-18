@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Tarantino.Commons.Core.Services.ListManagement;
-using Tarantino.Commons.Core.Services.ListManagement.Impl;
+using Tarantino.Core.Commons.Services.ListManagement;
+using Tarantino.Core.Commons.Services.ListManagement.Impl;
 
-namespace Tarantino.Commons.Core.Model.Enumerations
+namespace Tarantino.Core.Commons.Model.Enumerations
 {
 	public abstract class Enumeration : IComparable
 	{

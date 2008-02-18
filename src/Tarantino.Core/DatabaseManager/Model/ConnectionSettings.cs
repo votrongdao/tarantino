@@ -1,4 +1,4 @@
-﻿namespace Tarantino.DatabaseManager.NAntTasks.Domain
+﻿namespace Tarantino.DatabaseManager.Model
 {
 	public class ConnectionSettings
 	{

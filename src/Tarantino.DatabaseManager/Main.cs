@@ -2,8 +2,8 @@ using System;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Tarantino.Commons.Core.Services.Configuration;
-using Tarantino.Commons.Core.Services.Configuration.Impl;
+using Tarantino.Core.Commons.Services.Configuration;
+using Tarantino.Core.Commons.Services.Configuration.Impl;
 
 namespace Tarantino.DatabaseManager
 {

@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Tarantino.Deployer.Core.Model;
-using Tarantino.Deployer.Core.Model.Enumerations;
-using Tarantino.Deployer.Core.Model.Repositories;
-using Tarantino.Deployer.Core.Services;
+using Tarantino.Core.Deployer.Model;
+using Tarantino.Core.Deployer.Services;
+using Tarantino.Core.Deployer.Services.Configuration;
 using Tarantino.Deployer;
 using Tarantino.Deployer.Services;
-using Tarantino.Deployer.Services.Impl;
-using Tarantino.Commons.Core.Services.Configuration.Impl;
+using Tarantino.Core.Commons.Services.Configuration.Impl;
 using StructureMap;
-using Application=Tarantino.Deployer.Core.Services.Configuration.Impl.Application;
-using Environment=Tarantino.Deployer.Core.Services.Configuration.Impl.Environment;
+using Tarantino.Deployer.Services.UI;
+using Tarantino.Deployer.Services.UI.Impl;
+using Application=Tarantino.Core.Deployer.Services.Configuration.Impl.Application;
+using Environment=Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
 
 namespace Tarantino.Deployer
 {

@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Data;
 using System.Reflection;
-using Tarantino.Commons.Core;
-using Tarantino.Commons.Core.Services.Configuration;
+using Tarantino.Core;
+using Tarantino.Core.Commons.Services.Configuration;
 using NHibernate;
 using NHibernate.Cfg;
 using StructureMap;
 
-namespace Tarantino.Commons.Infrastructure.DataAccess.ORMapper
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class SessionFactoryManager : ISessionFactoryManager

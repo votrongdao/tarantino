@@ -1,10 +1,10 @@
 using System;
 using System.Threading;
-using Tarantino.Commons.Core;
 using NHibernate;
 using StructureMap;
+using Tarantino.Core;
 
-namespace Tarantino.Commons.Infrastructure.DataAccess.ORMapper
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class ThreadSessionScoper : ISessionScoper

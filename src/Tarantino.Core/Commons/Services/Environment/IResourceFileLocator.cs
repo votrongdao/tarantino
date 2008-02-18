@@ -1,6 +1,6 @@
 ﻿using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Environment
+namespace Tarantino.Core.Commons.Services.Environment
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IResourceFileLocator

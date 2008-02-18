@@ -1,4 +1,4 @@
-namespace Tarantino.Commons.Core
+namespace Tarantino.Core
 {
 	public class ServiceKeys
 	{

@@ -1,8 +1,8 @@
 using System;
-using Tarantino.Commons.Core;
 using StructureMap;
+using Tarantino.Core;
 
-namespace Tarantino.Commons.Infrastructure.DataAccess.ORMapper
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IObjectMapper

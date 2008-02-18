@@ -1,7 +1,7 @@
 using NHibernate;
 using StructureMap;
 
-namespace Tarantino.Commons.Infrastructure.DataAccess.ORMapper
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public delegate object SessionCommand(ISession session, params object[] arguments);
 

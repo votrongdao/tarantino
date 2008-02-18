@@ -1,8 +1,8 @@
 using System.Data;
-using Tarantino.Commons.Core.Model.Enumerations;
+using Tarantino.Core.Commons.Model.Enumerations;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.DataFileManagement
+namespace Tarantino.Core.Commons.Services.DataFileManagement
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IDataTableReader

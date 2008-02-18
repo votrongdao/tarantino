@@ -1,7 +1,10 @@
-﻿using Tarantino.DatabaseManager.NAntTasks.Domain;
+﻿using StructureMap;
+using Tarantino.Core;
+using Tarantino.DatabaseManager.Model;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services
+namespace Tarantino.DatabaseManager.Services
 {
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IQueryExecutor
 	{
 		void ExecuteNonQuery(ConnectionSettings settings, string sql);

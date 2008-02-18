@@ -1,9 +1,9 @@
 ﻿using StructureMap;
-using Tarantino.Commons.Core;
-using Tarantino.DatabaseManager.NAntTasks.Domain;
-using Tarantino.DatabaseManager.NAntTasks.Services.Impl;
+using Tarantino.Core;
+using Tarantino.DatabaseManager.Model;
+using Tarantino.DatabaseManager.Services.Impl;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
+namespace Tarantino.DatabaseManager.Services.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class DatabaseUpgrader : IDatabaseUpgrader

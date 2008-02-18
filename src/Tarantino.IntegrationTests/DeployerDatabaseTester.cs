@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Tarantino.Deployer.Core.Model;
+using Tarantino.Core.Deployer.Model;
 
 namespace Tarantino.IntegrationTests
 {

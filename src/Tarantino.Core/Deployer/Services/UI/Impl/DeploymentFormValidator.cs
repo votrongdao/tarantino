@@ -1,8 +1,9 @@
-using Tarantino.Commons.Core;
 using StructureMap;
-using Environment = Tarantino.Deployer.Core.Services.Configuration.Impl.Environment;
+using Tarantino.Core;
+using Tarantino.Deployer.Services.UI;
+using Environment = Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
 
-namespace Tarantino.Deployer.Services.Impl
+namespace Tarantino.Deployer.Services.UI.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentFormValidator : IDeploymentFormValidator

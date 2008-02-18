@@ -1,4 +1,4 @@
-namespace Tarantino.Commons.Core.Model.Enumerations
+namespace Tarantino.Core.Commons.Model.Enumerations
 {
 	public class SortOrder : Enumeration
 	{

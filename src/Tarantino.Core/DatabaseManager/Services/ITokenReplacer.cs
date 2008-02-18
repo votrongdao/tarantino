@@ -1,4 +1,4 @@
-namespace Tarantino.DatabaseManager.NAntTasks.Services
+namespace Tarantino.DatabaseManager.Services
 {
 	public interface ITokenReplacer
 	{

@@ -1,6 +1,6 @@
 using System;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
+namespace Tarantino.DatabaseManager.Services.Impl
 {
 	public class TokenReplacer : ITokenReplacer
 	{

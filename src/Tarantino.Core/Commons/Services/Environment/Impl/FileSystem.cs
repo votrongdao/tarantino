@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Environment.Impl
+namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class FileSystem : IFileSystem
@@ -51,5 +51,25 @@ namespace Tarantino.Commons.Core.Services.Environment.Impl
 			}
 		}
 
+		public string[] GetAllFilesWithExtensionWithinFolder(string folder, string fileExtension)
+		{
+			string[] fileNames = new string[0];
+
+			if (Directory.Exists(folder))
+			{
+				string searchPattern = string.Format("*.{0}", fileExtension);
+				fileNames = Directory.GetFiles(folder, searchPattern, SearchOption.AllDirectories);
+			}
+
+			return fileNames;
+		}
+
+		public string ReadTextFile(string filename)
+		{
+			using (StreamReader reader = new StreamReader(filename))
+			{
+				return reader.ReadToEnd();
+			}
+		}
 	}
 }

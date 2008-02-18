@@ -1,8 +1,7 @@
-using Tarantino.Deployer.Core.Model.Enumerations;
-using Tarantino.Commons.Core;
 using StructureMap;
+using Tarantino.Core.Deployer.Model;
 
-namespace Tarantino.Deployer.Core.Services
+namespace Tarantino.Core.Deployer.Services
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IDeploymentResultCalculator

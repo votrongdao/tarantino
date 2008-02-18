@@ -1,6 +1,6 @@
 using System.Web.UI.WebControls;
 
-namespace Tarantino.Commons.UI.Controls
+namespace Tarantino.Infrastructure.Commons.UI.Controls
 {
 	public class BooleanDropDownList : DropDownList
 	{

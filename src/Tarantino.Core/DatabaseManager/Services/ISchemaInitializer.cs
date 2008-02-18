@@ -1,6 +1,6 @@
-﻿using Tarantino.DatabaseManager.NAntTasks.Domain;
+﻿using Tarantino.DatabaseManager.Model;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services
+namespace Tarantino.DatabaseManager.Services
 {
 	public interface ISchemaInitializer
 	{

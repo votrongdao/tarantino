@@ -1,7 +1,7 @@
 using System.IO;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Environment
+namespace Tarantino.Core.Commons.Services.Environment
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IFileSystem
@@ -9,5 +9,7 @@ namespace Tarantino.Commons.Core.Services.Environment
 		void SaveFile(string filename, byte[] fileContent);
 		bool FileExists(string relativePath);
 		Stream ReadIntoFileStream(string path);
+		string[] GetAllFilesWithExtensionWithinFolder(string folder, string fileExtension);
+		string ReadTextFile(string filename);
 	}
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Tarantino.Commons.Core.Services.ListManagement
+namespace Tarantino.Core.Commons.Services.ListManagement
 {
 	public interface IRichList<T> : IList<T>
 	{

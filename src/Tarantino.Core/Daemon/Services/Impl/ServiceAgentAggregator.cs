@@ -1,10 +1,10 @@
 using System;
-using Tarantino.Commons.Core.Services.Configuration;
-using Tarantino.Commons.Core.Services.Environment;
+using Tarantino.Core.Commons.Services.Configuration;
+using Tarantino.Core.Commons.Services.Environment;
 using StructureMap;
 using Tarantino.Core.Commons.Services.Logging;
 
-namespace Tarantino.Commons.Core.Services.Daemon.Impl
+namespace Tarantino.Core.Daemon.Services.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class ServiceAgentAggregator : IServiceAgentAggregator

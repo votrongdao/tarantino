@@ -1,6 +1,6 @@
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Net
+namespace Tarantino.Core.Commons.Services.Web
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IWebDataReader

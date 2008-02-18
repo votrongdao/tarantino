@@ -1,6 +1,6 @@
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Configuration
+namespace Tarantino.Core.Commons.Services.Configuration
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IApplicationConfiguration

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tarantino.Commons.Core.Services.ListManagement.Impl
+namespace Tarantino.Core.Commons.Services.ListManagement.Impl
 {
 	public class EnumerableHelper
 	{

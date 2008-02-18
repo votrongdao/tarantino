@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.DataFileManagement.Impl
+namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class ExcelWorkbookReader : IExcelWorkbookReader

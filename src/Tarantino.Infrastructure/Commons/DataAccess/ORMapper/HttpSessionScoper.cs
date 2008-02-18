@@ -1,9 +1,9 @@
 using System.Web;
-using Tarantino.Commons.Core;
 using NHibernate;
 using StructureMap;
+using Tarantino.Core;
 
-namespace Tarantino.Commons.Infrastructure.DataAccess.ORMapper
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	[Pluggable(ServiceKeys.Secondary)]
 	public class HttpSessionScoper : ISessionScoper

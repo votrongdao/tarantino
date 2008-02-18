@@ -1,10 +1,10 @@
 using System;
 using System.IO;
-using Tarantino.Commons.Core.Model.Enumerations;
-using Tarantino.Commons.Core.Services.Environment;
+using Tarantino.Core.Commons.Model.Enumerations;
+using Tarantino.Core.Commons.Services.Environment;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.DataFileManagement.Impl
+namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class DataFileReader : IDataFileReader

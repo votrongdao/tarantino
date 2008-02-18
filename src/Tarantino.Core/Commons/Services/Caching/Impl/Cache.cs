@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Tarantino.Commons.Core.Services.Performance.Impl
+namespace Tarantino.Core.Commons.Services.Caching.Impl
 {
 	public static class Cache
 	{

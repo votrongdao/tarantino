@@ -1,6 +1,6 @@
 using System;
 
-namespace Tarantino.Commons.Core.Model
+namespace Tarantino.Core.Commons.Model
 {
 	public abstract class PersistentObject
 	{

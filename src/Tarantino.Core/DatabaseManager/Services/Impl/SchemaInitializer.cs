@@ -1,7 +1,7 @@
-﻿using Tarantino.Commons.Core.Services.Environment;
-using Tarantino.DatabaseManager.NAntTasks.Domain;
+﻿using Tarantino.Core.Commons.Services.Environment;
+using Tarantino.DatabaseManager.Model;
 
-namespace Tarantino.DatabaseManager.NAntTasks.Services.Impl
+namespace Tarantino.DatabaseManager.Services.Impl
 {
 	public class SchemaInitializer : ISchemaInitializer
 	{

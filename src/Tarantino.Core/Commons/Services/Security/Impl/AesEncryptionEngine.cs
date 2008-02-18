@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Security.Impl
+namespace Tarantino.Core.Commons.Services.Security.Impl
 {
 	/// <summary>
 	/// This class uses a symmetric key algorithm (Rijndael/AES) to encrypt and 

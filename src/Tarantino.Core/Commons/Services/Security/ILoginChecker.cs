@@ -1,7 +1,7 @@
 using StructureMap;
-using Tarantino.Commons.Core.Model.Repositories;
+using Tarantino.Core.Commons.Services.Repositories;
 
-namespace Tarantino.Commons.Core.Services.Security
+namespace Tarantino.Core.Commons.Services.Security
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface ILoginChecker

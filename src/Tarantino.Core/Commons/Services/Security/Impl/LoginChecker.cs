@@ -1,7 +1,7 @@
-using Tarantino.Commons.Core.Model.Repositories;
 using StructureMap;
+using Tarantino.Core.Commons.Services.Repositories;
 
-namespace Tarantino.Commons.Core.Services.Security.Impl
+namespace Tarantino.Core.Commons.Services.Security.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class LoginChecker : ILoginChecker

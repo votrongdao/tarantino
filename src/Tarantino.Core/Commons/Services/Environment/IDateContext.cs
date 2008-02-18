@@ -1,8 +1,8 @@
 using System;
-using Tarantino.Commons.Core.Model.Enumerations;
+using Tarantino.Core.Commons.Model.Enumerations;
 using StructureMap;
 
-namespace Tarantino.Commons.Core.Services.Environment
+namespace Tarantino.Core.Commons.Services.Environment
 {
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IDateContext
