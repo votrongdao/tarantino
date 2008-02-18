@@ -1,4 +1,4 @@
-namespace Tarantino.DatabaseManager.Services
+namespace Tarantino.Commons.Services.DataFileManagement
 {
 	public interface ITokenReplacer
 	{

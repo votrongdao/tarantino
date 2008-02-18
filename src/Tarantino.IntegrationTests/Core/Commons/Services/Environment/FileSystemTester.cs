@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using StructureMap;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.Commons.Services.Environment.Impl;
 using NUnit.Framework;
@@ -73,6 +74,27 @@ namespace Tarantino.IntegrationTests.Core.Commons.Services.Environment
 			}
 
 			mocks.VerifyAll();
+		}
+
+		[Test]
+		public void Correctly_Reads_Text_File()
+		{
+			writeSampleFile();
+			IFileSystem fileSystem = ObjectFactory.GetInstance<IFileSystem>();
+			string fileContents = fileSystem.ReadTextFile("test.txt");
+
+			Assert.That(fileContents, Is.EqualTo("testing..."));
+		}
+
+		[Test]
+		public void Correctly_finds_all_files_with_extension()
+		{
+			writeSampleFile();
+			IFileSystem fileSystem = ObjectFactory.GetInstance<IFileSystem>();
+			string[] files = fileSystem.GetAllFilesWithExtensionWithinFolder(".", "txt");
+			
+			Assert.That(files.Length, Is.EqualTo(1));
+			Assert.That(files[0].Contains(@"\test.txt"));
 		}
 
 		[Test]

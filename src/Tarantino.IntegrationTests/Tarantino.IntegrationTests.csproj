@@ -67,6 +67,7 @@
     <Compile Include="Core\Commons\Services\Environment\SystemClockTester.cs" />
     <Compile Include="Core\Commons\Services\Environment\TypeActivatorTester.cs" />
     <Compile Include="Core\Commons\Services\ListManagement\EnumerationHelperTester.cs" />
+    <Compile Include="Core\Commons\Services\RandomDataCreation\RandomNumberGeneratorTester.cs" />
     <Compile Include="Core\Commons\Services\Web\WebDataReaderTester.cs" />
     <Compile Include="Core\Commons\Services\Caching\CacheManagerTester.cs" />
     <Compile Include="Core\Commons\Services\Security\WindowsIdentityTester.cs" />

@@ -1,4 +1,3 @@
-using System;
 using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl

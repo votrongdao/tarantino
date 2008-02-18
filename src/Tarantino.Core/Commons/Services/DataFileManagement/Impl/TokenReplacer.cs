@@ -1,6 +1,7 @@
 using System;
+using Tarantino.Commons.Services.DataFileManagement;
 
-namespace Tarantino.DatabaseManager.Services.Impl
+namespace Tarantino.Commons.Services.DataFileManagement.Impl
 {
 	public class TokenReplacer : ITokenReplacer
 	{

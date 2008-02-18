@@ -66,7 +66,8 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 
 		public string ReadTextFile(string filename)
 		{
-			using (StreamReader reader = new StreamReader(filename))
+			Stream stream = _streamFactory.ConstructReadFileStream(filename);
+			using (StreamReader reader = new StreamReader(stream))
 			{
 				return reader.ReadToEnd();
 			}

@@ -53,6 +53,15 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\Commons\Services\RandomDataCreation\CodeGeneratorTester.cs" />
+    <Compile Include="Core\Commons\Services\RandomDataCreation\RandomCharacterGeneratorTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\ForgottenPasswordMailerTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\ForgottenPasswordMailFactoryTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\ForgottenPasswordServiceTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\LoginServiceTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\PrincipalFactoryTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\RoleAssignerTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\SystemUserContextManagerTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\BoundedEnumerationTester.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\EnumerationTester.cs" />
@@ -84,7 +93,7 @@
     <Compile Include="Core\DatabaseManager\Services\SchemaInitializerTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\ScriptExecutionTrackerTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\SqlFileLocatorTester.cs" />
-    <Compile Include="Core\DatabaseManager\Services\TokenReplacerTester.cs" />
+    <Compile Include="Core\Commons\Services\DataFileManagement\TokenReplacerTester.cs" />
     <Compile Include="Core\Deployer\Model\DeploymentTester.cs" />
     <Compile Include="Core\Deployer\Services\Configuration\ApplicationRepositoryTester.cs" />
     <Compile Include="Core\Deployer\Services\DeploymentFactoryTester.cs" />

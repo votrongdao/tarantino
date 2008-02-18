@@ -1,12 +1,14 @@
 using System;
 using NUnit.Framework.SyntaxHelpers;
+using Tarantino.Core.Commons.Model;
 using Tarantino.Core.Deployer.Model;
 using NUnit.Framework;
+using Tarantino.UnitTests.Core.Commons.Model;
 
 namespace Tarantino.UnitTests.Core.Deployer.Model
 {
 	[TestFixture]
-	public class DeploymentTester
+	public class DeploymentTester : PersistentObjectTester
 	{
 		[Test]
 		public void Property_accessors_work()
@@ -57,6 +59,11 @@ namespace Tarantino.UnitTests.Core.Deployer.Model
 			Deployment deployment = new Deployment();
 			deployment.Revision = 155;
 			Assert.That(deployment.ToString(), Is.EqualTo("155"));
+		}
+
+		protected override PersistentObject CreatePersisentObject()
+		{
+			return new Deployment();
 		}
 	}
 }

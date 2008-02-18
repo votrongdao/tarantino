@@ -1,9 +1,9 @@
 using System;
-using Tarantino.DatabaseManager.Services;
-using Tarantino.DatabaseManager.Services.Impl;
+using Tarantino.Commons.Services.DataFileManagement;
+using Tarantino.Commons.Services.DataFileManagement.Impl;
 using NUnit.Framework;
 
-namespace Tarantino.UnitTests.Core.DatabaseManager.Services
+namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 {
 	[TestFixture]
 	public class TokenReplacerTester
