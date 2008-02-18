@@ -51,10 +51,10 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\StructureMap.config">
-      <Link>StructureMap.config</Link>
-    </None>
     <None Include="App.config" />
+    <None Include="StructureMap.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tarantino.Commons.Core\Tarantino.Commons.Core.csproj">

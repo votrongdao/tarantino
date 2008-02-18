@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Commons.Core", "T
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Commons.Database", "Tarantino.Commons.Database\Tarantino.Commons.Database.csproj", "{6DA87548-0153-4CCF-A497-41059B712C0D}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Commons.Infrastructure", "Tarantino.Commons.Infrastructure\Tarantino.Commons.Infrastructure.csproj", "{39ED49F2-85D7-4025-AF21-C75BFF4FD664}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
@@ -20,12 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Commons.Infrastru
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Commons.Service", "Tarantino.Commons.Service\Tarantino.Commons.Service.csproj", "{83AC8B23-B726-4A90-8C12-FA907A8CA2E6}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Commons.UI", "Tarantino.Commons.UI\Tarantino.Commons.UI.csproj", "{EDC8E1CB-E02F-42ED-BA05-2765A49669BF}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
@@ -85,12 +73,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.IntegrationTests"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Deployer.IntegrationTests", "Tarantino.Deployer.IntegrationTests\Tarantino.Deployer.IntegrationTests.csproj", "{6713C30A-7C9D-43B0-97BC-DE19BF0B5CD4}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B4BBF8D-B63B-4AC4-A29D-7D68B3F0A787}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
@@ -112,8 +94,6 @@ Global
 		{8BDE9ED1-AD59-4A82-9A65-D24ABAE905D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BDE9ED1-AD59-4A82-9A65-D24ABAE905D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BDE9ED1-AD59-4A82-9A65-D24ABAE905D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DA87548-0153-4CCF-A497-41059B712C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DA87548-0153-4CCF-A497-41059B712C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39ED49F2-85D7-4025-AF21-C75BFF4FD664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39ED49F2-85D7-4025-AF21-C75BFF4FD664}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39ED49F2-85D7-4025-AF21-C75BFF4FD664}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -122,10 +102,6 @@ Global
 		{83AC8B23-B726-4A90-8C12-FA907A8CA2E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83AC8B23-B726-4A90-8C12-FA907A8CA2E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83AC8B23-B726-4A90-8C12-FA907A8CA2E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDC8E1CB-E02F-42ED-BA05-2765A49669BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDC8E1CB-E02F-42ED-BA05-2765A49669BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDC8E1CB-E02F-42ED-BA05-2765A49669BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDC8E1CB-E02F-42ED-BA05-2765A49669BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{520F08E9-A48C-4FE7-8425-F972961E32AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{520F08E9-A48C-4FE7-8425-F972961E32AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{520F08E9-A48C-4FE7-8425-F972961E32AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -160,10 +136,6 @@ Global
 		{D283FF65-DE0E-492C-B9C0-985CD32FC3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D283FF65-DE0E-492C-B9C0-985CD32FC3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D283FF65-DE0E-492C-B9C0-985CD32FC3C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6713C30A-7C9D-43B0-97BC-DE19BF0B5CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6713C30A-7C9D-43B0-97BC-DE19BF0B5CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6713C30A-7C9D-43B0-97BC-DE19BF0B5CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6713C30A-7C9D-43B0-97BC-DE19BF0B5CD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Specialized;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
@@ -15,7 +14,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Configuration
 		{
 			IApplicationConfiguration settings = new ApplicationConfiguration();
 
-			Assert.That(settings.GetSetting("MappingAssemblies"), Is.EqualTo("Tarantino.Commons.Infrastructure"));
+			Assert.That(settings.GetSetting("MappingAssemblies"), Is.EqualTo("Tarantino.Deployer.Infrastructure"));
 		}
 
 		[Test]
@@ -32,7 +31,7 @@ namespace Tarantino.IntegrationTests.Commons.Core.Services.Configuration
 			IApplicationConfiguration settings = new ApplicationConfiguration();
 
 			Assert.That(settings.GetConnectionString("DatabaseConnectionString"),
-			            Is.EqualTo("data source=.;Initial Catalog=TarantinoCommons;Integrated Security=true;Connect Timeout=100"));
+			            Is.EqualTo("data source=.;Initial Catalog=TarantinoDeployer;Integrated Security=true;Connect Timeout=100"));
 		}
 
 		[Test]

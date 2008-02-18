@@ -25,9 +25,9 @@
 	<property name="package.dir" value="package" />
 
 	<!-- External targets -->
-	<target name="local" depends="debug, rebuildAllDatabases, version, compile, move, test"/>
-	<target name="localWithCoverage" depends="debug, rebuildAllDatabases, version, compile, move, coverage"/>
-	<target name="localWithPackage" depends="rebuildAllDatabases, rebuildDeployerDatabase, version, compile, move, test, package"/>
+	<target name="local" depends="debug, rebuildDatabase, version, compile, move, test"/>
+	<target name="localWithCoverage" depends="debug, rebuildDatabase, version, compile, move, coverage"/>
+	<target name="localWithPackage" depends="rebuildDatabase, version, compile, move, test, package"/>
 
 	<target name="debug">
 		<property name="project.config" value="debug" />
@@ -53,13 +53,6 @@
 				</fileset>
 			</copy>
 		</foreach>
-
-		<copy todir="${test.dir}" verbose="false" overwrite="true">
-			<fileset basedir="src/Tarantino.Deployer.IntegrationTests/bin/${project.config}">
-				<exclude name="*.xml"/>
-				<include name="**"/>
-			</fileset>
-		</copy>
 	</target>
 
 	<target name="test">
@@ -73,11 +66,6 @@
 				<test assemblyname="${assembly}" />
 			</nunit2>
 		</foreach>
-
-		<nunit2 failonerror="true" verbose="true">
-			<formatter type="Plain" />
-			<test assemblyname="${test.dir}\Tarantino.Deployer.IntegrationTests.dll" />
-		</nunit2>
 	</target>
 
 	<target name="coverage">
@@ -85,8 +73,6 @@
 			<property name="assembly" value="${project}.${test.type}Tests" />
 			<exec program="${ncover.console}" commandline="//reg //w ${test.dir} //x ${test.dir}\${assembly}.Coverage.xml //v ${nunit.console} ${assembly}.dll" workingdir="." />
 		</foreach>
-
-		<exec program="${ncover.console}" commandline="//reg //w ${test.dir} //x ${test.dir}\Tarantino.Deployer.IntegrationTests.Coverage.xml //v ${nunit.console} Tarantino.Deployer.IntegrationTests.dll" workingdir="." />
 	</target>
 
 	<target name="version">
@@ -180,13 +166,7 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${package.dir}\Tarantino.Commons.Database" verbose="false">
-			<fileset basedir="src\Tarantino.Commons.Database">
-				<include name="**\*.sql" />
-			</fileset>
-		</copy>
-
-		<copy todir="${package.dir}\Tarantino.Commons.Database" verbose="false">
+		<copy todir="${package.dir}" verbose="false">
 			<fileset basedir="src\Tarantino.DatabaseManager.UI\bin\${project.config}">
 				<include name="*.dll" />
 				<include name="*.exe" />
@@ -195,61 +175,15 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${package.dir}\Tarantino.Deployer.Database" verbose="false">
+		<copy todir="${package.dir}" verbose="false">
 			<fileset basedir="src\Tarantino.Deployer.Database">
 				<include name="**\*.sql" />
 			</fileset>
 		</copy>
 
-		<copy todir="${package.dir}\Tarantino.Deployer.Database" verbose="false">
-			<fileset basedir="src\Tarantino.DatabaseManager.UI\bin\${project.config}">
-				<include name="*.dll" />
-				<include name="*.exe" />
-				<include name="*.build" />
-				<include name="Tarantino.DatabaseManager.UI.exe.config" />
-			</fileset>
-		</copy>
-
 		<property name="app.settings.path" value="/configuration/appSettings" />
 
-		<property name="commonsDatabaseManagerConfig" value="${package.dir}\Tarantino.Commons.Database\Tarantino.DatabaseManager.UI.exe.config"/>
-
-		<xmlpoke
-			file="${commonsDatabaseManagerConfig}"
-			xpath="${app.settings.path}/add[@key='Server']/@value"
-			value="." />
-
-		<xmlpoke
-			file="${commonsDatabaseManagerConfig}"
-			xpath="${app.settings.path}/add[@key='Database']/@value"
-			value="TarantinoCommons" />
-
-		<xmlpoke
-			file="${commonsDatabaseManagerConfig}"
-			xpath="${app.settings.path}/add[@key='Username']/@value"
-			value="" />
-
-		<xmlpoke
-			file="${commonsDatabaseManagerConfig}"
-			xpath="${app.settings.path}/add[@key='Password']/@value"
-			value="" />
-
-		<xmlpoke
-			file="${commonsDatabaseManagerConfig}"
-			xpath="${app.settings.path}/add[@key='IntegratedSecurity']/@value"
-			value="true" />
-
-		<xmlpoke
-			file="${commonsDatabaseManagerConfig}"
-			xpath="${app.settings.path}/add[@key='ScriptFolder']/@value"
-			value="." />
-
-		<xmlpoke
-			file="${commonsDatabaseManagerConfig}"
-			xpath="${app.settings.path}/add[@key='NAntFolder']/@value"
-			value="..\NAnt" />
-
-		<property name="deployerDatabaseManagerConfig" value="${package.dir}\Tarantino.Deployer.Database\Tarantino.DatabaseManager.UI.exe.config"/>
+		<property name="deployerDatabaseManagerConfig" value="${package.dir}\Tarantino.DatabaseManager.UI.exe.config"/>
 
 		<xmlpoke
 			file="${deployerDatabaseManagerConfig}"
@@ -314,20 +248,6 @@
 	<target name="updateDatabase">
 		<property name="action" value="Update" />
 		<call target="manageSqlDatabase" />
-	</target>
-
-	<target name="rebuildAllDatabases" depends="rebuildCommonsDatabase, rebuildDeployerDatabase" />
-
-	<target name="rebuildCommonsDatabase">
-		<property name="database.name" value="TarantinoCommons" />
-		<property name="database.script.directory" value="src\Tarantino.Commons.Database" />
-		<call target="rebuildDatabase" />
-	</target>
-
-	<target name="rebuildDeployerDatabase">
-		<property name="database.name" value="TarantinoDeployer" />
-		<property name="database.script.directory" value="src\Tarantino.Deployer.Database" />
-		<call target="rebuildDatabase" />
 	</target>
 
 	<target name="rebuildDatabase">
