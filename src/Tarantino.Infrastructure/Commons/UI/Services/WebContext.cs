@@ -9,8 +9,6 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 	[Pluggable(ServiceKeys.Default)]
 	public class WebContext : IWebContext
 	{
-		public const string CURRENT_VIRTUAL_URL = "VirtualUrl";
-	
 		public bool UserIsAuthenticated()
 		{
 			bool isAuthenticated = HttpContext.Current.Request.IsAuthenticated;
