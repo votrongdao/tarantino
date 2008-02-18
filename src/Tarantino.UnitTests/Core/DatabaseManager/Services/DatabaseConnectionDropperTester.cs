@@ -1,8 +1,8 @@
-using Tarantino.Commons.Services.DataFileManagement;
+using Tarantino.Core.Commons.Services.DataFileManagement;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.DatabaseManager.Model;
-using Tarantino.DatabaseManager.Services;
-using Tarantino.DatabaseManager.Services.Impl;
+using Tarantino.Core.DatabaseManager.Services;
+using Tarantino.Core.DatabaseManager.Services.Impl;
 using NUnit.Framework;
 using Rhino.Mocks;
 

@@ -1,4 +1,4 @@
-﻿namespace Tarantino.DatabaseManager.Services
+﻿namespace Tarantino.Core.DatabaseManager.Services
 {
 	public interface ITaskObserver
 	{

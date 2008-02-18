@@ -1,8 +1,10 @@
-﻿using Tarantino.Core.Commons.Services.Environment;
+﻿using StructureMap;
+using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.DatabaseManager.Model;
 
-namespace Tarantino.DatabaseManager.Services.Impl
+namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
+	[Pluggable(ServiceKeys.Default)]
 	public class SchemaInitializer : ISchemaInitializer
 	{
 		private readonly IQueryExecutor _executor;

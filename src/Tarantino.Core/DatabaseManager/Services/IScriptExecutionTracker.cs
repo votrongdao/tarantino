@@ -1,7 +1,9 @@
-﻿using Tarantino.DatabaseManager.Model;
+﻿using StructureMap;
+using Tarantino.DatabaseManager.Model;
 
-namespace Tarantino.DatabaseManager.Services
+namespace Tarantino.Core.DatabaseManager.Services
 {
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IScriptExecutionTracker
 	{
 		void MarkScriptAsExecuted(ConnectionSettings settings, string scriptFilename, ITaskObserver task);

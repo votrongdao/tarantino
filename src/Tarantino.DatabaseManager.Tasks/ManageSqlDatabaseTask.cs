@@ -1,10 +1,11 @@
 ﻿using System.IO;
 using StructureMap;
-using Tarantino.DatabaseManager.Services;
-using Tarantino.DatabaseManager.Services.Impl;
+using Tarantino.Core.DatabaseManager.Services;
+using Tarantino.Core.DatabaseManager.Services.Impl;
 using NAnt.Core.Attributes;
+using Tarantino.Infrastructure.DatabaseManager.BuildTasks;
 
-namespace Tarantino.Infrastructure.DatabaseManager.BuildTasks
+namespace Tarantino.DatabaseManager.Tasks
 {
 	[TaskName("manageSqlDatabase")]
 	public class ManageSqlDatabaseTask : Task, ITaskObserver

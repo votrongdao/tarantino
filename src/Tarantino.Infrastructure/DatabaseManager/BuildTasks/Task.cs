@@ -1,6 +1,6 @@
 using NAnt.Core;
 using NAnt.Core.Tasks;
-using Tarantino.DatabaseManager.Services;
+using Tarantino.Core.DatabaseManager.Services;
 
 namespace Tarantino.Infrastructure.DatabaseManager.BuildTasks
 {

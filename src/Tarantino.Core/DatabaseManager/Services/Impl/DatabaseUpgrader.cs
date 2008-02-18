@@ -1,9 +1,9 @@
 ﻿using StructureMap;
 using Tarantino.Core;
 using Tarantino.DatabaseManager.Model;
-using Tarantino.DatabaseManager.Services.Impl;
+using Tarantino.Core.DatabaseManager.Services.Impl;
 
-namespace Tarantino.DatabaseManager.Services.Impl
+namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
 	[Pluggable(ServiceKeys.Default)]
 	public class DatabaseUpgrader : IDatabaseUpgrader

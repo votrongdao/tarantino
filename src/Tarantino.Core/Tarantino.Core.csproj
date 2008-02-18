@@ -149,7 +149,6 @@
     <Compile Include="DatabaseManager\Services\Impl\DatabaseConnectionDropper.cs" />
     <Compile Include="DatabaseManager\Services\Impl\DatabaseUpgrader.cs" />
     <Compile Include="DatabaseManager\Services\Impl\DatabaseVersioner.cs" />
-    <Compile Include="DatabaseManager\Services\Impl\FileSystem.cs" />
     <Compile Include="DatabaseManager\Services\Impl\SchemaInitializer.cs" />
     <Compile Include="DatabaseManager\Services\Impl\ScriptExecutionTracker.cs" />
     <Compile Include="DatabaseManager\Services\Impl\SqlFileLocator.cs" />

@@ -1,8 +1,10 @@
 ﻿using System;
+using StructureMap;
 using Tarantino.DatabaseManager.Model;
 
-namespace Tarantino.DatabaseManager.Services.Impl
+namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
+	[Pluggable(ServiceKeys.Default)]
 	public class ScriptExecutionTracker : IScriptExecutionTracker
 	{
 		private string[] _appliedScripts;

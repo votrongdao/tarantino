@@ -1,6 +1,6 @@
 using System;
-using Tarantino.Commons.Services.DataFileManagement;
-using Tarantino.Commons.Services.DataFileManagement.Impl;
+using Tarantino.Core.Commons.Services.DataFileManagement;
+using Tarantino.Core.Commons.Services.DataFileManagement.Impl;
 using NUnit.Framework;
 
 namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement

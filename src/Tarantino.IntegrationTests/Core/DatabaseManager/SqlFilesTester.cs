@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using StructureMap;
 using Tarantino.Core.Commons.Services.Environment;
-using Tarantino.DatabaseManager.Services.Impl;
+using Tarantino.Core.DatabaseManager.Services.Impl;
 
 namespace Tarantino.IntegrationTests.Core.DatabaseManager
 {

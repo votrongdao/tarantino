@@ -5,7 +5,7 @@ using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using StructureMap;
 using Tarantino.Core;
-using Tarantino.DatabaseManager.Services;
+using Tarantino.Core.DatabaseManager.Services;
 using ConnectionSettings=Tarantino.DatabaseManager.Model.ConnectionSettings;
 
 namespace Tarantino.Infrastructure.DatabaseManager.DataAccess

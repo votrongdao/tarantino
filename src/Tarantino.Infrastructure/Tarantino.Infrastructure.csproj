@@ -86,7 +86,6 @@
     <Compile Include="Commons\UI\Services\AuthenticationService.cs" />
     <Compile Include="Commons\UI\Services\WebContext.cs" />
     <Compile Include="Commons\UI\Services\WebDataReader.cs" />
-    <Compile Include="DatabaseManager\BuildTasks\ManageSqlDatabaseTask.cs" />
     <Compile Include="DatabaseManager\BuildTasks\Task.cs" />
     <Compile Include="DatabaseManager\DataAccess\QueryExecutor.cs" />
     <Compile Include="Deployer\DataAccess\Repositories\DeploymentRepository.cs" />

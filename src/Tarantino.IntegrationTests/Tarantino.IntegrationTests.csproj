@@ -86,7 +86,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="Core\Commons\Services\DataFileManagement\Files\Sample.tab" />
     <EmbeddedResource Include="Core\Commons\Services\DataFileManagement\Files\Sample.xls" />

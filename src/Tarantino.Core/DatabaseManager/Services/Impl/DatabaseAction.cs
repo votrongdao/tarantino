@@ -1,4 +1,4 @@
-﻿namespace Tarantino.DatabaseManager.Services.Impl
+﻿namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
 	public enum DatabaseAction
 	{

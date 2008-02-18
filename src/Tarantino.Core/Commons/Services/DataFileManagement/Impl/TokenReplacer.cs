@@ -1,8 +1,10 @@
 using System;
-using Tarantino.Commons.Services.DataFileManagement;
+using StructureMap;
+using Tarantino.Core.Commons.Services.DataFileManagement;
 
-namespace Tarantino.Commons.Services.DataFileManagement.Impl
+namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
+	[Pluggable(ServiceKeys.Default)]
 	public class TokenReplacer : ITokenReplacer
 	{
 		private string _text;
