@@ -1,5 +1,4 @@
 using System;
-using Tarantino.Commons.Core.Model;
 using Tarantino.Commons.Core.Model.Enumerations;
 using Tarantino.Commons.Core.Model.Repositories;
 using NUnit.Framework;
@@ -46,7 +45,7 @@ namespace Tarantino.UnitTests.Commons.Core.Model.Repositories
 
 			set1.AddCriterion(new Criterion("A1", "V1", ComparisonOperator.Equal));
 			set1.AddCriterion(new Criterion("A2", "V2", ComparisonOperator.Equal));
-			
+
 			set2.AddCriterion(new Criterion("A1", "V1", ComparisonOperator.Equal));
 			set2.AddCriterion(new Criterion("A2", "V2", ComparisonOperator.Equal));
 
@@ -138,12 +137,12 @@ namespace Tarantino.UnitTests.Commons.Core.Model.Repositories
 			CriterionSet set1 = new CriterionSet();
 			CriterionSet set2 = new CriterionSet();
 
-			SystemUser user1 = new SystemUser();
+			string myString = "abc";
 
-			set1.AddCriterion(new Criterion("A1", user1));
+			set1.AddCriterion(new Criterion("A1", myString));
 			set1.AddCriterion(new Criterion("A2", new DateTime(2007, 4, 15), ComparisonOperator.GreaterThan));
-			
-			set2.AddCriterion(new Criterion("A1", user1));
+
+			set2.AddCriterion(new Criterion("A1", myString));
 			set2.AddCriterion(new Criterion("A2", new DateTime(2007, 4, 15), ComparisonOperator.GreaterThan));
 
 			Assert.That(set1, Is.EqualTo(set2));

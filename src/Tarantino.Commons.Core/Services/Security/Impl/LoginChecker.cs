@@ -6,19 +6,17 @@ namespace Tarantino.Commons.Core.Services.Security.Impl
 	[Pluggable(ServiceKeys.Default)]
 	public class LoginChecker : ILoginChecker
 	{
-		private readonly ISystemUserRepository _repository;
 		private readonly IEncryptionEngine _encryptionEngine;
 
-		public LoginChecker(ISystemUserRepository repository, IEncryptionEngine encryptionEngine)
+		public LoginChecker(IEncryptionEngine encryptionEngine)
 		{
-			_repository = repository;
 			_encryptionEngine = encryptionEngine;
 		}
 
-		public bool IsValidUser(string emailAddress, string cleartextPassword)
+		public bool IsValidUser(string emailAddress, string cleartextPassword, ISystemUserRepository repository)
 		{
 			string encryptedPassword = _encryptionEngine.Encrypt(cleartextPassword);
-			bool isValidUser = _repository.IsValidLogin(emailAddress, encryptedPassword);
+			bool isValidUser = repository.IsValidLogin(emailAddress, encryptedPassword);
 
 			return isValidUser;
 		}

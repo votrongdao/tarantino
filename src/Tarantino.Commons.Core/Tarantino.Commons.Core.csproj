@@ -49,6 +49,7 @@
     <Compile Include="Model\Enumerations\ComparisonOperator.cs" />
     <Compile Include="Model\Enumerations\TimePeriod.cs" />
     <Compile Include="Model\Enumerations\SortOrder.cs" />
+    <Compile Include="Model\ISystemUser.cs" />
     <Compile Include="Model\Repositories\Criterion.cs" />
     <Compile Include="Model\Repositories\CriterionSet.cs" />
     <Compile Include="Model\Enumerations\BoundedEnumeration.cs" />
@@ -67,7 +68,6 @@
     <Compile Include="Services\ListManagement\Impl\EnumerableHelper.cs" />
     <Compile Include="Services\ListManagement\IRichList.cs" />
     <Compile Include="Services\Logging\Log.cs" />
-    <Compile Include="Model\SystemUser.cs" />
     <Compile Include="Services\ListManagement\Impl\RichList.cs" />
     <Compile Include="ServiceKeys.cs" />
     <Compile Include="Services\Configuration\IApplicationSettings.cs" />

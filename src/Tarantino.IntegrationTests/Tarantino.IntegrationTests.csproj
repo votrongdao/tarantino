@@ -72,8 +72,6 @@
     <Compile Include="Commons\Core\Services\Performance\CacheManagerTester.cs" />
     <Compile Include="Commons\Core\Services\Security\WindowsIdentityTester.cs" />
     <Compile Include="Commons\Infrastructure\DataAccess\DatabaseTesterBase.cs" />
-    <Compile Include="Commons\Infrastructure\DataAccess\Mappings\SystemUserMappingsTester.cs" />
-    <Compile Include="Commons\Infrastructure\DataAccess\Repositories\PersistentObjectRepositoryTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
   </ItemGroup>
   <ItemGroup>

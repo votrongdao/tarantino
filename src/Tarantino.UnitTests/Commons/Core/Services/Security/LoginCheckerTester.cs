@@ -25,8 +25,8 @@ namespace Tarantino.UnitTests.Commons.Core.Services.Security
 
 			using (mocks.Playback())
 			{
-				ILoginChecker loginChecker = new LoginChecker(repository, encryptionEngine);
-				bool isValid = loginChecker.IsValidUser("khurwitz@hotmail.com", "pass");
+				ILoginChecker loginChecker = new LoginChecker(encryptionEngine);
+				bool isValid = loginChecker.IsValidUser("khurwitz@hotmail.com", "pass", repository);
 				
 				Assert.That(isValid, Is.True);
 			}
@@ -49,8 +49,8 @@ namespace Tarantino.UnitTests.Commons.Core.Services.Security
 
 			using (mocks.Playback())
 			{
-				ILoginChecker loginChecker = new LoginChecker(repository, encryptionEngine);
-				bool isValid = loginChecker.IsValidUser("khurwitz@hotmail.com", "pass");
+				ILoginChecker loginChecker = new LoginChecker(encryptionEngine);
+				bool isValid = loginChecker.IsValidUser("khurwitz@hotmail.com", "pass", repository);
 
 				Assert.That(isValid, Is.False);
 			}

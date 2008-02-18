@@ -57,7 +57,6 @@
     <Compile Include="Commons\Core\Model\PersistentObjectTester.cs" />
     <Compile Include="Commons\Core\Model\Repositories\CriterionSetTester.cs" />
     <Compile Include="Commons\Core\Model\Repositories\CriterionTester.cs" />
-    <Compile Include="Commons\Core\Model\SystemUserTester.cs" />
     <Compile Include="Commons\Core\Services\Configuration\ApplicationSettingsTester.cs" />
     <Compile Include="Commons\Core\Services\Configuration\ConfigurationReaderTester.cs" />
     <Compile Include="Commons\Core\Services\Configuration\ElementCollectionTester.cs" />
@@ -74,7 +73,6 @@
     <Compile Include="Commons\Core\Services\Security\LoginCheckerTester.cs" />
     <Compile Include="Commons\Core\Services\Security\SecurityContextTester.cs" />
     <Compile Include="Commons\Infrastructure\DataAccess\ORMapper\EnumerationTypeTester.cs" />
-    <Compile Include="Commons\Infrastructure\DataAccess\Repositories\SystemUserRepositoryTester.cs" />
     <Compile Include="DatabaseManager\NAntTasks\Model\ConnectionSettingsTester.cs" />
     <Compile Include="DatabaseManager\NAntTasks\Services\ChangeScriptExecutorTester.cs" />
     <Compile Include="DatabaseManager\NAntTasks\Services\ConnectionStringGeneratorTester.cs" />
