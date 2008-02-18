@@ -8,6 +8,9 @@ namespace Tarantino.DatabaseManager.Services.Impl
 	[Pluggable(ServiceKeys.Default)]
 	public class DatabaseUpgrader : IDatabaseUpgrader
 	{
+		public const string SQL_FILE_ASSEMBLY = "Tarantino.Core";
+		public const string SQL_FILE_TEMPLATE = "Tarantino.Core.DatabaseManager.SqlFiles.{0}.sql";
+
 		private IQueryExecutor _executor;
 		private ISqlFileLocator _fileLocator;
 		private ISchemaInitializer _schemaInitializer;

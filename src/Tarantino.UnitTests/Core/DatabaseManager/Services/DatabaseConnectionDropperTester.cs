@@ -14,6 +14,9 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		[Test]
 		public void CorrectlyCoordinatesDatabaseDropTest()
 		{
+			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "DropConnections");
+
 			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
 
 			MockRepository mocks = new MockRepository();
@@ -21,7 +24,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			ITokenReplacer replacer = mocks.CreateMock<ITokenReplacer>();
 			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
 
-			Expect.Call(fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", "Tarantino.DatabaseManager.NAntTasks.Files.DropConnections.sql")).Return("Unformatted SQL");
+			Expect.Call(fileLocator.ReadTextFile(assembly, sqlFile)).Return("Unformatted SQL");
 			replacer.Text = "Unformatted SQL";
 			replacer.Replace("DatabaseName", "MyDatabase");
 			Expect.Call(replacer.Text).Return("Formatted SQL");

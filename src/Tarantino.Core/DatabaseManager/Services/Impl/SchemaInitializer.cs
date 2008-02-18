@@ -16,7 +16,10 @@ namespace Tarantino.DatabaseManager.Services.Impl
 
 		public void EnsureSchemaCreated(ConnectionSettings settings)
 		{
-			string sql = _locator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", "Tarantino.DatabaseManager.NAntTasks.Files.CreateSchema.sql");
+			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "CreateSchema");
+
+			string sql = _locator.ReadTextFile(assembly, sqlFile);
 
 			_executor.ExecuteNonQuery(settings, sql);
 		}

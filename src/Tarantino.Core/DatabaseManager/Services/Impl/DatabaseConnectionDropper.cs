@@ -19,7 +19,10 @@ namespace Tarantino.DatabaseManager.Services.Impl
 
 		public void Drop(string databaseName, ConnectionSettings settings)
 		{
-			string sql = _fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", "Tarantino.DatabaseManager.NAntTasks.Files.DropConnections.sql");
+			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "DropConnections");
+
+			string sql = _fileLocator.ReadTextFile(assembly, sqlFile);
 
 			_replacer.Text = sql;
 			_replacer.Replace("DatabaseName", databaseName);

@@ -16,8 +16,10 @@ namespace Tarantino.DatabaseManager.Services.Impl
 
 		public void VersionDatabase(ConnectionSettings settings, ITaskObserver taskObserver, string databaseVersionPropertyName)
 		{
-			string sqlFile = "Tarantino.DatabaseManager.NAntTasks.Files.VersionDatabase.sql";
-			string sql = _fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", sqlFile);
+			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "VersionDatabase");
+
+			string sql = _fileLocator.ReadTextFile(assembly, sqlFile);
 			string version = _executor.ExecuteScalarInteger(settings, sql).ToString();
 			taskObserver.SetVariable(databaseVersionPropertyName, version);
 		}

@@ -14,6 +14,9 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		[Test]
 		public void CorrectlyVersionsDatabase()
 		{
+			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "VersionDatabase");
+
 			ConnectionSettings settings = 
 				new ConnectionSettings(String.Empty, String.Empty, false, String.Empty, String.Empty);
 			string sqlScript = "SQL script...";
@@ -23,7 +26,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
 			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
 
-			Expect.Call(fileLocator.ReadTextFile("Tarantino.DatabaseManager.NAntTasks", "Tarantino.DatabaseManager.NAntTasks.Files.VersionDatabase.sql")).Return(sqlScript);
+			Expect.Call(fileLocator.ReadTextFile(assembly, sqlFile)).Return(sqlScript);
 			Expect.Call(queryExecutor.ExecuteScalarInteger(settings, sqlScript)).Return(7);
 			taskObserver.SetVariable("usdDatabaseVersion", "7");
 
