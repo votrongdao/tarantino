@@ -72,10 +72,8 @@ namespace Tarantino.DatabaseManager.Tasks
 		{
 			try
 			{
-				string directory = ScriptDirectory.FullName;
-
 				IDatabaseUpgrader upgrader = ObjectFactory.GetInstance<IDatabaseUpgrader>();
-				upgrader.Upgrade(directory, Server, Database, IntegratedAuthentication, Username, Password, Action, this, _databaseVersionPropertyName);
+				upgrader.Upgrade(ScriptDirectory.FullName, Server, Database, IntegratedAuthentication, Username, Password, Action, this, _databaseVersionPropertyName);
 			}
 			catch
 			{

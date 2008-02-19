@@ -116,6 +116,12 @@
 			</fileset>
 		</copy>
 
+		<copy todir="${package.dir}\Subversion" verbose="false">
+			<fileset basedir="lib\Subversion\1.4.3">
+				<include name="**" />
+			</fileset>
+		</copy>
+
 		<copy todir="${package.dir}" verbose="false">
 			<fileset basedir="src\Tarantino.Core\bin\${project.config}">
 				<include name="*.dll" />
@@ -212,7 +218,7 @@
 		<xmlpoke
 			file="${deployerDatabaseManagerConfig}"
 			xpath="${app.settings.path}/add[@key='NAntFolder']/@value"
-			value="..\NAnt" />
+			value="NAnt" />
 
 		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
 

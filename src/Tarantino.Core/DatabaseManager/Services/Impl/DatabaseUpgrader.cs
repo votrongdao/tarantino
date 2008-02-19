@@ -59,10 +59,11 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 				_schemaInitializer.EnsureSchemaCreated(settingsWithDatabase);
 				string[] sqlFilenames = _fileLocator.GetSqlFilenames(scriptDirectory, action);
 
-				foreach (string str in sqlFilenames)
+				foreach (string sqlFilename in sqlFilenames)
 				{
-					_scriptExecutor.Execute(str, settingsWithDatabase, taskObserver);
+					_scriptExecutor.Execute(sqlFilename, settingsWithDatabase, taskObserver);
 				}
+
 				_versioner.VersionDatabase(settingsWithDatabase, taskObserver, databaseVersionPropertyName);
 			}
 		}
