@@ -6,6 +6,6 @@ namespace Tarantino.Core.DatabaseManager.Services
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IDatabaseConnectionDropper
 	{
-		void Drop(string databaseName, ConnectionSettings settings);
+		void Drop(ConnectionSettings settings, ITaskObserver taskObserver);
 	}
 }

@@ -18,12 +18,12 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 
 		public void EnsureSchemaCreated(ConnectionSettings settings)
 		{
-			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
-			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "CreateSchema");
+			string assembly = SqlDatabaseManager.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(SqlDatabaseManager.SQL_FILE_TEMPLATE, "CreateSchema");
 
 			string sql = _locator.ReadTextFile(assembly, sqlFile);
 
-			_executor.ExecuteNonQuery(settings, sql);
+			_executor.ExecuteNonQuery(settings, sql, true);
 		}
 	}
 }

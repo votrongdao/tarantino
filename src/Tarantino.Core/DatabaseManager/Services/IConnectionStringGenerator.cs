@@ -6,6 +6,6 @@ namespace Tarantino.Core.DatabaseManager.Services
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IConnectionStringGenerator
 	{
-		string GetConnectionString(ConnectionSettings settings);
+		string GetConnectionString(ConnectionSettings settings, bool includeDatabaseName);
 	}
 }

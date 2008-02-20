@@ -11,8 +11,8 @@ namespace Tarantino.IntegrationTests.Core.DatabaseManager
 		[Test]
 		public void All_sql_files_should_be_included_as_embedded_resources()
 		{
-			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
-			string template = DatabaseUpgrader.SQL_FILE_TEMPLATE;
+			string assembly = Tarantino.Core.DatabaseManager.Services.Impl.SqlDatabaseManager.SQL_FILE_ASSEMBLY;
+			string template = Tarantino.Core.DatabaseManager.Services.Impl.SqlDatabaseManager.SQL_FILE_TEMPLATE;
 
 			IResourceFileLocator locator = ObjectFactory.GetInstance<IResourceFileLocator>();
 

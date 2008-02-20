@@ -12,13 +12,12 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 	public class DatabaseVersionerTester
 	{
 		[Test]
-		public void CorrectlyVersionsDatabase()
+		public void Versions_database()
 		{
-			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
-			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "VersionDatabase");
+			string assembly = SqlDatabaseManager.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(SqlDatabaseManager.SQL_FILE_TEMPLATE, "VersionDatabase");
 
-			ConnectionSettings settings = 
-				new ConnectionSettings(String.Empty, String.Empty, false, String.Empty, String.Empty);
+			ConnectionSettings settings = new ConnectionSettings(String.Empty, String.Empty, false, String.Empty, String.Empty);
 			string sqlScript = "SQL script...";
 
 			MockRepository mocks = new MockRepository();
@@ -26,14 +25,18 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
 			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
 
-			Expect.Call(fileLocator.ReadTextFile(assembly, sqlFile)).Return(sqlScript);
-			Expect.Call(queryExecutor.ExecuteScalarInteger(settings, sqlScript)).Return(7);
-			taskObserver.SetVariable("usdDatabaseVersion", "7");
+			using (mocks.Record())
+			{
+				Expect.Call(fileLocator.ReadTextFile(assembly, sqlFile)).Return(sqlScript);
+				Expect.Call(queryExecutor.ExecuteScalarInteger(settings, sqlScript)).Return(7);
+				taskObserver.SetVariable("usdDatabaseVersion", "7");
+			}
 
-			mocks.ReplayAll();
-
-			IDatabaseVersioner versioner = new DatabaseVersioner(fileLocator, queryExecutor);
-            versioner.VersionDatabase(settings, taskObserver, "usdDatabaseVersion");
+			using (mocks.Playback())
+			{
+				IDatabaseVersioner versioner = new DatabaseVersioner(fileLocator, queryExecutor);
+				versioner.VersionDatabase(settings, taskObserver);
+			}
 
 			mocks.VerifyAll();
 		}

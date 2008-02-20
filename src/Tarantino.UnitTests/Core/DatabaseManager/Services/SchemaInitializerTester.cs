@@ -14,8 +14,8 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		[Test]
 		public void CorrectlyInitializesSchema()
 		{
-			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
-			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "CreateSchema");
+			string assembly = Tarantino.Core.DatabaseManager.Services.Impl.SqlDatabaseManager.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(Tarantino.Core.DatabaseManager.Services.Impl.SqlDatabaseManager.SQL_FILE_TEMPLATE, "CreateSchema");
 
 			ConnectionSettings settings =
 				new ConnectionSettings(String.Empty, String.Empty, false, String.Empty, String.Empty);
@@ -26,7 +26,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
 
 			Expect.Call(fileLocator.ReadTextFile(assembly, sqlFile)).Return(sqlScript);
-			queryExecutor.ExecuteNonQuery(settings, sqlScript);
+			queryExecutor.ExecuteNonQuery(settings, sqlScript, true);
 
 			mocks.ReplayAll();
 

@@ -21,7 +21,7 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 				"insert into usd_AppliedDatabaseScript (ScriptFile, DateApplied) values ('{0}', getdate())";
 
 			string sql = string.Format(insertTemplate, scriptFilename);
-			_executor.ExecuteNonQuery(settings, sql);
+			_executor.ExecuteNonQuery(settings, sql, true);
 		}
 
 		public bool ScriptAlreadyExecuted(ConnectionSettings settings, string scriptFilename)

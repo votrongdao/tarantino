@@ -62,6 +62,13 @@
     <Compile Include="Core\Commons\Services\Security\PrincipalFactoryTester.cs" />
     <Compile Include="Core\Commons\Services\Security\RoleAssignerTester.cs" />
     <Compile Include="Core\Commons\Services\Security\SystemUserContextManagerTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\DatabaseActionExecutorFactoryTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\DatabaseActionResolverTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\DatabaseCreatorTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\DatabaseDropperTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\DatabaseUpdaterTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\LogMessageGeneratorTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\ScriptFolderExecutorTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\BoundedEnumerationTester.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\EnumerationTester.cs" />
@@ -88,7 +95,7 @@
     <Compile Include="Core\DatabaseManager\Services\ChangeScriptExecutorTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\ConnectionStringGeneratorTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\DatabaseConnectionDropperTester.cs" />
-    <Compile Include="Core\DatabaseManager\Services\DatabaseUpgraderTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\SqlDatabaseManagerTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\DatabaseVersionerTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\SchemaInitializerTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\ScriptExecutionTrackerTester.cs" />

@@ -2,7 +2,6 @@
 using System.IO;
 using StructureMap;
 using Tarantino.Core.Commons.Services.Environment;
-using Tarantino.Core.DatabaseManager.Services.Impl;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
@@ -16,37 +15,16 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			_fileSystem = fileSystem;
 		}
 
-		private List<DatabaseAction> getDatabaseActions(DatabaseAction chosenAction)
-		{
-			List<DatabaseAction> list = new List<DatabaseAction>();
-
-			if (chosenAction == DatabaseAction.Create || chosenAction == DatabaseAction.Rebuild)
-			{
-				list.Add(DatabaseAction.Create);
-			}
-
-			list.Add(DatabaseAction.Update);
-
-			return list;
-		}
-
-		private string[] getSqlFilenames(string scriptFolder, DatabaseAction action)
-		{
-			string folder = Path.Combine(scriptFolder, action.ToString());
-
-			return _fileSystem.GetAllFilesWithExtensionWithinFolder(folder, "sql");
-		}
-
-		public string[] GetSqlFilenames(string scriptFolder, DatabaseAction chosenAction)
+		public string[] GetSqlFilenames(string scriptBaseFolder, string scriptFolder)
 		{
 			List<string> list = new List<string>();
 
-			foreach (DatabaseAction action in getDatabaseActions(chosenAction))
+			string folder = Path.Combine(scriptBaseFolder, scriptFolder);
+			string[] sqlFiles = _fileSystem.GetAllFilesWithExtensionWithinFolder(folder, "sql");
+
+			foreach (string sqlFilename in sqlFiles)
 			{
-				foreach (string sqlFilename in getSqlFilenames(scriptFolder, action))
-				{
-					list.Add(sqlFilename);
-				}
+				list.Add(sqlFilename);
 			}
 
 			return list.ToArray();

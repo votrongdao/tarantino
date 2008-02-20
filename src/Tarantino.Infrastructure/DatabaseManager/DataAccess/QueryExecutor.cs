@@ -20,9 +20,9 @@ namespace Tarantino.Infrastructure.DatabaseManager.DataAccess
 			_connectionStringGenerator = connectionStringGenerator;
 		}
 
-		public void ExecuteNonQuery(ConnectionSettings settings, string sql)
+		public void ExecuteNonQuery(ConnectionSettings settings, string sql, bool runAgainstSpecificDatabase)
 		{
-			string connectionString = _connectionStringGenerator.GetConnectionString(settings);
+			string connectionString = _connectionStringGenerator.GetConnectionString(settings, runAgainstSpecificDatabase);
 
 			using (SqlConnection connection = new SqlConnection(connectionString))
 			{
@@ -33,7 +33,7 @@ namespace Tarantino.Infrastructure.DatabaseManager.DataAccess
 
 		public int ExecuteScalarInteger(ConnectionSettings settings, string sql)
 		{
-			string connectionString = _connectionStringGenerator.GetConnectionString(settings);
+			string connectionString = _connectionStringGenerator.GetConnectionString(settings, true);
 
 			using (SqlConnection connection = new SqlConnection(connectionString))
 			{
@@ -45,7 +45,7 @@ namespace Tarantino.Infrastructure.DatabaseManager.DataAccess
 		public string[] ReadFirstColumnAsStringArray(ConnectionSettings settings, string sql)
 		{
 			List<string> list = new List<string>();
-			string connectionString = _connectionStringGenerator.GetConnectionString(settings);
+			string connectionString = _connectionStringGenerator.GetConnectionString(settings, true);
 
 			using (SqlConnection connection = new SqlConnection(connectionString))
 			{

@@ -60,7 +60,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			MockRepository mocks = new MockRepository();
 			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
 			ITaskObserver observer = mocks.CreateMock<ITaskObserver>();
-			queryExecutor.ExecuteNonQuery(settings, "insert into usd_AppliedDatabaseScript (ScriptFile, DateApplied) values ('03_Test.sql', getdate())");
+			queryExecutor.ExecuteNonQuery(settings, "insert into usd_AppliedDatabaseScript (ScriptFile, DateApplied) values ('03_Test.sql', getdate())", true);
 
 			mocks.ReplayAll();
 

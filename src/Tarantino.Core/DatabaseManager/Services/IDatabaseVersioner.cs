@@ -6,6 +6,6 @@ namespace Tarantino.Core.DatabaseManager.Services
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IDatabaseVersioner
 	{
-		void VersionDatabase(ConnectionSettings settings, ITaskObserver taskObserver, string databaseVersionPropertyName);
+		void VersionDatabase(ConnectionSettings settings, ITaskObserver taskObserver);
 	}
 }

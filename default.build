@@ -26,6 +26,7 @@
 
 	<!-- External targets -->
 	<target name="local" depends="debug, rebuildDatabase, version, compile, move, test"/>
+	<target name="localtest" depends="debug, version, compile, move, test"/>
 	<target name="localWithCoverage" depends="debug, rebuildDatabase, version, compile, move, coverage"/>
 	<target name="localWithPackage" depends="rebuildDatabase, version, compile, move, test, package"/>
 

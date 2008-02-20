@@ -10,17 +10,16 @@ namespace Tarantino.DatabaseManager.Tasks
 	[TaskName("manageSqlDatabase")]
 	public class ManageSqlDatabaseTask : Task, ITaskObserver
 	{
-		private DatabaseAction _action = DatabaseAction.Update;
+		private RequestedDatabaseAction _action = RequestedDatabaseAction.Update;
 		private DirectoryInfo _scriptDirectory = new DirectoryInfo(".");
 		private string _server = ".";
 		private string _database;
 		private bool _integratedAuthentication = true;
 		private string _username;
 		private string _password;
-		private string _databaseVersionPropertyName = "usdDatabaseVersion";
 
 		[TaskAttribute("action"), StringValidator(AllowEmpty = false)]
-		public DatabaseAction Action
+		public RequestedDatabaseAction Action
 		{
 			get { return _action; }
 			set { _action = value; }
@@ -72,8 +71,8 @@ namespace Tarantino.DatabaseManager.Tasks
 		{
 			try
 			{
-				IDatabaseUpgrader upgrader = ObjectFactory.GetInstance<IDatabaseUpgrader>();
-				upgrader.Upgrade(ScriptDirectory.FullName, Server, Database, IntegratedAuthentication, Username, Password, Action, this, _databaseVersionPropertyName);
+				ISqlDatabaseManager manager = ObjectFactory.GetInstance<ISqlDatabaseManager>();
+				manager.Upgrade(ScriptDirectory.FullName, Server, Database, IntegratedAuthentication, Username, Password, Action, this);
 			}
 			catch
 			{

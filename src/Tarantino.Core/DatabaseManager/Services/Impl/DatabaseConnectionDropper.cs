@@ -19,18 +19,21 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			_executor = executor;
 		}
 
-		public void Drop(string databaseName, ConnectionSettings settings)
+		public void Drop(ConnectionSettings settings, ITaskObserver taskObserver)
 		{
-			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
-			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "DropConnections");
+			string message = string.Format("Dropping connections for database {0}\n", settings.Database);
+			taskObserver.Log(message);
+
+			string assembly = SqlDatabaseManager.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(SqlDatabaseManager.SQL_FILE_TEMPLATE, "DropConnections");
 
 			string sql = _fileLocator.ReadTextFile(assembly, sqlFile);
 
 			_replacer.Text = sql;
-			_replacer.Replace("DatabaseName", databaseName);
+			_replacer.Replace("DatabaseName", settings.Database);
 			sql = _replacer.Text;
 
-			_executor.ExecuteNonQuery(settings, sql);
+			_executor.ExecuteNonQuery(settings, sql, false);
 		}
 	}
 }

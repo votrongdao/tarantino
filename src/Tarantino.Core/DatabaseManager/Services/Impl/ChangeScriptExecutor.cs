@@ -31,7 +31,7 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			{
 				taskObserver.Log(string.Format("Executing: {0}", scriptFilename));
 				string sql = _fileSystem.ReadTextFile(fullFilename);
-				_executor.ExecuteNonQuery(settings, sql);
+				_executor.ExecuteNonQuery(settings, sql, true);
 				_executionTracker.MarkScriptAsExecuted(settings, scriptFilename, taskObserver);
 			}
 		}

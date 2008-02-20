@@ -9,6 +9,7 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 	{
 		private IQueryExecutor _executor;
 		private IResourceFileLocator _fileLocator;
+		private string _databaseVersionPropertyName = "usdDatabaseVersion";
 
 		public DatabaseVersioner(IResourceFileLocator fileLocator, IQueryExecutor executor)
 		{
@@ -16,14 +17,14 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			_executor = executor;
 		}
 
-		public void VersionDatabase(ConnectionSettings settings, ITaskObserver taskObserver, string databaseVersionPropertyName)
+		public void VersionDatabase(ConnectionSettings settings, ITaskObserver taskObserver)
 		{
-			string assembly = DatabaseUpgrader.SQL_FILE_ASSEMBLY;
-			string sqlFile = string.Format(DatabaseUpgrader.SQL_FILE_TEMPLATE, "VersionDatabase");
+			string assembly = SqlDatabaseManager.SQL_FILE_ASSEMBLY;
+			string sqlFile = string.Format(SqlDatabaseManager.SQL_FILE_TEMPLATE, "VersionDatabase");
 
 			string sql = _fileLocator.ReadTextFile(assembly, sqlFile);
 			string version = _executor.ExecuteScalarInteger(settings, sql).ToString();
-			taskObserver.SetVariable(databaseVersionPropertyName, version);
+			taskObserver.SetVariable(_databaseVersionPropertyName, version);
 		}
 	}
 }
