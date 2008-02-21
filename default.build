@@ -26,9 +26,9 @@
 
 	<!-- External targets -->
 	<target name="local" depends="debug, rebuildDatabase, version, compile, move, test"/>
-	<target name="localPackage" depends="rebuildDatabase, compile, move, test, package"/>
 	<target name="localWithCoverage" depends="debug, rebuildDatabase, version, compile, move, coverage"/>
-	<target name="localWithPackage" depends="rebuildDatabase, version, compile, move, test, package"/>
+	<target name="localWithPackage" depends="rebuildDatabase, compile, move, test, package"/>
+	<target name="localWithPackageAndCommit" depends="rebuildDatabase, version, compile, move, test, package, commit"/>
 
 	<target name="debug">
 		<property name="project.config" value="debug" />
@@ -108,7 +108,7 @@
 		</asminfo>
 	</target>
 
-	<target name="package" depends="version">
+	<target name="package">
 		<delete dir="${package.dir}" failonerror="false" />
 
 		<copy todir="${package.dir}\NAnt" verbose="false">
@@ -149,6 +149,14 @@
 
 		<copy todir="${package.dir}" verbose="false">
 			<fileset basedir="src\Tarantino.Daemon\bin\${project.config}">
+				<include name="*.dll" />
+				<include name="*.exe" />
+				<include name="*.config" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.Daemon.Console\bin\${project.config}">
 				<include name="*.dll" />
 				<include name="*.exe" />
 				<include name="*.config" />
@@ -220,7 +228,9 @@
 			file="${deployerDatabaseManagerConfig}"
 			xpath="${app.settings.path}/add[@key='NAntFolder']/@value"
 			value="NAnt" />
+	</target>
 
+	<target name="commit">
 		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
 
 		<property name="zipFile" value="LatestVersion/${project}.zip"/>

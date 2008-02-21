@@ -4,7 +4,7 @@ using Tarantino.Infrastructure.Commons.UI.Services;
 
 namespace Tarantino.IntegrationTests.Core.Commons.Services.Web
 {
-	[TestFixture]
+	[TestFixture, Explicit]
 	public class WebDataReaderTester
 	{
 		[Test]

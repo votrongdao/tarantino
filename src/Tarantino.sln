@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\build.bat = ..\build.bat
 		databaseManagerTargets.build = databaseManagerTargets.build
 		..\default.build = ..\default.build
+		Log4Net.config = Log4Net.config
 		StructureMap.config = StructureMap.config
 	EndProjectSection
 EndProject
@@ -67,6 +68,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.DatabaseManager.T
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Daemon.Console", "Tarantino.Daemon.Console\Tarantino.Daemon.Console.csproj", "{A0A56AFB-BC1D-474B-814F-1ECA6BA47CBD}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +114,10 @@ Global
 		{E0ACA030-DF95-4326-B574-89851F18D3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0ACA030-DF95-4326-B574-89851F18D3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0ACA030-DF95-4326-B574-89851F18D3AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A56AFB-BC1D-474B-814F-1ECA6BA47CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A56AFB-BC1D-474B-814F-1ECA6BA47CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A56AFB-BC1D-474B-814F-1ECA6BA47CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A56AFB-BC1D-474B-814F-1ECA6BA47CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
