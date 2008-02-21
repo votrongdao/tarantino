@@ -17,13 +17,13 @@ namespace Tarantino.Core.Deployer.Services.Configuration.Impl
 			get { return (string)this["ZipFile"]; }
 		}
 
-		[ConfigurationProperty("Username", IsRequired = true)]
+		[ConfigurationProperty("Username", IsRequired = false)]
 		public string Username
 		{
 			get { return (string)this["Username"]; }
 		}
 
-		[ConfigurationProperty("Password", IsRequired = true)]
+		[ConfigurationProperty("Password", IsRequired = false)]
 		public string Password
 		{
 			get { return (string)this["Password"]; }

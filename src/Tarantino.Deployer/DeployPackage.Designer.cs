@@ -40,6 +40,10 @@ namespace Tarantino.Deployer
 			this.lblDeployed = new System.Windows.Forms.Label();
 			this.tabMenu = new System.Windows.Forms.TabControl();
 			this.tabDeploy = new System.Windows.Forms.TabPage();
+			this.txtPassword = new System.Windows.Forms.TextBox();
+			this.txtUsername = new System.Windows.Forms.TextBox();
+			this.lblPassword = new System.Windows.Forms.Label();
+			this.lblUsername = new System.Windows.Forms.Label();
 			this.lblCertified = new System.Windows.Forms.Label();
 			this.lblCertifiedLabel = new System.Windows.Forms.Label();
 			this.tabCertify = new System.Windows.Forms.TabPage();
@@ -67,7 +71,7 @@ namespace Tarantino.Deployer
 			// btnDeploy
 			// 
 			this.btnDeploy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnDeploy.Location = new System.Drawing.Point(451, 114);
+			this.btnDeploy.Location = new System.Drawing.Point(451, 143);
 			this.btnDeploy.Name = "btnDeploy";
 			this.btnDeploy.Size = new System.Drawing.Size(75, 23);
 			this.btnDeploy.TabIndex = 0;
@@ -117,7 +121,7 @@ namespace Tarantino.Deployer
 			// lblRevision
 			// 
 			this.lblRevision.AutoSize = true;
-			this.lblRevision.Location = new System.Drawing.Point(17, 16);
+			this.lblRevision.Location = new System.Drawing.Point(17, 66);
 			this.lblRevision.Name = "lblRevision";
 			this.lblRevision.Size = new System.Drawing.Size(51, 13);
 			this.lblRevision.TabIndex = 6;
@@ -128,7 +132,7 @@ namespace Tarantino.Deployer
 			this.cboRevision.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.cboRevision.FormattingEnabled = true;
-			this.cboRevision.Location = new System.Drawing.Point(74, 13);
+			this.cboRevision.Location = new System.Drawing.Point(74, 63);
 			this.cboRevision.Name = "cboRevision";
 			this.cboRevision.Size = new System.Drawing.Size(452, 21);
 			this.cboRevision.TabIndex = 9;
@@ -136,7 +140,7 @@ namespace Tarantino.Deployer
 			// lblDeployedLabel
 			// 
 			this.lblDeployedLabel.AutoSize = true;
-			this.lblDeployedLabel.Location = new System.Drawing.Point(13, 44);
+			this.lblDeployedLabel.Location = new System.Drawing.Point(13, 91);
 			this.lblDeployedLabel.Name = "lblDeployedLabel";
 			this.lblDeployedLabel.Size = new System.Drawing.Size(55, 13);
 			this.lblDeployedLabel.TabIndex = 10;
@@ -145,7 +149,7 @@ namespace Tarantino.Deployer
 			// lblDeployed
 			// 
 			this.lblDeployed.AutoSize = true;
-			this.lblDeployed.Location = new System.Drawing.Point(78, 44);
+			this.lblDeployed.Location = new System.Drawing.Point(74, 91);
 			this.lblDeployed.Name = "lblDeployed";
 			this.lblDeployed.Size = new System.Drawing.Size(0, 13);
 			this.lblDeployed.TabIndex = 11;
@@ -161,11 +165,15 @@ namespace Tarantino.Deployer
 			this.tabMenu.Location = new System.Drawing.Point(12, 76);
 			this.tabMenu.Name = "tabMenu";
 			this.tabMenu.SelectedIndex = 0;
-			this.tabMenu.Size = new System.Drawing.Size(540, 169);
+			this.tabMenu.Size = new System.Drawing.Size(540, 198);
 			this.tabMenu.TabIndex = 12;
 			// 
 			// tabDeploy
 			// 
+			this.tabDeploy.Controls.Add(this.txtPassword);
+			this.tabDeploy.Controls.Add(this.txtUsername);
+			this.tabDeploy.Controls.Add(this.lblPassword);
+			this.tabDeploy.Controls.Add(this.lblUsername);
 			this.tabDeploy.Controls.Add(this.lblCertified);
 			this.tabDeploy.Controls.Add(this.lblCertifiedLabel);
 			this.tabDeploy.Controls.Add(this.cboRevision);
@@ -176,15 +184,51 @@ namespace Tarantino.Deployer
 			this.tabDeploy.Location = new System.Drawing.Point(4, 22);
 			this.tabDeploy.Name = "tabDeploy";
 			this.tabDeploy.Padding = new System.Windows.Forms.Padding(3);
-			this.tabDeploy.Size = new System.Drawing.Size(532, 143);
+			this.tabDeploy.Size = new System.Drawing.Size(532, 172);
 			this.tabDeploy.TabIndex = 0;
 			this.tabDeploy.Text = "Deploy";
 			this.tabDeploy.UseVisualStyleBackColor = true;
 			// 
+			// txtPassword
+			// 
+			this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+									| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtPassword.Location = new System.Drawing.Point(74, 37);
+			this.txtPassword.Name = "txtPassword";
+			this.txtPassword.Size = new System.Drawing.Size(452, 20);
+			this.txtPassword.TabIndex = 17;
+			// 
+			// txtUsername
+			// 
+			this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+									| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtUsername.Location = new System.Drawing.Point(74, 11);
+			this.txtUsername.Name = "txtUsername";
+			this.txtUsername.Size = new System.Drawing.Size(452, 20);
+			this.txtUsername.TabIndex = 16;
+			// 
+			// lblPassword
+			// 
+			this.lblPassword.AutoSize = true;
+			this.lblPassword.Location = new System.Drawing.Point(12, 40);
+			this.lblPassword.Name = "lblPassword";
+			this.lblPassword.Size = new System.Drawing.Size(56, 13);
+			this.lblPassword.TabIndex = 15;
+			this.lblPassword.Text = "Password:";
+			// 
+			// lblUsername
+			// 
+			this.lblUsername.AutoSize = true;
+			this.lblUsername.Location = new System.Drawing.Point(10, 14);
+			this.lblUsername.Name = "lblUsername";
+			this.lblUsername.Size = new System.Drawing.Size(58, 13);
+			this.lblUsername.TabIndex = 14;
+			this.lblUsername.Text = "Username:";
+			// 
 			// lblCertified
 			// 
 			this.lblCertified.AutoSize = true;
-			this.lblCertified.Location = new System.Drawing.Point(78, 73);
+			this.lblCertified.Location = new System.Drawing.Point(74, 117);
 			this.lblCertified.Name = "lblCertified";
 			this.lblCertified.Size = new System.Drawing.Size(0, 13);
 			this.lblCertified.TabIndex = 13;
@@ -192,7 +236,7 @@ namespace Tarantino.Deployer
 			// lblCertifiedLabel
 			// 
 			this.lblCertifiedLabel.AutoSize = true;
-			this.lblCertifiedLabel.Location = new System.Drawing.Point(20, 73);
+			this.lblCertifiedLabel.Location = new System.Drawing.Point(20, 117);
 			this.lblCertifiedLabel.Name = "lblCertifiedLabel";
 			this.lblCertifiedLabel.Size = new System.Drawing.Size(48, 13);
 			this.lblCertifiedLabel.TabIndex = 12;
@@ -206,7 +250,7 @@ namespace Tarantino.Deployer
 			this.tabCertify.Location = new System.Drawing.Point(4, 22);
 			this.tabCertify.Name = "tabCertify";
 			this.tabCertify.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCertify.Size = new System.Drawing.Size(532, 143);
+			this.tabCertify.Size = new System.Drawing.Size(532, 190);
 			this.tabCertify.TabIndex = 1;
 			this.tabCertify.Text = "Certify";
 			this.tabCertify.UseVisualStyleBackColor = true;
@@ -225,7 +269,7 @@ namespace Tarantino.Deployer
 			// btnCertify
 			// 
 			this.btnCertify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCertify.Location = new System.Drawing.Point(451, 114);
+			this.btnCertify.Location = new System.Drawing.Point(451, 134);
 			this.btnCertify.Name = "btnCertify";
 			this.btnCertify.Size = new System.Drawing.Size(75, 23);
 			this.btnCertify.TabIndex = 12;
@@ -248,7 +292,7 @@ namespace Tarantino.Deployer
 			this.tabCheckVersion.Location = new System.Drawing.Point(4, 22);
 			this.tabCheckVersion.Name = "tabCheckVersion";
 			this.tabCheckVersion.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCheckVersion.Size = new System.Drawing.Size(532, 143);
+			this.tabCheckVersion.Size = new System.Drawing.Size(532, 190);
 			this.tabCheckVersion.TabIndex = 2;
 			this.tabCheckVersion.Text = "Check Version";
 			this.tabCheckVersion.UseVisualStyleBackColor = true;
@@ -275,7 +319,7 @@ namespace Tarantino.Deployer
 			this.grdDeployments.Name = "grdDeployments";
 			this.grdDeployments.RowHeadersVisible = false;
 			this.grdDeployments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.grdDeployments.Size = new System.Drawing.Size(526, 137);
+			this.grdDeployments.Size = new System.Drawing.Size(526, 184);
 			this.grdDeployments.TabIndex = 0;
 			// 
 			// Revision
@@ -330,13 +374,13 @@ namespace Tarantino.Deployer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(568, 256);
+			this.ClientSize = new System.Drawing.Size(568, 285);
 			this.Controls.Add(this.tabMenu);
 			this.Controls.Add(this.cboApplication);
 			this.Controls.Add(this.cboEnvironment);
 			this.Controls.Add(this.lblApplication);
 			this.Controls.Add(this.lblEnvironment);
-			this.MinimumSize = new System.Drawing.Size(584, 292);
+			this.MinimumSize = new System.Drawing.Size(584, 321);
 			this.Name = "DeployPackage";
 			this.Text = "Deploy Package";
 			this.tabMenu.ResumeLayout(false);
@@ -381,5 +425,9 @@ namespace Tarantino.Deployer
 		private System.Windows.Forms.DataGridViewTextBoxColumn CertifiedOn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn CertifiedBy;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Output;
+		private System.Windows.Forms.TextBox txtPassword;
+		private System.Windows.Forms.TextBox txtUsername;
+		private System.Windows.Forms.Label lblPassword;
+		private System.Windows.Forms.Label lblUsername;
 	}
 }

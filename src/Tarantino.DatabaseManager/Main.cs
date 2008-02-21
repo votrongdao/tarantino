@@ -73,7 +73,7 @@ namespace Tarantino.DatabaseManager
 			}
 		}
 
-		private StringBuilder AddArgument(StringBuilder sb, string argName, string argValue)
+		private StringBuilder addArgument(StringBuilder sb, string argName, string argValue)
 		{
 			sb.Append(" -D:");
 			sb.Append(argName);
@@ -103,13 +103,13 @@ namespace Tarantino.DatabaseManager
 		private void btnExecute_Click(object sender, EventArgs e)
 		{
 			StringBuilder arguments = new StringBuilder("-buildfile:databaseManagerTargets.build");
-			AddArgument(arguments, "database.script.directory", txtScriptFolder.Text);
-			AddArgument(arguments, "database.server", txtServer.Text);
-			AddArgument(arguments, "database.name", txtDatabase.Text);
-			AddArgument(arguments, "database.integrated", chkIntegratedSecurity.Checked.ToString().ToLower());
-			AddArgument(arguments, "database.username", txtUsername.Text);
-			AddArgument(arguments, "database.password", txtPassword.Text);
-			AddArgument(arguments, "action", cboAction.SelectedItem.ToString());
+			addArgument(arguments, "database.script.directory", txtScriptFolder.Text);
+			addArgument(arguments, "database.server", txtServer.Text);
+			addArgument(arguments, "database.name", txtDatabase.Text);
+			addArgument(arguments, "database.integrated", chkIntegratedSecurity.Checked.ToString().ToLower());
+			addArgument(arguments, "database.username", txtUsername.Text);
+			addArgument(arguments, "database.password", txtPassword.Text);
+			addArgument(arguments, "action", cboAction.SelectedItem.ToString());
 
 			IConfigurationReader reader = new ConfigurationReader(new ApplicationConfiguration());
 

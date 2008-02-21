@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.Deployer.Services.Configuration;
 using Tarantino.Deployer;
-using Tarantino.Deployer.Services;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
 using StructureMap;
 using Tarantino.Deployer.Services.UI;
@@ -80,11 +80,20 @@ namespace Tarantino.Deployer
 
 		private void btnDeploy_OnClick(object sender, EventArgs e)
 		{
+			StringBuilder arguments = new StringBuilder("-buildfile:Deployer.build");
+			addArgument(arguments, "application", SelectedApplication.Name);
+			addArgument(arguments, "revision", cboRevision.Text);
+			addArgument(arguments, "environment", SelectedEnvironment.Name);
+			addArgument(arguments, "url", SelectedApplication.Url);
+			addArgument(arguments, "zip.file", SelectedApplication.ZipFile);
+			addArgument(arguments, "username", SelectedApplication.Username);
+			addArgument(arguments, "password", SelectedApplication.Password);
+
 			IDeploymentFormValidator validator = new DeploymentFormValidator();
-		
+
 			if (validator.IsValid(SelectedEnvironment, cboRevision.Text))
 			{
-				RunCommandLine("Deploy.bat", getArguments());
+				RunCommandLine(@"NAnt\nant.exe", arguments.ToString());
 			}
 			else
 			{
@@ -104,15 +113,6 @@ namespace Tarantino.Deployer
 				outputWindow.Output = output;
 				outputWindow.ShowDialog();
 			}
-		}
-
-		private string getArguments()
-		{
-			return string.Format("{0} {1} {2} {3} {4} {5} {6}",
-													 SelectedApplication.Name, SelectedApplication.Url,
-													 SelectedApplication.ZipFile, SelectedApplication.Username, 
-													 SelectedApplication.Password, SelectedEnvironment.Name,
-													 cboRevision.Text);
 		}
 
 		private void RunCommandLine(string executable, string arguments)
@@ -200,6 +200,9 @@ namespace Tarantino.Deployer
 
 		private void cboApplication_OnSelectedIndexChanged(object sender, EventArgs e)
 		{
+			txtUsername.Text = SelectedApplication.Username;
+			txtPassword.Text = SelectedApplication.Password;
+
 			populateEnvironments();
 		}
 
@@ -215,6 +218,16 @@ namespace Tarantino.Deployer
 			cboRevision.TextChanged += cboRevision_OnTextChanged;
 			btnDeploy.Click += btnDeploy_OnClick;
 			grdDeployments.DoubleClick += grdDeployments_OnDoubleClick;
+		}
+
+		private StringBuilder addArgument(StringBuilder sb, string argName, string argValue)
+		{
+			sb.Append(" -D:");
+			sb.Append(argName);
+			sb.Append("=\"");
+			sb.Append(argValue);
+			sb.Append("\"");
+			return sb;
 		}
 	}
 }
