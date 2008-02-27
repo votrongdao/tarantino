@@ -43,11 +43,11 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 		{
 			DataTable table = new DataTable();
 			table.Columns.Add("String Column");
-			table.Columns.Add("Integer Column");
+			table.Columns.Add("Decimal Column");
 			DataRow row1 = table.NewRow();
 
 			row1["String Column"] = string.Empty;
-			row1["Integer Column"] = 5;
+			row1["Decimal Column"] = 5.5M;
 
 			table.Rows.Add(row1);
 
@@ -57,13 +57,13 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 
 			Assert.That(tableReader.Read(), Is.EqualTo(true));
 			Assert.That(tableReader.GetString("String Column"), Is.Null);
-			Assert.That(tableReader.GetInteger("Integer Column"), Is.EqualTo(5));
+			Assert.That(tableReader.GetDecimal("Decimal Column"), Is.EqualTo(5.5M));
 
 			Assert.That(tableReader.Read(), Is.EqualTo(false));
 		}
 
 		[Test]
-		public void Can_read_table_with_Integer_column()
+		public void Can_read_table_with_integer_column()
 		{
 			DataTable table = new DataTable();
 			table.Columns.Add("Integer Column");

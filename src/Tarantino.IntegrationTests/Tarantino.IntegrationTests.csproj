@@ -82,13 +82,17 @@
     <Compile Include="Core\Commons\Services\Caching\CacheManagerTester.cs" />
     <Compile Include="Core\Commons\Services\Security\WindowsIdentityTester.cs" />
     <Compile Include="Core\DatabaseManager\SqlFilesTester.cs" />
-    <Compile Include="DeployerDatabaseTester.cs" />
     <Compile Include="DatabaseTesterBase.cs" />
+    <Compile Include="DynamicConnectionStringApplicationSettings.cs" />
     <Compile Include="Infrastructure\Commons\DataAccess\Repositories\PersistentObjectRepositoryTester.cs" />
     <Compile Include="Core\Deployer\Services\Configuration\ApplicationRepositoryTester.cs" />
+    <Compile Include="Infrastructure\Deployer\DataAccess\DeployerDatabaseTester.cs" />
     <Compile Include="Infrastructure\Deployer\DataAccess\Mappings\DeploymentMappingsTester.cs" />
     <Compile Include="Infrastructure\Deployer\DataAccess\Repositories\DeploymentRepositoryTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
+    <Compile Include="Infrastructure\WebManagement\DataAccess\Repositories\ApplicationInstanceRepositoryTester.cs" />
+    <Compile Include="Infrastructure\WebManagement\DataAccess\WebManagementDatabaseTester.cs" />
+    <Compile Include="Infrastructure\WebManagement\DataAccess\Mappings\ApplicationInstanceMappingsTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StructureMap.config">

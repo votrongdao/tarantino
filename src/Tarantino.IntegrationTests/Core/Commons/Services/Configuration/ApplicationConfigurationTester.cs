@@ -30,7 +30,7 @@ namespace Tarantino.IntegrationTests.Core.Commons.Services.Configuration
 		{
 			IApplicationConfiguration settings = new ApplicationConfiguration();
 
-			Assert.That(settings.GetConnectionString("DatabaseConnectionString"),
+			Assert.That(settings.GetConnectionString("DeployerConnectionString"),
 			            Is.EqualTo("data source=.;Initial Catalog=TarantinoDeployer;Integrated Security=true;Connect Timeout=100"));
 		}
 

@@ -12,9 +12,6 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	[Pluggable(ServiceKeys.Default)]
 	public class SessionFactoryManager : ISessionFactoryManager
 	{
-		protected ISessionFactory _factory;
-		protected Configuration _getConfiguration;
-
 		private readonly IApplicationSettings _applicationSettings;
 
 		public SessionFactoryManager(IApplicationSettings applicationSettings)
@@ -22,27 +19,10 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			_applicationSettings = applicationSettings;
 		}
 
-		public Configuration GetConfiguration()
-		{
-			initializeSessionFactory();
-			return _getConfiguration;
-		}
-
 		public ISessionFactory GetSessionFactory()
 		{
-			initializeSessionFactory();
-			return _factory;
-		}
+			Configuration configuration = new Configuration();
 
-		public bool ReadyToGo()
-		{
-			return (_factory != null);
-		}
-
-		private void initializeSessionFactory()
-		{
-			if (_factory != null) return; //only need one ISessionFactory per appdomain.
-			_getConfiguration = new Configuration();
 			IDictionary properties = new Hashtable();
 
 			properties["hibernate.connection.provider"] = "NHibernate.Connection.DriverConnectionProvider";
@@ -59,16 +39,18 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 			foreach (DictionaryEntry entry in properties)
 			{
-				_getConfiguration.SetProperty(entry.Key.ToString(), entry.Value.ToString());
+				configuration.SetProperty(entry.Key.ToString(), entry.Value.ToString());
 			}
 
 			foreach (string mappingAssembly in _applicationSettings.GetMappingAssemblies())
 			{
 				Assembly assembly = Assembly.Load(mappingAssembly);
-				_getConfiguration.AddAssembly(assembly);
+				configuration.AddAssembly(assembly);
 			}
 
-			_factory = _getConfiguration.BuildSessionFactory();
+			ISessionFactory factory = configuration.BuildSessionFactory();
+
+			return factory;
 		}
 	}
 }

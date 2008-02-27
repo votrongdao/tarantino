@@ -9,8 +9,5 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	public interface ISessionFactoryManager
 	{
 		ISessionFactory GetSessionFactory();
-		bool ReadyToGo();
-
-		Configuration GetConfiguration();
 	}
 }

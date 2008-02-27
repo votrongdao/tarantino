@@ -74,6 +74,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Daemon.Console", 
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.WebManagement", "Tarantino.WebManagement\Tarantino.WebManagement.csproj", "{64AC2785-D388-4E39-A62F-E50BBCDBB1A0}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.WebManagement.Database", "Tarantino.WebManagement.Database\Tarantino.WebManagement.Database.csproj", "{E764B619-C061-46FF-B17A-DC168EDC6500}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +130,10 @@ Global
 		{A0A56AFB-BC1D-474B-814F-1ECA6BA47CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0A56AFB-BC1D-474B-814F-1ECA6BA47CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0A56AFB-BC1D-474B-814F-1ECA6BA47CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64AC2785-D388-4E39-A62F-E50BBCDBB1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64AC2785-D388-4E39-A62F-E50BBCDBB1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E764B619-C061-46FF-B17A-DC168EDC6500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E764B619-C061-46FF-B17A-DC168EDC6500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

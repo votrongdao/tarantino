@@ -6,6 +6,7 @@ using NUnit.Framework.SyntaxHelpers;
 using StructureMap;
 using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Deployer.Model;
+using Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess;
 
 namespace Tarantino.IntegrationTests.Infrastructure.Commons
 {

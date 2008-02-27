@@ -24,11 +24,11 @@
 	<property name="package.dir" value="package" />
 
 	<!-- External targets -->
-	<target name="local" depends="debug, rebuildDatabase, compile, move, test"/>
-	<target name="localWithVersion" depends="debug, rebuildDatabase, version, compile, move, test"/>
-	<target name="localWithCoverage" depends="debug, rebuildDatabase, version, compile, move, coverage"/>
-	<target name="localWithPackage" depends="rebuildDatabase, compile, move, test, package"/>
-	<target name="localWithPackageAndCommit" depends="rebuildDatabase, version, compile, move, test, package, commit"/>
+	<target name="local" depends="debug, rebuildDatabases, compile, move, test"/>
+	<target name="localWithVersion" depends="debug, rebuildDatabases, version, compile, move, test"/>
+	<target name="localWithCoverage" depends="debug, rebuildDatabases, version, compile, move, coverage"/>
+	<target name="localWithPackage" depends="rebuildDatabases, compile, move, test, package"/>
+	<target name="localWithPackageAndCommit" depends="rebuildDatabases, version, compile, move, test, package, commit"/>
 
 	<target name="debug">
 		<property name="project.config" value="debug" />
@@ -250,31 +250,64 @@
 	</target>
 
 	<!-- Database change management -->
-	<property name="database.script.directory" value="src\Tarantino.Database" overwrite="false" />
 	<property name="database.server" value="." overwrite="false"/>
-	<property name="database.name" value="TarantinoDeployer" overwrite="false"/>
 	<property name="database.integrated" value="true" overwrite="false" />
 	<property name="database.username" value="sa" overwrite="false"/>
 	<property name="database.password" value="pwd" overwrite="false"/>
 	<property name="action" value="Update" overwrite="false"/>
 
-	<target name="updateDatabase">
+	<target name="rebuildDatabases" depends="rebuildDeployerDatabase, rebuildWebManagementDatabase">
+	</target>
+
+	<target name="updateDeployerDatabase">
 		<property name="action" value="Update" />
-		<call target="manageSqlDatabase" />
+		<call target="manageDeployerDatabase" />
 	</target>
 
-	<target name="rebuildDatabase">
+	<target name="rebuildDeployerDatabase">
 		<property name="action" value="Rebuild" />
-		<call target="manageSqlDatabase" />
+		<call target="manageDeployerDatabase" />
 	</target>
 
-	<target name="createDatabase">
+	<target name="createDeployerDatabase">
 		<property name="action" value="Create" />
+		<call target="manageDeployerDatabase" />
+	</target>
+
+	<target name="dropDeployerDatabase">
+		<property name="action" value="Drop" />
+		<call target="manageDeployerDatabase" />
+	</target>
+
+	<target name="updateWebManagementDatabase">
+		<property name="action" value="Update" />
+		<call target="manageWebManagementDatabase" />
+	</target>
+
+	<target name="rebuildWebManagementDatabase">
+		<property name="action" value="Rebuild" />
+		<call target="manageWebManagementDatabase" />
+	</target>
+
+	<target name="createWebManagementDatabase">
+		<property name="action" value="Create" />
+		<call target="manageWebManagementDatabase" />
+	</target>
+
+	<target name="dropWebManagementDatabase">
+		<property name="action" value="Drop" />
+		<call target="manageWebManagementDatabase" />
+	</target>
+
+	<target name="manageWebManagementDatabase">
+		<property name="database.name" value="TarantinoWebManagement" />
+		<property name="database.script.directory" value="src\Tarantino.WebManagement.Database" />
 		<call target="manageSqlDatabase" />
 	</target>
 
-	<target name="dropDatabase">
-		<property name="action" value="Drop" />
+	<target name="manageDeployerDatabase">
+		<property name="database.name" value="TarantinoDeployer" />
+		<property name="database.script.directory" value="src\Tarantino.Database" />
 		<call target="manageSqlDatabase" />
 	</target>
 

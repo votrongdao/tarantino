@@ -14,7 +14,7 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 	public class ExcelWorksheetReaderTester
 	{
 		[Test]
-		public void Can_Read_Worksheet_From_Excel_Workbook()
+		public void Can_read_worksheet_from_excel_workbook()
 		{
 			string excelFile = "MyWorkbook.xls";
 			MemoryStream excelFileStream = new MemoryStream();
@@ -74,7 +74,7 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 		}
 
 		[Test]
-		public void Does_Not_Continue_Reading_After_A_Blank_Row_Is_Found()
+		public void Does_not_continue_reading_after_a_blank_row_is_found()
 		{
 			string excelFile = "MyWorkbook.xls";
 			MemoryStream excelFileStream = new MemoryStream();
@@ -126,7 +126,7 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 		}
 
 		[Test, ExpectedException(ExceptionType = typeof(ApplicationException), ExpectedMessage = "The workbook is missing worksheet named 'MyOtherWorksheet'")]
-		public void Handles_Scenario_Where_Invalid_Worksheet_Requested()
+		public void Handles_scenario_where_invalid_worksheet_requested()
 		{
 			string excelFile = "MyWorkbook.xls";
 			MemoryStream excelFileStream = new MemoryStream();
@@ -149,7 +149,7 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 		}
 
 		[Test, ExpectedException(ExceptionType = typeof(ApplicationException), ExpectedMessage = "The worksheet named 'MyWorksheet' has no columns")]
-		public void Handles_Scenario_Where_Worksheet_Has_No_Columns()
+		public void Handles_scenario_where_worksheet_has_no_columns()
 		{
 			string excelFile = "MyWorkbook.xls";
 			MemoryStream excelFileStream = new MemoryStream();
@@ -173,7 +173,7 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 		}
 
 		[Test, ExpectedException(ExceptionType = typeof(ApplicationException), ExpectedMessage = "The worksheet named 'MyWorksheet' has no column header row")]
-		public void Handles_Scenario_Where_Worksheet_Has_No_Column_Header_Row()
+		public void Handles_scenario_where_worksheet_has_no_column_header_row()
 		{
 			string excelFile = "MyWorkbook.xls";
 			MemoryStream excelFileStream = new MemoryStream();
@@ -198,7 +198,7 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 		}
 
 		[Test, ExpectedException(ExceptionType = typeof(ApplicationException), ExpectedMessage = "The worksheet named 'MyWorksheet' has no rows")]
-		public void Handles_Scenario_Where_Worksheet_Has_No_Rows()
+		public void Handles_scenario_where_worksheet_has_no_rows()
 		{
 			string excelFile = "MyWorkbook.xls";
 			MemoryStream excelFileStream = new MemoryStream();

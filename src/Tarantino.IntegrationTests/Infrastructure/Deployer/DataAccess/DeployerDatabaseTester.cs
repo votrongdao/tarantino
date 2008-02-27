@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tarantino.Core.Deployer.Model;
 
-namespace Tarantino.IntegrationTests
+namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 {
 	public abstract class DeployerDatabaseTester : DatabaseTesterBase
 	{
@@ -15,5 +15,11 @@ namespace Tarantino.IntegrationTests
 		{
 			return typeof(Deployment);
 		}
+
+		protected override string ConnectionStringKey
+		{
+			get { return "DeployerConnectionString"; }
+		}
+
 	}
 }

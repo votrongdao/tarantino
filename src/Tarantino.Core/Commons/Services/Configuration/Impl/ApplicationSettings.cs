@@ -6,7 +6,7 @@ namespace Tarantino.Core.Commons.Services.Configuration.Impl
 	[Pluggable(ServiceKeys.Default)]
 	public class ApplicationSettings : IApplicationSettings
 	{
-		private readonly IConfigurationReader _configurationReader;
+		protected readonly IConfigurationReader _configurationReader;
 
 		public ApplicationSettings(IConfigurationReader configurationReader)
 		{
@@ -61,7 +61,7 @@ namespace Tarantino.Core.Commons.Services.Configuration.Impl
 			return setting;
 		}
 
-		public string GetConnectionString()
+		public virtual string GetConnectionString()
 		{
 			string connectionString = _configurationReader.GetConnectionString("DatabaseConnectionString");
 			return connectionString;

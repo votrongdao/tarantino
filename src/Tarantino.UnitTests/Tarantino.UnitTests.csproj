@@ -69,6 +69,7 @@
     <Compile Include="Core\DatabaseManager\Services\DatabaseUpdaterTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\LogMessageGeneratorTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\ScriptFolderExecutorTester.cs" />
+    <Compile Include="Core\WebManagement\Model\ApplicationInstanceTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\BoundedEnumerationTester.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\EnumerationTester.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Core\Deployer\Services\UI\DeploymentSelectionValidatorTester.cs" />
     <Compile Include="Core\Deployer\Services\UI\LabelTextGeneratorTester.cs" />
     <Compile Include="Infrastructure\Deployer\DataAccess\Repositories\DeploymentRepositoryTester.cs" />
+    <Compile Include="Infrastructure\WebManagement\DataAccess\Repositories\ApplicationInstanceRepositoryTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tarantino.Core\Tarantino.Core.csproj">

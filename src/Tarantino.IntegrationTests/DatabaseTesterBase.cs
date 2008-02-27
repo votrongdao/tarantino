@@ -4,18 +4,23 @@ using System.Collections.Generic;
 using System.Reflection;
 using Tarantino.Core.Commons.Model;
 using NUnit.Framework;
-using StructureMap;
+using Tarantino.Core.Commons.Services.Configuration.Impl;
 using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.IntegrationTests
 {
 	public abstract class DatabaseTesterBase
 	{
-		private IObjectMapper _mapper = ObjectFactory.GetInstance<IObjectMapper>();
+		private IObjectMapper _mapper;
+
+		protected abstract string ConnectionStringKey { get; }
 
 		[SetUp]
 		public virtual void SetUp()
 		{
+			ThreadSessionScoper scoper = new ThreadSessionScoper(new SessionFactoryManager(new DynamicConnectionStringApplicationSettings(new ConfigurationReader(new ApplicationConfiguration()), ConnectionStringKey)));
+			scoper.Reset();
+			_mapper = new NHibernateObjectMapper(new SessionManager(scoper));
 			ClearTables();
 			SetupDatabase();
 		}
