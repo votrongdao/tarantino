@@ -21,11 +21,11 @@
 
 	<!-- Package settings -->
 	<property name="svn.exe" value="lib\subversion\1.4.3\svn.exe" />
-	<property name="svn.args" value="--username ${svn.username} --password ${svn.password} --non-interactive" />
 	<property name="package.dir" value="package" />
 
 	<!-- External targets -->
-	<target name="local" depends="debug, rebuildDatabase, version, compile, move, test"/>
+	<target name="local" depends="debug, rebuildDatabase, compile, move, test"/>
+	<target name="localWithVersion" depends="debug, rebuildDatabase, version, compile, move, test"/>
 	<target name="localWithCoverage" depends="debug, rebuildDatabase, version, compile, move, coverage"/>
 	<target name="localWithPackage" depends="rebuildDatabase, compile, move, test, package"/>
 	<target name="localWithPackageAndCommit" depends="rebuildDatabase, version, compile, move, test, package, commit"/>
@@ -77,6 +77,8 @@
 	</target>
 
 	<target name="version">
+		<property name="svn.args" value="--username ${svn.username} --password ${svn.password} --non-interactive" />
+
 		<exec program="${svn.exe}" commandline="info LatestVersion ${svn.args} --xml --revision HEAD" output="svninfo.xml" append="false" verbose="false"/>
 		<xmlpeek file="svninfo.xml" xpath="/info/entry/@revision" property="revision"/>
 
