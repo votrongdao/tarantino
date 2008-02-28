@@ -2,12 +2,13 @@ using System;
 using StructureMap;
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.WebManagement.Model;
+using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.WebManagement.Modules
 {
 	public class Maintenance : ModuleBase
 	{
-		private string m_httphost = string.Empty;
+		private string _httphost = string.Empty;
 		private string m_url = string.Empty;
 		private bool m_filterByHost = false;
 		private bool m_filterByExceptions = false;
@@ -18,7 +19,7 @@ namespace Tarantino.WebManagement.Modules
 		{
 			IConfigurationReader reader = ObjectFactory.GetInstance<IConfigurationReader>();
 		
-			m_httphost = reader.GetRequiredSetting("ApplicationManagementHttpHost").ToLower();
+			_httphost = reader.GetRequiredSetting("ApplicationManagementHttpHost").ToLower();
 
 			string hostException = reader.GetRequiredSetting("applicationManagementHttpHostException").ToLower();
 
@@ -38,18 +39,19 @@ namespace Tarantino.WebManagement.Modules
 			{
 				m_filterByExceptions = true;
 			}
-			else if (m_httphost.Length > 0)
+			else if (_httphost.Length > 0)
 			{
 				m_filterByHost = true;
 			}
 
 			try
 			{
-				ApplicationInstance app = ApplicationInstance.Current;
-				if (m_httphost.Length > 0)
+				ApplicationInstance app = CurrentContext.CurrentApplicationInstance;
+				if (_httphost.Length > 0)
 				{
-					app.MaintenanceHostHeader = m_httphost;
-					app.AcceptChanges();
+					IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
+					app.MaintenanceHostHeader = _httphost;
+					repository.Save(app);
 				}
 			}
 			catch { }
@@ -60,10 +62,10 @@ namespace Tarantino.WebManagement.Modules
 			//check here for the url to redirect.  let .axd pass through.
 			if (Array.BinarySearch(m_exts, System.IO.Path.GetExtension(m_context.Request.Url.AbsolutePath)) >= 0)
 			{
-				if (ApplicationInstance.Current.DownForMaintenance)
+				if (CurrentContext.CurrentApplicationInstance.DownForMaintenance)
 				{
 					if (
-						(m_filterByHost && m_context.Request.ServerVariables["HTTP_HOST"] != null && m_httphost == m_context.Request.ServerVariables["HTTP_HOST"].ToLower())
+						(m_filterByHost && m_context.Request.ServerVariables["HTTP_HOST"] != null && _httphost == m_context.Request.ServerVariables["HTTP_HOST"].ToLower())
 						||
 						(m_filterByExceptions && m_context.Request.ServerVariables["HTTP_HOST"] != null && Array.BinarySearch(m_httphostExceptions, m_context.Request.ServerVariables["HTTP_HOST"].ToLower()) < 0)
 

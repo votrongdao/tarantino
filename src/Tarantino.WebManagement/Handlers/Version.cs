@@ -6,7 +6,8 @@ namespace Tarantino.WebManagement.Handlers
 	{
 		protected override void OnProcessRequest()
 		{
-			Write(ApplicationInstance.Current.ApplicationDomain + " " + ApplicationInstance.Current.Version);
+			ApplicationInstance applicationInstance = CurrentContext.CurrentApplicationInstance;
+			Write(string.Format("{0} {1}", applicationInstance, applicationInstance.Version));
 		}
 	}
 }

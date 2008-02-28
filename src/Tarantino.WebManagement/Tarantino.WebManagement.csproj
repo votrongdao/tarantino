@@ -101,7 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationInstance.cs">
+    <Compile Include="CurrentContext.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Handlers\Application.cs">

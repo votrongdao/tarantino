@@ -1,5 +1,7 @@
 using System;
+using StructureMap;
 using Tarantino.Core.WebManagement.Model;
+using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.WebManagement.Handlers
 {
@@ -16,15 +18,16 @@ namespace Tarantino.WebManagement.Handlers
 		{
 			get
 			{
-				ApplicationInstance a = ApplicationInstance.Current;
-
-				return a.AvailableForLoadBalance;
+				ApplicationInstance a = CurrentContext.CurrentApplicationInstance;
+				return a.AvailableForLoadBalancing;
 			}
 			set
 			{
-				ApplicationInstance a = ApplicationInstance.Current;
-				a.AvailableForLoadBalance = value;
-				a.AcceptChanges();
+				ApplicationInstance a = CurrentContext.CurrentApplicationInstance;
+				a.AvailableForLoadBalancing = value;
+
+				IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
+				repository.Save(a);
 			}
 		}
 
