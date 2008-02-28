@@ -136,10 +136,7 @@ namespace Tarantino.WebManagement.Handlers
 							output.AppendFormat("&nbsp;<a title=\"Refresh Cache\" href=\"?a=Cache&id={6}&value=true\">Refresh</a>&nbsp;",
 							                    ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
 						}
-						else
-						{
 
-						}
 						output.AppendFormat("</td>");
 						output.AppendFormat("<td>");
 						output.AppendFormat("&nbsp;<a href=\"callawaygolf.tx.web.management.applicationedit.axd?id={6}\">Edit</a>&nbsp;", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
