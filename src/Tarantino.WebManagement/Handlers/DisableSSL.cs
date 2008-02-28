@@ -10,23 +10,23 @@ namespace Tarantino.WebManagement.Handlers
 			WriteCSS();
 			WriteMenu();
 
-			if (m_context.Request["bypass"] != null)
+			if (_context.Request["bypass"] != null)
 			{
-				if (m_context.Request["bypass"].ToLower().Equals("true"))
+				if (_context.Request["bypass"].ToLower().Equals("true"))
 				{
-					if (m_context.Response.Cookies["bypassssl"] != null)
+					if (_context.Response.Cookies["bypassssl"] != null)
 					{
-						m_context.Response.Cookies.Remove("bypassssl");
+						_context.Response.Cookies.Remove("bypassssl");
 					}
-					m_context.Response.Cookies.Add(new System.Web.HttpCookie("bypassssl"));
-					m_context.Response.Cookies["bypassssl"].Value = "true";
+					_context.Response.Cookies.Add(new System.Web.HttpCookie("bypassssl"));
+					_context.Response.Cookies["bypassssl"].Value = "true";
 				}
 				else
 				{
-					m_context.Response.Cookies["bypassssl"].Value = "false";
+					_context.Response.Cookies["bypassssl"].Value = "false";
 				}
 			}
-			if (m_context.Response.Cookies["bypassssl"] != null && m_context.Response.Cookies["bypassssl"].Value != null && m_context.Response.Cookies["bypassssl"].Value.ToLower() == "true")
+			if (_context.Response.Cookies["bypassssl"] != null && _context.Response.Cookies["bypassssl"].Value != null && _context.Response.Cookies["bypassssl"].Value.ToLower() == "true")
 			{
 				Write("SSL Disabled</br>");
 			}

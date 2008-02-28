@@ -4,6 +4,8 @@ namespace Tarantino.Core.WebManagement.Model
 {
 	public class ApplicationInstance : PersistentObject
 	{
+		public const string CacheKey = "TarantinoApplicationInstance";
+
 		public const string MachineNameAttribute = "MachineName";
 		public const string ApplicationDomainAttribute = "ApplicationDomain";
 		public const string UniqueHostHeaderAttribute = "UniqueHostHeader";

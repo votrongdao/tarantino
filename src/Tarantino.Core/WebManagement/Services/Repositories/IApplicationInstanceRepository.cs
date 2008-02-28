@@ -9,7 +9,7 @@ namespace Tarantino.Core.WebManagement.Services.Repositories
 	public interface IApplicationInstanceRepository
 	{
 		IEnumerable<ApplicationInstance> GetAll();
-		IEnumerable<ApplicationInstance> GetByDomainAndMachineName(string applicationDomain, string machineName);
+		ApplicationInstance GetByDomainAndMachineName(string applicationDomain, string machineName);
 		ApplicationInstance GetById(Guid id);
 		void Save(ApplicationInstance instance);
 		void Delete(ApplicationInstance instance);

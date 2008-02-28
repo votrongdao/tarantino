@@ -1,3 +1,4 @@
+using System;
 using System.Security.Principal;
 using System.Web;
 using StructureMap;
@@ -31,6 +32,17 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		{
 			object item = HttpContext.Current.Items[key];
 			return (T) item;
+		}
+
+		public T GetCacheItem<T>(string key)
+		{
+			object item = HttpContext.Current.Cache[key];
+			return (T) item;
+		}
+
+		public void SetCacheItem(string key, object item, DateTime expiration, TimeSpan slidingExpiration)
+		{
+			HttpContext.Current.Cache.Insert(key, item, null, expiration, slidingExpiration);
 		}
 
 		public void RewriteUrl(string newUrl)

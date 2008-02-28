@@ -11,16 +11,16 @@ namespace Tarantino.WebManagement.Handlers
 	{
 		protected override void OnProcessRequest()
 		{
-			if (m_authenticated && m_context.Request["id"] != null && m_context.Request["a"] != null && m_context.Request["value"] != null)
+			if (_authenticated && _context.Request["id"] != null && _context.Request["a"] != null && _context.Request["value"] != null)
 			{
-				Guid id = new Guid(m_context.Request["id"]);
+				Guid id = new Guid(_context.Request["id"]);
 
 				IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
 				ApplicationInstance instance = repository.GetById(id);
 
-				bool boolValue = bool.Parse(m_context.Request["value"]);
+				bool boolValue = bool.Parse(_context.Request["value"]);
 
-				switch (m_context.Request["a"])
+				switch (_context.Request["a"])
 				{
 					case "DownForMaintenance":
 						SetAllMaintenance(instance, boolValue);
@@ -40,7 +40,7 @@ namespace Tarantino.WebManagement.Handlers
 							if (instance.UniqueHostHeader != string.Empty)
 							{
 								IWebDataReader reader = ObjectFactory.GetInstance<IWebDataReader>();
-								string cacheKey = CurrentContext.CacheKey;
+								string cacheKey = ApplicationInstance.CacheKey;
 								string url = string.Format("http://{0}/{1}?pattern={2}", "Tarantino.WebManagement.cache.axd", instance.UniqueHostHeader, cacheKey);
 								reader.ReadUrl(url);
 							}
@@ -89,7 +89,7 @@ namespace Tarantino.WebManagement.Handlers
 			{
 				output.AppendFormat("<tr ><th>{0}</th><th>{1}</th><th>{2}</th><th class='center'>{3}</th><th class='center'>{4}</th><th>{5}</th>", "MaintenanceHostHeader", "Maintenance Mode", "MachineName", "Load balanaced", "Version", "Unique Hostname");
 
-				if (m_authenticated)
+				if (_authenticated)
 					output.AppendFormat("<th colspan=3>Action</th>");
 
 				output.AppendFormat("</tr>\r");
@@ -103,7 +103,7 @@ namespace Tarantino.WebManagement.Handlers
 						int appcount = ApplicationCount(applications, ai.MaintenanceHostHeader);
 						output.AppendFormat("<td rowspan='{9}' class='out'><a target='_blank' href='http://{1}'>{1}</a></td>", ai.MachineName, ai.MaintenanceHostHeader != lastHost ? ai.MaintenanceHostHeader : "", ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing, appcount);
 
-						if (m_authenticated)
+						if (_authenticated)
 						{
 							output.AppendFormat("<td rowspan='{9}' class='{3}'><a class='{3}' href='?id={6}&a=DownForMaintenance&value={7}'>{3}</a></td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing, appcount);
 						}
@@ -115,7 +115,7 @@ namespace Tarantino.WebManagement.Handlers
 
 					output.AppendFormat("<td>{0}</td>", ai.MachineName, ai.MaintenanceHostHeader != lastHost ? ai.MaintenanceHostHeader : "", ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
 
-					if (m_authenticated)
+					if (_authenticated)
 					{
 						output.AppendFormat("<td class='{4}' ><a class='{4}' href='?id={6}&a=AvailableForLoadBalance&value={8}'>{4}</a></td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
 					}
@@ -128,7 +128,7 @@ namespace Tarantino.WebManagement.Handlers
 
 					output.AppendFormat("<td><a target='_blank' href='http://{5}'>{5}</a></td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
 
-					if (m_authenticated)
+					if (_authenticated)
 					{
 						output.AppendFormat("<td>");
 						if (ai.UniqueHostHeader != null && ai.UniqueHostHeader.Length > 0)

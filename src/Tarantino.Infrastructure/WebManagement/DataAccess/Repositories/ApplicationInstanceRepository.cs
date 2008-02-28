@@ -24,14 +24,14 @@ namespace Tarantino.Infrastructure.WebManagement.DataAccess.Repositories
 			return instances;
 		}
 
-		public IEnumerable<ApplicationInstance> GetByDomainAndMachineName(string applicationDomain, string machineName)
+		public ApplicationInstance GetByDomainAndMachineName(string applicationDomain, string machineName)
 		{
 			CriterionSet criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion(ApplicationInstance.MachineNameAttribute, machineName));
 			criteria.AddCriterion(new Criterion(ApplicationInstance.ApplicationDomainAttribute, applicationDomain));
-			IEnumerable<ApplicationInstance> instances = _objectRepository.FindAll<ApplicationInstance>(criteria);
 
-			return instances;
+			ApplicationInstance instance = _objectRepository.FindFirst<ApplicationInstance>(criteria);
+			return instance;
 		}
 
 		public ApplicationInstance GetById(Guid id)

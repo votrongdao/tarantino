@@ -3,9 +3,8 @@ using StructureMap;
 namespace Tarantino.Core.Commons.Services.Environment
 {
 	[PluginFamily(ServiceKeys.Default)]
-	public interface IApplicationDomain
+	public interface ISystemEnvironment
 	{
-		string GetBaseFolder();
-		string GetName();
+		string GetMachineName();
 	}
 }

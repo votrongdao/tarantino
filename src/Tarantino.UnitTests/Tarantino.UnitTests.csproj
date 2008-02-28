@@ -53,6 +53,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\Commons\Services\Environment\AssemblyContextTester.cs" />
     <Compile Include="Core\Commons\Services\RandomDataCreation\CodeGeneratorTester.cs" />
     <Compile Include="Core\Commons\Services\RandomDataCreation\RandomCharacterGeneratorTester.cs" />
     <Compile Include="Core\Commons\Services\Security\ForgottenPasswordMailerTester.cs" />
@@ -70,6 +71,10 @@
     <Compile Include="Core\DatabaseManager\Services\LogMessageGeneratorTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\ScriptFolderExecutorTester.cs" />
     <Compile Include="Core\WebManagement\Model\ApplicationInstanceTester.cs" />
+    <Compile Include="Core\WebManagement\Services\ApplicationInstanceCacheTester.cs" />
+    <Compile Include="Core\WebManagement\Services\ApplicationInstanceContextTester.cs" />
+    <Compile Include="Core\WebManagement\Services\ApplicationInstanceFactoryTester.cs" />
+    <Compile Include="Core\WebManagement\Services\CurrentApplicationInstanceRetrieverTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\BoundedEnumerationTester.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\EnumerationTester.cs" />

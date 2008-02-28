@@ -12,5 +12,12 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 			string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 			return baseDirectory;
 		}
+		
+		public string GetName()
+		{
+			string[] nameParts = AppDomain.CurrentDomain.FriendlyName.Split('-');
+			string friendlyName = nameParts[0];
+			return friendlyName;
+		}
 	}
 }

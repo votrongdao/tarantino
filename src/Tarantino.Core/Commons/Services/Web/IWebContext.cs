@@ -1,5 +1,7 @@
+using System;
 using System.Security.Principal;
 using StructureMap;
+using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.Commons.Services.Web
 {
@@ -14,5 +16,7 @@ namespace Tarantino.Core.Commons.Services.Web
 		T GetItem<T>(string key);
 		void RewriteUrl(string newUrl);
 		string GetCurrentUrl();
+		T GetCacheItem<T>(string key);
+		void SetCacheItem(string key, object item, DateTime expiration, TimeSpan slidingExpiration);
 	}
 }

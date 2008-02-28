@@ -42,9 +42,9 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Rep
 		public void Can_correctly_gets_application_instances_by_machine_name_and_domain()
 		{
 			IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
-			IEnumerable<ApplicationInstance> actualInstances = repository.GetByDomainAndMachineName("Domain1", "Machine2");
+			ApplicationInstance actualInstance = repository.GetByDomainAndMachineName("Domain1", "Machine2");
 
-			Assert.That(actualInstances, Is.EqualTo(new ApplicationInstance[]{ _instance2 }));
+			Assert.That(actualInstance, Is.EqualTo(_instance2));
 		}
 
 		[Test]

@@ -4,8 +4,8 @@ namespace Tarantino.WebManagement.Handlers
 {
 	public abstract class HandlerBase : IHttpHandler
 	{
-		protected HttpContext m_context;
-		protected bool m_authenticated = false;
+		protected HttpContext _context;
+		protected bool _authenticated = false;
 		protected bool m_openHtmlWriten = false;
 		protected bool m_closeHtmlWritten = false;
 
@@ -90,30 +90,26 @@ namespace Tarantino.WebManagement.Handlers
 			output.Append("</head><body>");
 			m_openHtmlWriten = true;
 
-			//output.Append("<table height=100%><tr><td  align=center class=center><table>\n");
-
 			Write(output.ToString());
 		}
-		#region IHttpHandler Members
 
 		public void Reload()
 		{
-			m_context.Response.Redirect(m_context.Request.Url.AbsolutePath);
+			_context.Response.Redirect(_context.Request.Url.AbsolutePath);
 		}
 
 		public void ProcessRequest(HttpContext context)
 		{
-			m_context = context;
-			if (m_context.Request.IsAuthenticated && (m_context.User.IsInRole(@"BUILTIN\Administrators") || m_context.User.IsInRole(@"Administrators")))
+			_context = context;
+			if (_context.Request.IsAuthenticated && (_context.User.IsInRole(@"BUILTIN\Administrators") || _context.User.IsInRole(@"Administrators")))
 			{
-				m_authenticated = true;
+				_authenticated = true;
 			}
 
 			OnProcessRequest();
 			if (!m_closeHtmlWritten)
 				WriteCloseTags();
 		}
-
 
 		public bool IsReusable
 		{
@@ -125,24 +121,12 @@ namespace Tarantino.WebManagement.Handlers
 
 		protected void Write(string Line)
 		{
-			m_context.Response.Write(Line);
-		}
-		protected void Write(byte[] bytes)
-		{
-			m_context.Response.OutputStream.Write(bytes, 0, bytes.Length);
+			_context.Response.Write(Line);
 		}
 
-		protected string Request(string key)
+		protected void Write(byte[] bytes)
 		{
-			if (m_context.Request[key] != null)
-			{
-				return m_context.Request[key].ToString();
-			}
-			else
-			{
-				return string.Empty;
-			}
+			_context.Response.OutputStream.Write(bytes, 0, bytes.Length);
 		}
-		#endregion
 	}
 }

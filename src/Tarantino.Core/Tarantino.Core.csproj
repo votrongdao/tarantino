@@ -61,18 +61,36 @@
     <Compile Include="Commons\Services\DataFileManagement\Impl\ExcelWorkbookReader.cs" />
     <Compile Include="Commons\Services\DataFileManagement\Impl\ExcelWorksheetReader.cs" />
     <Compile Include="Commons\Services\Environment\IApplicationDomain.cs" />
+    <Compile Include="Commons\Services\Environment\IAssemblyContext.cs" />
     <Compile Include="Commons\Services\Environment\IDateContext.cs" />
     <Compile Include="Commons\Services\Environment\IFileStreamFactory.cs" />
     <Compile Include="Commons\Services\Environment\IFileSystem.cs" />
-    <Compile Include="Commons\Services\Environment\Impl\ApplicationDomain.cs" />
-    <Compile Include="Commons\Services\Environment\Impl\DateContext.cs" />
-    <Compile Include="Commons\Services\Environment\Impl\FileStreamFactory.cs" />
-    <Compile Include="Commons\Services\Environment\Impl\FileSystem.cs" />
-    <Compile Include="Commons\Services\Environment\Impl\ResourceFileLocator.cs" />
-    <Compile Include="Commons\Services\Environment\Impl\SystemClock.cs" />
-    <Compile Include="Commons\Services\Environment\Impl\TypeActivator.cs" />
+    <Compile Include="Commons\Services\Environment\Impl\ApplicationDomain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commons\Services\Environment\Impl\AssemblyContext.cs" />
+    <Compile Include="Commons\Services\Environment\Impl\DateContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commons\Services\Environment\Impl\FileStreamFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commons\Services\Environment\Impl\FileSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commons\Services\Environment\Impl\ResourceFileLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commons\Services\Environment\Impl\SystemClock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commons\Services\Environment\Impl\SystemEnvironment.cs" />
+    <Compile Include="Commons\Services\Environment\Impl\TypeActivator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Commons\Services\Environment\IResourceFileLocator.cs" />
     <Compile Include="Commons\Services\Environment\ISystemClock.cs" />
+    <Compile Include="Commons\Services\Environment\ISystemEnvironment.cs" />
     <Compile Include="Commons\Services\Environment\ITypeActivator.cs" />
     <Compile Include="Commons\Services\ListManagement\IEnumerationHelper.cs" />
     <Compile Include="Commons\Services\ListManagement\Impl\EnumerableHelper.cs" />
@@ -200,6 +218,14 @@
     <Compile Include="Deployer\Services\UI\Impl\LabelTextGenerator.cs" />
     <Compile Include="ServiceKeys.cs" />
     <Compile Include="WebManagement\Model\ApplicationInstance.cs" />
+    <Compile Include="WebManagement\Services\IApplicationInstanceCache.cs" />
+    <Compile Include="WebManagement\Services\IApplicationInstanceContext.cs" />
+    <Compile Include="WebManagement\Services\IApplicationInstanceFactory.cs" />
+    <Compile Include="WebManagement\Services\ICurrentApplicationInstanceRetriever.cs" />
+    <Compile Include="WebManagement\Services\Impl\ApplicationInstanceCache.cs" />
+    <Compile Include="WebManagement\Services\Impl\ApplicationInstanceContext.cs" />
+    <Compile Include="WebManagement\Services\Impl\ApplicationInstanceFactory.cs" />
+    <Compile Include="WebManagement\Services\Impl\CurrentApplicationInstanceRetriever.cs" />
     <Compile Include="WebManagement\Services\Repositories\IApplicationInstanceRepository.cs" />
   </ItemGroup>
   <ItemGroup>

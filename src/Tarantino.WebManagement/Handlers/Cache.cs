@@ -8,9 +8,9 @@ namespace Tarantino.WebManagement.Handlers
 
 		protected override void OnProcessRequest()
 		{
-			if (m_context.Request.Form.Count > 0)
+			if (_context.Request.Form.Count > 0)
 			{
-				foreach (string key in m_context.Request.Form.Keys)
+				foreach (string key in _context.Request.Form.Keys)
 				{
 					if (key == "custom")
 					{
@@ -18,16 +18,16 @@ namespace Tarantino.WebManagement.Handlers
 					}
 					else
 					{
-						foreach (string cacheKey in m_context.Request.Form[key].Split(','))
+						foreach (string cacheKey in _context.Request.Form[key].Split(','))
 						{
-							m_context.Cache.Remove(cacheKey);
+							_context.Cache.Remove(cacheKey);
 						}
 					}
 				}
 			}
-			else if (m_context.Request.QueryString.Count > 0)
+			else if (_context.Request.QueryString.Count > 0)
 			{
-				string pattern = m_context.Request.QueryString.Get("pattern");
+				string pattern = _context.Request.QueryString.Get("pattern");
 				ClearHTTPContextCache(pattern);
 				if (pattern.Length == 0 || pattern == ".*")
 				{
@@ -58,7 +58,7 @@ namespace Tarantino.WebManagement.Handlers
 
 			if (cacheKeys.Count > 0 || OnRefresh != null)
 			{
-				if (m_authenticated)
+				if (_authenticated)
 				{
 					output.AppendFormat("<tr><td><form method=post action=''>");
 					output.AppendFormat("<tr><td><input type=submit value='Remove' />");
@@ -73,7 +73,7 @@ namespace Tarantino.WebManagement.Handlers
 				if (OnRefresh != null)
 				{
 					output.AppendFormat("<tr><td colspan=3>");
-					if (m_authenticated)
+					if (_authenticated)
 						output.AppendFormat("<input type=checkbox name='custom' value='true' />");
 					output.AppendFormat(OnRefresh.GetInvocationList().Length + " Custom Cached Object(s)</td></tr>");
 				}
@@ -85,7 +85,7 @@ namespace Tarantino.WebManagement.Handlers
 					do
 					{
 						output.AppendFormat("<td width=33% nowrap>");
-						if (m_authenticated)
+						if (_authenticated)
 						{
 							output.AppendFormat("<input type=checkbox name='cache' value='{0}' /> ", e.Current);
 						}
@@ -95,7 +95,7 @@ namespace Tarantino.WebManagement.Handlers
 					output.AppendFormat("</tr>\r");
 				}
 
-				if (m_authenticated)
+				if (_authenticated)
 				{
 					output.AppendFormat("<tr><td><input type=submit value='Remove' />");
 					output.AppendFormat("</form></td></tr>");

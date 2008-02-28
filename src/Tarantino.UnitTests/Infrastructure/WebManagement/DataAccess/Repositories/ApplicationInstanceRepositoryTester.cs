@@ -103,9 +103,7 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 		[Test]
 		public void Can_correctly_gets_application_instances_by_machine_name_and_domain()
 		{
-			ApplicationInstance instance1 = new ApplicationInstance();
-			ApplicationInstance instance2 = new ApplicationInstance();
-			ApplicationInstance[] instances = new ApplicationInstance[] { instance1, instance2 };
+			ApplicationInstance instance = new ApplicationInstance();
 
 			CriterionSet criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion("MachineName", "MyMachine"));
@@ -116,15 +114,15 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 
 			using (mocks.Record())
 			{
-				Expect.Call(objectRepository.FindAll<ApplicationInstance>(criteria)).Return(instances);
+				Expect.Call(objectRepository.FindFirst<ApplicationInstance>(criteria)).Return(instance);
 			}
 
 			using (mocks.Playback())
 			{
 				IApplicationInstanceRepository repository = new ApplicationInstanceRepository(objectRepository);
-				IEnumerable<ApplicationInstance> actualInstances = repository.GetByDomainAndMachineName("MyDomain", "MyMachine");
+				ApplicationInstance actualInstance = repository.GetByDomainAndMachineName("MyDomain", "MyMachine");
 
-				EnumerableAssert.That(actualInstances, Is.EqualTo(instances));
+				Assert.That(actualInstance, Is.SameAs(instance));
 			}
 		}
 

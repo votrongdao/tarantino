@@ -9,16 +9,16 @@ namespace Tarantino.WebManagement.Handlers
 	{
 		protected override void OnProcessRequest()
 		{
-			if (m_authenticated && m_context.Request["id"] != null)
+			if (_authenticated && _context.Request["id"] != null)
 			{
-				Guid id = new Guid(m_context.Request["id"]);
+				Guid id = new Guid(_context.Request["id"]);
 
 				IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
 				ApplicationInstance applicationInstance = repository.GetById(id);
 
-				if (m_context.Request.Form.Get("hostname") != null)
+				if (_context.Request.Form.Get("hostname") != null)
 				{
-					applicationInstance.UniqueHostHeader = m_context.Request.Form.Get("hostname");
+					applicationInstance.UniqueHostHeader = _context.Request.Form.Get("hostname");
 					repository.Save(applicationInstance);
 				}
 				Write(ListApplications(applicationInstance));
@@ -30,7 +30,7 @@ namespace Tarantino.WebManagement.Handlers
 		{
 			System.Text.StringBuilder output = new System.Text.StringBuilder();
 			WriteCSS();
-			if (m_authenticated)
+			if (_authenticated)
 			{
 				output.AppendFormat("<form method=post action=''>");
 			}
@@ -45,7 +45,7 @@ namespace Tarantino.WebManagement.Handlers
 			output.AppendFormat("<tr><td>Maintenance Mode</td><td>{0}</td></tr>", applicationInstance.DownForMaintenance ? "Down" : "Online");
 			output.Append("</table>\n");
 
-			if (m_authenticated)
+			if (_authenticated)
 			{
 				output.AppendFormat("<input type=submit value='Submit' />");
 				output.AppendFormat("</form>");
