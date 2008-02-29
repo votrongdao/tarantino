@@ -11,8 +11,7 @@ namespace Tarantino.WebManagement
 			get
 			{
 				IApplicationInstanceContext context = ObjectFactory.GetInstance<IApplicationInstanceContext>();
-				ApplicationInstance applicationInstance = context.GetCurrent();
-				return applicationInstance;
+				return context.GetCurrent();
 			}
 		}
 	}

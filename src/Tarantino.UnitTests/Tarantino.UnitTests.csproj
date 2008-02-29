@@ -61,7 +61,7 @@
     <Compile Include="Core\Commons\Services\Security\ForgottenPasswordServiceTester.cs" />
     <Compile Include="Core\Commons\Services\Security\LoginServiceTester.cs" />
     <Compile Include="Core\Commons\Services\Security\PrincipalFactoryTester.cs" />
-    <Compile Include="Core\Commons\Services\Security\RoleAssignerTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\RoleManagerTester.cs" />
     <Compile Include="Core\Commons\Services\Security\SystemUserContextManagerTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\DatabaseActionExecutorFactoryTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\DatabaseActionResolverTester.cs" />
@@ -71,10 +71,15 @@
     <Compile Include="Core\DatabaseManager\Services\LogMessageGeneratorTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\ScriptFolderExecutorTester.cs" />
     <Compile Include="Core\WebManagement\Model\ApplicationInstanceTester.cs" />
+    <Compile Include="Core\WebManagement\Services\AdministratorSecurityCheckerTester.cs" />
     <Compile Include="Core\WebManagement\Services\ApplicationInstanceCacheTester.cs" />
     <Compile Include="Core\WebManagement\Services\ApplicationInstanceContextTester.cs" />
     <Compile Include="Core\WebManagement\Services\ApplicationInstanceFactoryTester.cs" />
+    <Compile Include="Core\WebManagement\Services\AvailabilityStatusUpdaterTester.cs" />
     <Compile Include="Core\WebManagement\Services\CurrentApplicationInstanceRetrieverTester.cs" />
+    <Compile Include="Core\WebManagement\Services\ExceptionHandlingLoadBalanceStatusManagerTester.cs" />
+    <Compile Include="Core\WebManagement\Services\LoadBalanceStatusManagerTester.cs" />
+    <Compile Include="Core\WebManagement\Services\SecureAvailabilityStatusUpdaterTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\BoundedEnumerationTester.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\EnumerationTester.cs" />

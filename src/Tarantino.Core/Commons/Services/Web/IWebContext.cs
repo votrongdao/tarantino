@@ -18,5 +18,9 @@ namespace Tarantino.Core.Commons.Services.Web
 		string GetCurrentUrl();
 		T GetCacheItem<T>(string key);
 		void SetCacheItem(string key, object item, DateTime expiration, TimeSpan slidingExpiration);
+		IPrincipal GetUserPrinciple();
+		string GetRequestItem(string key);
+		void SetHttpResponseStatus(int code, string description);
+		void WriteToResponse(string message);
 	}
 }

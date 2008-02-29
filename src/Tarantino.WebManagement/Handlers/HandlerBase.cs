@@ -113,10 +113,7 @@ namespace Tarantino.WebManagement.Handlers
 
 		public bool IsReusable
 		{
-			get
-			{
-				return false;
-			}
+			get { return false; }
 		}
 
 		protected void Write(string Line)

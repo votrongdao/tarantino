@@ -16,11 +16,23 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 			return isAuthenticated;
 		}
 
+		public string GetRequestItem(string key)
+		{
+			string value = HttpContext.Current.Request[key];
+			return value;
+		}
+
 		public IIdentity GetUserIdentity()
 		{
 			IPrincipal user = HttpContext.Current.User;
 			IIdentity identity = user != null ? user.Identity : null;
 			return identity;
+		}
+
+		public IPrincipal GetUserPrinciple()
+		{
+			IPrincipal user = HttpContext.Current.User;
+			return user;
 		}
 
 		public void SetItem(string key, object item)
@@ -59,11 +71,23 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		{
 			HttpContext.Current.User = user;
 		}
-		
+
 		public string GetCurrentUrl()
 		{
 			string url = HttpContext.Current.Request.Path;
 			return url;
+		}
+
+		public void SetHttpResponseStatus(int code, string description)
+		{
+			HttpResponse response = HttpContext.Current.Response;
+			response.StatusCode = code;
+			response.StatusDescription = description;
+		}
+
+		public void WriteToResponse(string message)
+		{
+			HttpContext.Current.Response.Write(message);
 		}
 	}
 }
