@@ -9,7 +9,7 @@ namespace Tarantino.WebManagement.Handlers
 		public void ProcessRequest(HttpContext doNotUse)
 		{
 			IExceptionHandlingLoadBalanceStatusManager manager = ObjectFactory.GetInstance<IExceptionHandlingLoadBalanceStatusManager>();
-			manager.HandleLoadBalancing();
+			string errorMessage = manager.HandleLoadBalancing();
 
 			//WriteCSS();
 			//WriteMenu();
