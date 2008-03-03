@@ -7,6 +7,8 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 	[Pluggable(ServiceKeys.Default)]
 	public class LoadBalanceStatusManager : ILoadBalanceStatusManager
 	{
+		public const string ENABLED_PARAM = "enabled";
+	
 		private readonly IApplicationInstanceContext _instanceContext;
 		private readonly IWebContext _context;
 		private readonly ISecureAvailabilityStatusUpdater _statusUpdater;
@@ -24,7 +26,7 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 
 			ApplicationInstance currentInstance = _instanceContext.GetCurrent();
 
-			string enabledParameter = _context.GetRequestItem("enabled");
+			string enabledParameter = _context.GetRequestItem(ENABLED_PARAM);
 
 			if (enabledParameter != null)
 			{

@@ -225,6 +225,7 @@
     <Compile Include="WebManagement\Services\IAvailabilityStatusUpdater.cs" />
     <Compile Include="WebManagement\Services\ICurrentApplicationInstanceRetriever.cs" />
     <Compile Include="WebManagement\Services\IExceptionHandlingLoadBalanceStatusManager.cs" />
+    <Compile Include="WebManagement\Services\Views\ILoadBalancerBodyView.cs" />
     <Compile Include="WebManagement\Services\ILoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Impl\AdministratorSecurityChecker.cs" />
     <Compile Include="WebManagement\Services\Impl\ApplicationInstanceCache.cs" />
@@ -233,10 +234,17 @@
     <Compile Include="WebManagement\Services\Impl\AvailabilityStatusUpdater.cs" />
     <Compile Include="WebManagement\Services\Impl\CurrentApplicationInstanceRetriever.cs" />
     <Compile Include="WebManagement\Services\Impl\ExceptionHandlingLoadBalanceStatusManager.cs" />
+    <Compile Include="WebManagement\Services\Views\Impl\LoadBalancerBodyView.cs" />
     <Compile Include="WebManagement\Services\Impl\LoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Impl\SecureAvailabilityStatusUpdater.cs" />
     <Compile Include="WebManagement\Services\ISecureAvailabilityStatusUpdater.cs" />
     <Compile Include="WebManagement\Services\Repositories\IApplicationInstanceRepository.cs" />
+    <Compile Include="WebManagement\Services\Views\ILoadBalancerView.cs" />
+    <Compile Include="WebManagement\Services\Views\IMenuView.cs" />
+    <Compile Include="WebManagement\Services\Views\Impl\LoadBalancerView.cs" />
+    <Compile Include="WebManagement\Services\Views\Impl\MenuView.cs" />
+    <Compile Include="WebManagement\Services\Views\Impl\PageView.cs" />
+    <Compile Include="WebManagement\Services\Views\IPageView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DatabaseManager\SqlFiles\CreateSchema.sql" />
@@ -246,6 +254,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DatabaseManager\SqlFiles\DropConnections.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\MenuTemplate.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\StylesheetTemplate.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\PageTemplate.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\LoadBalancerBodyTemplate.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

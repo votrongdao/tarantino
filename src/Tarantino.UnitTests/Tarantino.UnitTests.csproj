@@ -80,6 +80,10 @@
     <Compile Include="Core\WebManagement\Services\ExceptionHandlingLoadBalanceStatusManagerTester.cs" />
     <Compile Include="Core\WebManagement\Services\LoadBalanceStatusManagerTester.cs" />
     <Compile Include="Core\WebManagement\Services\SecureAvailabilityStatusUpdaterTester.cs" />
+    <Compile Include="Core\WebManagement\Services\Views\LoadBalancerBodyViewTester.cs" />
+    <Compile Include="Core\WebManagement\Services\Views\LoadBalancerViewTester.cs" />
+    <Compile Include="Core\WebManagement\Services\Views\MenuViewTester.cs" />
+    <Compile Include="Core\WebManagement\Services\Views\PageViewTester.cs" />
     <Compile Include="EnumerableAssert.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\BoundedEnumerationTester.cs" />
     <Compile Include="Core\Commons\Model\Enumerations\EnumerationTester.cs" />

@@ -24,7 +24,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 			using (mocks.Record())
 			{
 				Expect.Call(instanceContext.GetCurrent()).Return(instance);
-				Expect.Call(context.GetRequestItem("enabled")).Return(null);
+				Expect.Call(context.GetRequestItem(LoadBalanceStatusManager.ENABLED_PARAM)).Return(null);
 			}
 
 			using (mocks.Playback())
@@ -49,7 +49,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 			using (mocks.Record())
 			{
 				Expect.Call(instanceContext.GetCurrent()).Return(instance);
-				Expect.Call(context.GetRequestItem("enabled")).Return(null);
+				Expect.Call(context.GetRequestItem(LoadBalanceStatusManager.ENABLED_PARAM)).Return(null);
 				context.SetHttpResponseStatus(400, "This application has been turned off");
 			}
 
@@ -76,7 +76,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 			using (mocks.Record())
 			{
 				Expect.Call(instanceContext.GetCurrent()).Return(instance);
-				Expect.Call(context.GetRequestItem("enabled")).Return("True");
+				Expect.Call(context.GetRequestItem(LoadBalanceStatusManager.ENABLED_PARAM)).Return("True");
 				Expect.Call(updater.SetStatus(true)).Return("My error message");
 			}
 
@@ -103,7 +103,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 			using (mocks.Record())
 			{
 				Expect.Call(instanceContext.GetCurrent()).Return(instance);
-				Expect.Call(context.GetRequestItem("enabled")).Return("FALSE");
+				Expect.Call(context.GetRequestItem(LoadBalanceStatusManager.ENABLED_PARAM)).Return("FALSE");
 				Expect.Call(updater.SetStatus(false)).Return(string.Empty);
 			}
 
