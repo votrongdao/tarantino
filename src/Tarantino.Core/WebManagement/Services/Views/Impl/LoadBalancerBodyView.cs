@@ -32,8 +32,7 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
 			string template = _fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.LoadBalancerBodyTemplate.html");
 			_replacer.Text = template;
 
-			if (errorMessage.Length>0)
-				_replacer.Replace("ERROR_MESSAGE", errorMessage);
+			_replacer.Replace("ERROR_MESSAGE", errorMessage);
 
 			_replacer.Replace("CURRENT_STATE", instance.AvailableForLoadBalancing ? "enabled" : "disabled");
 			_replacer.Replace("MACHINE", instance.MachineName);
