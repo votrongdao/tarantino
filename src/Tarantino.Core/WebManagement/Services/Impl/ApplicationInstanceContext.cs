@@ -20,19 +20,12 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 		public ApplicationInstance GetCurrent()
 		{
 			ApplicationInstance instance = _cache.GetCurrent();
-			
-			try
+
+			if (instance == null)
 			{
-				if (instance == null)
-				{
-					instance = _retriever.GetApplicationInstance();
-				}
+				instance = _retriever.GetApplicationInstance();
 			}
-			catch
-			{
-				instance = _factory.Create();
-			}
-			
+
 			return instance;
 		}
 	}

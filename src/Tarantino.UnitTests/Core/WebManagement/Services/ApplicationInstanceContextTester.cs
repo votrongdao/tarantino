@@ -1,4 +1,3 @@
-using System;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rhino.Mocks;
@@ -51,32 +50,6 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 			using (mocks.Playback())
 			{
 				IApplicationInstanceContext instanceContext = new ApplicationInstanceContext(cache, retriever, null);
-				Assert.That(instanceContext.GetCurrent(), Is.SameAs(instance));
-			}
-
-			mocks.VerifyAll();
-		}
-
-		[Test]
-		public void Creates_new_application_instance_when_error_occurs_retrieving_instance_from_database()
-		{
-			ApplicationInstance instance = new ApplicationInstance();
-
-			MockRepository mocks = new MockRepository();
-			IApplicationInstanceCache cache = mocks.CreateMock<IApplicationInstanceCache>();
-			ICurrentApplicationInstanceRetriever retriever = mocks.CreateMock<ICurrentApplicationInstanceRetriever>();
-			IApplicationInstanceFactory factory = mocks.CreateMock<IApplicationInstanceFactory>();
-
-			using (mocks.Record())
-			{
-				Expect.Call(cache.GetCurrent()).Return(null);
-				Expect.Call(retriever.GetApplicationInstance()).Throw(new Exception());
-				Expect.Call(factory.Create()).Return(instance);
-			}
-
-			using (mocks.Playback())
-			{
-				IApplicationInstanceContext instanceContext = new ApplicationInstanceContext(cache, retriever, factory);
 				Assert.That(instanceContext.GetCurrent(), Is.SameAs(instance));
 			}
 

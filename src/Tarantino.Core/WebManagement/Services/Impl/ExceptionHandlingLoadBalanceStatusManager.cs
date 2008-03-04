@@ -1,5 +1,6 @@
 using System;
 using StructureMap;
+using Tarantino.Core.Commons.Services.Web;
 using Tarantino.Core.WebManagement.Services.Views;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
@@ -9,26 +10,26 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 	{
 		private readonly ILoadBalanceStatusManager _manager;
 		private readonly ILoadBalancerView _view;
+		private readonly IWebContext _context;
 
-		public ExceptionHandlingLoadBalanceStatusManager(ILoadBalanceStatusManager manager, ILoadBalancerView view)
+		public ExceptionHandlingLoadBalanceStatusManager(ILoadBalanceStatusManager manager, ILoadBalancerView view, IWebContext context)
 		{
 			_manager = manager;
 			_view = view;
+			_context = context;
 		}
 
 		public void HandleLoadBalancing()
 		{
-			string errorMessage;
 			try
 			{
-				errorMessage = _manager.HandleLoadBalanceRequest();
+				string errorMessage = _manager.HandleLoadBalanceRequest();
+				_view.Render(errorMessage);
 			}
 			catch (Exception ex)
 			{
-				errorMessage = ex.ToString();
+				_context.WriteToResponse(ex.ToString());
 			}
-
-			_view.Render(errorMessage);
 		}
 	}
 }
