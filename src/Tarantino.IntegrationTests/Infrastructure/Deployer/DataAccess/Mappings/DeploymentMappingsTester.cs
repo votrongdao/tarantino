@@ -1,7 +1,6 @@
 using System;
 using Tarantino.Core.Deployer.Model;
 using NUnit.Framework;
-using Tarantino.IntegrationTests;
 
 namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Mappings
 {

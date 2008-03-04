@@ -9,6 +9,14 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	[Pluggable(ServiceKeys.Default)]
 	public class NHibernateObjectMapper : IObjectMapper
 	{
+		private string _connectionStringKey = "DatabaseConnectionString";
+
+		public string ConnectionStringKey
+		{
+			get { return _connectionStringKey; }
+			set { _connectionStringKey = value; }
+		}
+
 		private ISessionManager _manager;
 
 		public NHibernateObjectMapper(ISessionManager manager)
@@ -18,7 +26,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void Save(object domainObject)
 		{
-			_manager.Run(new SessionCommand(save), true, domainObject);
+			_manager.Run(new SessionCommand(save), true, _connectionStringKey, domainObject);
 		}
 
 		private object save(ISession session, params object[] arguments)
@@ -29,7 +37,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void SaveOrUpdate(object domainObject)
 		{
-			_manager.Run(new SessionCommand(saveOrUpdate), true, domainObject);
+			_manager.Run(new SessionCommand(saveOrUpdate), true, _connectionStringKey, domainObject);
 		}
 
 		private object saveOrUpdate(ISession session, params object[] arguments)
@@ -40,7 +48,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void Delete(params object[] domainObjects)
 		{
-			_manager.Run(new SessionCommand(delete), true, domainObjects);
+			_manager.Run(new SessionCommand(delete), true, _connectionStringKey, domainObjects);
 		}
 
 		private object delete(ISession session, params object[] arguments)
@@ -55,7 +63,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public T Load<T>(object id)
 		{
-			object retValue = _manager.Run(new SessionCommand(load), false, typeof (T), id);
+			object retValue = _manager.Run(new SessionCommand(load), false, _connectionStringKey, typeof (T), id);
 			return (T) retValue;
 		}
 
@@ -66,7 +74,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public T[] LoadAll<T>()
 		{
-			object retValue = _manager.Run(new SessionCommand(loadAll), false, typeof (T));
+			object retValue = _manager.Run(new SessionCommand(loadAll), false, _connectionStringKey, typeof (T));
 			IList list = (IList) retValue;
 			T[] allObjects = new T[list.Count];
 			list.CopyTo(allObjects, 0);
@@ -76,7 +84,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public object[] LoadAll(Type type)
 		{
-			object retValue = _manager.Run(new SessionCommand(loadAll), false, type);
+			object retValue = _manager.Run(new SessionCommand(loadAll), false, _connectionStringKey, type);
 			IList list = (IList) retValue;
 			return (object[]) new ArrayList(list).ToArray(typeof (object));
 		}
@@ -91,7 +99,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void Flush()
 		{
-			_manager.Run(new SessionCommand(flush), true, null);
+			_manager.Run(new SessionCommand(flush), true, _connectionStringKey, null);
 		}
 
 		private object flush(ISession session, params object[] arguments)
@@ -102,7 +110,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void Evict(params object[] domainObjects)
 		{
-			_manager.Run(new SessionCommand(evict), false, domainObjects);
+			_manager.Run(new SessionCommand(evict), false, _connectionStringKey, domainObjects);
 		}
 
 		private object evict(ISession session, params object[] arguments)
@@ -116,7 +124,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void Refresh(params object[] domainObjects)
 		{
-			_manager.Run(new SessionCommand(refresh), false, domainObjects);
+			_manager.Run(new SessionCommand(refresh), false, _connectionStringKey, domainObjects);
 		}
 
 		private object refresh(ISession session, params object[] arguments)
@@ -130,18 +138,18 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public object Run(SessionCommand command, bool isTransaction, params object[] arguments)
 		{
-			return _manager.Run(command, isTransaction, arguments);
+			return _manager.Run(command, isTransaction, _connectionStringKey, arguments);
 		}
 
 		public void ExecuteNonQuery(string sql, Type type)
 		{
 			//Using SystemUser because NHibernate requires an entity type.  Any type will do.  This doesn't return anything.
-			_manager.Run(runSql, false, sql, "su", type);
+			_manager.Run(runSql, false, _connectionStringKey, sql, "su", type);
 		}
 
 		public bool IsDirty()
 		{
-			return (bool) _manager.Run(isDirty, false);
+			return (bool) _manager.Run(isDirty, false, _connectionStringKey);
 		}
 
 		private object isDirty(ISession session, params object[] arguments)
@@ -160,7 +168,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void Lock(object domainObject)
 		{
-			_manager.Run(lockObject, false, domainObject);
+			_manager.Run(lockObject, false, _connectionStringKey, domainObject);
 		}
 
 		private object lockObject(ISession session, params object[] arguments)
@@ -171,7 +179,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void Add(params object[] domainObjects)
 		{
-			_manager.Run(new SessionCommand(addObjects), false, domainObjects);
+			_manager.Run(new SessionCommand(addObjects), false, _connectionStringKey, domainObjects);
 		}
 
 		private object addObjects(ISession session, params object[] arguments)
@@ -185,7 +193,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public void AddNew(object domainObject)
 		{
-			_manager.Run(new SessionCommand(addNewObject), false, domainObject);
+			_manager.Run(new SessionCommand(addNewObject), false, _connectionStringKey, domainObject);
 		}
 
 		private object addNewObject(ISession session, params object[] arguments)

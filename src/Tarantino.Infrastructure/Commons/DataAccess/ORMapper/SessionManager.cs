@@ -15,10 +15,10 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			_sessionScoper = sessionScoper;
 		}
 
-		public object Run(SessionCommand command, bool requiresTransaction, params object[] arguments)
+		public object Run(SessionCommand command, bool requiresTransaction, string connectionStringKey, params object[] arguments)
 		{
 			object returnValue;
-			ISession session = _sessionScoper.GetScopedSession();
+			ISession session = _sessionScoper.GetScopedSession(connectionStringKey);
 			bool ownsTransaction = false;
 
 			ITransaction transaction = null;
@@ -26,7 +26,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			if (requiresTransaction)
 			{
 				ownsTransaction = true;
-				transaction = GetTransaction();
+				transaction = GetTransaction(connectionStringKey);
 			}
 
 			try
@@ -34,7 +34,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 				returnValue = RunSessionOperation(command, arguments, session);
 				if (ownsTransaction)
 				{
-					CommitTransaction(transaction);
+					CommitTransaction(transaction, connectionStringKey);
 				}
 			}
 			catch (Exception ex)
@@ -49,7 +49,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 				if (transaction != null)
 				{
-					RollbackTransaction(transaction);
+					RollbackTransaction(transaction, connectionStringKey);
 				}
 
 				throw;
@@ -62,14 +62,14 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return command(session, arguments);
 		}
 
-		public ITransaction GetTransaction()
+		public ITransaction GetTransaction(string connectionStringKey)
 		{
-			ISession session = _sessionScoper.GetScopedSession();
+			ISession session = _sessionScoper.GetScopedSession(connectionStringKey);
 			ITransaction transaction = session.BeginTransaction();
 			return transaction;
 		}
 
-		public void CommitTransaction(ITransaction transaction)
+		public void CommitTransaction(ITransaction transaction, string connectionStringKey)
 		{
 			try
 			{
@@ -77,22 +77,17 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			}
 			catch
 			{
-				RollbackTransaction(transaction);
+				RollbackTransaction(transaction, connectionStringKey);
 				throw;
 			}
 		}
 
-		public void RollbackTransaction(ITransaction transaction)
+		public void RollbackTransaction(ITransaction transaction, string connectionStringKey)
 		{
 			if (transaction.IsActive && !transaction.WasRolledBack)
 				transaction.Rollback();
 
-			_sessionScoper.Reset();
-		}
-
-		public void ResetSession()
-		{
-			_sessionScoper.Reset();
+			_sessionScoper.Reset(connectionStringKey);
 		}
 	}
 }

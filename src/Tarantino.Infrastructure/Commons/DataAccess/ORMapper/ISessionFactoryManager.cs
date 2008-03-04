@@ -8,6 +8,6 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	[PluginFamily(ServiceKeys.Default, IsSingleton = true)]
 	public interface ISessionFactoryManager
 	{
-		ISessionFactory GetSessionFactory();
+		ISessionFactory GetSessionFactory(string connectionStringKey);
 	}
 }

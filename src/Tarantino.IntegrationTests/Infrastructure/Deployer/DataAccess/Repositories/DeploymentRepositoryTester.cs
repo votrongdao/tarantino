@@ -5,7 +5,6 @@ using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using StructureMap;
 using Tarantino.Core.Deployer.Services;
-using Tarantino.IntegrationTests;
 
 namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Repositories
 {
@@ -127,7 +126,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 		[Test]
 		public void Returns_deployments_by_application_and_environment()
 		{
-			IDeploymentRepository deploymentRepository = ObjectFactory.GetInstance<IDeploymentRepository>();
+			IDeploymentRepository deploymentRepository = getRepository();
 
 			IEnumerable<Deployment> deployments = deploymentRepository.Find("A1", "E2");
 
@@ -140,10 +139,17 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 			                                    	}));
 		}
 
+		private IDeploymentRepository getRepository()
+		{
+			IDeploymentRepository repository = ObjectFactory.GetInstance<IDeploymentRepository>();
+			repository.ConnectionStringKey = ConnectionStringKey;
+			return repository;
+		}
+
 		[Test]
 		public void Returns_successful_uncertified_deployments_by_application_and_environment()
 		{
-			IDeploymentRepository deploymentRepository = ObjectFactory.GetInstance<IDeploymentRepository>();
+			IDeploymentRepository deploymentRepository = getRepository();
 
 			IEnumerable<Deployment> deployments = deploymentRepository.FindSuccessfulUncertified("A1", "E2");
 
@@ -156,7 +162,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 		[Test]
 		public void Returns_certified_deployments_by_application_and_environment()
 		{
-			IDeploymentRepository deploymentRepository = ObjectFactory.GetInstance<IDeploymentRepository>();
+			IDeploymentRepository deploymentRepository = getRepository();
 
 			IEnumerable<Deployment> deployments = deploymentRepository.FindCertified("A1", "E2");
 

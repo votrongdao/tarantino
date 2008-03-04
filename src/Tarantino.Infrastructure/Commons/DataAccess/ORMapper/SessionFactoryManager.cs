@@ -13,13 +13,15 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	public class SessionFactoryManager : ISessionFactoryManager
 	{
 		private readonly IApplicationSettings _applicationSettings;
+		private readonly IApplicationConfiguration _applicationConfiguration;
 
-		public SessionFactoryManager(IApplicationSettings applicationSettings)
+		public SessionFactoryManager(IApplicationSettings applicationSettings, IApplicationConfiguration applicationConfiguration)
 		{
 			_applicationSettings = applicationSettings;
+			_applicationConfiguration = applicationConfiguration;
 		}
 
-		public ISessionFactory GetSessionFactory()
+		public ISessionFactory GetSessionFactory(string connectionStringKey)
 		{
 			Configuration configuration = new Configuration();
 
@@ -29,7 +31,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			properties["hibernate.dialect"] = "NHibernate.Dialect.MsSql2000Dialect";
 			properties["hibernate.connection.driver_class"] = "NHibernate.Driver.SqlClientDriver";
 			properties["hibernate.query.substitutions"] = "true='Y', false='N'";
-			properties["hibernate.connection.connection_string"] = _applicationSettings.GetConnectionString();
+			properties["hibernate.connection.connection_string"] = _applicationConfiguration.GetConnectionString(connectionStringKey);
 			properties["hibernate.connection.isolation"] = IsolationLevel.ReadCommitted;
 			properties["hibernate.cache.provider_class"] = "NHibernate.Caches.SysCache.SysCacheProvider, NHibernate.Caches.SysCache";
 			properties["relativeExpiration"] = 60;

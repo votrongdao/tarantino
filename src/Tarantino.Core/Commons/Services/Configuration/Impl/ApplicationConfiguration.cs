@@ -8,20 +8,20 @@ namespace Tarantino.Core.Commons.Services.Configuration.Impl
 	{
 		public string GetSetting(string settingName)
 		{
-			string settingValue = System.Configuration.ConfigurationManager.AppSettings[settingName];
+			string settingValue = ConfigurationManager.AppSettings[settingName];
 			return settingValue;
 		}
 
 		public string GetConnectionString(string connectionStringName)
 		{
-			ConnectionStringSettings settings = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName];
+			ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[connectionStringName];
 			string connectionString = settings != null ? settings.ConnectionString : null;
 			return connectionString;
 		}
 
 		public object GetSection(string sectionName)
 		{
-			object section = System.Configuration.ConfigurationManager.GetSection(sectionName);
+			object section = ConfigurationManager.GetSection(sectionName);
 			return section;
 		}
 	}

@@ -17,6 +17,12 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 	{
 		private IObjectMapper _mapper;
 
+		public string ConnectionStringKey
+		{
+			get { return _mapper.ConnectionStringKey; }
+			set { _mapper.ConnectionStringKey = value; }
+		}
+
 		public PersistentObjectRepository(IObjectMapper mapper)
 		{
 			_mapper = mapper;
@@ -32,12 +38,6 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 		{
 			T property = _mapper.Load<T>(id);
 			return property;
-		}
-
-		public void PersistAll()
-		{
-			_mapper.Flush();
-			ThreadSessionScoper.ResetSession();
 		}
 
 		public void Delete(PersistentObject persistentObject)

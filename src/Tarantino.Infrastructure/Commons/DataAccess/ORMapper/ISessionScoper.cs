@@ -8,7 +8,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	public interface ISessionScoper
 	{
 		bool CanHandle();
-		ISession GetScopedSession();
-		void Reset();
+		ISession GetScopedSession(string connectionStringKey);
+		void Reset(string connectionStringKey);
 	}
 }

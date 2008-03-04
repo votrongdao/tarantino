@@ -32,7 +32,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 		[Test]
 		public void Can_find_deployment_using_criteria()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 
 			CriterionSet set = new CriterionSet();
 			set.AddCriterion(new Criterion(Deployment.ID, _deployment2.Id));
@@ -41,10 +41,17 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 			Assert.That(repository.FindFirst<Deployment>(set), Is.EqualTo(_deployment2));
 		}
 
+		private IPersistentObjectRepository getRepository()
+		{
+			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			repository.ConnectionStringKey = ConnectionStringKey;
+			return repository;
+		}
+
 		[Test]
 		public void Can_find_deployment_using_null_string_criteria()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 
 			CriterionSet set = new CriterionSet();
 			set.AddCriterion(new Criterion(Deployment.ENVIRONMENT, null));
@@ -55,7 +62,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 		[Test]
 		public void Can_find_deployment_using_not_null_string_criteria()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 
 			CriterionSet set = new CriterionSet();
 			set.AddCriterion(new Criterion(Deployment.ENVIRONMENT, null, ComparisonOperator.NotEqual));
@@ -66,7 +73,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 		[Test]
 		public void Can_find_deployments_in_order_of_create_date_descending()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 
 			CriterionSet set = new CriterionSet();
 			set.OrderBy = Deployment.DEPLOYED_ON;
@@ -78,7 +85,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 		[Test]
 		public void Can_find_deployment_using_not_equal_string_criteria()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 
 			CriterionSet set = new CriterionSet();
 			set.AddCriterion(new Criterion(Deployment.ENVIRONMENT, "Development", ComparisonOperator.NotEqual));
@@ -90,7 +97,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 		[Test]
 		public void Can_find_all_deployments_by_not_using_criteria()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 
 			CriterionSet set = new CriterionSet();
 
@@ -101,7 +108,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 		[Test]
 		public void Can_get_all_deployments()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 			IEnumerable<Deployment> deployments = repository.GetAll<Deployment>();
 			EnumerableAssert.That(deployments, Is.EquivalentTo(new Deployment[] { _deployment1, _deployment2 }));
 		}
@@ -109,7 +116,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 		[Test]
 		public void Can_get_single_deployment()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 			Deployment deployment = repository.GetById<Deployment>(_deployment2.Id);
 			Assert.That(deployment, Is.EqualTo(_deployment2));
 		}
@@ -117,7 +124,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 		[Test]
 		public void Can_delete_single_deployment()
 		{
-			IPersistentObjectRepository repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			IPersistentObjectRepository repository = getRepository();
 			repository.Delete(_deployment1);
 
 			IEnumerable<Deployment> deployments = repository.GetAll<Deployment>();

@@ -138,24 +138,6 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Configuration
 		}
 
 		[Test]
-		public void Should_read_connection_string()
-		{
-			MockRepository mocks = new MockRepository();
-			IConfigurationReader reader = mocks.CreateMock<IConfigurationReader>();
-
-			using (mocks.Record())
-			{
-				Expect.Call(reader.GetConnectionString("DatabaseConnectionString")).Return("conn string");
-			}
-
-			using (mocks.Playback())
-			{
-				IApplicationSettings settings = new ApplicationSettings(reader);
-				Assert.That(settings.GetConnectionString(), Is.EqualTo("conn string"));
-			}
-		}
-
-		[Test]
 		public void Should_read_mapping_assemblies()
 		{
 			string[] mappingAssemblies = new string[0];

@@ -14,5 +14,11 @@ namespace Tarantino.Core.WebManagement.Services.Repositories
 		void Save(ApplicationInstance instance);
 		void Delete(ApplicationInstance instance);
 		IEnumerable<ApplicationInstance> GetByHostHeader(string uniqueHostHeader);
+
+		string ConnectionStringKey
+		{
+			get;
+			set;
+		}
 	}
 }

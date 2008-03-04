@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using StructureMap;
 using Tarantino.Core.Commons.Model;
 using NUnit.Framework;
-using Tarantino.Core.Commons.Services.Configuration.Impl;
 using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.IntegrationTests
@@ -18,9 +18,9 @@ namespace Tarantino.IntegrationTests
 		[SetUp]
 		public virtual void SetUp()
 		{
-			ThreadSessionScoper scoper = new ThreadSessionScoper(new SessionFactoryManager(new DynamicConnectionStringApplicationSettings(new ConfigurationReader(new ApplicationConfiguration()), ConnectionStringKey)));
-			scoper.Reset();
-			_mapper = new NHibernateObjectMapper(new SessionManager(scoper));
+			_mapper = ObjectFactory.GetInstance<IObjectMapper>();
+			_mapper.ConnectionStringKey = ConnectionStringKey;
+			ThreadSessionScoper.ResetSession(ConnectionStringKey);
 			ClearTables();
 			SetupDatabase();
 		}

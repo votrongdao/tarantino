@@ -8,7 +8,6 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	[PluginFamily("Default")]
 	public interface ISessionManager
 	{
-		object Run(SessionCommand command, bool requiresTransaction, params object[] arguments);
-		void ResetSession();
+		object Run(SessionCommand command, bool requiresTransaction, string connectionStringKey, params object[] arguments);
 	}
 }

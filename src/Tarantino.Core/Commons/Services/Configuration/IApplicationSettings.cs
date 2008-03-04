@@ -6,8 +6,6 @@ namespace Tarantino.Core.Commons.Services.Configuration
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IApplicationSettings
 	{
-		string GetConnectionString();
-
 		int GetServiceSleepTime();
 
 		string GetSmtpServer();

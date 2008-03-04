@@ -11,11 +11,16 @@ namespace Tarantino.Core.Commons.Services.Repositories
 	{
 		IEnumerable<T> GetAll<T>();
 		T GetById<T>(Guid id) where T : PersistentObject;
-		void PersistAll();
 		void Save(PersistentObject persistentObject);
 		void Revert(PersistentObject persistentObject);
 		void Delete(PersistentObject persistentObject);
 		IEnumerable<T> FindAll<T>(CriterionSet criterionSet);
 		T FindFirst<T>(CriterionSet set) where T : class;
+
+		string ConnectionStringKey
+		{
+			get;
+			set;
+		}
 	}
 }

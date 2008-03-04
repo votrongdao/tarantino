@@ -20,6 +20,5 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 		{
 			get { return "DeployerConnectionString"; }
 		}
-
 	}
 }

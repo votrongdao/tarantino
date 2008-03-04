@@ -18,6 +18,12 @@ namespace Tarantino.Infrastructure.WebManagement.DataAccess.Repositories
 			_objectRepository = objectRepository;
 		}
 
+		public string ConnectionStringKey
+		{
+			get { return _objectRepository.ConnectionStringKey; }
+			set { _objectRepository.ConnectionStringKey = value; }
+		}
+
 		public IEnumerable<ApplicationInstance> GetAll()
 		{
 			IEnumerable<ApplicationInstance> instances = _objectRepository.GetAll<ApplicationInstance>();

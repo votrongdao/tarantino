@@ -18,6 +18,12 @@ namespace Tarantino.Infrastructure.Deployer.DataAccess.Repositories
 			_repository = repository;
 		}
 
+		public string ConnectionStringKey
+		{
+			get { return _repository.ConnectionStringKey; }
+			set { _repository.ConnectionStringKey = value; }
+		}
+
 		public IEnumerable<Deployment> Find(string application, string environment)
 		{
 			CriterionSet criteria = getCriteria(application, environment);

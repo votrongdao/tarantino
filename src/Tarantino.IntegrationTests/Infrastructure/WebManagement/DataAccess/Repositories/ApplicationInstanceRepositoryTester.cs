@@ -41,7 +41,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Rep
 		[Test]
 		public void Can_correctly_gets_application_instances_by_machine_name_and_domain()
 		{
-			IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
+			IApplicationInstanceRepository repository = getRepository();
 			ApplicationInstance actualInstance = repository.GetByDomainAndMachineName("Domain1", "Machine2");
 
 			Assert.That(actualInstance, Is.EqualTo(_instance2));
@@ -50,10 +50,17 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Rep
 		[Test]
 		public void Can_correctly_gets_application_instances_by_host_header()
 		{
-			IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
+			IApplicationInstanceRepository repository = getRepository();
 			IEnumerable<ApplicationInstance> actualInstances = repository.GetByHostHeader("HostHeader2");
 
 			Assert.That(actualInstances, Is.EqualTo(new ApplicationInstance[]{ _instance4 }));
+		}
+
+		private IApplicationInstanceRepository getRepository()
+		{
+			IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
+			repository.ConnectionStringKey = ConnectionStringKey;
+			return repository;
 		}
 	}
 }

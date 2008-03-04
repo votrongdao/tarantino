@@ -10,7 +10,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	public class ThreadSessionScoper : ISessionScoper
 	{
 		private readonly ISessionFactoryManager _sessionFactoryManager;
-		private static readonly string _threadLocalStorageKey = "orMapperSession";
+		private static readonly string _threadLocalStorageKey = "orMapperSession_{0}";
 
 		public ThreadSessionScoper(ISessionFactoryManager sessionFactoryManager)
 		{
@@ -22,51 +22,48 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return true;
 		}
 
-		public ISession GetScopedSession()
+		public ISession GetScopedSession(string connectionStringKey)
 		{
-			return getNHibernateSession();
-		}
-
-		private static LocalDataStoreSlot getThreadSlot()
-		{
-			return Thread.GetNamedDataSlot(_threadLocalStorageKey);
-		}
-
-		private ISession getNHibernateSession()
-		{
-			LocalDataStoreSlot sessionSlot = getThreadSlot();
+			LocalDataStoreSlot sessionSlot = getThreadSlot(connectionStringKey);
 			ISession threadSession = Thread.GetData(sessionSlot) as ISession;
 
 			if (threadSession == null)
 			{
-				threadSession = attachNewSessionToThread(sessionSlot);
+				threadSession = attachNewSessionToThread(sessionSlot, connectionStringKey);
 			}
 
 			if (!threadSession.IsOpen)
 			{
-				threadSession = attachNewSessionToThread(sessionSlot);
+				threadSession = attachNewSessionToThread(sessionSlot, connectionStringKey);
 			}
 
 			return threadSession;
 		}
 
-		private ISession attachNewSessionToThread(LocalDataStoreSlot sessionSlot)
+		private static LocalDataStoreSlot getThreadSlot(string connectionStringKey)
+		{
+			string key = string.Format(_threadLocalStorageKey, connectionStringKey);
+			LocalDataStoreSlot slot = Thread.GetNamedDataSlot(key);
+			return slot;
+		}
+
+		private ISession attachNewSessionToThread(LocalDataStoreSlot sessionSlot, string connectionStringKey)
 		{
 			ISession threadSession;
-			threadSession = _sessionFactoryManager.GetSessionFactory().OpenSession();
+			threadSession = _sessionFactoryManager.GetSessionFactory(connectionStringKey).OpenSession();
 			threadSession.FlushMode = FlushMode.Commit;
 			Thread.SetData(sessionSlot, threadSession);
 			return threadSession;
 		}
 
-		public void Reset()
+		public void Reset(string connectionStringKey)
 		{
-			ResetSession();
+			ResetSession(connectionStringKey);
 		}
 
-		public static void ResetSession()
+		public static void ResetSession(string connectionStringKey)
 		{
-			LocalDataStoreSlot slot = getThreadSlot();
+			LocalDataStoreSlot slot = getThreadSlot(connectionStringKey);
 			ISession oldSession = Thread.GetData(slot) as ISession;
 			if (oldSession != null)
 			{

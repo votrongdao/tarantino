@@ -22,5 +22,11 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 		void Add(params object[] domainObjects);
 		void AddNew(object domainObject);
 		object[] LoadAll(Type type);
+
+		string ConnectionStringKey
+		{
+			get;
+			set;
+		}
 	}
 }

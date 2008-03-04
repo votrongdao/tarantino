@@ -60,11 +60,5 @@ namespace Tarantino.Core.Commons.Services.Configuration.Impl
 			string setting = _configurationReader.GetRequiredSetting("SmtpPassword");
 			return setting;
 		}
-
-		public virtual string GetConnectionString()
-		{
-			string connectionString = _configurationReader.GetConnectionString("DatabaseConnectionString");
-			return connectionString;
-		}
 	}
 }
