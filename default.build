@@ -192,8 +192,14 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${package.dir}" verbose="false">
+		<copy todir="${package.dir}\Tarantino.Deployer.Database" verbose="false">
 			<fileset basedir="src\Tarantino.Database">
+				<include name="**\*.sql" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}\Tarantino.WebManagement.Database" verbose="false">
+			<fileset basedir="src\Tarantino.WebManagement.Database">
 				<include name="**\*.sql" />
 			</fileset>
 		</copy>
@@ -230,7 +236,7 @@
 		<xmlpoke
 			file="${deployerDatabaseManagerConfig}"
 			xpath="${app.settings.path}/add[@key='ScriptFolder']/@value"
-			value="." />
+			value="Tarantino.Deployer.Database" />
 
 		<xmlpoke
 			file="${deployerDatabaseManagerConfig}"

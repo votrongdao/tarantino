@@ -40,6 +40,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 				replacer.Replace("ERROR_MESSAGE", errorMessages);
 				replacer.Replace("CURRENT_STATE", "enabled");
 				replacer.Replace("MACHINE", "MyMachine");
+				replacer.Replace("CHANGE_STATE_LINK", string.Empty);
 
 				Expect.Call(replacer.Text).Return("formatted HTML");
 			}
@@ -79,6 +80,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 				replacer.Replace("ERROR_MESSAGE",errorMessage);
 				replacer.Replace("CURRENT_STATE", "disabled");
 				replacer.Replace("MACHINE", "MyMachine");
+				replacer.Replace("CHANGE_STATE_LINK", string.Empty);
 
 				Expect.Call(replacer.Text).Return("formatted HTML");
 			}

@@ -39,13 +39,16 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
 			_replacer.Replace("CURRENT_STATE", instance.AvailableForLoadBalancing ? "enabled" : "disabled");
 			_replacer.Replace("MACHINE", instance.MachineName);
 
+			string changeStateLink = string.Empty;
 			if (_securityChecker.IsCurrentUserAdministrator())
 			{
 				bool newState = !instance.AvailableForLoadBalancing;
 				string newStateLabel = newState ? "enable" : "disable";
 
-				_replacer.Replace("CHANGE_STATE_LINK", string.Format(_changeStateLinkTemplate, LoadBalanceStatusManager.ENABLED_PARAM, newState, newStateLabel));
+				changeStateLink = string.Format(_changeStateLinkTemplate, LoadBalanceStatusManager.ENABLED_PARAM, newState, newStateLabel);
 			}
+
+			_replacer.Replace("CHANGE_STATE_LINK", changeStateLink);
 
 			return _replacer.Text;
 		}
