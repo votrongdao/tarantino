@@ -1,6 +1,5 @@
 using System;
 using NUnit.Framework;
-using NUnit.Framework.SyntaxHelpers;
 using Rhino.Mocks;
 using Tarantino.Core.WebManagement.Services;
 using Tarantino.Core.WebManagement.Services.Impl;
@@ -27,7 +26,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 			using (mocks.Playback())
 			{
 				IExceptionHandlingLoadBalanceStatusManager statusManager = new ExceptionHandlingLoadBalanceStatusManager(manager, view);
-				Assert.That(statusManager.HandleLoadBalancing(), Is.EqualTo("My error message"));
+				statusManager.HandleLoadBalancing();
 			}
 		}
 
@@ -49,7 +48,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 			using (mocks.Playback())
 			{
 				IExceptionHandlingLoadBalanceStatusManager statusManager = new ExceptionHandlingLoadBalanceStatusManager(manager, view);
-				Assert.That(statusManager.HandleLoadBalancing(), Is.EqualTo("My exception message"));
+				statusManager.HandleLoadBalancing();
 			}
 		}
 	}

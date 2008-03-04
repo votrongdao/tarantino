@@ -9,20 +9,7 @@ namespace Tarantino.WebManagement.Handlers
 		public void ProcessRequest(HttpContext doNotUse)
 		{
 			IExceptionHandlingLoadBalanceStatusManager manager = ObjectFactory.GetInstance<IExceptionHandlingLoadBalanceStatusManager>();
-			string errorMessage = manager.HandleLoadBalancing();
-
-			//WriteCSS();
-			//WriteMenu();
-
-			//string state = shouldBeOnline ? "enabled" : "disabled";
-			//Write(string.Format("Load balancing has been {0} ", state));
-
-			//Write(Environment.MachineName);
-
-			//if (authenticated)
-			//{
-			//  Write("<br/><br/><a href=?enabled=true>enable</a>&nbsp;<a href=?enabled=false>disable</a>");
-			//}
+			manager.HandleLoadBalancing();
 		}
 
 		public bool IsReusable

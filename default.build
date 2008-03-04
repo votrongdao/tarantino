@@ -138,6 +138,12 @@
 		</copy>
 
 		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.WebManagement\bin\${project.config}">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
 			<fileset basedir="src\Tarantino.DatabaseManager.Tasks\bin\${project.config}">
 				<include name="*.dll" />
 			</fileset>

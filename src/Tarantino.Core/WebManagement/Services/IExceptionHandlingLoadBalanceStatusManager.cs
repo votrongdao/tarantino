@@ -5,6 +5,6 @@ namespace Tarantino.Core.WebManagement.Services
 	[PluginFamily(ServiceKeys.Default)]
 	public interface IExceptionHandlingLoadBalanceStatusManager
 	{
-		string HandleLoadBalancing();
+		void HandleLoadBalancing();
 	}
 }

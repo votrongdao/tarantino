@@ -16,7 +16,7 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 			_view = view;
 		}
 
-		public string HandleLoadBalancing()
+		public void HandleLoadBalancing()
 		{
 			string errorMessage;
 			try
@@ -29,8 +29,6 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 			}
 
 			_view.Render(errorMessage);
-
-			return errorMessage;
 		}
 	}
 }
