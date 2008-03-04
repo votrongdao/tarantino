@@ -7,6 +7,8 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
 	[Pluggable(ServiceKeys.Default)]
 	public class MenuView : IMenuView
 	{
+		public const string MenuTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.MenuTemplate.html";
+
 		private readonly IResourceFileLocator _resourceFileLocator;
 		private readonly ITokenReplacer _replacer;
 
@@ -18,7 +20,7 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
 
 		public string BuildHtml()
 		{
-			string template = _resourceFileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.MenuTemplate.html");
+			string template = _resourceFileLocator.ReadTextFile("Tarantino.Core", MenuTemplate);
 
 			_replacer.Text = template;
 

@@ -9,7 +9,9 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 	[Pluggable(ServiceKeys.Default)]
 	public class NHibernateObjectMapper : IObjectMapper
 	{
-		private string _connectionStringKey = "DatabaseConnectionString";
+		public const string DefaultConnectionStringKey = "DatabaseConnectionString";
+
+		private string _connectionStringKey = DefaultConnectionStringKey;
 
 		public string ConnectionStringKey
 		{

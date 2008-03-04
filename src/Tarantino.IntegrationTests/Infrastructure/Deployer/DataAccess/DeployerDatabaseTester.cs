@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Tarantino.Core.Deployer.Model;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 {
@@ -18,7 +19,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 
 		protected override string ConnectionStringKey
 		{
-			get { return "DeployerConnectionString"; }
+			get { return NHibernateObjectMapper.DefaultConnectionStringKey; }
 		}
 	}
 }

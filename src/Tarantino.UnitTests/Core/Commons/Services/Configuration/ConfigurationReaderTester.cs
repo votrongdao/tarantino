@@ -5,6 +5,7 @@ using Tarantino.Core.Commons.Services.Configuration.Impl;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rhino.Mocks;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.UnitTests.Core.Commons.Services.Configuration
 {
@@ -19,13 +20,13 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Configuration
 
 			using (mocks.Record())
 			{
-				Expect.Call(settings.GetConnectionString("DatabaseConnectionString")).Return("conn string");
+				Expect.Call(settings.GetConnectionString(NHibernateObjectMapper.DefaultConnectionStringKey)).Return("conn string");
 			}
 
 			using (mocks.Playback())
 			{
 				IConfigurationReader configurationReader = new ConfigurationReader(settings);
-				string connString = configurationReader.GetConnectionString("DatabaseConnectionString");
+				string connString = configurationReader.GetConnectionString(NHibernateObjectMapper.DefaultConnectionStringKey);
 				Assert.That(connString, Is.EqualTo("conn string"));
 			}
 
@@ -40,13 +41,13 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Configuration
 
 			using (mocks.Record())
 			{
-				Expect.Call(settings.GetConnectionString("DatabaseConnectionString")).Return(null);
+				Expect.Call(settings.GetConnectionString(NHibernateObjectMapper.DefaultConnectionStringKey)).Return(null);
 			}
 
 			using (mocks.Playback())
 			{
 				IConfigurationReader configurationReader = new ConfigurationReader(settings);
-				configurationReader.GetConnectionString("DatabaseConnectionString");
+				configurationReader.GetConnectionString(NHibernateObjectMapper.DefaultConnectionStringKey);
 			}
 
 			mocks.VerifyAll();

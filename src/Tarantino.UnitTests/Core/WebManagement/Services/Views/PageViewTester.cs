@@ -24,11 +24,11 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 			using (mocks.Record())
 			{
 				string htmlTemplate="||CSS|| ||MENU|| ||BODY||";
-				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.PageTemplate.html")).Return(htmlTemplate);
+				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", PageView.PageTemplate)).Return(htmlTemplate);
 	
 				replacer.Text = htmlTemplate;
 	
-				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.StyleSheet.css")).Return(cssText);
+				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", PageView.StylesheetTemplate)).Return(cssText);
 
 				replacer.Replace("CSS", cssText);
 

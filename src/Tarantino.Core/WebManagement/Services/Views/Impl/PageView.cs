@@ -7,6 +7,9 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
 	[Pluggable(ServiceKeys.Default)]
 	public class PageView : IPageView
 	{
+		public const string PageTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.PageTemplate.html";
+		public const string StylesheetTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.StylesheetTemplate.css";
+
 		private readonly IResourceFileLocator _fileLocator;
 		private readonly IMenuView _menuView;
 		private readonly ITokenReplacer _replacer;
@@ -20,8 +23,8 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
 
 		public string BuildHtml(string bodyHtml)
 		{
-			string pageTemplate = _fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.PageTemplate.html");
-			string cssHtml = _fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.StyleSheet.css");
+			string pageTemplate = _fileLocator.ReadTextFile("Tarantino.Core", PageTemplate);
+			string cssHtml = _fileLocator.ReadTextFile("Tarantino.Core", StylesheetTemplate);
 			string menuHtml = _menuView.BuildHtml();
 
 			_replacer.Text = pageTemplate;

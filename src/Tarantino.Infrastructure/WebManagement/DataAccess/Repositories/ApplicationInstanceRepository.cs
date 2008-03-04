@@ -16,12 +16,7 @@ namespace Tarantino.Infrastructure.WebManagement.DataAccess.Repositories
 		public ApplicationInstanceRepository(IPersistentObjectRepository objectRepository)
 		{
 			_objectRepository = objectRepository;
-		}
-
-		public string ConnectionStringKey
-		{
-			get { return _objectRepository.ConnectionStringKey; }
-			set { _objectRepository.ConnectionStringKey = value; }
+			_objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
 		}
 
 		public IEnumerable<ApplicationInstance> GetAll()

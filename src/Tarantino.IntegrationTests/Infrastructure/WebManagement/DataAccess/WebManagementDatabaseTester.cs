@@ -18,7 +18,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 
 		protected override string ConnectionStringKey
 		{
-			get { return "WebManagementConnectionString"; }
+			get { return "TarantinoWebManagementConnectionString"; }
 		}
 
 	}

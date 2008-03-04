@@ -92,6 +92,7 @@
     <Compile Include="Infrastructure\WebManagement\DataAccess\Repositories\ApplicationInstanceRepositoryTester.cs" />
     <Compile Include="Infrastructure\WebManagement\DataAccess\WebManagementDatabaseTester.cs" />
     <Compile Include="Infrastructure\WebManagement\DataAccess\Mappings\ApplicationInstanceMappingsTester.cs" />
+    <Compile Include="Infrastructure\WebManagement\Services\Views\ResourceTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StructureMap.config">

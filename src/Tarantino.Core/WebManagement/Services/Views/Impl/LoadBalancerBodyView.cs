@@ -10,6 +10,8 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
 	[Pluggable(ServiceKeys.Default)]
 	public class LoadBalancerBodyView : ILoadBalancerBodyView
 	{
+		public const string LoadBalancerBodyTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.LoadBalancerBodyTemplate.html";
+
 		private const string _changeStateLinkTemplate = "<a href=\"?{0}={1}\">{2}</a>";
 
 		private readonly IApplicationInstanceContext _context;
@@ -29,7 +31,7 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
 		{
 			ApplicationInstance instance = _context.GetCurrent();
 
-			string template = _fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.LoadBalancerBodyTemplate.html");
+			string template = _fileLocator.ReadTextFile("Tarantino.Core", LoadBalancerBodyTemplate);
 			_replacer.Text = template;
 
 			_replacer.Replace("ERROR_MESSAGE", errorMessage);

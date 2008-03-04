@@ -35,7 +35,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 				Expect.Call(securityChecker.IsCurrentUserAdministrator()).Return(false);
 
 				Expect.Call(context.GetCurrent()).Return(instance);
-				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.LoadBalancerBodyTemplate.html")).Return(bodyTemplate);
+				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", LoadBalancerBodyView.LoadBalancerBodyTemplate)).Return(bodyTemplate);
 				replacer.Text = bodyTemplate;
 				replacer.Replace("ERROR_MESSAGE", errorMessages);
 				replacer.Replace("CURRENT_STATE", "enabled");
@@ -74,7 +74,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 				Expect.Call(securityChecker.IsCurrentUserAdministrator()).Return(false);
 
 				Expect.Call(context.GetCurrent()).Return(instance);
-				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.LoadBalancerBodyTemplate.html")).Return(bodyTemplate);
+				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", LoadBalancerBodyView.LoadBalancerBodyTemplate)).Return(bodyTemplate);
 				replacer.Text = bodyTemplate;
 				replacer.Replace("ERROR_MESSAGE",errorMessage);
 				replacer.Replace("CURRENT_STATE", "disabled");
@@ -113,7 +113,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 				Expect.Call(securityChecker.IsCurrentUserAdministrator()).Return(true);
 
 				Expect.Call(context.GetCurrent()).Return(instance);
-				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.LoadBalancerBodyTemplate.html")).Return(bodyTemplate);
+				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", LoadBalancerBodyView.LoadBalancerBodyTemplate)).Return(bodyTemplate);
 				replacer.Text = bodyTemplate;
 
 				replacer.Replace("ERROR_MESSAGE", errorMessage);
@@ -154,7 +154,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 				Expect.Call(securityChecker.IsCurrentUserAdministrator()).Return(true);
 
 				Expect.Call(context.GetCurrent()).Return(instance);
-				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.LoadBalancerBodyTemplate.html")).Return(bodyTemplate);
+				Expect.Call(fileLocator.ReadTextFile("Tarantino.Core", LoadBalancerBodyView.LoadBalancerBodyTemplate)).Return(bodyTemplate);
 				replacer.Text = bodyTemplate;
 				replacer.Replace("ERROR_MESSAGE", errorMessage);
 				replacer.Replace("CURRENT_STATE", "enabled");

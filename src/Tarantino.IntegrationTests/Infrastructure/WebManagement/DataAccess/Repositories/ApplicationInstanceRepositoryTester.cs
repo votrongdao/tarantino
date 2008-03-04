@@ -59,7 +59,6 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Rep
 		private IApplicationInstanceRepository getRepository()
 		{
 			IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
-			repository.ConnectionStringKey = ConnectionStringKey;
 			return repository;
 		}
 	}

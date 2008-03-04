@@ -21,7 +21,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 			using (mocks.Record())
 			{
 				string htmlTemplate = "||APPLICATION_URL|| ||CACHE_URL|| ||ASSEMBLY_URL|| ||LOADBALANCER_URL|| ||DISABLE_URL||";
-				Expect.Call(locator.ReadTextFile("Tarantino.Core", "Tarantino.Core.WebManagement.Services.Views.Resources.MenuTemplate.html")).Return(htmlTemplate);
+				Expect.Call(locator.ReadTextFile("Tarantino.Core", MenuView.MenuTemplate)).Return(htmlTemplate);
 				replacer.Text = htmlTemplate;
 
 				replacer.Replace("APPLICATION_URL", "Tarantino.WebManagement.Application.axd");

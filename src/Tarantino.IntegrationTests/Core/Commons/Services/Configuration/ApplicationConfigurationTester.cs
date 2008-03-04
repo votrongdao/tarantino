@@ -3,6 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.IntegrationTests.Core.Commons.Services.Configuration
 {
@@ -30,7 +31,7 @@ namespace Tarantino.IntegrationTests.Core.Commons.Services.Configuration
 		{
 			IApplicationConfiguration settings = new ApplicationConfiguration();
 
-			Assert.That(settings.GetConnectionString("DeployerConnectionString"),
+			Assert.That(settings.GetConnectionString(NHibernateObjectMapper.DefaultConnectionStringKey),
 			            Is.EqualTo("data source=.;Initial Catalog=TarantinoDeployer;Integrated Security=true;Connect Timeout=100"));
 		}
 

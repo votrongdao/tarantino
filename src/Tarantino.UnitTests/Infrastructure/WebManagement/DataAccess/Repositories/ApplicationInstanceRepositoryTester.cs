@@ -25,6 +25,7 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 
 			using (mocks.Record())
 			{
+				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
 				Expect.Call(objectRepository.GetAll<ApplicationInstance>()).Return(instances);
 			}
 
@@ -48,6 +49,7 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 
 			using (mocks.Record())
 			{
+				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
 				Expect.Call(objectRepository.GetById<ApplicationInstance>(id)).Return(instance);
 			}
 
@@ -70,6 +72,7 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 
 			using (mocks.Record())
 			{
+				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
 				objectRepository.Save(instance);
 			}
 
@@ -90,6 +93,7 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 
 			using (mocks.Record())
 			{
+				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
 				objectRepository.Delete(instance);
 			}
 
@@ -114,6 +118,7 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 
 			using (mocks.Record())
 			{
+				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
 				Expect.Call(objectRepository.FindFirst<ApplicationInstance>(criteria)).Return(instance);
 			}
 
@@ -141,6 +146,7 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 
 			using (mocks.Record())
 			{
+				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
 				Expect.Call(objectRepository.FindAll<ApplicationInstance>(criteria)).Return(instances);
 			}
 

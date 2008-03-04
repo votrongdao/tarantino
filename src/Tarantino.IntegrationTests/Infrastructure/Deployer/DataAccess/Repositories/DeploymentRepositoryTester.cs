@@ -139,13 +139,6 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 			                                    	}));
 		}
 
-		private IDeploymentRepository getRepository()
-		{
-			IDeploymentRepository repository = ObjectFactory.GetInstance<IDeploymentRepository>();
-			repository.ConnectionStringKey = ConnectionStringKey;
-			return repository;
-		}
-
 		[Test]
 		public void Returns_successful_uncertified_deployments_by_application_and_environment()
 		{
@@ -170,6 +163,12 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 			                                         	{
 			                                         		_certified_Application1_Environment2
 			                                         	}));
+		}
+
+		private IDeploymentRepository getRepository()
+		{
+			IDeploymentRepository repository = ObjectFactory.GetInstance<IDeploymentRepository>();
+			return repository;
 		}
 	}
 }
