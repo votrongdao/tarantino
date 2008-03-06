@@ -16,14 +16,16 @@ namespace Tarantino.WebManagement.Handlers
 				IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
 				ApplicationInstance applicationInstance = repository.GetById(id);
 
-				if (_context.Request.Form.Get("hostname") != null)
+				string hostName = _context.Request.Form.Get("hostname");
+
+				if (hostName != null)
 				{
-					applicationInstance.UniqueHostHeader = _context.Request.Form.Get("hostname");
+					applicationInstance.UniqueHostHeader = hostName;
 					repository.Save(applicationInstance);
 				}
+
 				Write(ListApplications(applicationInstance));
 			}
-
 		}
 
 		string ListApplications(ApplicationInstance applicationInstance)
@@ -35,8 +37,7 @@ namespace Tarantino.WebManagement.Handlers
 				output.AppendFormat("<form method=post action=''>");
 			}
 			output.Append("<table >\n");
-			output.AppendFormat("<tr><td><a href='callawaygolf.tx.web.management.application.axd'>Back</a></td><td></td></tr>");
-			output.AppendFormat("<tr><td>Application</td><td>{0}</td></tr>", applicationInstance.ApplicationDomain);
+			output.AppendFormat("<tr><td><a href='Tarantino.WebManagement.Application.axd'>Back</a></td><td></td></tr>");
 			output.AppendFormat("<tr><td>Machine Name</td><td>{0}</td></tr>", applicationInstance.MachineName);
 			output.AppendFormat("<tr><td>Version</td><td>{0}</td></tr>", applicationInstance.Version);
 			output.AppendFormat("<tr><td>Unique Hostname</td><td><input type=\"text\" name=\"hostname\" value=\"{0}\"></td></tr>", applicationInstance.UniqueHostHeader);

@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rhino.Mocks;
+using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.WebManagement.Model;
 using Tarantino.Core.WebManagement.Services;
@@ -19,19 +20,19 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 
 			MockRepository mocks = new MockRepository();
 			ISystemEnvironment environment = mocks.CreateMock<ISystemEnvironment>();
-			IApplicationDomain domain = mocks.CreateMock<IApplicationDomain>();
 			IApplicationInstanceRepository repository = mocks.CreateMock<IApplicationInstanceRepository>();
+			IConfigurationReader configurationReader = mocks.CreateMock<IConfigurationReader>();
 
 			using (mocks.Record())
 			{
 				Expect.Call(environment.GetMachineName()).Return("MyMachine");
-				Expect.Call(domain.GetName()).Return("/LM/W3SVC/1/Root");
-				Expect.Call(repository.GetByDomainAndMachineName("/LM/W3SVC/1/Root", "MyMachine")).Return(instance);
+				Expect.Call(configurationReader.GetRequiredSetting("TarantinoWebManagementHttpHost")).Return("www.myapp.com");
+				Expect.Call(repository.GetByMaintenanceHostHeaderAndMachineName("www.myapp.com", "MyMachine")).Return(instance);
 			}
 
 			using (mocks.Playback())
 			{
-				ICurrentApplicationInstanceRetriever retriever = new CurrentApplicationInstanceRetriever(environment, domain, repository, null);
+				ICurrentApplicationInstanceRetriever retriever = new CurrentApplicationInstanceRetriever(environment, configurationReader, repository, null);
 				Assert.That(retriever.GetApplicationInstance(), Is.SameAs(instance));
 			}
 
@@ -45,22 +46,22 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 
 			MockRepository mocks = new MockRepository();
 			ISystemEnvironment environment = mocks.CreateMock<ISystemEnvironment>();
-			IApplicationDomain domain = mocks.CreateMock<IApplicationDomain>();
+			IConfigurationReader configurationReader = mocks.CreateMock<IConfigurationReader>();
 			IApplicationInstanceRepository repository = mocks.CreateMock<IApplicationInstanceRepository>();
 			IApplicationInstanceFactory factory = mocks.CreateMock<IApplicationInstanceFactory>();
 
 			using (mocks.Record())
 			{
 				Expect.Call(environment.GetMachineName()).Return("MyMachine");
-				Expect.Call(domain.GetName()).Return("/LM/W3SVC/1/Root");
-				Expect.Call(repository.GetByDomainAndMachineName("/LM/W3SVC/1/Root", "MyMachine")).Return(null);
+				Expect.Call(configurationReader.GetRequiredSetting("TarantinoWebManagementHttpHost")).Return("www.myapp.com");
+				Expect.Call(repository.GetByMaintenanceHostHeaderAndMachineName("www.myapp.com", "MyMachine")).Return(null);
 				Expect.Call(factory.Create()).Return(instance);
 				repository.Save(instance);
 			}
 
 			using (mocks.Playback())
 			{
-				ICurrentApplicationInstanceRetriever retriever = new CurrentApplicationInstanceRetriever(environment, domain, repository, factory);
+				ICurrentApplicationInstanceRetriever retriever = new CurrentApplicationInstanceRetriever(environment, configurationReader, repository, factory);
 				Assert.That(retriever.GetApplicationInstance(), Is.SameAs(instance));
 			}
 

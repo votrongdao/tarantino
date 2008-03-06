@@ -1,7 +1,6 @@
 using System;
 using System.Security.Principal;
 using StructureMap;
-using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.Commons.Services.Web
 {
@@ -22,5 +21,7 @@ namespace Tarantino.Core.Commons.Services.Web
 		string GetRequestItem(string key);
 		void SetHttpResponseStatus(int code, string description);
 		void WriteToResponse(string message);
+		void ServerTransfer(string url, bool preserveForm);
+		string GetServerVariable(string variableName);
 	}
 }

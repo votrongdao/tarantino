@@ -21,7 +21,7 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 		public ApplicationInstance GetCurrent()
 		{
 			ApplicationInstance instance = _context.GetItem<ApplicationInstance>(ApplicationInstance.CacheKey);
-			
+
 			if (instance == null)
 			{
 				instance = _context.GetCacheItem<ApplicationInstance>(ApplicationInstance.CacheKey);

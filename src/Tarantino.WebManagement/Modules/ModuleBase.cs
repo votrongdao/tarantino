@@ -4,15 +4,15 @@ namespace Tarantino.WebManagement.Modules
 {
 	public abstract class ModuleBase : System.Web.IHttpModule
 	{
-		protected System.Web.HttpApplication m_context;
+		protected System.Web.HttpApplication _context;
 
 		public void Init(System.Web.HttpApplication context)
 		{
-			m_context = context;
-			m_context.PreRequestHandlerExecute += new EventHandler(PreRequestHandlerExecute);
-			m_context.BeginRequest += new EventHandler(BeginRequest);
-			m_context.AuthenticateRequest += new EventHandler(AuthenticateRequest);
-			m_context.AcquireRequestState += new EventHandler(AcquireRequestState);
+			_context = context;
+			_context.PreRequestHandlerExecute += new EventHandler(PreRequestHandlerExecute);
+			_context.BeginRequest += new EventHandler(BeginRequest);
+			_context.AuthenticateRequest += new EventHandler(AuthenticateRequest);
+			_context.AcquireRequestState += new EventHandler(AcquireRequestState);
 			Initialized();
 		}
 

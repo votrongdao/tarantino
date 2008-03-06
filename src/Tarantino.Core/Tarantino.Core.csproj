@@ -225,6 +225,14 @@
     <Compile Include="WebManagement\Services\IAvailabilityStatusUpdater.cs" />
     <Compile Include="WebManagement\Services\ICurrentApplicationInstanceRetriever.cs" />
     <Compile Include="WebManagement\Services\IExceptionHandlingLoadBalanceStatusManager.cs" />
+    <Compile Include="WebManagement\Services\IExternalUrlChecker.cs" />
+    <Compile Include="WebManagement\Services\IFileExtensionChecker.cs" />
+    <Compile Include="WebManagement\Services\IMaintenancePageRedirector.cs" />
+    <Compile Include="WebManagement\Services\IMaintenanceRedirectionChecker.cs" />
+    <Compile Include="WebManagement\Services\Impl\ExternalUrlChecker.cs" />
+    <Compile Include="WebManagement\Services\Impl\FileExtensionChecker.cs" />
+    <Compile Include="WebManagement\Services\Impl\MaintenancePageRedirector.cs" />
+    <Compile Include="WebManagement\Services\Impl\MaintenanceRedirectionChecker.cs" />
     <Compile Include="WebManagement\Services\Views\ILoadBalancerBodyView.cs" />
     <Compile Include="WebManagement\Services\ILoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Impl\AdministratorSecurityChecker.cs" />

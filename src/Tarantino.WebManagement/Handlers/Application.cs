@@ -54,22 +54,23 @@ namespace Tarantino.WebManagement.Handlers
 				
 				Reload();
 			}
-			
+
 			WriteCSS();
 			WriteMenu();
-			
+
 			Write(ListApplications());
 		}
 
-		private void SetAllMaintenance(ApplicationInstance ai, bool value)
+		private void SetAllMaintenance(ApplicationInstance instance, bool downForMaintenance)
 		{
 			IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
-			IEnumerable<ApplicationInstance> applicationInstances = repository.GetByHostHeader(ai.UniqueHostHeader);
+			IEnumerable<ApplicationInstance> applicationInstances = repository.GetByHostHeader(instance.UniqueHostHeader);
+
 			foreach (ApplicationInstance applicationInstance in applicationInstances)
 			{
-				if (applicationInstance.MaintenanceHostHeader == ai.MaintenanceHostHeader)
+				if (applicationInstance.MaintenanceHostHeader == instance.MaintenanceHostHeader)
 				{
-					applicationInstance.DownForMaintenance = value;
+					applicationInstance.DownForMaintenance = downForMaintenance;
 					repository.Save(applicationInstance);
 				}
 			}
@@ -98,51 +99,54 @@ namespace Tarantino.WebManagement.Handlers
 				{
 					output.AppendFormat("<tr onMouseOver=\"className='over';\" onMouseOut=\"className='out';\"	 >");
 
+					string downForMaintenance = ai.DownForMaintenance ? "Down" : "Online";
+					string availableForLoadBalancing = ai.AvailableForLoadBalancing ? "Online" : "Offline";
 					if (lastHost != ai.MaintenanceHostHeader)
 					{
 						int appcount = ApplicationCount(applications, ai.MaintenanceHostHeader);
-						output.AppendFormat("<td rowspan='{9}' class='out'><a target='_blank' href='http://{1}'>{1}</a></td>", ai.MachineName, ai.MaintenanceHostHeader != lastHost ? ai.MaintenanceHostHeader : "", ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing, appcount);
+
+						string maintenanceHostHeader = ai.MaintenanceHostHeader != lastHost ? ai.MaintenanceHostHeader : string.Empty;
+						output.AppendFormat("<td rowspan='{1}' class='out'><a target='_blank' href='http://{0}'>{0}</a></td>", maintenanceHostHeader, appcount);
 
 						if (_authenticated)
 						{
-							output.AppendFormat("<td rowspan='{9}' class='{3}'><a class='{3}' href='?id={6}&a=DownForMaintenance&value={7}'>{3}</a></td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing, appcount);
+							output.AppendFormat("<td rowspan='{3}' class='{0}'><a class='{0}' href='?id={1}&a=DownForMaintenance&value={2}'>{0}</a></td>", downForMaintenance, ai.Id, !ai.DownForMaintenance, appcount);
 						}
 						else
 						{
-							output.AppendFormat("<td rowspan='{9}' class='{3}'>{3}</td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing, appcount);
+							output.AppendFormat("<td rowspan='{1}' class='{0}'>{0}</td>", downForMaintenance, appcount);
 						}
 					}
 
-					output.AppendFormat("<td>{0}</td>", ai.MachineName, ai.MaintenanceHostHeader != lastHost ? ai.MaintenanceHostHeader : "", ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
+					output.AppendFormat("<td>{0}</td>", ai.MachineName);
 
 					if (_authenticated)
 					{
-						output.AppendFormat("<td class='{4}' ><a class='{4}' href='?id={6}&a=AvailableForLoadBalance&value={8}'>{4}</a></td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
+						output.AppendFormat("<td class='{0}' ><a class='{0}' href='?id={1}&a=AvailableForLoadBalance&value={2}'>{0}</a></td>", availableForLoadBalancing, ai.Id, !ai.AvailableForLoadBalancing);
 					}
 					else
 					{
-						output.AppendFormat("<td class='{4}' >{4}</td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
+						output.AppendFormat("<td class='{0}' >{0}</td>", availableForLoadBalancing);
 					}
 
-					output.AppendFormat("<td>{2}</td>", ai.MachineName, ai.MaintenanceHostHeader != lastHost ? ai.MaintenanceHostHeader : "", ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
+					output.AppendFormat("<td>{0}</td>", ai.Version);
 
-					output.AppendFormat("<td><a target='_blank' href='http://{5}'>{5}</a></td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
+					output.AppendFormat("<td><a target='_blank' href='http://{0}'>{0}</a></td>", ai.UniqueHostHeader);
 
 					if (_authenticated)
 					{
 						output.AppendFormat("<td>");
 						if (ai.UniqueHostHeader != null && ai.UniqueHostHeader.Length > 0)
 						{
-							output.AppendFormat("&nbsp;<a title=\"Refresh Cache\" href=\"?a=Cache&id={6}&value=true\">Refresh</a>&nbsp;",
-							                    ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
+							output.AppendFormat("&nbsp;<a title=\"Refresh Cache\" href=\"?a=Cache&id={0}&value=true\">Refresh</a>&nbsp;", ai.Id);
 						}
 
 						output.AppendFormat("</td>");
 						output.AppendFormat("<td>");
-						output.AppendFormat("&nbsp;<a href=\"callawaygolf.tx.web.management.applicationedit.axd?id={6}\">Edit</a>&nbsp;", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
+						output.AppendFormat("&nbsp;<a href=\"Tarantino.WebManagement.ApplicationEdit.axd?id={0}\">Edit</a>&nbsp;", ai.Id);
 						output.AppendFormat("</td>");
 						output.AppendFormat("<td>");
-						output.AppendFormat("&nbsp;<a href=\"?a=Delete&id={6}&value=true\">Delete</a>&nbsp;</td>", ai.MachineName, ai.MaintenanceHostHeader, ai.Version, ai.DownForMaintenance ? "Down" : "Online", ai.AvailableForLoadBalancing ? "Online" : "Offline", ai.UniqueHostHeader, ai.Id, !ai.DownForMaintenance, !ai.AvailableForLoadBalancing);
+						output.AppendFormat("&nbsp;<a href=\"?a=Delete&id={0}&value=true\">Delete</a>&nbsp;</td>", ai.Id);
 						output.AppendFormat("</td>");
 					}
 

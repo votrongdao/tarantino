@@ -105,13 +105,13 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 		}
 
 		[Test]
-		public void Can_correctly_gets_application_instances_by_machine_name_and_domain()
+		public void Can_correctly_gets_application_instances_by_machine_name_and_maintenance_host_header()
 		{
 			ApplicationInstance instance = new ApplicationInstance();
 
 			CriterionSet criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion("MachineName", "MyMachine"));
-			criteria.AddCriterion(new Criterion("ApplicationDomain", "MyDomain"));
+			criteria.AddCriterion(new Criterion("MaintenanceHostHeader", "MyDomain"));
 
 			MockRepository mocks = new MockRepository();
 			IPersistentObjectRepository objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
@@ -125,7 +125,7 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 			using (mocks.Playback())
 			{
 				IApplicationInstanceRepository repository = new ApplicationInstanceRepository(objectRepository);
-				ApplicationInstance actualInstance = repository.GetByDomainAndMachineName("MyDomain", "MyMachine");
+				ApplicationInstance actualInstance = repository.GetByMaintenanceHostHeaderAndMachineName("MyDomain", "MyMachine");
 
 				Assert.That(actualInstance, Is.SameAs(instance));
 			}

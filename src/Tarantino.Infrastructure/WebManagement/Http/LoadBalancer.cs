@@ -2,7 +2,7 @@ using System.Web;
 using StructureMap;
 using Tarantino.Core.WebManagement.Services;
 
-namespace Tarantino.WebManagement.Handlers
+namespace Tarantino.Infrastructure.WebManagement.Http
 {
 	public class LoadBalancer : IHttpHandler
 	{

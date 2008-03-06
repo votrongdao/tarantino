@@ -8,13 +8,11 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 	{
 		private readonly IApplicationInstanceCache _cache;
 		private readonly ICurrentApplicationInstanceRetriever _retriever;
-		private readonly IApplicationInstanceFactory _factory;
 
-		public ApplicationInstanceContext(IApplicationInstanceCache cache, ICurrentApplicationInstanceRetriever retriever, IApplicationInstanceFactory factory)
+		public ApplicationInstanceContext(IApplicationInstanceCache cache, ICurrentApplicationInstanceRetriever retriever)
 		{
 			_cache = cache;
 			_retriever = retriever;
-			_factory = factory;
 		}
 
 		public ApplicationInstance GetCurrent()
@@ -24,6 +22,7 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 			if (instance == null)
 			{
 				instance = _retriever.GetApplicationInstance();
+				_cache.Set(ApplicationInstance.CacheKey, instance);
 			}
 
 			return instance;

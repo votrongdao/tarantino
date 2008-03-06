@@ -89,5 +89,15 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		{
 			HttpContext.Current.Response.Write(message);
 		}
+		
+		public void ServerTransfer(string url, bool preserveForm)
+		{
+			HttpContext.Current.Server.Transfer(url, preserveForm);
+		}
+		
+		public string GetServerVariable(string variableName)
+		{
+			return HttpContext.Current.Request.ServerVariables[variableName];
+		}
 	}
 }

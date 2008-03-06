@@ -42,7 +42,7 @@ namespace Tarantino.WebManagement.Modules
 
 		private void SetDomainShouldBeCached()
 		{
-			string domain = m_context.Request.ServerVariables["HTTP_HOST"];
+			string domain = _context.Request.ServerVariables["HTTP_HOST"];
 			domainShouldBeCached = (domain != null && Array.BinarySearch(domainNames, domain) >= 0);
 		}
 
@@ -65,15 +65,15 @@ namespace Tarantino.WebManagement.Modules
 			InsertCacheDependencyKey();
 
 			//callback to prevent showing cached content on non cached domain names
-			m_context.Response.Cache.AddValidationCallback(new HttpCacheValidateHandler(Validate), null);
+			_context.Response.Cache.AddValidationCallback(new HttpCacheValidateHandler(Validate), null);
 
 			//Do not cache the output of this request.
-			if (m_context.Request.HttpMethod == "POST" || !domainShouldBeCached)
+			if (_context.Request.HttpMethod == "POST" || !domainShouldBeCached)
 			{
-				m_context.Response.Cache.SetNoServerCaching();
+				_context.Response.Cache.SetNoServerCaching();
 			}
 
-			m_context.Response.AddCacheItemDependency(CacheDependencyKey);
+			_context.Response.AddCacheItemDependency(CacheDependencyKey);
 
 		}
 

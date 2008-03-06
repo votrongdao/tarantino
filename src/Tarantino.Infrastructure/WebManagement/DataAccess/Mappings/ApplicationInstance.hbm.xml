@@ -13,10 +13,9 @@
 		</id>
 
 		<property name="MachineName" column="ComputerName" />
-		<property name="ApplicationDomain" />
 		<property name="UniqueHostHeader" />
-		<property name="LoadBalanceIP" />
 		<property name="CacheRefreshQueryString" />
+		<property name="ApplicationDomain" />
 		<property name="MaintenanceHostHeader" />
 		<property name="DownForMaintenance" type="Boolean" />
 		<property name="AvailableForLoadBalancing" type="Boolean" column="AvailableForLoadBalance" />

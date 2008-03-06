@@ -25,11 +25,11 @@ namespace Tarantino.Infrastructure.WebManagement.DataAccess.Repositories
 			return instances;
 		}
 
-		public ApplicationInstance GetByDomainAndMachineName(string applicationDomain, string machineName)
+		public ApplicationInstance GetByMaintenanceHostHeaderAndMachineName(string maintenanceHostHeader, string machineName)
 		{
 			CriterionSet criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion(ApplicationInstance.MachineNameAttribute, machineName));
-			criteria.AddCriterion(new Criterion(ApplicationInstance.ApplicationDomainAttribute, applicationDomain));
+			criteria.AddCriterion(new Criterion(ApplicationInstance.MaintenanceHostHeaderAttribute, maintenanceHostHeader));
 
 			ApplicationInstance instance = _objectRepository.FindFirst<ApplicationInstance>(criteria);
 			return instance;

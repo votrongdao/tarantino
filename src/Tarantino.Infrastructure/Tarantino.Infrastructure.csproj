@@ -92,6 +92,8 @@
     <Compile Include="DatabaseManager\DataAccess\QueryExecutor.cs" />
     <Compile Include="Deployer\DataAccess\Repositories\DeploymentRepository.cs" />
     <Compile Include="WebManagement\DataAccess\Repositories\ApplicationInstanceRepository.cs" />
+    <Compile Include="WebManagement\Http\LoadBalancer.cs" />
+    <Compile Include="WebManagement\Http\MaintenanceMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Deployer\DataAccess\Mappings\Deployment.hbm.xml" />

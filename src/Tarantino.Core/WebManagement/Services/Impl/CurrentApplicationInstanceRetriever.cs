@@ -1,4 +1,5 @@
 using StructureMap;
+using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.WebManagement.Model;
 using Tarantino.Core.WebManagement.Services.Repositories;
@@ -9,14 +10,14 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 	public class CurrentApplicationInstanceRetriever : ICurrentApplicationInstanceRetriever
 	{
 		private readonly ISystemEnvironment _environment;
-		private readonly IApplicationDomain _applicationDomain;
+		private readonly IConfigurationReader _configurationReader;
 		private readonly IApplicationInstanceRepository _repository;
 		private readonly IApplicationInstanceFactory _factory;
 
-		public CurrentApplicationInstanceRetriever(ISystemEnvironment environment, IApplicationDomain applicationDomain, IApplicationInstanceRepository repository, IApplicationInstanceFactory factory)
+		public CurrentApplicationInstanceRetriever(ISystemEnvironment environment, IConfigurationReader configurationReader, IApplicationInstanceRepository repository, IApplicationInstanceFactory factory)
 		{
 			_environment = environment;
-			_applicationDomain = applicationDomain;
+			_configurationReader = configurationReader;
 			_repository = repository;
 			_factory = factory;
 		}
@@ -24,9 +25,9 @@ namespace Tarantino.Core.WebManagement.Services.Impl
 		public ApplicationInstance GetApplicationInstance()
 		{
 			string machineName = _environment.GetMachineName();
-			string applicationDomainName = _applicationDomain.GetName();
-			ApplicationInstance instance = _repository.GetByDomainAndMachineName(applicationDomainName, machineName);
-			
+			string applicationDomainName = _configurationReader.GetRequiredSetting("TarantinoWebManagementHttpHost");
+			ApplicationInstance instance = _repository.GetByMaintenanceHostHeaderAndMachineName(applicationDomainName, machineName);
+
 			if (instance == null)
 			{
 				instance = _factory.Create();

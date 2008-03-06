@@ -12,11 +12,10 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Map
 		{
 			ApplicationInstance instance = new ApplicationInstance();
 
-			instance.ApplicationDomain = "ApplicationDomain";
 			instance.AvailableForLoadBalancing = true;
+			instance.ApplicationDomain = "Domain...";
 			instance.CacheRefreshQueryString = "QueryString";
-			instance.DownForMaintenance = false;
-			instance.LoadBalanceIP = "10.10.10.15";
+			instance.DownForMaintenance = true;
 			instance.MachineName = "My Machine";
 			instance.MaintenanceHostHeader = "HostHeader";
 			instance.UniqueHostHeader = "Unique Host Header";

@@ -78,7 +78,11 @@
     <Compile Include="Core\WebManagement\Services\AvailabilityStatusUpdaterTester.cs" />
     <Compile Include="Core\WebManagement\Services\CurrentApplicationInstanceRetrieverTester.cs" />
     <Compile Include="Core\WebManagement\Services\ExceptionHandlingLoadBalanceStatusManagerTester.cs" />
+    <Compile Include="Core\WebManagement\Services\ExternalUrlCheckerTester.cs" />
+    <Compile Include="Core\WebManagement\Services\FileExtensionCheckerTester.cs" />
     <Compile Include="Core\WebManagement\Services\LoadBalanceStatusManagerTester.cs" />
+    <Compile Include="Core\WebManagement\Services\MaintenancePageRedirectorTester.cs" />
+    <Compile Include="Core\WebManagement\Services\MaintenanceRedirectionCheckerTester.cs" />
     <Compile Include="Core\WebManagement\Services\SecureAvailabilityStatusUpdaterTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\LoadBalancerBodyViewTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\LoadBalancerViewTester.cs" />

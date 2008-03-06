@@ -125,16 +125,10 @@
     <Compile Include="Handlers\HandlerFactory.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Handlers\LoadBalancer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Handlers\Version.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Modules\CacheControler.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Modules\Maintenance.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Modules\ModuleBase.cs">
@@ -156,9 +150,6 @@
       <Project>{09CFC9B9-3915-4BB7-B5EB-E85D474D84A9}</Project>
       <Name>Tarantino.Infrastructure</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

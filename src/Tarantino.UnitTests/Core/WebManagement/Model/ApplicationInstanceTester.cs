@@ -25,10 +25,6 @@ namespace Tarantino.UnitTests.Core.WebManagement.Model
 			instance.UniqueHostHeader = "UniqueHostHeader";
 			Assert.AreEqual("UniqueHostHeader", instance.UniqueHostHeader);
 
-			Assert.AreEqual(null, instance.LoadBalanceIP);
-			instance.LoadBalanceIP = "LoadBalanceIP";
-			Assert.AreEqual("LoadBalanceIP", instance.LoadBalanceIP);
-
 			Assert.AreEqual(null, instance.CacheRefreshQueryString);
 			instance.CacheRefreshQueryString = "CacheRefreshQueryString";
 			Assert.AreEqual("CacheRefreshQueryString", instance.CacheRefreshQueryString);

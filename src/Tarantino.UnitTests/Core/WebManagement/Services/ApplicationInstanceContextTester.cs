@@ -25,7 +25,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 
 			using (mocks.Playback())
 			{
-				IApplicationInstanceContext instanceContext = new ApplicationInstanceContext(cache, null, null);
+				IApplicationInstanceContext instanceContext = new ApplicationInstanceContext(cache, null);
 				Assert.That(instanceContext.GetCurrent(), Is.SameAs(instance));
 			}
 
@@ -45,11 +45,12 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services
 			{
 				Expect.Call(cache.GetCurrent()).Return(null);
 				Expect.Call(retriever.GetApplicationInstance()).Return(instance);
+				cache.Set(ApplicationInstance.CacheKey, instance);
 			}
 
 			using (mocks.Playback())
 			{
-				IApplicationInstanceContext instanceContext = new ApplicationInstanceContext(cache, retriever, null);
+				IApplicationInstanceContext instanceContext = new ApplicationInstanceContext(cache, retriever);
 				Assert.That(instanceContext.GetCurrent(), Is.SameAs(instance));
 			}
 

@@ -23,8 +23,11 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Rep
 			_instance3 = new ApplicationInstance();
 			_instance4 = new ApplicationInstance();
 
+			_instance1.MaintenanceHostHeader = "Domain1";
+			_instance2.MaintenanceHostHeader = "Domain1";
+
 			_instance1.ApplicationDomain = "Domain1";
-			_instance2.ApplicationDomain = "Domain1";
+			_instance2.ApplicationDomain = "Domain2";
 
 			_instance1.MachineName = "Machine1";
 			_instance2.MachineName = "Machine2";
@@ -42,7 +45,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Rep
 		public void Can_correctly_gets_application_instances_by_machine_name_and_domain()
 		{
 			IApplicationInstanceRepository repository = getRepository();
-			ApplicationInstance actualInstance = repository.GetByDomainAndMachineName("Domain1", "Machine2");
+			ApplicationInstance actualInstance = repository.GetByMaintenanceHostHeaderAndMachineName("Domain1", "Machine2");
 
 			Assert.That(actualInstance, Is.EqualTo(_instance2));
 		}
