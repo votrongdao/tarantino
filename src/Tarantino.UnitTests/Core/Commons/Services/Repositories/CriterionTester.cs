@@ -42,5 +42,13 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Repositories
 			Assert.That(criterion2.Value, Is.EqualTo("value"));
 			Assert.That(criterion2.Operator, Is.SameAs(ComparisonOperator.Equal));
 		}
+
+		[Test]
+		public void Correctly_compares_equal_criterion()
+		{
+			Assert.That(new Criterion("A", "B"), Is.EqualTo(new Criterion("A", "B")));
+			Assert.That(new Criterion("A", "B"), Is.Not.EqualTo(new Criterion("A", "C")));
+			Assert.That(new Criterion("A", "B"), Is.Not.EqualTo(new Criterion("B", "A")));
+		}
 	}
 }

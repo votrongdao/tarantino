@@ -40,5 +40,13 @@ namespace Tarantino.Core.Commons.Services.Repositories
 			get { return _operator; }
 			set { _operator = value; }
 		}
+
+		public override bool Equals(object obj)
+		{
+			Criterion other = (Criterion)obj;
+
+			bool isEqual = other.Attribute == Attribute && other.Value == Value;
+			return isEqual;
+		}
 	}
 }

@@ -35,7 +35,7 @@ namespace Tarantino.Core.Commons.Model.Enumerations
 			K foundEnumerationValue = enumerationValues.Find(
 				delegate(K val)
 					{
-						return (Convert.ToDecimal(boundedValue) >= Convert.ToDecimal(val.Lower) && Convert.ToDecimal(boundedValue) <= Convert.ToDecimal(val.Upper));
+						return (Convert.ToDouble(boundedValue) >= Convert.ToDouble(val.Lower) && Convert.ToDouble(boundedValue) <= Convert.ToDouble(val.Upper));
 					});
 
 			return foundEnumerationValue;
