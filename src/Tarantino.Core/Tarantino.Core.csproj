@@ -222,6 +222,7 @@
     <Compile Include="WebManagement\Services\IApplicationInstanceCache.cs" />
     <Compile Include="WebManagement\Services\IApplicationInstanceContext.cs" />
     <Compile Include="WebManagement\Services\IApplicationInstanceFactory.cs" />
+    <Compile Include="WebManagement\Services\IApplicationListingManager.cs" />
     <Compile Include="WebManagement\Services\IApplicationListingRowView.cs" />
     <Compile Include="WebManagement\Services\IAvailabilityStatusUpdater.cs" />
     <Compile Include="WebManagement\Services\ICurrentApplicationInstanceRetriever.cs" />
@@ -230,10 +231,13 @@
     <Compile Include="WebManagement\Services\IFileExtensionChecker.cs" />
     <Compile Include="WebManagement\Services\IMaintenancePageRedirector.cs" />
     <Compile Include="WebManagement\Services\IMaintenanceRedirectionChecker.cs" />
+    <Compile Include="WebManagement\Services\Impl\ApplicationListingManager.cs" />
     <Compile Include="WebManagement\Services\Impl\ExternalUrlChecker.cs" />
     <Compile Include="WebManagement\Services\Impl\FileExtensionChecker.cs" />
     <Compile Include="WebManagement\Services\Impl\MaintenancePageRedirector.cs" />
     <Compile Include="WebManagement\Services\Impl\MaintenanceRedirectionChecker.cs" />
+    <Compile Include="WebManagement\Services\Views\IApplicationListingBodyView.cs" />
+    <Compile Include="WebManagement\Services\Views\IApplicationListingView .cs" />
     <Compile Include="WebManagement\Services\Views\ILoadBalancerBodyView.cs" />
     <Compile Include="WebManagement\Services\ILoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Impl\AdministratorSecurityChecker.cs" />
@@ -245,6 +249,7 @@
     <Compile Include="WebManagement\Services\Impl\ExceptionHandlingLoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Views\Impl\ApplicationListingBodyView.cs" />
     <Compile Include="WebManagement\Services\Views\Impl\ApplicationListingRowView.cs" />
+    <Compile Include="WebManagement\Services\Views\Impl\ApplicationListingView.cs" />
     <Compile Include="WebManagement\Services\Views\Impl\LoadBalancerBodyView.cs" />
     <Compile Include="WebManagement\Services\Impl\LoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Impl\SecureAvailabilityStatusUpdater.cs" />

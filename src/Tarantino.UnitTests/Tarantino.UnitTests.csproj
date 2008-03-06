@@ -75,6 +75,7 @@
     <Compile Include="Core\WebManagement\Services\ApplicationInstanceCacheTester.cs" />
     <Compile Include="Core\WebManagement\Services\ApplicationInstanceContextTester.cs" />
     <Compile Include="Core\WebManagement\Services\ApplicationInstanceFactoryTester.cs" />
+    <Compile Include="Core\WebManagement\Services\ApplicationListingManagerTester.cs" />
     <Compile Include="Core\WebManagement\Services\AvailabilityStatusUpdaterTester.cs" />
     <Compile Include="Core\WebManagement\Services\CurrentApplicationInstanceRetrieverTester.cs" />
     <Compile Include="Core\WebManagement\Services\ExceptionHandlingLoadBalanceStatusManagerTester.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Core\WebManagement\Services\SecureAvailabilityStatusUpdaterTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\ApplicationListingBodyViewTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\ApplicationListingRowViewTester.cs" />
+    <Compile Include="Core\WebManagement\Services\Views\ApplicationListingViewTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\LoadBalancerBodyViewTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\LoadBalancerViewTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\MenuViewTester.cs" />

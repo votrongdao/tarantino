@@ -8,6 +8,7 @@ using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.WebManagement.Model;
 using Tarantino.Core.WebManagement.Services;
 using Tarantino.Core.WebManagement.Services.Repositories;
+using Tarantino.Core.WebManagement.Services.Views;
 using Tarantino.Core.WebManagement.Services.Views.Impl;
 
 namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
@@ -79,7 +80,7 @@ namespace Tarantino.UnitTests.Core.WebManagement.Services.Views
 
             using (mocks.Playback())
             {
-                ApplicationListingBodyView view = new ApplicationListingBodyView(securityChecker ,repository,fileLocator,replacer,applicationListingRowView);
+                IApplicationListingBodyView view = new ApplicationListingBodyView(securityChecker ,repository,fileLocator,replacer,applicationListingRowView);
                 string html = view.BuildHtml();
                 Assert.That(html,Is.EqualTo("formatted HTML"));
             }
