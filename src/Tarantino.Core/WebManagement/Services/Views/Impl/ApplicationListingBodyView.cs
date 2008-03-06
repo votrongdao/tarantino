@@ -51,7 +51,8 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
                 {
                     if(instance.MaintenanceHostHeader!=lastInstance.MaintenanceHostHeader)
                     {
-                        rowHTMl += applicationListingRowView.BuildFirstRowHtml(instance);
+                        int instanceCount= GetInstanceCount(applications,instance.MaintenanceHostHeader);
+                        rowHTMl += applicationListingRowView.BuildFirstRowHtml(instance,instanceCount);
                     }
                     else
                     {
@@ -68,6 +69,17 @@ namespace Tarantino.Core.WebManagement.Services.Views.Impl
             return replacer.Text;
 
 
+        }
+
+        private int GetInstanceCount(IList<ApplicationInstance> applications, string hostHeader)
+        {
+            int count = 0;
+            foreach(ApplicationInstance instance in applications)
+            {
+                if (instance.MaintenanceHostHeader.Equals(hostHeader))
+                    count++;
+            }
+            return count;
         }
     }
 }

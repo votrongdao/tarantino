@@ -4,7 +4,7 @@ namespace Tarantino.Core.WebManagement.Services
 {
     public interface IApplicationListingRowView
     {
-        string BuildFirstRowHtml(ApplicationInstance applicationInstance);
+        string BuildFirstRowHtml(ApplicationInstance applicationInstance, int instanceCount);
         string BuildMRowHtml(ApplicationInstance applicationInstance);
     }
 }

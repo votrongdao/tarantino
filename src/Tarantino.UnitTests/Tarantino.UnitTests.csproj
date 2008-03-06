@@ -84,6 +84,8 @@
     <Compile Include="Core\WebManagement\Services\MaintenancePageRedirectorTester.cs" />
     <Compile Include="Core\WebManagement\Services\MaintenanceRedirectionCheckerTester.cs" />
     <Compile Include="Core\WebManagement\Services\SecureAvailabilityStatusUpdaterTester.cs" />
+    <Compile Include="Core\WebManagement\Services\Views\ApplicationListingBodyViewTester.cs" />
+    <Compile Include="Core\WebManagement\Services\Views\ApplicationListingRowViewTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\LoadBalancerBodyViewTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\LoadBalancerViewTester.cs" />
     <Compile Include="Core\WebManagement\Services\Views\MenuViewTester.cs" />
@@ -143,9 +145,6 @@
       <Project>{09CFC9B9-3915-4BB7-B5EB-E85D474D84A9}</Project>
       <Name>Tarantino.Infrastructure</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Core\WebManagement\Services\Views\ApplicationListingBodyViewTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

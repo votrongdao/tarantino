@@ -244,6 +244,7 @@
     <Compile Include="WebManagement\Services\Impl\CurrentApplicationInstanceRetriever.cs" />
     <Compile Include="WebManagement\Services\Impl\ExceptionHandlingLoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Views\Impl\ApplicationListingBodyView.cs" />
+    <Compile Include="WebManagement\Services\Views\Impl\ApplicationListingRowView.cs" />
     <Compile Include="WebManagement\Services\Views\Impl\LoadBalancerBodyView.cs" />
     <Compile Include="WebManagement\Services\Impl\LoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Impl\SecureAvailabilityStatusUpdater.cs" />
