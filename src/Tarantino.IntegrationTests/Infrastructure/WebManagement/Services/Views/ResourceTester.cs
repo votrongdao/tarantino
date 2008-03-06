@@ -17,6 +17,12 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.Services.Views
 			Assert.That(locator.FileExists("Tarantino.Core", MenuView.MenuTemplate));
 			Assert.That(locator.FileExists("Tarantino.Core", PageView.PageTemplate));
 			Assert.That(locator.FileExists("Tarantino.Core", PageView.StylesheetTemplate));
-		}
+            Assert.That(locator.FileExists("Tarantino.Core", ApplicationListingBodyView.BodyTemplate));
+            Assert.That(locator.FileExists("Tarantino.Core", ApplicationListingBodyView.RowNFragment));
+            Assert.That(locator.FileExists("Tarantino.Core", ApplicationListingBodyView.Row1Fragment));
+            Assert.That(locator.FileExists("Tarantino.Core", ApplicationListingBodyView.ReadOnlyBodyTemplate));
+            Assert.That(locator.FileExists("Tarantino.Core", ApplicationListingBodyView.ReadOnlyRowNFragment));
+            Assert.That(locator.FileExists("Tarantino.Core", ApplicationListingBodyView.ReadOnlyRow1Fragment));
+        }
 	}
 }

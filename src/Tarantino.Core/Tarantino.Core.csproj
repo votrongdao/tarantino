@@ -222,6 +222,7 @@
     <Compile Include="WebManagement\Services\IApplicationInstanceCache.cs" />
     <Compile Include="WebManagement\Services\IApplicationInstanceContext.cs" />
     <Compile Include="WebManagement\Services\IApplicationInstanceFactory.cs" />
+    <Compile Include="WebManagement\Services\IApplicationListingRowView.cs" />
     <Compile Include="WebManagement\Services\IAvailabilityStatusUpdater.cs" />
     <Compile Include="WebManagement\Services\ICurrentApplicationInstanceRetriever.cs" />
     <Compile Include="WebManagement\Services\IExceptionHandlingLoadBalanceStatusManager.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="WebManagement\Services\Impl\AvailabilityStatusUpdater.cs" />
     <Compile Include="WebManagement\Services\Impl\CurrentApplicationInstanceRetriever.cs" />
     <Compile Include="WebManagement\Services\Impl\ExceptionHandlingLoadBalanceStatusManager.cs" />
+    <Compile Include="WebManagement\Services\Views\Impl\ApplicationListingBodyView.cs" />
     <Compile Include="WebManagement\Services\Views\Impl\LoadBalancerBodyView.cs" />
     <Compile Include="WebManagement\Services\Impl\LoadBalanceStatusManager.cs" />
     <Compile Include="WebManagement\Services\Impl\SecureAvailabilityStatusUpdater.cs" />
@@ -274,6 +276,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="WebManagement\Services\Views\Resources\LoadBalancerBodyTemplate.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingBodyTemplate.html" />
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingReadOnlyBodyTemplate.html" />
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingReadOnlyRowOneFragment.html" />
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingRowOneFragment.html" />
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingRowNFragment.html" />
+    <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingReadOnlyRowNFragment.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
