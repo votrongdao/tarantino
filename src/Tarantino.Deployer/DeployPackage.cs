@@ -86,8 +86,8 @@ namespace Tarantino.Deployer
 			addArgument(arguments, "environment", SelectedEnvironment.Name);
 			addArgument(arguments, "url", SelectedApplication.Url);
 			addArgument(arguments, "zip.file", SelectedApplication.ZipFile);
-			addArgument(arguments, "username", SelectedApplication.Username);
-			addArgument(arguments, "password", SelectedApplication.Password);
+			addArgument(arguments, "username", txtUsername.Text);
+			addArgument(arguments, "password", txtPassword.Text);
 
 			IDeploymentFormValidator validator = new DeploymentFormValidator();
 
