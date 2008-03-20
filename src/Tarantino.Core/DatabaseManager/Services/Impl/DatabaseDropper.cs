@@ -20,7 +20,16 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 		{
 			_connectionDropper.Drop(settings, taskObserver);
 			string sql = string.Format("drop database {0}", settings.Database);
-			_queryExecutor.ExecuteNonQuery(settings, sql, false);
+
+			try
+			{
+				_queryExecutor.ExecuteNonQuery(settings, sql, false);
+			}
+			catch(Exception)
+			{
+				taskObserver.Log(string.Format("Database '{0}' could not be dropped.",
+					settings.Database));
+			}
 		}
 	}
 }

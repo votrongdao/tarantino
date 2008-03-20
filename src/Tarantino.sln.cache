@@ -118,11 +118,11 @@
     <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
   </PropertyGroup>
   <PropertyGroup>
-    <SolutionDir>C:\data\work\subversion\tarantino\src\</SolutionDir>
+    <SolutionDir>C:\working\tarantino-trunk\src\</SolutionDir>
     <SolutionExt>.sln</SolutionExt>
     <SolutionFileName>Tarantino.sln</SolutionFileName>
     <SolutionName>Tarantino</SolutionName>
-    <SolutionPath>C:\data\work\subversion\tarantino\src\Tarantino.sln</SolutionPath>
+    <SolutionPath>C:\working\tarantino-trunk\src\Tarantino.sln</SolutionPath>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>

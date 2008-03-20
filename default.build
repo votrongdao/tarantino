@@ -242,10 +242,6 @@
 			file="${deployerDatabaseManagerConfig}"
 			xpath="${app.settings.path}/add[@key='NAntFolder']/@value"
 			value="NAnt" />
-	</target>
-
-	<target name="commit">
-		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
 
 		<property name="zipFile" value="LatestVersion/${project}.zip"/>
 
@@ -256,6 +252,10 @@
 				<include name="**" />
 			</fileset>
 		</zip>
+	</target>
+
+	<target name="commit">
+		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
 
 		<exec program="${svn.exe}" workingdir="." commandline="ci LatestVersion ${svn.args} -m&quot;automatic check-in ${project.fullversion}&quot;" verbose="true"  />
 

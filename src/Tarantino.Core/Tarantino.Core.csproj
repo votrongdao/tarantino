@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3F02EEBD-5B3B-4C5F-B2E7-4F5DFF6B3F03}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -307,4 +307,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(TargetPath)" "$(SolutionDir)..\lib\nant\" &amp; exit 0</PostBuildEvent>
+  </PropertyGroup>
 </Project>
