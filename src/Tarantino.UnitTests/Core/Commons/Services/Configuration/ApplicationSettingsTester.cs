@@ -12,8 +12,8 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Configuration
 		[Test]
 		public void Should_read_smtp_server()
 		{
-			MockRepository mocks = new MockRepository();
-			IConfigurationReader reader = mocks.CreateMock<IConfigurationReader>();
+			var mocks = new MockRepository();
+			var reader = mocks.CreateMock<IConfigurationReader>();
 
 			using (mocks.Record())
 			{
@@ -32,8 +32,8 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Configuration
 		[Test]
 		public void Should_read_service_agent_factory()
 		{
-			MockRepository mocks = new MockRepository();
-			IConfigurationReader reader = mocks.CreateMock<IConfigurationReader>();
+			var mocks = new MockRepository();
+			var reader = mocks.CreateMock<IConfigurationReader>();
 
 			using (mocks.Record())
 			{
@@ -52,8 +52,8 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Configuration
 		[Test]
 		public void Should_read_smtp_username()
 		{
-			MockRepository mocks = new MockRepository();
-			IConfigurationReader reader = mocks.CreateMock<IConfigurationReader>();
+			var mocks = new MockRepository();
+			var reader = mocks.CreateMock<IConfigurationReader>();
 
 			using (mocks.Record())
 			{

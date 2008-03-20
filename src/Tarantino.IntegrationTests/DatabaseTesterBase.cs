@@ -31,9 +31,9 @@ namespace Tarantino.IntegrationTests
 
 		protected void ClearTables()
 		{
-			IEnumerable<string> tables = GetTablesToDelete();
+			var tables = GetTablesToDelete();
 
-			foreach (string table in tables)
+			foreach (var table in tables)
 			{
 				DeleteFromTable(table);
 			}
@@ -50,7 +50,7 @@ namespace Tarantino.IntegrationTests
 
 		protected void SaveAndFlushSessionFor(params PersistentObject[] persistentObjects)
 		{
-			foreach (PersistentObject persistentObject in persistentObjects)
+			foreach (var persistentObject in persistentObjects)
 			{
 				_mapper.SaveOrUpdate(persistentObject);
 				_mapper.Evict(persistentObject);
@@ -61,9 +61,7 @@ namespace Tarantino.IntegrationTests
 		{
 			_mapper.Evict(entity);
 
-			T entityFromDatabase;
-
-			entityFromDatabase = _mapper.Load<T>(entity.Id);
+			var entityFromDatabase = _mapper.Load<T>(entity.Id);
 
 			AssertObjectsMatch(entity, entityFromDatabase);
 			return entityFromDatabase;
@@ -75,13 +73,13 @@ namespace Tarantino.IntegrationTests
 			Assert.AreNotSame(obj1, obj2);
 			Assert.AreEqual(obj1, obj2);
 
-			PropertyInfo[] infos = obj1.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
-			foreach (PropertyInfo info in infos)
+			var infos = obj1.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+			foreach (var info in infos)
 			{
 				if (info.PropertyType != typeof(IDictionary))
 				{
-					object value1 = info.GetValue(obj1, null);
-					object value2 = info.GetValue(obj2, null);
+					var value1 = info.GetValue(obj1, null);
+					var value2 = info.GetValue(obj2, null);
 					Assert.AreEqual(value1, value2, string.Format("Property {0} doesn't match", info.Name));
 				}
 			}

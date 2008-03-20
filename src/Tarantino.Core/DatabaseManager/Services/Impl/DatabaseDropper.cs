@@ -19,7 +19,7 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 		public void Execute(string scriptFolder, ConnectionSettings settings, ITaskObserver taskObserver)
 		{
 			_connectionDropper.Drop(settings, taskObserver);
-			string sql = string.Format("drop database {0}", settings.Database);
+			var sql = string.Format("drop database {0}", settings.Database);
 
 			try
 			{

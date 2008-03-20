@@ -16,15 +16,15 @@ namespace Tarantino.Core.Commons.Services.RandomDataCreation.Impl
 
 		public string GetRandomCode(int numberOfCharacters)
 		{
-			List<char> characters = new List<char>();
-			
-			for(int i = 0; i < numberOfCharacters; i++)
+			var characters = new List<char>();
+
+			for(var i = 0; i < numberOfCharacters; i++)
 			{
-				char randomCharacter = _characterGenerator.GetRandomCharacter();
+				var randomCharacter = _characterGenerator.GetRandomCharacter();
 				characters.Add(randomCharacter);
 			}
 
-			string randomCode = new string(characters.ToArray());
+			var randomCode = new string(characters.ToArray());
 			return randomCode;
 		}
 	}

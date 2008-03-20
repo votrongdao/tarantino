@@ -67,9 +67,9 @@ namespace Tarantino.UnitTests.Core.Commons.Model.Enumerations
 		}
 
 		[Test]
-		public void Should_return_vnumerated_value_by_value()
+		public void Should_return_enumerated_value_by_value()
 		{
-			TestEnumeration value = Enumeration.FromValue<TestEnumeration>(2);
+			var value = Enumeration.FromValue<TestEnumeration>(2);
 
 			Assert.AreSame(TestEnumeration.Blue, value);
 			Assert.AreNotSame(TestEnumeration.Red, value);
@@ -91,6 +91,18 @@ namespace Tarantino.UnitTests.Core.Commons.Model.Enumerations
 			Assert.AreEqual(new TestEnumeration(1, "Red"), TestEnumeration.Red);
 			Assert.AreNotEqual(TestEnumeration.Blue, TestEnumeration.Red);
 			Assert.AreNotEqual(new TestEnumeration(2, "Red"), TestEnumeration.Red);
+		}
+
+		[Test, ExpectedException(ExceptionType = typeof(ApplicationException), ExpectedMessage = "'Green' is not a valid display name in Tarantino.UnitTests.Core.Commons.Model.Enumerations.EnumerationTester+TestEnumeration")]
+		public void Should_throw_exception_when_enumeration_display_name_cannot_be_parsed()
+		{
+			Enumeration.FromDisplayName<TestEnumeration>("Green");
+		}
+
+		[Test, ExpectedException(ExceptionType = typeof(ApplicationException), ExpectedMessage = "'3' is not a valid value in Tarantino.UnitTests.Core.Commons.Model.Enumerations.EnumerationTester+TestEnumeration")]
+		public void Should_throw_exception_when_enumeration_value_cannot_be_parsed()
+		{
+			Enumeration.FromValue<TestEnumeration>(3);
 		}
 
 		class TestEnumeration : Enumeration
