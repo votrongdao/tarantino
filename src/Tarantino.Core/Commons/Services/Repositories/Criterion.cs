@@ -48,5 +48,11 @@ namespace Tarantino.Core.Commons.Services.Repositories
 			bool isEqual = other.Attribute == Attribute && other.Value == Value;
 			return isEqual;
 		}
+
+		public override int GetHashCode()
+		{
+			string combinedKey = Attribute + Value;
+			return combinedKey.GetHashCode();
+		}
 	}
 }
