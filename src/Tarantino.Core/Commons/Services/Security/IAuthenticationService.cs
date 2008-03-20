@@ -3,7 +3,7 @@ using Tarantino.Core;
 
 namespace Tarantino.Core.Commons.Services.Security
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IAuthenticationService
 	{
 		void RedirectFromLoginPage(string emailAddress, bool rememberMe);

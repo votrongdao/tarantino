@@ -6,7 +6,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class AdministratorSecurityChecker : IAdministratorSecurityChecker
 	{
 		private readonly IWebContext _context;

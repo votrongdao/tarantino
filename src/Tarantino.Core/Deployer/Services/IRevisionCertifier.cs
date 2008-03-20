@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Deployer.Services
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IRevisionCertifier
 	{
 		void Certify(Deployment deployment);

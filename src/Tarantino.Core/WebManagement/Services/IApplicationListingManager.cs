@@ -2,7 +2,7 @@ using StructureMap;
 
 namespace Tarantino.Core.WebManagement.Services
 {
-    [PluginFamily(ServiceKeys.Default)]
+    [PluginFamily(Keys.Default)]
     public interface IApplicationListingManager 
     {
         void HandleRequest();

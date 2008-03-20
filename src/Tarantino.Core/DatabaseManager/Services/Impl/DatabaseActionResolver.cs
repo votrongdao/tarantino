@@ -4,7 +4,7 @@ using Tarantino.Core.DatabaseManager.Services.Impl.Tarantino.Core.DatabaseManage
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class DatabaseActionResolver : IDatabaseActionResolver
 	{
 		public IEnumerable<DatabaseAction> GetActions(RequestedDatabaseAction requestedDatabaseAction)

@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Configuration
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IApplicationSettings
 	{
 		int GetServiceSleepTime();

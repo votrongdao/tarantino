@@ -2,7 +2,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class SystemEnvironment : ISystemEnvironment
 	{
 		public string GetMachineName()

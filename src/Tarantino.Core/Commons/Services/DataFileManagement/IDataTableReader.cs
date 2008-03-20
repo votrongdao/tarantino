@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IDataTableReader
 	{
 		void Open(DataTable table);

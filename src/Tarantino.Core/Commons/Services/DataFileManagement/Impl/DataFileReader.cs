@@ -6,7 +6,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class DataFileReader : IDataFileReader
 	{
 		private IResourceFileLocator _resourceFileLocator;

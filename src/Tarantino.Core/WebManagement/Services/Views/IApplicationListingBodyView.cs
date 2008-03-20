@@ -2,7 +2,7 @@ using StructureMap;
 
 namespace Tarantino.Core.WebManagement.Services.Views
 {
-    [PluginFamily(ServiceKeys.Default)]
+    [PluginFamily(Keys.Default)]
     public interface IApplicationListingBodyView
     {
         string BuildHtml();

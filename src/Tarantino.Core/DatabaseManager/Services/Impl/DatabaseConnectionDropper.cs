@@ -5,7 +5,7 @@ using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class DatabaseConnectionDropper : IDatabaseConnectionDropper
 	{
 		private IResourceFileLocator _fileLocator;

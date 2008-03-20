@@ -9,7 +9,7 @@ using Tarantino.Core.Commons.Services.Logging;
 
 namespace Tarantino.Infrastructure.Commons.Logging
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class Logger : ILogger
 	{
 		public Logger()

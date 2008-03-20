@@ -6,7 +6,7 @@ using Tarantino.Core.DatabaseManager.Services.Impl;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class SqlDatabaseManager : ISqlDatabaseManager
 	{
 		public const string SQL_FILE_ASSEMBLY = "Tarantino.Core";

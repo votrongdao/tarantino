@@ -6,7 +6,7 @@ using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class ApplicationInstanceCache : IApplicationInstanceCache
 	{
 		private readonly IWebContext _context;

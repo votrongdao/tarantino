@@ -7,7 +7,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class FileExtensionChecker : IFileExtensionChecker
 	{
 		private readonly IConfigurationReader _configurationReader;

@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Configuration.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class ConfigurationReader : IConfigurationReader
 	{
 		private readonly IApplicationConfiguration _settings;

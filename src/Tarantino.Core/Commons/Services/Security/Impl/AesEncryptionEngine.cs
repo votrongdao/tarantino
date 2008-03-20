@@ -13,7 +13,7 @@ namespace Tarantino.Core.Commons.Services.Security.Impl
 	/// The class uses static functions with duplicate code to make it easier to
 	/// demonstrate encryption and decryption logic.
 	/// </summary>
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class AesEncryptionEngine : IEncryptionEngine
 	{
 		private const string encryptionPassword = "password";

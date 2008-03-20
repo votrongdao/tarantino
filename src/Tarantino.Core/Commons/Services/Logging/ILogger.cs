@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Logging
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface ILogger
 	{
 		string SerializeException(Exception e);

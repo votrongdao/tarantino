@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class MaintenancePageRedirector : IMaintenancePageRedirector
 	{
 		private readonly IWebContext _context;

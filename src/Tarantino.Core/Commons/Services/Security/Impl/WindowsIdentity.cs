@@ -2,7 +2,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class WindowsIdentity : IWindowsIdentity
 	{
 		public string GetCurrentUsername()

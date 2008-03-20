@@ -1,6 +1,6 @@
 namespace Tarantino.Core
 {
-	public class ServiceKeys
+	public class Keys
 	{
 		public const string Default = "Default";
 		public const string Secondary = "Secondary";

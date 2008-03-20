@@ -2,7 +2,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Configuration
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IServiceLocator
 	{
 		T CreateInstance<T>(string instanceKey);

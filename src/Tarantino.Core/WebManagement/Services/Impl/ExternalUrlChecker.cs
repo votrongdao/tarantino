@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class ExternalUrlChecker : IExternalUrlChecker
 	{
 		private readonly IWebContext _context;

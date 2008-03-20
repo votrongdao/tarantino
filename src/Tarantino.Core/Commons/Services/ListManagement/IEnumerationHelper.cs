@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.ListManagement
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IEnumerationHelper
 	{
 		IEnumerable<EnumerationType> GetAll<EnumerationType>() where EnumerationType : Enumeration, new();

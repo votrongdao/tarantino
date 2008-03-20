@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Model;
 
 namespace Tarantino.Core.Commons.Services.Security
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface ISystemUserContextManager
 	{
 		void SetUserContext();

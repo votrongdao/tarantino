@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Deployer.Services.Configuration.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class ApplicationRepository : IApplicationRepository
 	{
 		private readonly IApplicationConfiguration _configuration;

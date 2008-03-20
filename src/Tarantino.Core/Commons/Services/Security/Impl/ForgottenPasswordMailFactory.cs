@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Services.Configuration;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class ForgottenPasswordMailFactory : IForgottenPasswordMailFactory
 	{
 		private readonly IConfigurationReader _configurationReader;

@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Caching.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class CacheManager : ICacheManager
 	{
 		public void Set<T>(object key, T objectToCache)

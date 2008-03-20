@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Services.Environment;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class MenuView : IMenuView
 	{
 		public const string MenuTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.MenuTemplate.html";

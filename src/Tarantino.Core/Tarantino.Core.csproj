@@ -221,7 +221,7 @@
     <Compile Include="Deployer\Services\UI\Impl\DeploymentRowFactory.cs" />
     <Compile Include="Deployer\Services\UI\Impl\DeploymentSelectionValidator.cs" />
     <Compile Include="Deployer\Services\UI\Impl\LabelTextGenerator.cs" />
-    <Compile Include="ServiceKeys.cs" />
+    <Compile Include="Keys.cs" />
     <Compile Include="WebManagement\Model\ApplicationInstance.cs" />
     <Compile Include="WebManagement\Services\IAdministratorSecurityChecker.cs" />
     <Compile Include="WebManagement\Services\IApplicationInstanceCache.cs" />

@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Services.Repositories;
 
 namespace Tarantino.Core.Commons.Services.Security
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IForgottenPasswordMailer
 	{
 		bool SendForgottenPasswordEmail(string recipientEmailAddress, ISystemUserRepository repository);

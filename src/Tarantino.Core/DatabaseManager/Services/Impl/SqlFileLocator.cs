@@ -5,7 +5,7 @@ using Tarantino.Core.Commons.Services.Environment;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class SqlFileLocator : ISqlFileLocator
 	{
 		private IFileSystem _fileSystem;

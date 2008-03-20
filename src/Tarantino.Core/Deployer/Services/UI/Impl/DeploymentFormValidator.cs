@@ -5,7 +5,7 @@ using Environment = Tarantino.Core.Deployer.Services.Configuration.Impl.Environm
 
 namespace Tarantino.Deployer.Services.UI.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class DeploymentFormValidator : IDeploymentFormValidator
 	{
 		public bool IsValid(Environment environment, string revisionNumberText)

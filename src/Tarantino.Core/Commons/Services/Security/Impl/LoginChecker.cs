@@ -3,7 +3,7 @@ using Tarantino.Core.Commons.Services.Repositories;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class LoginChecker : ILoginChecker
 	{
 		private readonly IEncryptionEngine _encryptionEngine;

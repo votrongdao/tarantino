@@ -8,7 +8,7 @@ using Environment=Tarantino.Core.Deployer.Services.Configuration.Impl.Environmen
 
 namespace Tarantino.Deployer.Services.UI.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class LabelTextGenerator : ILabelTextGenerator
 	{
 		private readonly IDeploymentSelectionValidator _validator;

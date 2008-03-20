@@ -5,7 +5,7 @@ using Tarantino.Core;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class SessionManager : ISessionManager
 	{
 		private ISessionScoper _sessionScoper;

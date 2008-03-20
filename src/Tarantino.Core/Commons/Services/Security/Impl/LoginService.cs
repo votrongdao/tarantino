@@ -5,7 +5,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class LoginService : ILoginService
 	{
 		private readonly ILoginChecker _loginChecker;

@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Services.DataFileManagement;
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class TokenReplacer : ITokenReplacer
 	{
 		private string _text;

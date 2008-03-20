@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class FileStreamFactory : IFileStreamFactory
 	{
 		public Stream ConstructReadFileStream(string path)

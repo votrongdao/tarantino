@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.RandomDataCreation.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class RandomNumberGenerator : IRandomNumberGenerator
 	{
 		private Random _numberGenerator = new Random();

@@ -6,7 +6,7 @@ using Tarantino.Core.Commons.Services.Logging;
 
 namespace Tarantino.Core.Daemon.Services.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class ServiceRunner : IServiceRunner
 	{
 		private bool _continue = false;

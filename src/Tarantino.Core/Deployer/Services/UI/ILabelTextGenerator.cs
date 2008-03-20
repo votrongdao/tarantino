@@ -5,7 +5,7 @@ using StructureMap;
 
 namespace Tarantino.Deployer.Services.UI
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface ILabelTextGenerator
 	{
 		string GetDeploymentText(Environment environment, string revisionNumberText, Deployment deployment);

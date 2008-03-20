@@ -6,7 +6,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class ResourceFileLocator : IResourceFileLocator
 	{
 		public string ReadTextFile(string assembly, string resourceName)

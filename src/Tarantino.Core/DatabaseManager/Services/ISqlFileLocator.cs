@@ -2,7 +2,7 @@
 
 namespace Tarantino.Core.DatabaseManager.Services
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface ISqlFileLocator
 	{
 		string[] GetSqlFilenames(string scriptBaseFolder, string scriptFolder);

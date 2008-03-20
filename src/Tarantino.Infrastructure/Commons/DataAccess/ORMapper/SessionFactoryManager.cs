@@ -9,7 +9,7 @@ using StructureMap;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
-	[Pluggable(ServiceKeys.Default)]
+	[Pluggable(Keys.Default)]
 	public class SessionFactoryManager : ISessionFactoryManager
 	{
 		private readonly IApplicationSettings _applicationSettings;

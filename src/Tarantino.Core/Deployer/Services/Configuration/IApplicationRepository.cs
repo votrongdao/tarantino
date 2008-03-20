@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Deployer.Services.Configuration
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IApplicationRepository
 	{
 		ElementCollection<Application> GetAll();

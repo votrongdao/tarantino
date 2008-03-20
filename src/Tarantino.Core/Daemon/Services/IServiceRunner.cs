@@ -2,7 +2,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Daemon.Services
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IServiceRunner
 	{
 		void Start();

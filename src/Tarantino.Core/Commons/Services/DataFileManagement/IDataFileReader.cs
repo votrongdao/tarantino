@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement
 {
-	[PluginFamily(ServiceKeys.Default)]
+	[PluginFamily(Keys.Default)]
 	public interface IDataFileReader : IDisposable
 	{
 		void Open(string assembly, string resourceFilename, string filePath);
