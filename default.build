@@ -208,7 +208,7 @@
 	</target>
 
 	<!-- Database change management -->
-	<property name="database.server" value="." overwrite="false"/>
+	<property name="database.server" value=".\SQLExpress" overwrite="false"/>
 	<property name="database.integrated" value="true" overwrite="false" />
 	<property name="database.username" value="sa" overwrite="false"/>
 	<property name="database.password" value="pwd" overwrite="false"/>

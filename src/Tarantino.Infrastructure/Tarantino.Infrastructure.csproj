@@ -87,7 +87,6 @@
     <Compile Include="Commons\DataAccess\ORMapper\SessionManager.cs" />
     <Compile Include="Commons\DataAccess\ORMapper\ThreadSessionScoper.cs" />
     <Compile Include="Commons\DataAccess\Repositories\PersistentObjectRepository.cs" />
-    <Compile Include="Commons\Logging\Logger.cs" />
     <Compile Include="Commons\UI\Controls\BooleanDropDownList.cs" />
     <Compile Include="Commons\UI\Controls\DecimalDropDownList.cs" />
     <Compile Include="Commons\UI\Controls\EnumerationDropDownList.cs" />

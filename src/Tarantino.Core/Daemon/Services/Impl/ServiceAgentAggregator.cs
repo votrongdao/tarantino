@@ -11,13 +11,11 @@ namespace Tarantino.Core.Daemon.Services.Impl
 	{
 		private readonly IApplicationSettings _settings;
 		private readonly ITypeActivator _activator;
-		private readonly ILogger _logger;
 
-		public ServiceAgentAggregator(IApplicationSettings settings, ITypeActivator activator, ILogger logger)
+		public ServiceAgentAggregator(IApplicationSettings settings, ITypeActivator activator)
 		{
 			_settings = settings;
 			_activator = activator;
-			_logger = logger;
 		}
 
 		public void ExecuteServiceAgentCycle()
@@ -29,13 +27,13 @@ namespace Tarantino.Core.Daemon.Services.Impl
 			{
 				try
 				{
-					_logger.Debug(this, string.Format("Executing agent: {0}", agent.AgentName));
+					Logger.Debug(this, string.Format("Executing agent: {0}", agent.AgentName));
 					agent.Run();
-					_logger.Debug(this, string.Format("Agent execution completed: {0}", agent.AgentName));
+                    Logger.Debug(this, string.Format("Agent execution completed: {0}", agent.AgentName));
 				}
 				catch (Exception ex)
 				{
-					_logger.Error(this, ex.Message, ex);
+                    Logger.Error(this, ex.Message, ex);
 				}
 			}
 		}

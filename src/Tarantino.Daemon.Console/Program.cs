@@ -9,12 +9,11 @@ namespace Tarantino.Daemon.Console
 	{
 		static void Main(string[] args)
 		{
-			ILogger logger = ObjectFactory.GetInstance<ILogger>();
 
 			try
 			{
 				IServiceRunner serviceRunner = ObjectFactory.GetInstance<IServiceRunner>();
-				logger.Info(serviceRunner, "Tarantino.Daemon Console starting");
+				Logger.Info(serviceRunner, "Tarantino.Daemon Console starting");
 			}
 			catch (Exception exc)
 			{

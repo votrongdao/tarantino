@@ -2,10 +2,9 @@ using System;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Tarantino.Core.Commons.Services.Configuration;
+using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.Daemon.Services;
 using Tarantino.Core.Daemon.Services.Impl;
-using Tarantino.Core.Commons.Services.Environment;
-using Tarantino.Core.Commons.Services.Logging;
 
 namespace Tarantino.UnitTests.Core.Daemon.Services
 {
@@ -22,10 +21,9 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 			IServiceAgentFactory factory = mocks.CreateMock<IServiceAgentFactory>();
 			IServiceAgent serviceAgent1 = mocks.CreateMock<IServiceAgent>();
 			IServiceAgent serviceAgent2 = mocks.CreateMock<IServiceAgent>();
-			ILogger logger = mocks.CreateMock<ILogger>();
 			IServiceAgent[] serviceAgents = new IServiceAgent[] { serviceAgent1, serviceAgent2 };
 
-			IServiceAgentAggregator aggregator = new ServiceAgentAggregator(settings, activator, logger);
+			IServiceAgentAggregator aggregator = new ServiceAgentAggregator(settings, activator);
 
 			using (mocks.Record())
 			{
@@ -34,14 +32,10 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 				Expect.Call(factory.GetServiceAgents()).Return(serviceAgents);
 
 				Expect.Call(serviceAgent1.AgentName).Return("FirstAgent").Repeat.Any();
-				logger.Debug(aggregator, "Executing agent: FirstAgent");
 				serviceAgent1.Run();
-				logger.Debug(aggregator, "Agent execution completed: FirstAgent");
 
 				Expect.Call(serviceAgent2.AgentName).Return("SecondAgent").Repeat.Any();
-				logger.Debug(aggregator, "Executing agent: SecondAgent");
 				serviceAgent2.Run();
-				logger.Debug(aggregator, "Agent execution completed: SecondAgent");
 			}
 
 			using (mocks.Playback())
@@ -68,9 +62,8 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 
 			IServiceAgent[] serviceAgents = new IServiceAgent[] { serviceAgent1, serviceAgent2 };
 
-			ILogger logger = mocks.CreateMock<ILogger>();
 
-			IServiceAgentAggregator aggregator = new ServiceAgentAggregator(settings, activator, logger);
+			IServiceAgentAggregator aggregator = new ServiceAgentAggregator(settings, activator);
 
 			using (mocks.Record())
 			{
@@ -79,15 +72,11 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 				Expect.Call(factory.GetServiceAgents()).Return(serviceAgents);
 
 				Expect.Call(serviceAgent1.AgentName).Return("FirstAgent").Repeat.Any();
-				logger.Debug(aggregator, "Executing agent: FirstAgent");
 				serviceAgent1.Run();
 				LastCall.On(serviceAgent1).Throw(exception);
-				logger.Error(aggregator, "Test Exception", exception);
 
 				Expect.Call(serviceAgent2.AgentName).Return("SecondAgent").Repeat.Any();
-				logger.Debug(aggregator, "Executing agent: SecondAgent");
 				serviceAgent2.Run();
-				logger.Debug(aggregator, "Agent execution completed: SecondAgent");
 			}
 
 			using (mocks.Playback())

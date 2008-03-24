@@ -18,18 +18,12 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 			MockRepository mocks = new MockRepository();
 			IApplicationSettings settings = mocks.CreateMock<IApplicationSettings>();
 			IServiceAgentAggregator aggregator = mocks.CreateMock<IServiceAgentAggregator>();
-			ILogger logger = mocks.CreateMock<ILogger>();
 
-			IServiceRunner runner = new ServiceRunner(aggregator, settings, logger);
+			IServiceRunner runner = new ServiceRunner(aggregator, settings);
 
 			using (mocks.Record())
 			{
-				logger.Debug(runner, "Service Runner thread initializing");
-				logger.Debug(runner, "Service Runner thread initialized");
-				LastCall.Repeat.Any();
 
-				logger.Debug(runner, "Starting Cycle");
-				LastCall.Repeat.Any();
 
 				aggregator.ExecuteServiceAgentCycle();
 				LastCall.Repeat.Times(2, int.MaxValue);
@@ -37,12 +31,6 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 				Expect.Call(settings.GetServiceSleepTime()).Return(10);
 				LastCall.Repeat.Times(2, int.MaxValue);
 
-				logger.Debug(runner, "Finished Cycle");
-				LastCall.Repeat.Any();
-
-				logger.Debug(runner, "Service Runner stopping");
-				logger.Debug(runner, "Service Runner thread stopped");
-				logger.Debug(runner, "Service Runner stopped");
 			}
 
 			using (mocks.Playback())
@@ -63,26 +51,20 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 
 			MockRepository mocks = new MockRepository();
 			IServiceAgentAggregator aggregator = mocks.CreateMock<IServiceAgentAggregator>();
-			ILogger logger = mocks.CreateMock<ILogger>();
 
-			ServiceRunner runner = new ServiceRunner(aggregator, null, logger);
+			ServiceRunner runner = new ServiceRunner(aggregator, null);
 
 			using (mocks.Record())
 			{
-				logger.Debug(runner, "Starting Cycle");
-				LastCall.Repeat.Any();
 
 				aggregator.ExecuteServiceAgentCycle();
 				LastCall.On(aggregator).Do(new Action(delegate { Thread.Sleep(50); }));
-
-				logger.Debug(runner, "Finished Cycle");
-				LastCall.Repeat.Any();
 			}
 
 			using (mocks.Playback())
 			{
-				runner.CycleStarted += new EventHandler(runner_CycleStarted);
-				runner.CycleCompleted += new EventHandler(runner_CycleCompleted);
+				runner.CycleStarted += runner_CycleStarted;
+				runner.CycleCompleted += runner_CycleCompleted;
 				runner.RunOneCycle();
 
 				Assert.IsTrue(_completedFired > _startFired);
@@ -99,25 +81,15 @@ namespace Tarantino.UnitTests.Core.Daemon.Services
 			MockRepository mocks = new MockRepository();
 			IApplicationSettings settings = mocks.CreateMock<IApplicationSettings>();
 			IServiceAgentAggregator aggregator = mocks.CreateMock<IServiceAgentAggregator>();
-			ILogger logger = mocks.CreateMock<ILogger>();
 
-			IServiceRunner runner = new ServiceRunner(aggregator, settings, logger);
+			IServiceRunner runner = new ServiceRunner(aggregator, settings);
 
 			using (mocks.Record())
 			{
-				logger.Debug(runner, "Service Runner thread initializing");
-				logger.Debug(runner, "Service Runner thread initialized");
-
-				logger.Debug(runner, "Starting Cycle");
 
 				aggregator.ExecuteServiceAgentCycle();
 				LastCall.Throw(exception);
 
-				logger.Fatal(runner, "Running service cycle failed", exception);
-
-				logger.Debug(runner, "Service Runner stopping");
-				logger.Debug(runner, "Service Runner thread stopped");
-				logger.Debug(runner, "Service Runner stopped");
 			}
 
 			using (mocks.Playback())
