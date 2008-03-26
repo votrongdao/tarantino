@@ -3,17 +3,16 @@
 <project name="Tarantino" default="local" xmlns="http://nant.sf.net/release/0.85-rc4/nant.xsd">
 
 	<!-- NAnt settings -->
-	<property name="nant.settings.currentframework" value="net-3.5" />
+	<property name="nant.settings.currentframework" value="net-2.0" />
 
 	<!-- Version settings -->
-	<property name="company" value="${project::get-name()}"/>
-	<property name="project" value="${project::get-name()}"/>
+	<property name="company" value="Tarantino"/>
+	<property name="project" value="Tarantino"/>
 	<property name="copyright" value="${company}, ${datetime::get-year(datetime::now())}"/>
 
 	<!-- Compilation settings -->
 	<property name="project.config" value="release" />
-	<property name="dir.test" value="${dir.build}\test" dynamic="true" />
-	<property name="dir.build" value="build" />
+	<property name="test.dir" value="test" />
 
 	<!-- Testing settings -->
 	<property name="test.types" value="Unit,Integration" />
@@ -22,7 +21,7 @@
 
 	<!-- Package settings -->
 	<property name="svn.exe" value="lib\subversion\1.4.3\svn.exe" />
-	<property name="dir.package" value="${dir.build}\package" dynamic="true"  />
+	<property name="package.dir" value="package" />
 
 	<!-- External targets -->
 	<target name="local" depends="debug, rebuildDatabases, compile, move, test"/>
@@ -42,13 +41,13 @@
 
 	<target name="move">
 		<!-- clear out existing testing directory -->
-		<delete dir="${dir.test}" failonerror="false" />
+		<delete dir="${test.dir}" failonerror="false" />
 
 		<!-- copy test assemblies -->
 		<foreach item="String" in="${test.types}" delim="," property="test.type">
 			<property name="assembly" value="${project}.${test.type}Tests" />
 
-			<copy todir="${dir.test}" verbose="false">
+			<copy todir="${test.dir}" verbose="false">
 				<fileset basedir="src/${assembly}/bin/${project.config}">
 					<exclude name="*.xml"/>
 					<include name="**"/>
@@ -59,7 +58,7 @@
 
 	<target name="test">
 		<foreach item="String" in="${test.types}" delim="," property="test.type">
-			<property name="assembly" value="${dir.test}\${project}.${test.type}Tests.dll" />
+			<property name="assembly" value="${test.dir}\${project}.${test.type}Tests.dll" />
 
 			<echo message="Testing: ${assembly}" />
 
@@ -73,7 +72,7 @@
 	<target name="coverage">
 		<foreach item="String" in="${test.types}" delim="," property="test.type">
 			<property name="assembly" value="${project}.${test.type}Tests" />
-			<exec program="${ncover.console}" commandline="//reg //w ${dir.test} //x ${dir.test}\${assembly}.Coverage.xml //v ${nunit.console} ${assembly}.dll" workingdir="." />
+			<exec program="${ncover.console}" commandline="//reg //w ${test.dir} //x ${test.dir}\${assembly}.Coverage.xml //v ${nunit.console} ${assembly}.dll" workingdir="." />
 		</foreach>
 	</target>
 
@@ -112,39 +111,94 @@
 	</target>
 
 	<target name="package">
-		<delete dir="${dir.package}" failonerror="false" />
+		<delete dir="${package.dir}" failonerror="false" />
 
-		<copy todir="${dir.package}\NAnt" verbose="false">
+		<copy todir="${package.dir}\NAnt" verbose="false">
 			<fileset basedir="lib\NAnt">
 				<include name="**" />
 			</fileset>
 		</copy>
 
-		<copy todir="${dir.package}\Subversion" verbose="false">
+		<copy todir="${package.dir}\Subversion" verbose="false">
 			<fileset basedir="lib\Subversion\1.4.3">
 				<include name="**" />
 			</fileset>
 		</copy>
 
-		<copy todir="${dir.package}" verbose="false" flatten="true" >
-			<fileset basedir="src">
-				<include name="**\bin\${project.config}\*.dll" />
-				<include name="**\bin\${project.config}\*.exe" />
-				<include name="**\bin\${project.config}\*.build" />
-				<include name="**\bin\${project.config}\*.bat" />
-				<include name="**\bin\${project.config}\Subversion\**" />
-				<include name="**\bin\${project.config}\*.config" />
-				<include name="**\bin\${project.config}\StructureMap.config" />
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.Core\bin\${project.config}">
+				<include name="*.dll" />
 			</fileset>
 		</copy>
 
-		<copy todir="${dir.package}\Tarantino.Deployer.Database" verbose="false">
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.Infrastructure\bin\${project.config}">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.WebManagement\bin\${project.config}">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.DatabaseManager.Tasks\bin\${project.config}">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.IntegrationTests\bin\${project.config}">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.Daemon\bin\${project.config}">
+				<include name="*.dll" />
+				<include name="*.exe" />
+				<include name="*.config" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.Daemon.Console\bin\${project.config}">
+				<include name="*.dll" />
+				<include name="*.exe" />
+				<include name="*.config" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.Deployer\bin\${project.config}">
+				<include name="*.dll" />
+				<include name="*.exe" />
+				<include name="*.build" />
+				<include name="*.bat" />
+				<include name="Subversion\**" />
+				<include name="*.config" />
+				<include name="StructureMap.config" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}" verbose="false">
+			<fileset basedir="src\Tarantino.DatabaseManager\bin\${project.config}">
+				<include name="*.dll" />
+				<include name="*.exe" />
+				<include name="*.build" />
+				<include name="*.config" />
+			</fileset>
+		</copy>
+
+		<copy todir="${package.dir}\Tarantino.Deployer.Database" verbose="false">
 			<fileset basedir="src\Tarantino.Database">
 				<include name="**\*.sql" />
 			</fileset>
 		</copy>
 
-		<copy todir="${dir.package}\Tarantino.WebManagement.Database" verbose="false">
+		<copy todir="${package.dir}\Tarantino.WebManagement.Database" verbose="false">
 			<fileset basedir="src\Tarantino.WebManagement.Database">
 				<include name="**\*.sql" />
 			</fileset>
@@ -152,7 +206,7 @@
 
 		<property name="app.settings.path" value="/configuration/appSettings" />
 
-		<property name="deployerDatabaseManagerConfig" value="${dir.package}\Tarantino.DatabaseManager.exe.config"/>
+		<property name="deployerDatabaseManagerConfig" value="${package.dir}\Tarantino.DatabaseManager.exe.config"/>
 
 		<xmlpoke
 			file="${deployerDatabaseManagerConfig}"
@@ -188,27 +242,27 @@
 			file="${deployerDatabaseManagerConfig}"
 			xpath="${app.settings.path}/add[@key='NAntFolder']/@value"
 			value="NAnt" />
+	</target>
+
+	<target name="commit">
+		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
 
 		<property name="zipFile" value="LatestVersion/${project}.zip"/>
 
 		<delete file="${zipFile}" failonerror="false" />
 
 		<zip zipfile="${zipFile}" includeemptydirs="true" >
-			<fileset basedir="${dir.package}">
+			<fileset basedir="${package.dir}">
 				<include name="**" />
 			</fileset>
 		</zip>
-	</target>
-
-	<target name="commit">
-		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
 
 		<exec program="${svn.exe}" workingdir="." commandline="ci LatestVersion ${svn.args} -m&quot;automatic check-in ${project.fullversion}&quot;" verbose="true"  />
 
 	</target>
 
 	<!-- Database change management -->
-	<property name="database.server" value=".\SQLExpress" overwrite="false"/>
+	<property name="database.server" value="." overwrite="false"/>
 	<property name="database.integrated" value="true" overwrite="false" />
 	<property name="database.username" value="sa" overwrite="false"/>
 	<property name="database.password" value="pwd" overwrite="false"/>

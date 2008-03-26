@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Deployer.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentFactory : IDeploymentFactory
 	{
 		private readonly ISystemClock _clock;

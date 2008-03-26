@@ -6,7 +6,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class ExcelWorksheetReader : IExcelWorksheetReader
 	{
 		private readonly IFileSystem _fileSystem;

@@ -7,7 +7,7 @@ using Tarantino.Core.WebManagement.Services.Views;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class LoadBalancerBodyView : ILoadBalancerBodyView
 	{
 		public const string LoadBalancerBodyTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.LoadBalancerBodyTemplate.html";

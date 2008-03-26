@@ -5,7 +5,7 @@ using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Repositories
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IApplicationInstanceRepository
 	{
 		IEnumerable<ApplicationInstance> GetAll();

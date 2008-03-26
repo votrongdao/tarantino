@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Environment
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface ISystemClock
 	{
 		DateTime GetCurrentDateTime();

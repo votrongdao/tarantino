@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.RandomDataCreation.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class CodeGenerator : ICodeGenerator
 	{
 		private readonly IRandomCharacterGenerator _characterGenerator;
@@ -16,15 +16,15 @@ namespace Tarantino.Core.Commons.Services.RandomDataCreation.Impl
 
 		public string GetRandomCode(int numberOfCharacters)
 		{
-			var characters = new List<char>();
-
-			for(var i = 0; i < numberOfCharacters; i++)
+			List<char> characters = new List<char>();
+			
+			for(int i = 0; i < numberOfCharacters; i++)
 			{
-				var randomCharacter = _characterGenerator.GetRandomCharacter();
+				char randomCharacter = _characterGenerator.GetRandomCharacter();
 				characters.Add(randomCharacter);
 			}
 
-			var randomCode = new string(characters.ToArray());
+			string randomCode = new string(characters.ToArray());
 			return randomCode;
 		}
 	}

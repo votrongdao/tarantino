@@ -8,7 +8,7 @@ using Tarantino.Core.Deployer.Services;
 
 namespace Tarantino.Infrastructure.Deployer.DataAccess.Repositories
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentRepository : IDeploymentRepository
 	{
 		private readonly IPersistentObjectRepository _repository;

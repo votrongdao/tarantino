@@ -5,7 +5,7 @@ using Tarantino.Deployer.Services.UI;
 
 namespace Tarantino.Deployer.Services.UI.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentRowFactory : IDeploymentRowFactory
 	{
 		public string[] ConstructRow(Deployment deployment)

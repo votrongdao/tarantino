@@ -4,7 +4,7 @@ using Tarantino.Core;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface ISessionScoper
 	{
 		bool CanHandle();

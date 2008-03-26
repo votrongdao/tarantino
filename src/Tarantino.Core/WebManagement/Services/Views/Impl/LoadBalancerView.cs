@@ -3,7 +3,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class LoadBalancerView : ILoadBalancerView
 	{
 		private readonly ILoadBalancerBodyView _bodyView;

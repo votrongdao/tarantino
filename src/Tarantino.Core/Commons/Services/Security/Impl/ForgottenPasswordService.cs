@@ -3,7 +3,7 @@ using Tarantino.Core.Commons.Services.Repositories;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class ForgottenPasswordService : IForgottenPasswordService
 	{
 		private readonly IForgottenPasswordMailer _mailer;

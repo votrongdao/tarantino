@@ -5,7 +5,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class DateContext : IDateContext
 	{
 		private readonly ISystemClock _clock;

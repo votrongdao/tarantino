@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Linq;
+using Tarantino.Core.Commons.Services.ListManagement;
+using Tarantino.Core.Commons.Services.ListManagement.Impl;
 
 namespace Tarantino.Core.Commons.Model.Enumerations
 {
 	public abstract class Enumeration : IComparable
 	{
-		private readonly int _value;
-		private readonly string _displayName;
+		private int _value;
+		private string _displayName;
 
 		protected Enumeration()
 		{
@@ -35,15 +36,22 @@ namespace Tarantino.Core.Commons.Model.Enumerations
 			return DisplayName;
 		}
 
+		public static T FromValue<T>(int value) where T : Enumeration, new()
+		{
+			IRichList<T> all = new RichList<T>( GetAll<T>());
+			T matching = all.Find(delegate(T item) { return item.Value == value; });
+			return matching;
+		}
+
 		public static IEnumerable<T> GetAll<T>() where T : Enumeration, new()
 		{
-			var type = typeof(T);
-			var fields = type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
+			Type type = typeof(T);
+			FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
 
-			foreach (var info in fields)
+			foreach (FieldInfo info in fields)
 			{
-				var instance = new T();
-				var locatedValue = info.GetValue(instance) as T;
+				T instance = new T();
+				T locatedValue = info.GetValue(instance) as T;
 
 				if (locatedValue != null)
 				{
@@ -54,10 +62,10 @@ namespace Tarantino.Core.Commons.Model.Enumerations
 
 		public override bool Equals(object obj)
 		{
-			var otherValue = (Enumeration)obj;
+			Enumeration otherValue = (Enumeration)obj;
 
-			var typeMatches = GetType().Equals(obj.GetType());
-			var valueMatches = _value.Equals(otherValue.Value);
+			bool typeMatches = GetType().Equals(obj.GetType());
+			bool valueMatches = _value.Equals(otherValue.Value);
 
 			return typeMatches && valueMatches;
 		}
@@ -69,33 +77,15 @@ namespace Tarantino.Core.Commons.Model.Enumerations
 
 		public static int AbsoluteDifference(Enumeration firstValue, Enumeration secondValue)
 		{
-			var absoluteDifference = Math.Abs(firstValue.Value - secondValue.Value);
+			int absoluteDifference = Math.Abs(firstValue.Value - secondValue.Value);
 			return absoluteDifference;
-		}
-
-		public static T FromValue<T>(int value) where T : Enumeration, new()
-		{
-			var matchingItem = parse<T, int>(value, "value", item => item.Value == value);
-			return matchingItem;
 		}
 
 		public static T FromDisplayName<T>(string displayName) where T : Enumeration, new()
 		{
-			var matchingItem = parse<T, string>(displayName, "display name", item => item.DisplayName == displayName);
-			return matchingItem;
-		}
-
-		private static T parse<T, K>(K value, string description, Func<T, bool> predicate) where T : Enumeration, new()
-		{
-			var matchingItem = GetAll<T>().FirstOrDefault(predicate);
-
-			if (matchingItem == null)
-			{
-				var message = string.Format("'{0}' is not a valid {1} in {2}", value, description, typeof(T));
-				throw new ApplicationException(message);
-			}
-
-			return matchingItem;
+			IRichList<T> all = new RichList<T>(GetAll<T>());
+			T matching = all.Find(delegate(T item) { return item.DisplayName == displayName; });
+			return matching;
 		}
 
 		public int CompareTo(object other)

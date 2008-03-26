@@ -3,7 +3,7 @@ using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IApplicationInstanceContext
 	{
 		ApplicationInstance GetCurrent();

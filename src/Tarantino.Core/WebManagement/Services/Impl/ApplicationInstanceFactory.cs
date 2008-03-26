@@ -5,7 +5,7 @@ using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class ApplicationInstanceFactory : IApplicationInstanceFactory
 	{
 		private readonly ISystemEnvironment _systemEnvironment;

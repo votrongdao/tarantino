@@ -1,20 +1,14 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3F02EEBD-5B3B-4C5F-B2E7-4F5DFF6B3F03}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tarantino.Core</RootNamespace>
     <AssemblyName>Tarantino.Core</AssemblyName>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,19 +28,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NHibernate\1.2.1\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\StructureMap\2.0\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -110,7 +97,7 @@
     <Compile Include="Commons\Services\ListManagement\Impl\EnumerationHelper.cs" />
     <Compile Include="Commons\Services\ListManagement\Impl\RichList.cs" />
     <Compile Include="Commons\Services\ListManagement\IRichList.cs" />
-    <Compile Include="Commons\Services\Logging\Logger.cs" />
+    <Compile Include="Commons\Services\Logging\ILogger.cs" />
     <Compile Include="Commons\Services\RandomDataCreation\ICodeGenerator.cs" />
     <Compile Include="Commons\Services\RandomDataCreation\Impl\CodeGenerator.cs" />
     <Compile Include="Commons\Services\RandomDataCreation\Impl\RandomCharacterGenerator.cs" />
@@ -229,7 +216,7 @@
     <Compile Include="Deployer\Services\UI\Impl\DeploymentRowFactory.cs" />
     <Compile Include="Deployer\Services\UI\Impl\DeploymentSelectionValidator.cs" />
     <Compile Include="Deployer\Services\UI\Impl\LabelTextGenerator.cs" />
-    <Compile Include="Keys.cs" />
+    <Compile Include="ServiceKeys.cs" />
     <Compile Include="WebManagement\Model\ApplicationInstance.cs" />
     <Compile Include="WebManagement\Services\IAdministratorSecurityChecker.cs" />
     <Compile Include="WebManagement\Services\IApplicationInstanceCache.cs" />
@@ -315,7 +302,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(TargetPath)" "$(SolutionDir)..\lib\nant\" &amp; exit 0</PostBuildEvent>
-  </PropertyGroup>
 </Project>

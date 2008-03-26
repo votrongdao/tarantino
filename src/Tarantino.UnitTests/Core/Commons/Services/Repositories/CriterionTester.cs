@@ -50,11 +50,5 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Repositories
 			Assert.That(new Criterion("A", "B"), Is.Not.EqualTo(new Criterion("A", "C")));
 			Assert.That(new Criterion("A", "B"), Is.Not.EqualTo(new Criterion("B", "A")));
 		}
-
-		[Test]
-		public void Calculates_hash_code_based_on_attribute_and_value()
-		{
-			Assert.That(new Criterion("A", "B").GetHashCode(), Is.EqualTo("AB".GetHashCode()));
-		}
 	}
 }

@@ -5,7 +5,7 @@ using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class AvailabilityStatusUpdater : IAvailabilityStatusUpdater
 	{
 		private readonly IApplicationInstanceRepository _repository;

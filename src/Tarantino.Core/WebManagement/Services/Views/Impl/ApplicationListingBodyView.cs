@@ -8,7 +8,7 @@ using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-    [Pluggable(Keys.Default)]
+    [Pluggable(ServiceKeys.Default)]
     public class ApplicationListingBodyView : IApplicationListingBodyView
     {
         private readonly IAdministratorSecurityChecker checker;

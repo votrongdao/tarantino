@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Services.Environment;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class PageView : IPageView
 	{
 		public const string PageTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.PageTemplate.html";

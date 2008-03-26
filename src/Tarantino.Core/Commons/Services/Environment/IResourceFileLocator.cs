@@ -2,7 +2,7 @@
 
 namespace Tarantino.Core.Commons.Services.Environment
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IResourceFileLocator
 	{
 		string ReadTextFile(string assembly, string resourceName);

@@ -7,7 +7,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Infrastructure.Commons.UI.Services
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class WebContext : IWebContext
 	{
 		public bool UserIsAuthenticated()

@@ -3,7 +3,7 @@ using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class MaintenanceRedirectionChecker : IMaintenanceRedirectionChecker
 	{
 		private readonly IFileExtensionChecker _extensionChecker;

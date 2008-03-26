@@ -5,7 +5,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class DataTableReader : IDataTableReader
 	{
 		private DataTable _table;
@@ -58,6 +58,12 @@ namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 		{
 			string displayName = GetString(columnName);
 			T value = Enumeration.FromDisplayName<T>(displayName);
+			
+			if (value == null)
+			{
+				string message = string.Format("'{0}' is not a valid value in {1}", displayName, typeof(T));
+				throw new ApplicationException(message);
+			}
 
 			return value;
 		}

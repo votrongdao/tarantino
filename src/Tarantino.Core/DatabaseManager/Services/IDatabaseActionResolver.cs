@@ -5,7 +5,7 @@ using Tarantino.Core.DatabaseManager.Services.Impl.Tarantino.Core.DatabaseManage
 
 namespace Tarantino.Core.DatabaseManager.Services
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IDatabaseActionResolver
 	{
 		IEnumerable<DatabaseAction> GetActions(RequestedDatabaseAction requestedDatabaseAction);

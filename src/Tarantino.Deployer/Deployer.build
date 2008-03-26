@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--EXTERNAL_PROPERTIES: application;environment;url;zip.file;username;password;revision;-->
+<!--EXTERNAL_PROPERTIES: application;revision;environment;url;zip.file;username;password-->
 <project name="Deployer" default="deploy" xmlns="http://nant.sf.net/release/0.85-rc4/nant.xsd">
 
 	<target name="deploy">

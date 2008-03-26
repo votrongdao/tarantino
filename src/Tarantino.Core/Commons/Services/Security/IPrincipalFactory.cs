@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Security
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IPrincipalFactory
 	{
 		IPrincipal CreatePrincipal(IIdentity identity, params string[] roles);

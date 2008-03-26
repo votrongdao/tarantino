@@ -5,7 +5,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Deployer.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentRecorder : IDeploymentRecorder
 	{
 		private readonly ISecurityContext _securityContext;

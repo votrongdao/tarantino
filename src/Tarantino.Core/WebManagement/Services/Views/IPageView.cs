@@ -2,7 +2,7 @@ using StructureMap;
 
 namespace Tarantino.Core.WebManagement.Services.Views
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IPageView
 	{
 		string BuildHtml(string bodyHtml);

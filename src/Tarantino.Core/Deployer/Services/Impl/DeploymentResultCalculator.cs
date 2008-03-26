@@ -3,7 +3,7 @@ using Tarantino.Core.Deployer.Model;
 
 namespace Tarantino.Core.Deployer.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class DeploymentResultCalculator : IDeploymentResultCalculator
 	{
 		public DeploymentResult GetResult(string output)

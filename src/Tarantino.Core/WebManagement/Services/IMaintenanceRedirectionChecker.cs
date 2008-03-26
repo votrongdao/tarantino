@@ -2,7 +2,7 @@ using StructureMap;
 
 namespace Tarantino.Core.WebManagement.Services
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IMaintenanceRedirectionChecker
 	{
 		bool ShouldBeRedirectedToMaintenancePage();

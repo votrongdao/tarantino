@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Deployer.Services
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IDeploymentFactory
 	{
 		Deployment CreateDeployment(string application, string environment, string deployedBy, string output);

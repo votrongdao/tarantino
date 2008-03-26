@@ -5,7 +5,7 @@ using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-    [Pluggable(Keys.Default)]
+    [Pluggable(ServiceKeys.Default)]
     public class ApplicationListingRowView:IApplicationListingRowView
     {
         private readonly IResourceFileLocator fileLocator;

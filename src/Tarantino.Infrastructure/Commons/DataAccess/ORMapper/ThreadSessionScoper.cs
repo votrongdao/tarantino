@@ -6,7 +6,7 @@ using Tarantino.Core;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class ThreadSessionScoper : ISessionScoper
 	{
 		private readonly ISessionFactoryManager _sessionFactoryManager;

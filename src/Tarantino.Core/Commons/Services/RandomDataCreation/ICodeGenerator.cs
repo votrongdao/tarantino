@@ -3,7 +3,7 @@ using Tarantino.Core;
 
 namespace Tarantino.Core.Commons.Services.RandomDataCreation
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface ICodeGenerator
 	{
 		string GetRandomCode(int numberOfCharacters);

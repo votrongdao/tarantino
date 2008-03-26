@@ -5,7 +5,7 @@ using Tarantino.Core.DatabaseManager.Services.Impl.Tarantino.Core.DatabaseManage
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class DatabaseActionExecutorFactory : IDatabaseActionExecutorFactory
 	{
 		private readonly IDatabaseActionResolver _resolver;

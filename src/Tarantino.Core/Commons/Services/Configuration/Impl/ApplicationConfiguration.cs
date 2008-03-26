@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Configuration.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class ApplicationConfiguration : IApplicationConfiguration
 	{
 		public string GetSetting(string settingName)

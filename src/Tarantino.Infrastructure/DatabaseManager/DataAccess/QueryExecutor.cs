@@ -10,7 +10,7 @@ using ConnectionSettings=Tarantino.DatabaseManager.Model.ConnectionSettings;
 
 namespace Tarantino.Infrastructure.DatabaseManager.DataAccess
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class QueryExecutor : IQueryExecutor
 	{
 		private IConnectionStringGenerator _connectionStringGenerator;

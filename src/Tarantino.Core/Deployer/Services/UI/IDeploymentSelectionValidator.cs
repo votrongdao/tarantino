@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Deployer.Services.UI
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IDeploymentSelectionValidator
 	{
 		bool IsValid(string revisionNumberText, Deployment selectedDeployment);

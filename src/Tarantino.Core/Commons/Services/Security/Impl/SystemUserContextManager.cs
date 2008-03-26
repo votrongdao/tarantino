@@ -6,7 +6,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class SystemUserContextManager : ISystemUserContextManager
 	{
 		public const string CURRENT_USER = "CurrentUser";

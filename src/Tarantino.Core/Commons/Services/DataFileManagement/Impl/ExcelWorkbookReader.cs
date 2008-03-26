@@ -10,7 +10,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class ExcelWorkbookReader : IExcelWorkbookReader
 	{
 		private Stream m_file = null;

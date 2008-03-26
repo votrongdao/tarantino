@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IExcelWorkbookReader
 	{
 		DataSet GetWorkbookData(Stream file);

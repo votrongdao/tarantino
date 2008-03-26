@@ -3,7 +3,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Security
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IForgottenPasswordMailFactory
 	{
 		MailMessage CreateEmail(string recipientEmailAddress, string clearTextPassword);

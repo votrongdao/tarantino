@@ -4,7 +4,7 @@ using Tarantino.Core.Deployer.Model;
 
 namespace Tarantino.Core.Deployer.Services
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IDeploymentRepository
 	{
 		IEnumerable<Deployment> Find(string application, string environment);

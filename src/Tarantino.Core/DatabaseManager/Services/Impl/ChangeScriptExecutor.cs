@@ -5,7 +5,7 @@ using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class ChangeScriptExecutor : IChangeScriptExecutor
 	{
 		private IScriptExecutionTracker _executionTracker;

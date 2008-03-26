@@ -4,7 +4,7 @@ using Tarantino.Core.Commons.Services.Environment;
 
 namespace Tarantino.Core.WebManagement.Services.Views
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IMenuView
 	{
 		string BuildHtml();

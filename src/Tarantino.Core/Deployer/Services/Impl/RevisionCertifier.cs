@@ -6,7 +6,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Deployer.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class RevisionCertifier : IRevisionCertifier
 	{
 		private readonly ISystemClock _clock;

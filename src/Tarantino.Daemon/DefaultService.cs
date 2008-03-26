@@ -11,51 +11,54 @@ namespace Tarantino.Daemon
 		public const string SERVICE_NAME = "Tarantino.Daemon";
 		public const string SERVICE_DESCRIPTION = "This service manages the execution of daemon service agents";
 
-		private readonly IServiceRunner _serviceRunner;
+		private IServiceRunner _serviceRunner;
 
 		public DefaultService()
 		{
+			ILogger logger = ObjectFactory.GetInstance<ILogger>();
 
 			try
 			{
-				Logger.Info(this, "Tarantino.Daemon Service starting");
+				logger.Info(this, "Tarantino.Daemon Service starting");
 				ServiceName = SERVICE_NAME;
 				_serviceRunner = ObjectFactory.GetInstance<IServiceRunner>();
-                Logger.Info(this, "Service Runner loaded");
+				logger.Info(this, "Service Runner loaded");
 			}
 			catch (Exception exc)
 			{
-                Logger.Fatal(this, "Service failed to start", exc);
+				logger.Fatal(this, "Service failed to start", exc);
 				throw;
 			}
 		}
 
 		protected override void OnStart(string[] args)
 		{
+			ILogger logger = ObjectFactory.GetInstance<ILogger>();
 
 			try
 			{
-                Logger.Info(this, "Service Runner executed");
+				logger.Info(this, "Service Runner executed");
 				_serviceRunner.Start();
 			}
 			catch (Exception exc)
 			{
-                Logger.Fatal(this, "Service failed to start", exc);
+				logger.Fatal(this, "Service failed to start", exc);
 				throw;
 			}
 		}
 
 		protected override void OnStop()
 		{
+			ILogger logger = ObjectFactory.GetInstance<ILogger>();
 
 			try
 			{
-                Logger.Info(this, "Tarantino.Daemon Service stopping");
+				logger.Info(this, "Tarantino.Daemon Service stopping");
 				_serviceRunner.Stop();
 			}
 			catch (Exception exc)
 			{
-                Logger.Fatal(this, "Service failed to stop", exc);
+				logger.Fatal(this, "Service failed to stop", exc);
 				throw;
 			}
 		}

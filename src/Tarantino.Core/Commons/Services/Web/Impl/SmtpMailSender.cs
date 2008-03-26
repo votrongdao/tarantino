@@ -5,7 +5,7 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.Web.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class SmtpMailSender : IMailSender
 	{
 		private IApplicationSettings _applicationSettings;

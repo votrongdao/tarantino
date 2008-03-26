@@ -4,12 +4,12 @@ using StructureMap;
 
 namespace Tarantino.Core.Commons.Services.RandomDataCreation.Impl
 {
-	[Pluggable(Keys.Default)]
+	[Pluggable(ServiceKeys.Default)]
 	public class RandomCharacterGenerator : IRandomCharacterGenerator
 	{
 		private const int _lastLetter = 25;
-		private const int _1 = 49;
-		private const int _a = 97;
+		private int _1 = 49;
+		private int _a = 97;
 
 		private readonly IRandomNumberGenerator _numberGenerator;
 
@@ -20,12 +20,12 @@ namespace Tarantino.Core.Commons.Services.RandomDataCreation.Impl
 
 		public char GetRandomCharacter()
 		{
-			var randomNumber = _numberGenerator.GenerateRandomNumber(34);
+			int randomNumber = _numberGenerator.GenerateRandomNumber(34);
 
-			var isLetter = randomNumber <= _lastLetter;
+			bool isLetter = randomNumber <= _lastLetter;
 
-			var characterIndex = isLetter ? randomNumber + _a : (randomNumber - 26) + _1;
-			var randomCharacter = Convert.ToChar(characterIndex);
+			int characterIndex = isLetter ? randomNumber + _a : (randomNumber - 26) + _1;
+			char randomCharacter = Convert.ToChar(characterIndex);
 
 			return randomCharacter;
 		}

@@ -3,7 +3,7 @@ using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services
 {
-	[PluginFamily(Keys.Default)]
+	[PluginFamily(ServiceKeys.Default)]
 	public interface IScriptExecutionTracker
 	{
 		void MarkScriptAsExecuted(ConnectionSettings settings, string scriptFilename, ITaskObserver task);
