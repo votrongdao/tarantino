@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using Tarantino.Core;
@@ -7,6 +9,7 @@ using Tarantino.Core.Commons.Services.Configuration;
 using NHibernate;
 using NHibernate.Cfg;
 using StructureMap;
+using System.Linq;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
@@ -26,11 +29,11 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public ISessionFactory GetSessionFactory(string connectionStringKey)
 		{
-			ISessionFactory sessionFactory = _cacheManager.Get<ISessionFactory>(connectionStringKey);
+			var sessionFactory = _cacheManager.Get<ISessionFactory>(connectionStringKey);
 			
 			if (sessionFactory == null)
 			{
-				Configuration configuration = new Configuration();
+				var configuration = new Configuration();
 
 				IDictionary properties = new Hashtable();
 
@@ -48,14 +51,22 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 				foreach (DictionaryEntry entry in properties)
 				{
-					string key = entry.Key.ToString();
-					string value = entry.Value.ToString();
+					var key = entry.Key.ToString();
+					var value = entry.Value.ToString();
 					configuration.SetProperty(key, value);
 				}
 
-				foreach (string mappingAssembly in _applicationSettings.GetMappingAssemblies())
+
+				var mappingAssemblies = _applicationSettings.GetMappingAssemblies();
+				
+				if (mappingAssemblies.Count() == 0)
 				{
-					Assembly assembly = Assembly.Load(mappingAssembly);
+					throw new ApplicationException("Please add an entry under <appSettings> in the configuration file named MappingAssemblies that contains a comma-separated list of assembly names containing your embedded NHibernate mapping files (*.hbm.xml)");
+				}
+
+				foreach (var mappingAssembly in mappingAssemblies)
+				{
+					var assembly = Assembly.Load(mappingAssembly);
 					configuration.AddAssembly(assembly);
 				}
 
