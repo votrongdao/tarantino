@@ -23,5 +23,8 @@ namespace Tarantino.Core.Commons.Services.Web
 		void WriteToResponse(string message);
 		void ServerTransfer(string url, bool preserveForm);
 		string GetServerVariable(string variableName);
+		bool HasSessionItem(string key);
+		void SetSessionItem(string key, object item);
+		T GetSessionItem<T>(string key);
 	}
 }

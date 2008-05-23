@@ -43,7 +43,23 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		public T GetItem<T>(string key)
 		{
 			object item = HttpContext.Current.Items[key];
-			return (T) item;
+			return (T)item;
+		}
+
+		public void SetSessionItem(string key, object item)
+		{
+			HttpContext.Current.Session[key] = item;
+		}
+
+		public bool HasSessionItem(string key)
+		{
+			return HttpContext.Current.Session[key] != null;
+		}
+
+		public T GetSessionItem<T>(string key)
+		{
+			object item = HttpContext.Current.Session[key];
+			return (T)item;
 		}
 
 		public T GetCacheItem<T>(string key)
@@ -89,12 +105,12 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		{
 			HttpContext.Current.Response.Write(message);
 		}
-		
+
 		public void ServerTransfer(string url, bool preserveForm)
 		{
 			HttpContext.Current.Server.Transfer(url, preserveForm);
 		}
-		
+
 		public string GetServerVariable(string variableName)
 		{
 			return HttpContext.Current.Request.ServerVariables[variableName];
