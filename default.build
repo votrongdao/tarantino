@@ -139,7 +139,7 @@
 		</copy>
 
 		<copy todir="${dir.package}\Tarantino.Deployer.Database" verbose="false">
-			<fileset basedir="src\Tarantino.Database">
+			<fileset basedir="src\Tarantino.Deployer.Database">
 				<include name="**\*.sql" />
 			</fileset>
 		</copy>
@@ -214,8 +214,7 @@
 	<property name="database.password" value="pwd" overwrite="false"/>
 	<property name="action" value="Update" overwrite="false"/>
 
-	<target name="rebuildDatabases" depends="rebuildDeployerDatabase, rebuildWebManagementDatabase">
-	</target>
+	<target name="rebuildDatabases" depends="rebuildDeployerDatabase, rebuildWebManagementDatabase, rebuildDatabaseResearcherDatabase" />
 
 	<target name="updateDeployerDatabase">
 		<property name="action" value="Update" />
@@ -257,6 +256,11 @@
 		<call target="manageWebManagementDatabase" />
 	</target>
 
+	<target name="rebuildDatabaseResearcherDatabase">
+		<property name="action" value="Rebuild" />
+		<call target="manageDatabaseResearcherDatabase" />
+	</target>
+
 	<target name="manageWebManagementDatabase">
 		<property name="database.name" value="TarantinoWebManagement" />
 		<property name="database.script.directory" value="src\Tarantino.WebManagement.Database" />
@@ -265,7 +269,13 @@
 
 	<target name="manageDeployerDatabase">
 		<property name="database.name" value="TarantinoDeployer" />
-		<property name="database.script.directory" value="src\Tarantino.Database" />
+		<property name="database.script.directory" value="src\Tarantino.Deployer.Database" />
+		<call target="manageSqlDatabase" />
+	</target>
+
+	<target name="manageDatabaseResearcherDatabase">
+		<property name="database.name" value="TarantinoDatabaseResearcher" />
+		<property name="database.script.directory" value="src\Tarantino.DatabaseResearcher.Database" />
 		<call target="manageSqlDatabase" />
 	</target>
 
