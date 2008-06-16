@@ -1,11 +1,11 @@
-using StructureMap;
+
 using Tarantino.Core;
 using Tarantino.Deployer.Services.UI;
 using Environment = Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
 
-namespace Tarantino.Deployer.Services.UI.Impl
+namespace Tarantino.Core.Deployer.Services.UI.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DeploymentFormValidator : IDeploymentFormValidator
 	{
 		public bool IsValid(Environment environment, string revisionNumberText)

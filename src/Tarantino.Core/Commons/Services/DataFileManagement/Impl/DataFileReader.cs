@@ -2,14 +2,14 @@ using System;
 using System.IO;
 using Tarantino.Core.Commons.Model.Enumerations;
 using Tarantino.Core.Commons.Services.Environment;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DataFileReader : IDataFileReader
 	{
-		private IResourceFileLocator _resourceFileLocator;
+		private readonly IResourceFileLocator _resourceFileLocator;
 		private StringReader _dataReader;
 		private string[] _columnNames;
 		private string[] _currentRowValues;
@@ -21,9 +21,9 @@ namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 
 		public void Open(string assembly, string resourceFilename, string filePath)
 		{
-			string resourceTemplate = "{0}.{1}.tab";
-			string fullResourceFilename = string.Format(resourceTemplate, filePath, resourceFilename);
-			string data = _resourceFileLocator.ReadTextFile(assembly, fullResourceFilename);
+			var resourceTemplate = "{0}.{1}.tab";
+			var fullResourceFilename = string.Format(resourceTemplate, filePath, resourceFilename);
+			var data = _resourceFileLocator.ReadTextFile(assembly, fullResourceFilename);
 
 			_dataReader = new StringReader(data);
 

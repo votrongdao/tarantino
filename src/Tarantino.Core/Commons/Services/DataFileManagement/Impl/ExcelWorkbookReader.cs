@@ -6,11 +6,11 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ExcelWorkbookReader : IExcelWorkbookReader
 	{
 		private Stream m_file = null;

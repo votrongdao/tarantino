@@ -1,9 +1,9 @@
-using StructureMap;
+
 using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class MaintenanceRedirectionChecker : IMaintenanceRedirectionChecker
 	{
 		private readonly IFileExtensionChecker _extensionChecker;

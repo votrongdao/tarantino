@@ -1,9 +1,7 @@
-using StructureMap;
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable("Update")]
 	public class DatabaseUpdater : IDatabaseActionExecutor
 	{
 		private readonly IScriptFolderExecutor _folderExecutor;

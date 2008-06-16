@@ -2,13 +2,13 @@ using System;
 using System.Text;
 using Tarantino.Core;
 using Tarantino.Core.Deployer.Model;
-using StructureMap;
+
 using Tarantino.Deployer.Services.UI;
 using Environment=Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
 
 namespace Tarantino.Deployer.Services.UI.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class LabelTextGenerator : ILabelTextGenerator
 	{
 		private readonly IDeploymentSelectionValidator _validator;

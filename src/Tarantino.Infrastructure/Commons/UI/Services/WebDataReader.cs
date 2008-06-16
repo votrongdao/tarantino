@@ -6,7 +6,7 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Infrastructure.Commons.UI.Services
 {
-	[Pluggable(Keys.Default)]
+	
 	public class WebDataReader : IWebDataReader
 	{
 		public string ReadUrl(string url, string parameterName, string parameterValue)

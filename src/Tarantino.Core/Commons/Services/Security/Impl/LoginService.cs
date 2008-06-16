@@ -1,11 +1,11 @@
 using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Commons.Services.Security;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class LoginService : ILoginService
 	{
 		private readonly ILoginChecker _loginChecker;

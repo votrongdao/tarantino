@@ -8,7 +8,7 @@ using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess;
 
-namespace Tarantino.IntegrationTests.Infrastructure.Commons
+namespace Tarantino.IntegrationTests.Infrastructure.Commons.DataAccess.Repositories
 {
 	[TestFixture]
 	public class PersistentObjectRepositoryTester : DeployerDatabaseTester
@@ -91,7 +91,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons
 			set.AddCriterion(new Criterion(Deployment.ENVIRONMENT, "Development", ComparisonOperator.NotEqual));
 
 			Assert.That(repository.FindAll<Deployment>(set), Is.EquivalentTo(
-				new Deployment[0]));
+			                                                 	new Deployment[0]));
 		}
 
 		[Test]

@@ -1,11 +1,10 @@
-using StructureMap;
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ApplicationInstanceFactory : IApplicationInstanceFactory
 	{
 		private readonly ISystemEnvironment _systemEnvironment;

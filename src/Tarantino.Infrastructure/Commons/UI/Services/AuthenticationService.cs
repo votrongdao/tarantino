@@ -5,7 +5,7 @@ using Tarantino.Core.Commons.Services.Security;
 
 namespace Tarantino.Infrastructure.Commons.UI.Services
 {
-	[Pluggable(Keys.Default)]
+	
 	public class AuthenticationService : IAuthenticationService
 	{
 		public void RedirectFromLoginPage(string emailAddress, bool rememberMe)

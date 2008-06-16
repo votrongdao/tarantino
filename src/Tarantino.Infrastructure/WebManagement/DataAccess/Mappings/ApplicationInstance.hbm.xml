@@ -8,7 +8,7 @@
 	default-lazy="false">
 
 	<class name="ApplicationInstance" table="Management_Application_Instance" dynamic-update="true">
-		<id	name="Id" column="GUID" type="Guid">
+		<id	name="Id" column="GUID" type="Guid" access="property">
 			<generator class="guid.comb" />
 		</id>
 

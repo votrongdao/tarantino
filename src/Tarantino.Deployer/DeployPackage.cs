@@ -6,11 +6,12 @@ using System.Windows.Forms;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.Deployer.Services.Configuration;
+using Tarantino.Core.Deployer.Services.UI.Impl;
 using Tarantino.Deployer;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
 using StructureMap;
 using Tarantino.Deployer.Services.UI;
-using Tarantino.Deployer.Services.UI.Impl;
+using Tarantino.Infrastructure;
 using Application=Tarantino.Core.Deployer.Services.Configuration.Impl.Application;
 using Environment=Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
 
@@ -20,6 +21,8 @@ namespace Tarantino.Deployer
 	{
 		public DeployPackage()
 		{
+			InfrastructureDependencyRegistrar.RegisterInfrastructure();
+
 			InitializeComponent();
 			wireEvents();
 			populateApplicationDropdown();

@@ -1,9 +1,9 @@
 using System.IO;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Environment
 {
-	[PluginFamily(Keys.Default)]
+	
 	public interface IFileSystem
 	{
 		void SaveFile(string filename, byte[] fileContent);

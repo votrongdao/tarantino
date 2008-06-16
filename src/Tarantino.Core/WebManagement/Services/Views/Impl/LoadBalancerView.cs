@@ -1,9 +1,9 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class LoadBalancerView : ILoadBalancerView
 	{
 		private readonly ILoadBalancerBodyView _bodyView;

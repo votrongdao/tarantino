@@ -1,11 +1,11 @@
 using System.Net;
 using System.Net.Mail;
 using Tarantino.Core.Commons.Services.Configuration;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Web.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class SmtpMailSender : IMailSender
 	{
 		private IApplicationSettings _applicationSettings;

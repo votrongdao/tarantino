@@ -1,10 +1,10 @@
 using System;
 using Tarantino.Core.Commons.Services.Environment;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ApplicationDomain : IApplicationDomain
 	{
 		public string GetBaseFolder()

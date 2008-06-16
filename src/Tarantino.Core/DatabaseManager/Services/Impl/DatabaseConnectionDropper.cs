@@ -1,11 +1,11 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.DataFileManagement;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DatabaseConnectionDropper : IDatabaseConnectionDropper
 	{
 		private IResourceFileLocator _fileLocator;

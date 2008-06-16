@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Tarantino.Core.Commons.Model;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Repositories;
 
 namespace Tarantino.Core.Commons.Services.Repositories
 {
-	[PluginFamily(Keys.Default)]
+	
 	public interface IPersistentObjectRepository
 	{
 		IEnumerable<T> GetAll<T>();

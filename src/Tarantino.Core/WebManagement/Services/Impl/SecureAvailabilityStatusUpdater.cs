@@ -1,9 +1,9 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class SecureAvailabilityStatusUpdater : ISecureAvailabilityStatusUpdater
 	{
 		private readonly IAdministratorSecurityChecker _securityChecker;

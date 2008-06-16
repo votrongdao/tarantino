@@ -1,9 +1,9 @@
 using System.Security.Principal;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class PrincipalFactory : IPrincipalFactory
 	{
 		public IPrincipal CreatePrincipal(IIdentity identity, params string[] roles)

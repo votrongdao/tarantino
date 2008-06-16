@@ -1,9 +1,9 @@
-using StructureMap;
+
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ScriptFolderExecutor : IScriptFolderExecutor
 	{
 		private readonly ISchemaInitializer _schemaInitializer;

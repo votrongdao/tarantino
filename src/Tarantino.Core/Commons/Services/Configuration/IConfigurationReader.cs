@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Configuration
 {
-	[PluginFamily(Keys.Default)]
+	
 	public interface IConfigurationReader
 	{
 		string GetConnectionString(string key);

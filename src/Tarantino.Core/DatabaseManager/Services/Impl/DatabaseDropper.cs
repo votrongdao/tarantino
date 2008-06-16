@@ -1,10 +1,9 @@
 using System;
-using StructureMap;
+
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable("Drop")]
 	public class DatabaseDropper : IDatabaseActionExecutor
 	{
 		private readonly IDatabaseConnectionDropper _connectionDropper;

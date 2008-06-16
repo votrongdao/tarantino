@@ -1,10 +1,10 @@
 using System.Net.Mail;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Configuration;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ForgottenPasswordMailFactory : IForgottenPasswordMailFactory
 	{
 		private readonly IConfigurationReader _configurationReader;

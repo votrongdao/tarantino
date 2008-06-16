@@ -1,9 +1,9 @@
 using System;
-using StructureMap;
+
 
 namespace Tarantino.Core.Deployer.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class RevisionNumberParser : IRevisionNumberParser
 	{
 		private const string _searchString = "Working Revision Number: ";

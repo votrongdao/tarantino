@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
+using Tarantino.Infrastructure;
 
 namespace Tarantino.DatabaseManager
 {
@@ -11,6 +12,8 @@ namespace Tarantino.DatabaseManager
 	{
 		public Main()
 		{
+			InfrastructureDependencyRegistrar.RegisterInfrastructure();
+
 			InitializeComponent();
 
 			chkIntegratedSecurity.CheckedChanged += chkIntegratedSecurity_OnCheckedChanged;
@@ -24,12 +27,12 @@ namespace Tarantino.DatabaseManager
 
 			IConfigurationReader reader = new ConfigurationReader(new ApplicationConfiguration());
 
-			string scriptFolder = reader.GetOptionalSetting("ScriptFolder") ?? string.Empty;
-			string server = reader.GetOptionalSetting("Server") ?? string.Empty;
-			string database = reader.GetOptionalSetting("Database") ?? string.Empty;
-			string username = reader.GetOptionalSetting("Username") ?? string.Empty;
-			string password = reader.GetOptionalSetting("Password") ?? string.Empty;
-			bool integratedSecurity = reader.GetOptionalBooleanSetting("IntegratedSecurity") ?? false;
+			var scriptFolder = reader.GetOptionalSetting("ScriptFolder") ?? string.Empty;
+			var server = reader.GetOptionalSetting("Server") ?? string.Empty;
+			var database = reader.GetOptionalSetting("Database") ?? string.Empty;
+			var username = reader.GetOptionalSetting("Username") ?? string.Empty;
+			var password = reader.GetOptionalSetting("Password") ?? string.Empty;
+			var integratedSecurity = reader.GetOptionalBooleanSetting("IntegratedSecurity") ?? false;
 
 			txtScriptFolder.Text = scriptFolder;
 			txtServer.Text = server;
@@ -43,12 +46,15 @@ namespace Tarantino.DatabaseManager
 
 		private void btnBrowse_OnClick(object sender, EventArgs e)
 		{
-			FolderBrowserDialog dialog = new FolderBrowserDialog();
-			dialog.RootFolder = Environment.SpecialFolder.Desktop;
-			dialog.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
-			dialog.ShowNewFolderButton = false;
-			dialog.Description = "Please select the database script folder that contains the 'Create' and 'Update' sub-folders";
-			DialogResult result = dialog.ShowDialog(this);
+			var dialog = new FolderBrowserDialog
+			             	{
+			             		RootFolder = Environment.SpecialFolder.Desktop,
+			             		SelectedPath = AppDomain.CurrentDomain.BaseDirectory,
+			             		ShowNewFolderButton = false,
+			             		Description =
+			             			"Please select the database script folder that contains the 'Create' and 'Update' sub-folders"
+			             	};
+			var result = dialog.ShowDialog(this);
 
 			if (result == DialogResult.OK)
 			{
@@ -73,21 +79,20 @@ namespace Tarantino.DatabaseManager
 			}
 		}
 
-		private StringBuilder addArgument(StringBuilder sb, string argName, string argValue)
+		private void addArgument(StringBuilder sb, string argName, string argValue)
 		{
 			sb.Append(" -D:");
 			sb.Append(argName);
 			sb.Append("=\"");
 			sb.Append(argValue);
 			sb.Append("\"");
-			return sb;
+			return;
 		}
 
 		private void RunCommandLine(string commandLine, string args)
 		{
-			ProcessProgressForm processForm = new ProcessProgressForm();
+			var processForm = new ProcessProgressForm {ProcessCommand = commandLine};
 
-			processForm.ProcessCommand = commandLine;
 			if (args != null)
 				processForm.ProcessArguments = args;
 
@@ -102,7 +107,7 @@ namespace Tarantino.DatabaseManager
 
 		private void btnExecute_Click(object sender, EventArgs e)
 		{
-			StringBuilder arguments = new StringBuilder("-buildfile:databaseManagerTargets.build");
+			var arguments = new StringBuilder("-buildfile:databaseManagerTargets.build");
 			addArgument(arguments, "database.script.directory", txtScriptFolder.Text);
 			addArgument(arguments, "database.server", txtServer.Text);
 			addArgument(arguments, "database.name", txtDatabase.Text);

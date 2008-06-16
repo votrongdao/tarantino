@@ -1,12 +1,12 @@
 using System.Security.Principal;
-using StructureMap;
+
 using Tarantino.Core.Commons.Model;
 using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class SystemUserContextManager : ISystemUserContextManager
 	{
 		public const string CURRENT_USER = "CurrentUser";

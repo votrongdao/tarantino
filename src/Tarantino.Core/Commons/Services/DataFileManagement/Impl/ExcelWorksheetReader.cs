@@ -2,11 +2,11 @@ using System;
 using System.Data;
 using System.IO;
 using Tarantino.Core.Commons.Services.Environment;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ExcelWorksheetReader : IExcelWorksheetReader
 	{
 		private readonly IFileSystem _fileSystem;

@@ -2,11 +2,11 @@ using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.Commons.Services.Security;
-using StructureMap;
+
 
 namespace Tarantino.Core.Deployer.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class RevisionCertifier : IRevisionCertifier
 	{
 		private readonly ISystemClock _clock;

@@ -1,11 +1,10 @@
-using System;
 using System.Data;
 using Tarantino.Core.Commons.Model.Enumerations;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DataTableReader : IDataTableReader
 	{
 		private DataTable _table;
@@ -18,21 +17,21 @@ namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 
 		public bool Read()
 		{
-			int numberOfRows = _table.Rows.Count;
+			var numberOfRows = _table.Rows.Count;
 			_currentRowIndex++;
-			bool tableHasEnoughRows = numberOfRows > _currentRowIndex;
+			var tableHasEnoughRows = numberOfRows > _currentRowIndex;
 
-			bool canRead = tableHasEnoughRows && currentRowHasValues();
+			var canRead = tableHasEnoughRows && currentRowHasValues();
 
 			return canRead;
 		}
 
 		private bool currentRowHasValues()
 		{
-			bool hasValues = false;
+			var hasValues = false;
 			foreach (DataColumn column in _table.Columns)
 			{
-				string currentColumnValue = _table.Rows[_currentRowIndex][column.ColumnName].ToString();
+				var currentColumnValue = _table.Rows[_currentRowIndex][column.ColumnName].ToString();
 				
 				if (!string.IsNullOrEmpty(currentColumnValue))
 				{
@@ -44,20 +43,20 @@ namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 
 		public int GetInteger(string columnName)
 		{
-			int value = int.Parse(GetString(columnName));
+			var value = int.Parse(GetString(columnName));
 			return value;
 		}
 
 		public decimal GetDecimal(string columnName)
 		{
-			decimal value = decimal.Parse(GetString(columnName));
+			var value = decimal.Parse(GetString(columnName));
 			return value;
 		}
 
 		public T GetEnumeration<T>(string columnName) where T : Enumeration, new()
 		{
-			string displayName = GetString(columnName);
-			T value = Enumeration.FromDisplayName<T>(displayName);
+			var displayName = GetString(columnName);
+			var value = Enumeration.FromDisplayName<T>(displayName);
 
 			return value;
 		}
@@ -70,7 +69,7 @@ namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 
 		public string GetString(string columnName)
 		{
-			string currentRowValue = _table.Rows[_currentRowIndex][columnName] as string;
+			var currentRowValue = _table.Rows[_currentRowIndex][columnName] as string;
 			
 			if (currentRowValue == string.Empty)
 			{

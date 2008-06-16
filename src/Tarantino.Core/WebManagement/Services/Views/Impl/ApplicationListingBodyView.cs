@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.DataFileManagement;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.WebManagement.Model;
@@ -8,7 +8,7 @@ using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-    [Pluggable(Keys.Default)]
+    
     public class ApplicationListingBodyView : IApplicationListingBodyView
     {
         private readonly IAdministratorSecurityChecker checker;

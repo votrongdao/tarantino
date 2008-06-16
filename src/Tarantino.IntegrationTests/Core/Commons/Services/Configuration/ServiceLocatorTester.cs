@@ -1,20 +1,21 @@
 using Tarantino.Core.Commons.Services.Configuration;
-using Tarantino.Core.Commons.Services.Configuration.Impl;
-using Tarantino.Core.Commons.Services.Web;
+using Tarantino.Core.Commons.Services.Environment;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
+using Tarantino.Core.DatabaseManager.Services;
+using Tarantino.Infrastructure.Commons.Services.Configuration;
 
 namespace Tarantino.IntegrationTests.Core.Commons.Services.Configuration
 {
 	[TestFixture]
-	public class ServiceLocatorTester
+	public class ServiceLocatorTester : InfrastructureIntegrationTester
 	{
 		[Test]
 		public void Correctly_Constructs_Instance()
 		{
 			IServiceLocator serviceLocator = new ServiceLocator();
 
-			IWebDataReader instance = serviceLocator.CreateInstance<IWebDataReader>();
+			var instance = serviceLocator.CreateInstance<IResourceFileLocator>();
 
 			Assert.That(instance, Is.Not.Null);
 		}
@@ -24,8 +25,8 @@ namespace Tarantino.IntegrationTests.Core.Commons.Services.Configuration
 		{
 			IServiceLocator serviceLocator = new ServiceLocator();
 
-			IWebDataReader instance = serviceLocator.CreateInstance<IWebDataReader>("Default");
-			
+			var instance = serviceLocator.CreateInstance<IDatabaseActionExecutor>("Create");
+
 			Assert.That(instance, Is.Not.Null);
 		}
 	}

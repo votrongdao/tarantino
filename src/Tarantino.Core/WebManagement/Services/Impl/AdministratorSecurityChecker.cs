@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Security;
 using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class AdministratorSecurityChecker : IAdministratorSecurityChecker
 	{
 		private readonly IWebContext _context;

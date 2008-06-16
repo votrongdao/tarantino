@@ -1,10 +1,10 @@
 ﻿using System.Text;
-using StructureMap;
+
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ConnectionStringGenerator : IConnectionStringGenerator
 	{
 		public string GetConnectionString(ConnectionSettings settings, bool includeDatabaseName)

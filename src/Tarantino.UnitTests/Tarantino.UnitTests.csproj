@@ -62,6 +62,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CoreDependencyRegistrarTester.cs" />
     <Compile Include="Core\Commons\Services\Environment\AssemblyContextTester.cs" />
     <Compile Include="Core\Commons\Services\RandomDataCreation\CodeGeneratorTester.cs" />
     <Compile Include="Core\Commons\Services\RandomDataCreation\RandomCharacterGeneratorTester.cs" />

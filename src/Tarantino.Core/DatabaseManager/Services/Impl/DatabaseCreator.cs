@@ -1,10 +1,8 @@
-using System;
-using StructureMap;
+
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable("Create")]
 	public class DatabaseCreator : IDatabaseActionExecutor
 	{
 		private readonly IQueryExecutor _queryExecutor;

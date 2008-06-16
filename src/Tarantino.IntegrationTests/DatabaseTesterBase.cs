@@ -9,7 +9,7 @@ using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.IntegrationTests
 {
-	public abstract class DatabaseTesterBase
+	public abstract class DatabaseTesterBase : InfrastructureIntegrationTester
 	{
 		private IObjectMapper _mapper;
 
@@ -18,6 +18,8 @@ namespace Tarantino.IntegrationTests
 		[SetUp]
 		public virtual void SetUp()
 		{
+			Setup();
+
 			_mapper = ObjectFactory.GetInstance<IObjectMapper>();
 			_mapper.ConnectionStringKey = ConnectionStringKey;
 			ThreadSessionScoper.ResetSession(ConnectionStringKey);

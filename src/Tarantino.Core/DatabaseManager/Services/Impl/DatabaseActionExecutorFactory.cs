@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.DatabaseManager.Services.Impl.Tarantino.Core.DatabaseManager.Services.Impl;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DatabaseActionExecutorFactory : IDatabaseActionExecutorFactory
 	{
 		private readonly IDatabaseActionResolver _resolver;

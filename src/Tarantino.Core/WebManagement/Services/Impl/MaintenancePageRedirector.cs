@@ -1,10 +1,10 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class MaintenancePageRedirector : IMaintenancePageRedirector
 	{
 		private readonly IWebContext _context;

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using StructureMap;
+
 using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Repositories
 {
-	[PluginFamily(Keys.Default)]
+	
 	public interface IApplicationInstanceRepository
 	{
 		IEnumerable<ApplicationInstance> GetAll();

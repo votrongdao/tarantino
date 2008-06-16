@@ -1,10 +1,10 @@
-﻿using StructureMap;
+﻿
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DatabaseVersioner : IDatabaseVersioner
 	{
 		private IQueryExecutor _executor;

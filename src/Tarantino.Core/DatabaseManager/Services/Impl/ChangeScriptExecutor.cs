@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ChangeScriptExecutor : IChangeScriptExecutor
 	{
 		private IScriptExecutionTracker _executionTracker;

@@ -8,7 +8,7 @@
 	default-lazy="false">
 
 	<class name="Deployment" dynamic-update="true">
-		<id	name="Id" column="DeploymentId" type="Guid">
+		<id	name="Id" column="DeploymentId" type="Guid" access="property">
 			<generator class="guid.comb" />
 		</id>
 

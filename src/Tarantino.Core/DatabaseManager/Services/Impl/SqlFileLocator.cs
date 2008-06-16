@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Environment;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class SqlFileLocator : ISqlFileLocator
 	{
 		private IFileSystem _fileSystem;

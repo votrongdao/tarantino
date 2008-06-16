@@ -1,12 +1,12 @@
 using System;
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Environment;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Logging;
 
 namespace Tarantino.Core.Daemon.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ServiceAgentAggregator : IServiceAgentAggregator
 	{
 		private readonly IApplicationSettings _settings;

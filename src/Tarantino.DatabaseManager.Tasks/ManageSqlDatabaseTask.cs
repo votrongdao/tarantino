@@ -3,12 +3,13 @@ using StructureMap;
 using Tarantino.Core.DatabaseManager.Services;
 using Tarantino.Core.DatabaseManager.Services.Impl;
 using NAnt.Core.Attributes;
+using Tarantino.Infrastructure;
 using Tarantino.Infrastructure.DatabaseManager.BuildTasks;
 
 namespace Tarantino.DatabaseManager.Tasks
 {
 	[TaskName("manageSqlDatabase")]
-	public class ManageSqlDatabaseTask : Task, ITaskObserver
+	public class ManageSqlDatabaseTask : Task
 	{
 		private RequestedDatabaseAction _action = RequestedDatabaseAction.Update;
 		private DirectoryInfo _scriptDirectory = new DirectoryInfo(".");
@@ -71,7 +72,8 @@ namespace Tarantino.DatabaseManager.Tasks
 		{
 			try
 			{
-				ISqlDatabaseManager manager = ObjectFactory.GetInstance<ISqlDatabaseManager>();
+				InfrastructureDependencyRegistrar.RegisterInfrastructure();
+				var manager = ObjectFactory.GetInstance<ISqlDatabaseManager>();
 				manager.Upgrade(ScriptDirectory.FullName, Server, Database, IntegratedAuthentication, Username, Password, Action, this);
 			}
 			catch

@@ -1,4 +1,5 @@
 using System;
+using Tarantino.Infrastructure;
 
 namespace Tarantino.WebManagement.Modules
 {
@@ -8,15 +9,17 @@ namespace Tarantino.WebManagement.Modules
 
 		public void Init(System.Web.HttpApplication context)
 		{
+			InfrastructureDependencyRegistrar.RegisterInfrastructure();
+
 			_context = context;
-			_context.PreRequestHandlerExecute += new EventHandler(PreRequestHandlerExecute);
-			_context.BeginRequest += new EventHandler(BeginRequest);
-			_context.AuthenticateRequest += new EventHandler(AuthenticateRequest);
-			_context.AcquireRequestState += new EventHandler(AcquireRequestState);
+			_context.PreRequestHandlerExecute += PreRequestHandlerExecute;
+			_context.BeginRequest += BeginRequest;
+			_context.AuthenticateRequest += AuthenticateRequest;
+			_context.AcquireRequestState += AcquireRequestState;
 			Initialized();
 		}
 
-		protected virtual void Initialized() { ;}
+		protected virtual void Initialized() { }
 
 		public void Dispose()
 		{

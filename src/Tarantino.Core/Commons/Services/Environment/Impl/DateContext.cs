@@ -1,11 +1,11 @@
 using System;
 using System.Data.SqlTypes;
 using Tarantino.Core.Commons.Model.Enumerations;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DateContext : IDateContext
 	{
 		private readonly ISystemClock _clock;
@@ -17,7 +17,7 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 
 		public int GetCurrentYear()
 		{
-			int currentYear = _clock.GetCurrentDateTime().Year;
+			var currentYear = _clock.GetCurrentDateTime().Year;
 			return currentYear;
 		}
 

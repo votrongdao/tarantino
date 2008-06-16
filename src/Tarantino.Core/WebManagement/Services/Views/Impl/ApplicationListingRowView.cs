@@ -1,11 +1,11 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.DataFileManagement;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-    [Pluggable(Keys.Default)]
+    
     public class ApplicationListingRowView:IApplicationListingRowView
     {
         private readonly IResourceFileLocator fileLocator;

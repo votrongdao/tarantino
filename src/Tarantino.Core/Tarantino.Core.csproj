@@ -127,7 +127,6 @@
     <Compile Include="Commons\Services\Configuration\Impl\ConfigurationReader.cs" />
     <Compile Include="Commons\Services\Configuration\Impl\ElementCollection.cs" />
     <Compile Include="Commons\Services\Configuration\Impl\NamedElement.cs" />
-    <Compile Include="Commons\Services\Configuration\Impl\ServiceLocator.cs" />
     <Compile Include="Commons\Services\Configuration\IServiceLocator.cs" />
     <Compile Include="Commons\Services\Repositories\IPersistentObjectRepository.cs">
       <SubType>Code</SubType>
@@ -171,7 +170,7 @@
     <Compile Include="DatabaseManager\Model\ConnectionSettings.cs" />
     <Compile Include="DatabaseManager\Services\IChangeScriptExecutor.cs" />
     <Compile Include="DatabaseManager\Services\IConnectionStringGenerator.cs" />
-    <Compile Include="DatabaseManager\Services\IDatabaseActionExectorFactory.cs" />
+    <Compile Include="DatabaseManager\Services\IDatabaseActionExecutorFactory.cs" />
     <Compile Include="DatabaseManager\Services\IDatabaseActionExecutor.cs" />
     <Compile Include="DatabaseManager\Services\IDatabaseActionResolver.cs" />
     <Compile Include="DatabaseManager\Services\IDatabaseConnectionDropper.cs" />
@@ -203,6 +202,7 @@
     <Compile Include="DatabaseManager\Services\ISqlFileLocator.cs" />
     <Compile Include="DatabaseManager\Services\ITaskObserver.cs" />
     <Compile Include="Commons\Services\DataFileManagement\ITokenReplacer.cs" />
+    <Compile Include="CoreDependencyRegistrar.cs" />
     <Compile Include="Deployer\Model\Deployment.cs" />
     <Compile Include="Deployer\Model\DeploymentResult.cs" />
     <Compile Include="Deployer\Services\Configuration\IApplicationRepository.cs" />

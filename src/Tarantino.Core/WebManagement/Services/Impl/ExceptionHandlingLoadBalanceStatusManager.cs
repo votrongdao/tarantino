@@ -1,11 +1,11 @@
 using System;
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Web;
 using Tarantino.Core.WebManagement.Services.Views;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ExceptionHandlingLoadBalanceStatusManager : IExceptionHandlingLoadBalanceStatusManager
 	{
 		private readonly ILoadBalanceStatusManager _manager;

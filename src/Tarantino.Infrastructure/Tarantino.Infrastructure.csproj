@@ -87,6 +87,7 @@
     <Compile Include="Commons\DataAccess\ORMapper\SessionManager.cs" />
     <Compile Include="Commons\DataAccess\ORMapper\ThreadSessionScoper.cs" />
     <Compile Include="Commons\DataAccess\Repositories\PersistentObjectRepository.cs" />
+    <Compile Include="Commons\Services\Configuration\ServiceLocator.cs" />
     <Compile Include="Commons\UI\Controls\BooleanDropDownList.cs" />
     <Compile Include="Commons\UI\Controls\DecimalDropDownList.cs" />
     <Compile Include="Commons\UI\Controls\EnumerationDropDownList.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="DatabaseManager\BuildTasks\Task.cs" />
     <Compile Include="DatabaseManager\DataAccess\QueryExecutor.cs" />
     <Compile Include="Deployer\DataAccess\Repositories\DeploymentRepository.cs" />
+    <Compile Include="InfrastructureDependencyRegistrar.cs" />
     <Compile Include="WebManagement\DataAccess\Repositories\ApplicationInstanceRepository.cs" />
     <Compile Include="WebManagement\Http\LoadBalancer.cs" />
     <Compile Include="WebManagement\Http\MaintenanceMode.cs" />

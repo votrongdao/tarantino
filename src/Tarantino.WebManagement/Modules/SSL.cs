@@ -9,7 +9,7 @@ namespace Tarantino.WebManagement.Modules
 	{
 		public void Init(HttpApplication context)
 		{
-			context.PreRequestHandlerExecute += new EventHandler(context_PreRequestHandlerExecute);
+			context.PreRequestHandlerExecute += context_PreRequestHandlerExecute;
 		}
 
 		public void Dispose()
@@ -18,18 +18,16 @@ namespace Tarantino.WebManagement.Modules
 
 		private void context_PreRequestHandlerExecute(object sender, EventArgs e)
 		{
-			HttpContext httpContext = HttpContext.Current;
+			var httpContext = HttpContext.Current;
 
 			if (ByPassSSL(httpContext))
 				return;
 
 			//Get list of files to be secured
-			NameValueCollection sslFiles = (NameValueCollection) ConfigurationManager.GetSection("RequiresSSL/RequiresSSL_Files");
+			var sslFiles = (NameValueCollection) ConfigurationManager.GetSection("RequiresSSL/RequiresSSL_Files");
 
 			//Get list of paths to be secured
-			NameValueCollection sslPaths = (NameValueCollection) ConfigurationManager.GetSection("RequiresSSL/RequiresSSL_Paths");
-
-			bool requiresSSL;
+			var sslPaths = (NameValueCollection) ConfigurationManager.GetSection("RequiresSSL/RequiresSSL_Paths");
 
 			//Simple Screen Writes to let the user know what's going on, what we found
 			//WriteEntriesToResponse(sslFiles,"Files",ctx);
@@ -42,7 +40,7 @@ namespace Tarantino.WebManagement.Modules
 				File = File.Substring(0, File.IndexOf("?"));
 
 			//First check the paths
-			requiresSSL = IsFileInrequiredCollection(sslPaths, File);
+			bool requiresSSL = IsFileInrequiredCollection(sslPaths, File);
 
 			//Now check the files, only if path doesn't require SSL
 			if (requiresSSL == false)

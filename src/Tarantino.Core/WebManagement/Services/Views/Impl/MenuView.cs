@@ -1,10 +1,10 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.DataFileManagement;
 using Tarantino.Core.Commons.Services.Environment;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class MenuView : IMenuView
 	{
 		public const string MenuTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.MenuTemplate.html";

@@ -1,9 +1,9 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-    [Pluggable(Keys.Default)]
+    
     public class ApplicationListingView:IApplicationListingView
     {
         private readonly IApplicationListingBodyView bodyView;

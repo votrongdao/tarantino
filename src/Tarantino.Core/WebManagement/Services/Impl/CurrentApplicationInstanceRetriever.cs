@@ -1,4 +1,4 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.WebManagement.Model;
@@ -6,7 +6,7 @@ using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class CurrentApplicationInstanceRetriever : ICurrentApplicationInstanceRetriever
 	{
 		private readonly ISystemEnvironment _environment;

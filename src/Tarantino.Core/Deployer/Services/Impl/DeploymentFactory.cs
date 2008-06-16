@@ -1,10 +1,10 @@
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Commons.Services.Environment;
-using StructureMap;
+
 
 namespace Tarantino.Core.Deployer.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DeploymentFactory : IDeploymentFactory
 	{
 		private readonly ISystemClock _clock;

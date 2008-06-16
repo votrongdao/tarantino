@@ -1,20 +1,16 @@
 using System;
 using System.Threading;
 using Tarantino.Core.Commons.Services.Configuration;
-using StructureMap;
 using Tarantino.Core.Commons.Services.Logging;
 
 namespace Tarantino.Core.Daemon.Services.Impl
 {
-	[Pluggable(Keys.Default)]
 	public class ServiceRunner : IServiceRunner
 	{
-		private bool _continue = false;
-		private Thread _workerThread;
-		private IServiceAgentAggregator _aggregator;
+		private readonly IServiceAgentAggregator _aggregator;
 		private readonly IApplicationSettings _applicationSettings;
-		public event EventHandler CycleStarted;
-		public event EventHandler CycleCompleted;
+		private bool _continue;
+		private Thread _workerThread;
 
 		public ServiceRunner(IServiceAgentAggregator aggregator, IApplicationSettings applicationSettings)
 		{
@@ -32,7 +28,7 @@ namespace Tarantino.Core.Daemon.Services.Impl
 		public void Stop()
 		{
 			_continue = false;
-            Logger.Debug(this, "Service Runner stopping");
+			Logger.Debug(this, "Service Runner stopping");
 
 			if (_workerThread != null)
 			{
@@ -40,48 +36,7 @@ namespace Tarantino.Core.Daemon.Services.Impl
 				Logger.Debug(this, "Service Runner thread stopped");
 			}
 
-            Logger.Debug(this, "Service Runner stopped");
-		}
-
-		private void workerThreadStart()
-		{
-			try
-			{
-                Logger.Debug(this, "Service Runner thread initializing");
-
-				while (_continue)
-				{
-                    Logger.Debug(this, "Service Runner thread initialized");
-
-					RunOneCycle();
-					int sleepTime = _applicationSettings.GetServiceSleepTime();
-					Thread.Sleep(sleepTime);
-				}
-			}
-			catch (Exception ex)
-			{
-                Logger.Fatal(this, "Running service cycle failed", ex);
-			}
-		}
-
-		private void OnCycleStarted()
-		{
-            Logger.Debug(this, "Starting Cycle");
-
-			if (CycleStarted != null)
-			{
-				CycleStarted(this, EventArgs.Empty);
-			}
-		}
-
-		private void OnCycleCompleted()
-		{
-            Logger.Debug(this, "Finished Cycle");
-
-			if (CycleCompleted != null)
-			{
-				CycleCompleted(this, EventArgs.Empty);
-			}
+			Logger.Debug(this, "Service Runner stopped");
 		}
 
 		public void RunOneCycle()
@@ -91,6 +46,49 @@ namespace Tarantino.Core.Daemon.Services.Impl
 			_aggregator.ExecuteServiceAgentCycle();
 
 			OnCycleCompleted();
+		}
+
+		public event EventHandler CycleStarted, CycleCompleted;
+
+		private void workerThreadStart()
+		{
+			try
+			{
+				Logger.Debug(this, "Service Runner thread initializing");
+
+				while (_continue)
+				{
+					Logger.Debug(this, "Service Runner thread initialized");
+
+					RunOneCycle();
+					int sleepTime = _applicationSettings.GetServiceSleepTime();
+					Thread.Sleep(sleepTime);
+				}
+			}
+			catch (Exception ex)
+			{
+				Logger.Fatal(this, "Running service cycle failed", ex);
+			}
+		}
+
+		private void OnCycleStarted()
+		{
+			Logger.Debug(this, "Starting Cycle");
+
+			if (CycleStarted != null)
+			{
+				CycleStarted(this, EventArgs.Empty);
+			}
+		}
+
+		private void OnCycleCompleted()
+		{
+			Logger.Debug(this, "Finished Cycle");
+
+			if (CycleCompleted != null)
+			{
+				CycleCompleted(this, EventArgs.Empty);
+			}
 		}
 	}
 }

@@ -1,9 +1,9 @@
 using Tarantino.Core.Commons.Services.Caching.Impl;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Caching.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class CacheManager : ICacheManager
 	{
 		public void Set<T>(object key, T objectToCache)

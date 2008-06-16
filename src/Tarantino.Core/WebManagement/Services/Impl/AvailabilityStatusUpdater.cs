@@ -1,11 +1,11 @@
 using System;
-using StructureMap;
+
 using Tarantino.Core.WebManagement.Model;
 using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class AvailabilityStatusUpdater : IAvailabilityStatusUpdater
 	{
 		private readonly IApplicationInstanceRepository _repository;

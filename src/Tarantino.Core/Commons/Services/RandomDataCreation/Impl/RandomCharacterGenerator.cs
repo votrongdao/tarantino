@@ -1,10 +1,10 @@
 using System;
 using Tarantino.Core.Commons.Services.RandomDataCreation;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.RandomDataCreation.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class RandomCharacterGenerator : IRandomCharacterGenerator
 	{
 		private const int _lastLetter = 25;

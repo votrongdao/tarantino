@@ -8,9 +8,9 @@ namespace Tarantino.WebManagement.Modules
 {
 	public class CacheControler : ModuleBase
 	{
-		protected static string[] domainNames = null;
+		protected static string[] domainNames;
 
-		protected bool domainShouldBeCached = false;
+		protected bool domainShouldBeCached;
 
 		protected const string CacheDependencyKey = "OutputCacheDependency";
 
@@ -18,9 +18,9 @@ namespace Tarantino.WebManagement.Modules
 		{
 			if (domainNames == null)
 			{
-				NameValueCollection domainnames = (NameValueCollection)ConfigurationManager.GetSection("CacheControl/DomainNames");
+				var domainnames = (NameValueCollection)ConfigurationManager.GetSection("CacheControl/DomainNames");
 				domainNames = new string[domainnames.Count];
-				int index = 0;
+				var index = 0;
 				foreach (string domain in domainnames.Keys)
 				{
 					domainNames[index] = domain;
@@ -48,7 +48,8 @@ namespace Tarantino.WebManagement.Modules
 
 		private void InsertCacheDependencyKey()
 		{
-			HttpContext httpcontext = HttpContext.Current;
+			var httpcontext = HttpContext.Current;
+
 			if (httpcontext.Cache[CacheDependencyKey] == null)
 			{
 				httpcontext.Cache.Insert(CacheDependencyKey, DateTime.Now, null,

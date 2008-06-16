@@ -8,7 +8,7 @@ using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.Infrastructure.WebManagement.DataAccess.Repositories
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ApplicationInstanceRepository : IApplicationInstanceRepository
 	{
 		private readonly IPersistentObjectRepository _objectRepository;

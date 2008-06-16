@@ -1,10 +1,10 @@
-﻿using StructureMap;
+﻿
 using Tarantino.Core;
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services
 {
-	[PluginFamily(Keys.Default)]
+	
 	public interface IQueryExecutor
 	{
 		void ExecuteNonQuery(ConnectionSettings settings, string sql, bool runAgainstSpecificDatabase);

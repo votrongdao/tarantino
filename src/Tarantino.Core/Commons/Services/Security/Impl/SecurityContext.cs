@@ -1,8 +1,8 @@
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Security.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class SecurityContext : ISecurityContext
 	{
 		private readonly IWindowsIdentity _windowsIdentity;

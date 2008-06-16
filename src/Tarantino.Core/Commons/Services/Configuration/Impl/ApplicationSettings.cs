@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Configuration.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class ApplicationSettings : IApplicationSettings
 	{
 		protected readonly IConfigurationReader _configurationReader;

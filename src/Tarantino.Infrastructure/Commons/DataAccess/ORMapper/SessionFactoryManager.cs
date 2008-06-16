@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
-	[Pluggable(Keys.Default)]
+	
 	public class SessionFactoryManager : ISessionFactoryManager
 	{
 		private readonly IApplicationSettings _applicationSettings;

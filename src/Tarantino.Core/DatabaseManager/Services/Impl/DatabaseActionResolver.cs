@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using StructureMap;
+
 using Tarantino.Core.DatabaseManager.Services.Impl.Tarantino.Core.DatabaseManager.Services.Impl;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class DatabaseActionResolver : IDatabaseActionResolver
 	{
 		public IEnumerable<DatabaseAction> GetActions(RequestedDatabaseAction requestedDatabaseAction)

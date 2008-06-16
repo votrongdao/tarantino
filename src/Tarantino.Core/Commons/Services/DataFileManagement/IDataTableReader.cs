@@ -1,10 +1,10 @@
 using System.Data;
 using Tarantino.Core.Commons.Model.Enumerations;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement
 {
-	[PluginFamily(Keys.Default)]
+	
 	public interface IDataTableReader
 	{
 		void Open(DataTable table);

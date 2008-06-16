@@ -1,10 +1,10 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.Web;
 using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class LoadBalanceStatusManager : ILoadBalanceStatusManager
 	{
 		public const string ENABLED_PARAM = "enabled";

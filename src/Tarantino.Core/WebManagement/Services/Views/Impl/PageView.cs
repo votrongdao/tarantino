@@ -1,10 +1,10 @@
-using StructureMap;
+
 using Tarantino.Core.Commons.Services.DataFileManagement;
 using Tarantino.Core.Commons.Services.Environment;
 
 namespace Tarantino.Core.WebManagement.Services.Views.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class PageView : IPageView
 	{
 		public const string PageTemplate = "Tarantino.Core.WebManagement.Services.Views.Resources.PageTemplate.html";

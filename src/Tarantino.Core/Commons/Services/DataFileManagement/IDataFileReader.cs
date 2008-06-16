@@ -1,10 +1,10 @@
 using System;
 using Tarantino.Core.Commons.Model.Enumerations;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.DataFileManagement
 {
-	[PluginFamily(Keys.Default)]
+	
 	public interface IDataFileReader : IDisposable
 	{
 		void Open(string assembly, string resourceFilename, string filePath);

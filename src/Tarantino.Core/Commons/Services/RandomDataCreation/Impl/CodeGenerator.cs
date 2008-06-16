@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using Tarantino.Core.Commons.Services.RandomDataCreation;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.RandomDataCreation.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class CodeGenerator : ICodeGenerator
 	{
 		private readonly IRandomCharacterGenerator _characterGenerator;

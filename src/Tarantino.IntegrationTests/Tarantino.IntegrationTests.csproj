@@ -76,6 +76,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="InfrastructureIntegrationTester.cs" />
     <Compile Include="Core\Commons\Services\Configuration\ApplicationConfigurationTester.cs" />
     <Compile Include="Core\Commons\Services\Configuration\ServiceLocatorTester.cs" />
     <Compile Include="Core\Commons\Services\DataFileManagement\ExcelWorkbookReaderTester.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Infrastructure\WebManagement\DataAccess\WebManagementDatabaseTester.cs" />
     <Compile Include="Infrastructure\WebManagement\DataAccess\Mappings\ApplicationInstanceMappingsTester.cs" />
     <Compile Include="Infrastructure\WebManagement\Services\Views\ResourceTester.cs" />
+    <Compile Include="IntegrationTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StructureMap.config">

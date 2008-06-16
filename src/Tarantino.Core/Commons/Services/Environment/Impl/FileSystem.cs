@@ -1,10 +1,10 @@
 using System;
 using System.IO;
-using StructureMap;
+
 
 namespace Tarantino.Core.Commons.Services.Environment.Impl
 {
-	[Pluggable(Keys.Default)]
+	
 	public class FileSystem : IFileSystem
 	{
 		private IFileStreamFactory _streamFactory;

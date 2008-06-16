@@ -12,7 +12,7 @@ using Tarantino.Core.Commons.Services.Repositories;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 {
-	[Pluggable(Keys.Default)]
+	
 	public class PersistentObjectRepository : IPersistentObjectRepository
 	{
 		private IObjectMapper _mapper;
