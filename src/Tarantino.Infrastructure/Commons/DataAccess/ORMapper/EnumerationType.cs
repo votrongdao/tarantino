@@ -14,7 +14,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public override object Get(IDataReader rs, int index)
 		{
-			int value = (int) rs[index];
+			var value = (int) rs[index];
 			return Enumeration.FromValue<T>(value);
 		}
 
@@ -46,9 +46,9 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public override void Set(IDbCommand cmd, object value, int index)
 		{
-			IDataParameter parameter = (IDataParameter) cmd.Parameters[index];
+			var parameter = (IDataParameter) cmd.Parameters[index];
 
-			Enumeration val = (Enumeration)value;
+			var val = (Enumeration)value;
 
 			parameter.Value = val.Value;
 		}
@@ -58,11 +58,12 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			//get boxed values.
 			if (x == null && y == null)
 				return true;
-			else if (x == null || y == null)
+			
+			if (x == null || y == null)
 				return false;
 
-			Enumeration xTyped = (Enumeration)x;
-			Enumeration yTyped = (Enumeration)y;
+			var xTyped = (Enumeration)x;
+			var yTyped = (Enumeration)y;
 
 			return xTyped.Equals(yTyped);
 		}

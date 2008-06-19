@@ -9,7 +9,7 @@ using Tarantino.Core.Commons.Services.Web.Impl;
 using Tarantino.Core.DatabaseManager.Services;
 using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.WebManagement.Services.Repositories;
-using Tarantino.Infrastructure.Commons.DataAccess;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 using Tarantino.Infrastructure.Commons.DataAccess.Repositories;
 using Tarantino.Infrastructure.Commons.UI.Services;
 using Tarantino.Infrastructure.DatabaseManager.DataAccess;

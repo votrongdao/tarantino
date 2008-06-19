@@ -6,6 +6,7 @@ using NUnit.Framework.SyntaxHelpers;
 using Tarantino.Core.Commons.Model;
 using Tarantino.Infrastructure;
 using Tarantino.Infrastructure.Commons.DataAccess;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.IntegrationTests
 {

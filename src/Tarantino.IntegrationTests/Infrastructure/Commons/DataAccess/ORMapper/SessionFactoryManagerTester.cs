@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using StructureMap;
-using Tarantino.Infrastructure.Commons.DataAccess;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 using Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess;
 
 namespace Tarantino.IntegrationTests.Infrastructure.Commons.DataAccess.ORMapper

@@ -76,12 +76,12 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Commons\DataAccess\HybridSessionBuilder.cs" />
-    <Compile Include="Commons\DataAccess\ISessionBuilder.cs" />
-    <Compile Include="Commons\DataAccess\NHibernateSessionModule.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\HybridSessionBuilder.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\ISessionBuilder.cs" />
+    <Compile Include="Commons\DataAccess\ORMapper\NHibernateSessionModule.cs" />
     <Compile Include="Commons\DataAccess\ORMapper\EnumerationType.cs" />
     <Compile Include="Commons\DataAccess\Repositories\PersistentObjectRepository.cs" />
-    <Compile Include="Commons\DataAccess\RepositoryBase.cs" />
+    <Compile Include="Commons\DataAccess\Repositories\RepositoryBase.cs" />
     <Compile Include="Commons\Services\Configuration\ServiceLocator.cs" />
     <Compile Include="Commons\UI\Controls\BooleanDropDownList.cs" />
     <Compile Include="Commons\UI\Controls\DecimalDropDownList.cs" />

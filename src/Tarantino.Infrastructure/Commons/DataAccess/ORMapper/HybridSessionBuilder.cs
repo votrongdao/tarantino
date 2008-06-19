@@ -4,7 +4,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using Tarantino.Core.Commons.Services.Logging;
 
-namespace Tarantino.Infrastructure.Commons.DataAccess
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public class HybridSessionBuilder : ISessionBuilder
 	{
@@ -84,7 +84,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess
 			}
 
 			var currentSession = _currentSessions.ContainsKey(configurationFile) ? 
-				_currentSessions[configurationFile] : null;
+			                                                                     	_currentSessions[configurationFile] : null;
 
 			if (currentSession == null || !currentSession.IsOpen)
 			{

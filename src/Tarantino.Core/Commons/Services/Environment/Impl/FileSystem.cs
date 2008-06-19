@@ -7,7 +7,7 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 	
 	public class FileSystem : IFileSystem
 	{
-		private IFileStreamFactory _streamFactory;
+		private readonly IFileStreamFactory _streamFactory;
 
 		public FileSystem(IFileStreamFactory streamFactory)
 		{
@@ -18,9 +18,9 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 		{
 			if (fileContent != null)
 			{
-				Stream fileStream = _streamFactory.ConstructWriteFileStream(filename);
+				var fileStream = _streamFactory.ConstructWriteFileStream(filename);
 
-				using (BinaryWriter writer = new BinaryWriter(fileStream))
+				using (var writer = new BinaryWriter(fileStream))
 				{
 					writer.Write(fileContent);
 				}
@@ -29,7 +29,7 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 
 		public bool FileExists(string relativePath)
 		{
-			bool retval = File.Exists(relativePath);
+			var retval = File.Exists(relativePath);
 			return retval;
 		}
 
@@ -37,7 +37,7 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 		{
 			try
 			{
-				Stream stream = _streamFactory.ConstructReadFileStream(path);
+				var stream = _streamFactory.ConstructReadFileStream(path);
 				return stream;
 			}
 			catch (IOException ex)
@@ -46,18 +46,18 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 				{
 					throw new ApplicationException("The file you chose cannot be read because it is open in another application.  Please close the file in the other application and try again.");
 				}
-				else
-					throw;
+
+				throw;
 			}
 		}
 
 		public string[] GetAllFilesWithExtensionWithinFolder(string folder, string fileExtension)
 		{
-			string[] fileNames = new string[0];
+			var fileNames = new string[0];
 
 			if (Directory.Exists(folder))
 			{
-				string searchPattern = string.Format("*.{0}", fileExtension);
+				var searchPattern = string.Format("*.{0}", fileExtension);
 				fileNames = Directory.GetFiles(folder, searchPattern, SearchOption.AllDirectories);
 			}
 
@@ -66,11 +66,19 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 
 		public string ReadTextFile(string filename)
 		{
-			Stream stream = _streamFactory.ConstructReadFileStream(filename);
-			using (StreamReader reader = new StreamReader(stream))
+			var stream = _streamFactory.ConstructReadFileStream(filename);
+
+			using (var reader = new StreamReader(stream))
 			{
 				return reader.ReadToEnd();
 			}
+		}
+
+		public StreamReader ReadFileIntoStreamReader(string filename)
+		{
+			var stream = _streamFactory.ConstructReadFileStream(filename);
+			var reader = new StreamReader(stream);
+			return reader;
 		}
 	}
 }

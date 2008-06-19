@@ -1,7 +1,7 @@
 using NHibernate;
 using NHibernate.Cfg;
 
-namespace Tarantino.Infrastructure.Commons.DataAccess
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public interface ISessionBuilder
 	{

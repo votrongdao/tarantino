@@ -1,9 +1,9 @@
 using System;
 using System.Web;
 using Tarantino.Core.Commons.Services.Logging;
-using Tarantino.Infrastructure.Commons.DataAccess;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
-namespace Tarantino.Infrastructure.Commons.DataAccess
+namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public class NHibernateSessionModule : IHttpModule
 	{

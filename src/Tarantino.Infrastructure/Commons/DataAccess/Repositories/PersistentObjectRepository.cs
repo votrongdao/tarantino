@@ -5,6 +5,7 @@ using NHibernate.Expression;
 using Tarantino.Core.Commons.Model;
 using Tarantino.Core.Commons.Model.Enumerations;
 using Tarantino.Core.Commons.Services.Repositories;
+using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 {
