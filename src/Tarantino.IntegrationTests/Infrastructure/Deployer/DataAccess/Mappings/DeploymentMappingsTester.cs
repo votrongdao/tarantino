@@ -1,6 +1,6 @@
 using System;
-using Tarantino.Core.Deployer.Model;
 using NUnit.Framework;
+using Tarantino.Core.Deployer.Model;
 
 namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Mappings
 {
@@ -10,22 +10,20 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Mappings
 		[Test]
 		public void Can_persist_deployment()
 		{
-			Deployment deployment = new Deployment();
+			var deployment = new Deployment
+			                 	{
+			                 		Application = "SampleApp1",
+			                 		Environment = "Development",
+			                 		CertifiedBy = "Certifer",
+			                 		DeployedBy = "Deployer",
+			                 		DeployedOn = new DateTime(2007, 3, 15),
+			                 		CertifiedOn = new DateTime(2007, 4, 15),
+			                 		Revision = 250,
+			                 		Output = "Output text",
+			                 		Result = DeploymentResult.Failure
+			                 	};
 
-			deployment.Application = "SampleApp1";
-			deployment.Environment = "Development";
-			deployment.CertifiedBy = "Certifer";
-			deployment.DeployedBy = "Deployer";
-			deployment.DeployedOn = new DateTime(2007, 3, 15);
-			deployment.CertifiedOn = new DateTime(2007, 4, 15);
-			deployment.Revision = 250;
-			deployment.Output = "Output text";
-			deployment.Result = DeploymentResult.Failure;
-
-			SaveAndFlushSessionFor(deployment);
-			Deployment reloadedDeployment = LoadFromDatabaseAndAssertMatchFor(deployment);
-
-			AssertObjectsMatch(deployment, reloadedDeployment);
+			AssertObjectCanBePersisted(deployment);
 		}
 	}
 }

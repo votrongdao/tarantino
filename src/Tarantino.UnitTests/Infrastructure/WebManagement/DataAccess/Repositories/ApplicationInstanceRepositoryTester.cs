@@ -16,16 +16,16 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 		[Test]
 		public void Can_correctly_gets_all_application_instances()
 		{
-			ApplicationInstance instance1 = new ApplicationInstance();
-			ApplicationInstance instance2 = new ApplicationInstance();
-			ApplicationInstance[] instances = new ApplicationInstance[] { instance1, instance2 };
+			var instance1 = new ApplicationInstance();
+			var instance2 = new ApplicationInstance();
+			var instances = new[] { instance1, instance2 };
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
-				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
+				objectRepository.ConfigurationFile = "webmanagement.hibernate.cfg.xml";
 				Expect.Call(objectRepository.GetAll<ApplicationInstance>()).Return(instances);
 			}
 
@@ -41,23 +41,23 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 		[Test]
 		public void Can_correctly_gets_single_application_instance()
 		{
-			Guid id = Guid.NewGuid();
-			ApplicationInstance instance = new ApplicationInstance();
+			var id = Guid.NewGuid();
+			var instance = new ApplicationInstance();
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
-				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
+				objectRepository.ConfigurationFile = "webmanagement.hibernate.cfg.xml";
 				Expect.Call(objectRepository.GetById<ApplicationInstance>(id)).Return(instance);
 			}
 
 			using (mocks.Playback())
 			{
 				IApplicationInstanceRepository repository = new ApplicationInstanceRepository(objectRepository);
-				ApplicationInstance actualInstance = repository.GetById(id);
-				
+				var actualInstance = repository.GetById(id);
+
 				Assert.That(actualInstance, Is.SameAs(instance));
 			}
 		}
@@ -65,14 +65,14 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 		[Test]
 		public void Can_correctly_save_application_instance()
 		{
-			ApplicationInstance instance = new ApplicationInstance();
+			var instance = new ApplicationInstance();
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
-				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
+				objectRepository.ConfigurationFile = "webmanagement.hibernate.cfg.xml";
 				objectRepository.Save(instance);
 			}
 
@@ -86,14 +86,14 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 		[Test]
 		public void Can_correctly_delete_application_instance()
 		{
-			ApplicationInstance instance = new ApplicationInstance();
+			var instance = new ApplicationInstance();
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
-				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
+				objectRepository.ConfigurationFile = "webmanagement.hibernate.cfg.xml";
 				objectRepository.Delete(instance);
 			}
 
@@ -107,25 +107,25 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 		[Test]
 		public void Can_correctly_gets_application_instances_by_machine_name_and_maintenance_host_header()
 		{
-			ApplicationInstance instance = new ApplicationInstance();
+			var instance = new ApplicationInstance();
 
-			CriterionSet criteria = new CriterionSet();
+			var criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion("MachineName", "MyMachine"));
 			criteria.AddCriterion(new Criterion("MaintenanceHostHeader", "MyDomain"));
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
-				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
+				objectRepository.ConfigurationFile = "webmanagement.hibernate.cfg.xml";
 				Expect.Call(objectRepository.FindFirst<ApplicationInstance>(criteria)).Return(instance);
 			}
 
 			using (mocks.Playback())
 			{
 				IApplicationInstanceRepository repository = new ApplicationInstanceRepository(objectRepository);
-				ApplicationInstance actualInstance = repository.GetByMaintenanceHostHeaderAndMachineName("MyDomain", "MyMachine");
+				var actualInstance = repository.GetByMaintenanceHostHeaderAndMachineName("MyDomain", "MyMachine");
 
 				Assert.That(actualInstance, Is.SameAs(instance));
 			}
@@ -134,19 +134,19 @@ namespace Tarantino.UnitTests.Infrastructure.WebManagement.DataAccess.Repositori
 		[Test]
 		public void Can_correctly_gets_application_instances_by_host_header()
 		{
-			ApplicationInstance instance1 = new ApplicationInstance();
-			ApplicationInstance instance2 = new ApplicationInstance();
-			ApplicationInstance[] instances = new ApplicationInstance[] { instance1, instance2 };
+			var instance1 = new ApplicationInstance();
+			var instance2 = new ApplicationInstance();
+			var instances = new[] { instance1, instance2 };
 
-			CriterionSet criteria = new CriterionSet();
+			var criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion("UniqueHostHeader", "MyHostHeader"));
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var objectRepository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
-				objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
+				objectRepository.ConfigurationFile = "webmanagement.hibernate.cfg.xml";
 				Expect.Call(objectRepository.FindAll<ApplicationInstance>(criteria)).Return(instances);
 			}
 

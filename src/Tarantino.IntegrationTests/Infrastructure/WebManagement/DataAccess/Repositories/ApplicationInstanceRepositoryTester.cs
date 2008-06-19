@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using StructureMap;
 using Tarantino.Core.WebManagement.Model;
 using Tarantino.Core.WebManagement.Services.Repositories;
-using Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess;
 
 namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Repositories
 {
@@ -38,14 +36,14 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Rep
 			_instance3.UniqueHostHeader = "HostHeader1";
 			_instance4.UniqueHostHeader = "HostHeader2";
 
-			SaveAndFlushSessionFor(_instance1, _instance2, _instance3, _instance4);
+			Save(_instance1, _instance2, _instance3, _instance4);
 		} 
 
 		[Test]
 		public void Can_correctly_gets_application_instances_by_machine_name_and_domain()
 		{
-			IApplicationInstanceRepository repository = getRepository();
-			ApplicationInstance actualInstance = repository.GetByMaintenanceHostHeaderAndMachineName("Domain1", "Machine2");
+			var repository = getRepository();
+			var actualInstance = repository.GetByMaintenanceHostHeaderAndMachineName("Domain1", "Machine2");
 
 			Assert.That(actualInstance, Is.EqualTo(_instance2));
 		}
@@ -53,15 +51,15 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Rep
 		[Test]
 		public void Can_correctly_gets_application_instances_by_host_header()
 		{
-			IApplicationInstanceRepository repository = getRepository();
-			IEnumerable<ApplicationInstance> actualInstances = repository.GetByHostHeader("HostHeader2");
+			var repository = getRepository();
+			var actualInstances = repository.GetByHostHeader("HostHeader2");
 
-			Assert.That(actualInstances, Is.EqualTo(new ApplicationInstance[]{ _instance4 }));
+			Assert.That(actualInstances, Is.EqualTo(new[]{ _instance4 }));
 		}
 
 		private IApplicationInstanceRepository getRepository()
 		{
-			IApplicationInstanceRepository repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
+			var repository = ObjectFactory.GetInstance<IApplicationInstanceRepository>();
 			return repository;
 		}
 	}

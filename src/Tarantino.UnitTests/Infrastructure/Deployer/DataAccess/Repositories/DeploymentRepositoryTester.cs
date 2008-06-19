@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services;
@@ -16,19 +15,20 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 		[Test]
 		public void Returns_deployments_by_application_and_environment()
 		{
-			CriterionSet criteria = new CriterionSet();
+			var criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion(Deployment.APPLICATION, "SampleApp1"));
 			criteria.AddCriterion(new Criterion(Deployment.ENVIRONMENT, "Environment"));
 			criteria.OrderBy = Deployment.DEPLOYED_ON;
 			criteria.SortOrder = SortOrder.Descending;
 
-			Deployment[] foundDeployments = new Deployment[0];
+			var foundDeployments = new Deployment[0];
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository repository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var repository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
+				repository.ConfigurationFile = "deployer.hibernate.cfg.xml";
 				Expect.Call(repository.FindAll<Deployment>(criteria)).Return(foundDeployments);
 			}
 
@@ -36,7 +36,7 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 			{
 				IDeploymentRepository deploymentRepository = new DeploymentRepository(repository);
 
-				IEnumerable<Deployment> deployments = deploymentRepository.Find("SampleApp1", "Environment");
+				var deployments = deploymentRepository.Find("SampleApp1", "Environment");
 
 				Assert.That(deployments, Is.SameAs(foundDeployments));
 			}
@@ -47,7 +47,7 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 		[Test]
 		public void Returns_uncertified_deployments_by_application_and_environment()
 		{
-			CriterionSet criteria = new CriterionSet();
+			var criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion(Deployment.APPLICATION, "SampleApp1"));
 			criteria.AddCriterion(new Criterion(Deployment.ENVIRONMENT, "Environment"));
 			criteria.AddCriterion(new Criterion(Deployment.CERTIFIED_ON, null));
@@ -55,13 +55,14 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 			criteria.OrderBy = Deployment.DEPLOYED_ON;
 			criteria.SortOrder = SortOrder.Descending;
 
-			Deployment[] foundDeployments = new Deployment[0];
+			var foundDeployments = new Deployment[0];
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository repository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var repository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
+				repository.ConfigurationFile = "deployer.hibernate.cfg.xml";
 				Expect.Call(repository.FindAll<Deployment>(criteria)).Return(foundDeployments);
 			}
 
@@ -69,7 +70,7 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 			{
 				IDeploymentRepository deploymentRepository = new DeploymentRepository(repository);
 
-				IEnumerable<Deployment> deployments = deploymentRepository.FindSuccessfulUncertified("SampleApp1", "Environment");
+				var deployments = deploymentRepository.FindSuccessfulUncertified("SampleApp1", "Environment");
 
 				Assert.That(deployments, Is.SameAs(foundDeployments));
 			}
@@ -80,7 +81,7 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 		[Test]
 		public void Returns_certified_deployments_by_application_and_environment()
 		{
-			CriterionSet criteria = new CriterionSet();
+			var criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion(Deployment.APPLICATION, "SampleApp1"));
 			criteria.AddCriterion(new Criterion(Deployment.ENVIRONMENT, "Environment"));
 			criteria.AddCriterion(new Criterion(Deployment.CERTIFIED_ON, null, ComparisonOperator.NotEqual));
@@ -88,13 +89,14 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 			criteria.OrderBy = Deployment.DEPLOYED_ON;
 			criteria.SortOrder = SortOrder.Descending;
 
-			Deployment[] foundDeployments = new Deployment[0];
+			var foundDeployments = new Deployment[0];
 
-			MockRepository mocks = new MockRepository();
-			IPersistentObjectRepository repository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var repository = mocks.CreateMock<IPersistentObjectRepository>();
 
 			using (mocks.Record())
 			{
+				repository.ConfigurationFile = "deployer.hibernate.cfg.xml";
 				Expect.Call(repository.FindAll<Deployment>(criteria)).Return(foundDeployments);
 			}
 
@@ -102,7 +104,7 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 			{
 				IDeploymentRepository deploymentRepository = new DeploymentRepository(repository);
 
-				IEnumerable<Deployment> deployments = deploymentRepository.FindCertified("SampleApp1", "Environment");
+				var deployments = deploymentRepository.FindCertified("SampleApp1", "Environment");
 
 				Assert.That(deployments, Is.SameAs(foundDeployments));
 			}

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using StructureMap;
-using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
+using Tarantino.Infrastructure.Commons.DataAccess;
 using Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess;
 
 namespace Tarantino.IntegrationTests.Infrastructure.Commons.DataAccess.ORMapper
@@ -10,18 +10,16 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons.DataAccess.ORMapper
 	public class SessionFactoryManagerTester : DeployerDatabaseTester
 	{
 		[Test]
-		public void Correctly_caches_session_factory_manager()
+		public void Correctly_caches_sessions()
 		{
-			var sessionFactoryManager = ObjectFactory.GetInstance<ISessionFactoryManager>();
+			var sessionBuilder = ObjectFactory.GetInstance<ISessionBuilder>();
 
-			var sessionFactory = sessionFactoryManager.GetSessionFactory(ConnectionStringKey);
-			Assert.That(sessionFactoryManager.GetSessionFactory(ConnectionStringKey), Is.SameAs(sessionFactory));
+			var deployerSession = sessionBuilder.GetSession(ConfigurationFile);
+			var webSession1 = sessionBuilder.GetSession("webmanagement.hibernate.cfg.xml");
+			Assert.That(deployerSession, Is.Not.SameAs(webSession1));
 
-			var sessionFactory2 = sessionFactoryManager.GetSessionFactory("TarantinoWebManagementConnectionString");
-			Assert.That(sessionFactoryManager.GetSessionFactory(ConnectionStringKey), Is.Not.SameAs(sessionFactory2));
-
-			var sessionFactory3 = sessionFactoryManager.GetSessionFactory("TarantinoWebManagementConnectionString");
-			Assert.That(sessionFactory3, Is.SameAs(sessionFactory2));
+			var webSession2 = sessionBuilder.GetSession("webmanagement.hibernate.cfg.xml");
+			Assert.That(webSession2, Is.SameAs(webSession1));
 		}
 	}
 }

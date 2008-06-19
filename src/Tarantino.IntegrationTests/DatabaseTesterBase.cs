@@ -1,72 +1,73 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using StructureMap;
-using Tarantino.Core.Commons.Model;
 using NUnit.Framework;
-using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
+using NUnit.Framework.SyntaxHelpers;
+using Tarantino.Core.Commons.Model;
+using Tarantino.Infrastructure;
+using Tarantino.Infrastructure.Commons.DataAccess;
 
 namespace Tarantino.IntegrationTests
 {
-	public abstract class DatabaseTesterBase : InfrastructureIntegrationTester
+	public abstract class DatabaseTesterBase : RepositoryBase
 	{
-		private IObjectMapper _mapper;
-
-		protected abstract string ConnectionStringKey { get; }
+		protected DatabaseTesterBase() : base(new HybridSessionBuilder())
+		{
+		}
 
 		[SetUp]
 		public virtual void SetUp()
 		{
-			Setup();
-
-			_mapper = ObjectFactory.GetInstance<IObjectMapper>();
-			_mapper.ConnectionStringKey = ConnectionStringKey;
-			ThreadSessionScoper.ResetSession(ConnectionStringKey);
+			InfrastructureDependencyRegistrar.RegisterInfrastructure();
 			ClearTables();
 			SetupDatabase();
 		}
 
-		protected virtual void SetupDatabase()
+		[TearDown]
+		public virtual void Teardown()
 		{
+			HybridSessionBuilder.ResetSession(ConfigurationFile);
 		}
 
 		protected void ClearTables()
 		{
-			var tables = GetTablesToDelete();
+			var session = GetSession(ConfigurationFile);
 
-			foreach (var table in tables)
+			foreach (var table in GetTablesToDelete())
 			{
-				DeleteFromTable(table);
+				var hql = string.Format("from {0}", table);
+				session.Delete(hql);
 			}
+
+			session.Flush();
+
+			HybridSessionBuilder.ResetSession(ConfigurationFile);
 		}
 
-		protected abstract IEnumerable<string> GetTablesToDelete();
-
-		private void DeleteFromTable(string tableName)
+		protected void AssertObjectCanBePersisted<T>(T persistentObject) where T : PersistentObject
 		{
-			_mapper.ExecuteNonQuery(string.Format("delete from {0}", tableName), GetEntityType());
+			var session = GetSession(ConfigurationFile);
+
+			session.SaveOrUpdate(persistentObject);
+			session.Flush();
+			session.Evict(persistentObject);
+
+			var reloadedObject = session.Load<T>(persistentObject.Id);
+
+			Assert.That(reloadedObject, Is.EqualTo(persistentObject));
+			Assert.That(reloadedObject, Is.Not.SameAs(persistentObject));
 		}
 
-		protected abstract Type GetEntityType();
-
-		protected void SaveAndFlushSessionFor(params PersistentObject[] persistentObjects)
+		protected void Save(params PersistentObject[] objects)
 		{
-			foreach (var persistentObject in persistentObjects)
+			var session = GetSession(ConfigurationFile);
+
+			foreach (var persistentObject in objects)
 			{
-				_mapper.SaveOrUpdate(persistentObject);
-				_mapper.Evict(persistentObject);
+				session.SaveOrUpdate(persistentObject);
 			}
-		}
-
-		protected T LoadFromDatabaseAndAssertMatchFor<T>(T entity) where T : PersistentObject
-		{
-			_mapper.Evict(entity);
-
-			var entityFromDatabase = _mapper.Load<T>(entity.Id);
-
-			AssertObjectsMatch(entity, entityFromDatabase);
-			return entityFromDatabase;
+			
+			session.Flush();
 		}
 
 		protected void AssertObjectsMatch(object obj1, object obj2)
@@ -78,7 +79,7 @@ namespace Tarantino.IntegrationTests
 			var infos = obj1.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
 			foreach (var info in infos)
 			{
-				if (info.PropertyType != typeof(IDictionary))
+				if (info.PropertyType != typeof (IDictionary))
 				{
 					var value1 = info.GetValue(obj1, null);
 					var value2 = info.GetValue(obj2, null);
@@ -86,5 +87,13 @@ namespace Tarantino.IntegrationTests
 				}
 			}
 		}
+
+		protected virtual void SetupDatabase()
+		{
+		}
+
+		protected abstract IEnumerable<string> GetTablesToDelete();
+
+		protected abstract string ConfigurationFile { get; }
 	}
 }

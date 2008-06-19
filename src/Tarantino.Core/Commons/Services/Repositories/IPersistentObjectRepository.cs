@@ -17,10 +17,6 @@ namespace Tarantino.Core.Commons.Services.Repositories
 		IEnumerable<T> FindAll<T>(CriterionSet criterionSet);
 		T FindFirst<T>(CriterionSet set) where T : class;
 
-		string ConnectionStringKey
-		{
-			get;
-			set;
-		}
+		string ConfigurationFile { get; set; }
 	}
 }

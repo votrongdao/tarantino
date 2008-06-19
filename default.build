@@ -50,7 +50,6 @@
 
 			<copy todir="${dir.test}" verbose="false">
 				<fileset basedir="src/${assembly}/bin/${project.config}">
-					<exclude name="*.xml"/>
 					<include name="**"/>
 				</fileset>
 			</copy>

@@ -76,17 +76,12 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Commons\DataAccess\HybridSessionBuilder.cs" />
+    <Compile Include="Commons\DataAccess\ISessionBuilder.cs" />
+    <Compile Include="Commons\DataAccess\NHibernateSessionModule.cs" />
     <Compile Include="Commons\DataAccess\ORMapper\EnumerationType.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\HttpSessionScoper.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\IObjectMapper.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\ISessionFactoryManager.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\ISessionManager.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\ISessionScoper.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\NHibernateObjectMapper.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\SessionFactoryManager.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\SessionManager.cs" />
-    <Compile Include="Commons\DataAccess\ORMapper\ThreadSessionScoper.cs" />
     <Compile Include="Commons\DataAccess\Repositories\PersistentObjectRepository.cs" />
+    <Compile Include="Commons\DataAccess\RepositoryBase.cs" />
     <Compile Include="Commons\Services\Configuration\ServiceLocator.cs" />
     <Compile Include="Commons\UI\Controls\BooleanDropDownList.cs" />
     <Compile Include="Commons\UI\Controls\DecimalDropDownList.cs" />

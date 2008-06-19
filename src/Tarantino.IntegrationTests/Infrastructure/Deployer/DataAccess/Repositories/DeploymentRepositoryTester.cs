@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Tarantino.Core.Deployer.Model;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
@@ -110,7 +109,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 			_certified_failure.DeployedOn = new DateTime(2007, 3, 1);
 			_certified_failure.CertifiedOn = new DateTime(2007, 6, 5);
 
-			SaveAndFlushSessionFor(
+			Save(
 				_certified_Application1_Environment1, 
 				_certified_Application1_Environment2,
 				_certified_Application2_Environment1, 
@@ -126,11 +125,11 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 		[Test]
 		public void Returns_deployments_by_application_and_environment()
 		{
-			IDeploymentRepository deploymentRepository = getRepository();
+			var deploymentRepository = getRepository();
 
-			IEnumerable<Deployment> deployments = deploymentRepository.Find("A1", "E2");
+			var deployments = deploymentRepository.Find("A1", "E2");
 
-			Assert.That(deployments, Is.EqualTo(new Deployment[]
+			Assert.That(deployments, Is.EqualTo(new[]
 			                                    	{
 			                                    		_certified_Application1_Environment2,
 			                                    		_uncertified_Application1_Environment2,
@@ -142,11 +141,11 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 		[Test]
 		public void Returns_successful_uncertified_deployments_by_application_and_environment()
 		{
-			IDeploymentRepository deploymentRepository = getRepository();
+			var deploymentRepository = getRepository();
 
-			IEnumerable<Deployment> deployments = deploymentRepository.FindSuccessfulUncertified("A1", "E2");
+			var deployments = deploymentRepository.FindSuccessfulUncertified("A1", "E2");
 
-			Assert.That(deployments, Is.EquivalentTo(new Deployment[]
+			Assert.That(deployments, Is.EquivalentTo(new[]
 			                                         	{
 			                                         		_uncertified_Application1_Environment2
 			                                         	}));
@@ -155,11 +154,11 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 		[Test]
 		public void Returns_certified_deployments_by_application_and_environment()
 		{
-			IDeploymentRepository deploymentRepository = getRepository();
+			var deploymentRepository = getRepository();
 
-			IEnumerable<Deployment> deployments = deploymentRepository.FindCertified("A1", "E2");
+			var deployments = deploymentRepository.FindCertified("A1", "E2");
 
-			Assert.That(deployments, Is.EquivalentTo(new Deployment[]
+			Assert.That(deployments, Is.EquivalentTo(new[]
 			                                         	{
 			                                         		_certified_Application1_Environment2
 			                                         	}));
@@ -167,7 +166,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 
 		private IDeploymentRepository getRepository()
 		{
-			IDeploymentRepository repository = ObjectFactory.GetInstance<IDeploymentRepository>();
+			var repository = ObjectFactory.GetInstance<IDeploymentRepository>();
 			return repository;
 		}
 	}

@@ -1,25 +1,17 @@
-using System;
 using System.Collections.Generic;
-using Tarantino.Core.WebManagement.Model;
 
-namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
+namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess
 {
 	public abstract class WebManagementDatabaseTester : DatabaseTesterBase
 	{
 		protected override IEnumerable<string> GetTablesToDelete()
 		{
-			return new string[]{"Management_Application_Instance"};
+			return new[]{"ApplicationInstance"};
 		}
 
-		protected override Type GetEntityType()
+		protected override string ConfigurationFile
 		{
-			return typeof(ApplicationInstance);
+			get { return "webmanagement.hibernate.cfg.xml"; }
 		}
-
-		protected override string ConnectionStringKey
-		{
-			get { return "TarantinoWebManagementConnectionString"; }
-		}
-
 	}
 }

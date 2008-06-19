@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-
 namespace Tarantino.Core.Commons.Services.Configuration.Impl
 {
-	
 	public class ConfigurationReader : IConfigurationReader
 	{
 		private readonly IApplicationConfiguration _settings;
@@ -12,19 +10,6 @@ namespace Tarantino.Core.Commons.Services.Configuration.Impl
 		public ConfigurationReader(IApplicationConfiguration settings)
 		{
 			_settings = settings;
-		}
-
-		public string GetConnectionString(string key)
-		{
-			string connectionString = _settings.GetConnectionString(key);
-
-			if (connectionString == null)
-			{
-				string message = string.Format("The database connection string '{0}' does not exist in the application configuration file.", key);
-				throw new ApplicationException(message);
-			}
-
-			return connectionString;
 		}
 
 		public string GetRequiredSetting(string key)
@@ -45,11 +30,11 @@ namespace Tarantino.Core.Commons.Services.Configuration.Impl
 			string settingString = GetRequiredSetting(key);
 
 			int setting;
-			bool isInteger = int.TryParse(settingString, out setting);
+			var isInteger = int.TryParse(settingString, out setting);
 			
 			if (!isInteger)
 			{
-				string template = "The value for setting '{0}' ('{1}') is not an integer";
+				var template = "The value for setting '{0}' ('{1}') is not an integer";
 				throw new ApplicationException(string.Format(template, key, settingString));
 			}
 
@@ -61,11 +46,11 @@ namespace Tarantino.Core.Commons.Services.Configuration.Impl
 			string settingString = GetRequiredSetting(key);
 
 			bool setting;
-			bool isBoolean = bool.TryParse(settingString, out setting);
+			var isBoolean = bool.TryParse(settingString, out setting);
 
 			if (!isBoolean)
 			{
-				string template = "The value for setting '{0}' ('{1}') is not a boolean";
+				var template = "The value for setting '{0}' ('{1}') is not a boolean";
 				throw new ApplicationException(string.Format(template, key, settingString));
 			}
 

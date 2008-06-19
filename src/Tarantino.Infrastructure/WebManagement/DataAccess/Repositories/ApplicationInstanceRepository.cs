@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using StructureMap;
-using Tarantino.Core;
 using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.WebManagement.Model;
 using Tarantino.Core.WebManagement.Services.Repositories;
 
 namespace Tarantino.Infrastructure.WebManagement.DataAccess.Repositories
 {
-	
 	public class ApplicationInstanceRepository : IApplicationInstanceRepository
 	{
 		private readonly IPersistentObjectRepository _objectRepository;
@@ -16,28 +13,28 @@ namespace Tarantino.Infrastructure.WebManagement.DataAccess.Repositories
 		public ApplicationInstanceRepository(IPersistentObjectRepository objectRepository)
 		{
 			_objectRepository = objectRepository;
-			_objectRepository.ConnectionStringKey = "TarantinoWebManagementConnectionString";
+			_objectRepository.ConfigurationFile = "webmanagement.hibernate.cfg.xml";
 		}
 
 		public IEnumerable<ApplicationInstance> GetAll()
 		{
-			IEnumerable<ApplicationInstance> instances = _objectRepository.GetAll<ApplicationInstance>();
+			var instances = _objectRepository.GetAll<ApplicationInstance>();
 			return instances;
 		}
 
 		public ApplicationInstance GetByMaintenanceHostHeaderAndMachineName(string maintenanceHostHeader, string machineName)
 		{
-			CriterionSet criteria = new CriterionSet();
+			var criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion(ApplicationInstance.MachineNameAttribute, machineName));
 			criteria.AddCriterion(new Criterion(ApplicationInstance.MaintenanceHostHeaderAttribute, maintenanceHostHeader));
 
-			ApplicationInstance instance = _objectRepository.FindFirst<ApplicationInstance>(criteria);
+			var instance = _objectRepository.FindFirst<ApplicationInstance>(criteria);
 			return instance;
 		}
 
 		public ApplicationInstance GetById(Guid id)
 		{
-			ApplicationInstance instance = _objectRepository.GetById<ApplicationInstance>(id);
+			var instance = _objectRepository.GetById<ApplicationInstance>(id);
 			return instance;
 		}
 
@@ -53,7 +50,7 @@ namespace Tarantino.Infrastructure.WebManagement.DataAccess.Repositories
 
 		public IEnumerable<ApplicationInstance> GetByHostHeader(string uniqueHostHeader)
 		{
-			CriterionSet criteria = new CriterionSet();
+			var criteria = new CriterionSet();
 			criteria.AddCriterion(new Criterion(ApplicationInstance.UniqueHostHeaderAttribute, uniqueHostHeader));
 			IEnumerable<ApplicationInstance> instances = _objectRepository.FindAll<ApplicationInstance>(criteria);
 

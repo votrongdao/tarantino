@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Tarantino.Core.Deployer.Model;
-using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
 namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 {
@@ -9,17 +6,12 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 	{
 		protected override IEnumerable<string> GetTablesToDelete()
 		{
-			return new string[]{"Deployment"};
+			return new[] {"Deployment"};
 		}
 
-		protected override Type GetEntityType()
+		protected override string ConfigurationFile
 		{
-			return typeof(Deployment);
-		}
-
-		protected override string ConnectionStringKey
-		{
-			get { return NHibernateObjectMapper.DefaultConnectionStringKey; }
+			get { return "deployer.hibernate.cfg.xml"; }
 		}
 	}
 }
