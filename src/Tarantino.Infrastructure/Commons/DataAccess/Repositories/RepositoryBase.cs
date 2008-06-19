@@ -1,7 +1,7 @@
 using NHibernate;
 using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
 
-namespace Tarantino.Infrastructure.Commons.DataAccess
+namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 {
 	public class RepositoryBase
 	{
