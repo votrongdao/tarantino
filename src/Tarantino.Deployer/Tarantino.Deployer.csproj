@@ -101,10 +101,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="..\StructureMap.config">
-      <Link>StructureMap.config</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="App.config" />
     <None Include="Deploy.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

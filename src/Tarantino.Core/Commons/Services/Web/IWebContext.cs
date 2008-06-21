@@ -26,5 +26,6 @@ namespace Tarantino.Core.Commons.Services.Web
 		bool HasSessionItem(string key);
 		void SetSessionItem(string key, object item);
 		T GetSessionItem<T>(string key);
+		string GetBaseDirectory();
 	}
 }

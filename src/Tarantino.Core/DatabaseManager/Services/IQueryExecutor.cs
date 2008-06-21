@@ -1,10 +1,7 @@
-﻿
-using Tarantino.Core;
-using Tarantino.DatabaseManager.Model;
+﻿using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services
 {
-	
 	public interface IQueryExecutor
 	{
 		void ExecuteNonQuery(ConnectionSettings settings, string sql, bool runAgainstSpecificDatabase);

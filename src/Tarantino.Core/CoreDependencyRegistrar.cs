@@ -37,6 +37,8 @@ namespace Tarantino.Core
 		{
 			StructureMapConfiguration.ResetAll();
 
+			StructureMapConfiguration.UseDefaultStructureMapConfigFile = false;
+
 			StructureMapConfiguration.BuildInstancesOf<ICacheManager>().TheDefaultIsConcreteType<CacheManager>();
 			StructureMapConfiguration.BuildInstancesOf<IEncryptionEngine>().TheDefaultIsConcreteType<AesEncryptionEngine>();
 			StructureMapConfiguration.BuildInstancesOf<IApplicationConfiguration>().TheDefaultIsConcreteType<ApplicationConfiguration>();
@@ -111,10 +113,7 @@ namespace Tarantino.Core
 			StructureMapConfiguration.BuildInstancesOf<IMenuView>().TheDefaultIsConcreteType<MenuView>();
 			StructureMapConfiguration.BuildInstancesOf<IPageView>().TheDefaultIsConcreteType<PageView>();
 			StructureMapConfiguration.BuildInstancesOf<IDatabaseActionExecutorFactory>().TheDefaultIsConcreteType<DatabaseActionExecutorFactory>();
-
-			StructureMapConfiguration.AddInstanceOf<IDatabaseActionExecutor>().UsingConcreteType<DatabaseCreator>().WithName("Create");
-			StructureMapConfiguration.AddInstanceOf<IDatabaseActionExecutor>().UsingConcreteType<DatabaseDropper>().WithName("Drop");
-			StructureMapConfiguration.AddInstanceOf<IDatabaseActionExecutor>().UsingConcreteType<DatabaseUpdater>().WithName("Update");
+			StructureMapConfiguration.BuildInstancesOf<IGuidGenerator>().TheDefaultIsConcreteType<GuidGenerator>();
 		}
 	}
 }

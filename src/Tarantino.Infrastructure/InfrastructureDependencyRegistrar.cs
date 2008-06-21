@@ -7,6 +7,7 @@ using Tarantino.Core.Commons.Services.Security.Impl;
 using Tarantino.Core.Commons.Services.Web;
 using Tarantino.Core.Commons.Services.Web.Impl;
 using Tarantino.Core.DatabaseManager.Services;
+using Tarantino.Core.DatabaseManager.Services.Impl;
 using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.WebManagement.Services.Repositories;
 using Tarantino.Infrastructure.Commons.DataAccess.ORMapper;
@@ -27,6 +28,7 @@ namespace Tarantino.Infrastructure
 
 			StructureMapConfiguration.BuildInstancesOf<IServiceLocator>().TheDefaultIsConcreteType<ServiceLocator>();
 			StructureMapConfiguration.BuildInstancesOf<IQueryExecutor>().TheDefaultIsConcreteType<QueryExecutor>();
+
 			StructureMapConfiguration.BuildInstancesOf<IMailSender>().TheDefaultIsConcreteType<SmtpMailSender>();
 			StructureMapConfiguration.BuildInstancesOf<IWebContext>().TheDefaultIsConcreteType<WebContext>();
 			StructureMapConfiguration.BuildInstancesOf<IWebDataReader>().TheDefaultIsConcreteType<WebDataReader>();
@@ -40,6 +42,10 @@ namespace Tarantino.Infrastructure
 			StructureMapConfiguration.BuildInstancesOf<ILoginService>().TheDefaultIsConcreteType<LoginService>();
 
 			StructureMapConfiguration.BuildInstancesOf<ISessionBuilder>().TheDefaultIsConcreteType<HybridSessionBuilder>();
+
+			StructureMapConfiguration.AddInstanceOf<IDatabaseActionExecutor>().UsingConcreteType<DatabaseCreator>().WithName("Create");
+			StructureMapConfiguration.AddInstanceOf<IDatabaseActionExecutor>().UsingConcreteType<DatabaseDropper>().WithName("Drop");
+			StructureMapConfiguration.AddInstanceOf<IDatabaseActionExecutor>().UsingConcreteType<DatabaseUpdater>().WithName("Update");
 		}
 	}
 }

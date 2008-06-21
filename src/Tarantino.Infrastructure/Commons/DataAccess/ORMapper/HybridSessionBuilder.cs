@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web;
 using NHibernate;
 using NHibernate.Cfg;
@@ -8,17 +10,21 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public class HybridSessionBuilder : ISessionBuilder
 	{
-		private static readonly Dictionary<string, ISessionFactory> _sessionFactories = new Dictionary<string, ISessionFactory>();
+		private static readonly Dictionary<string, ISessionFactory> _sessionFactories =
+			new Dictionary<string, ISessionFactory>();
+
 		private static readonly Dictionary<string, ISession> _currentSessions = new Dictionary<string, ISession>();
+
+		private const string _defaultConfigFileName = "hibernate.cfg.xml";
 
 		public ISession GetSession()
 		{
-			return GetSession("hibernate.cfg.xml");
+			return GetSession(_defaultConfigFileName);
 		}
 
 		public Configuration GetConfiguration()
 		{
-			return GetConfiguration("hibernate.cfg.xml");
+			return GetConfiguration(_defaultConfigFileName);
 		}
 
 		public ISession GetSession(string configurationFile)
@@ -32,13 +38,13 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 		public Configuration GetConfiguration(string configurationFile)
 		{
 			var configuration = new Configuration();
-			configuration.Configure(configurationFile);
+			configuration.Configure(GetFileName(configurationFile));
 			return configuration;
 		}
 
 		public ISession GetExistingWebSession()
 		{
-			return GetExistingWebSession("hibernate.cfg.xml");
+			return GetExistingWebSession(_defaultConfigFileName);
 		}
 
 		public ISession GetExistingWebSession(string configurationFile)
@@ -48,14 +54,12 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public static void ResetSession()
 		{
-			var builder = new HybridSessionBuilder();
-			builder.GetSession().Dispose();
+			new HybridSessionBuilder().GetSession().Dispose();
 		}
 
 		public static void ResetSession(string configurationFile)
 		{
-			var builder = new HybridSessionBuilder();
-			builder.GetSession(configurationFile).Dispose();
+			new HybridSessionBuilder().GetSession(configurationFile).Dispose();
 		}
 
 		private ISessionFactory getSessionFactory(string configurationFile)
@@ -83,9 +87,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 				return session;
 			}
 
-			var currentSession = _currentSessions.ContainsKey(configurationFile) ? 
-			                                                                     	_currentSessions[configurationFile] : null;
-
+			var currentSession = _currentSessions.ContainsKey(configurationFile) ? _currentSessions[configurationFile] : null;
 			if (currentSession == null || !currentSession.IsOpen)
 			{
 				_currentSessions[configurationFile] = factory.OpenSession();
@@ -100,6 +102,27 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			HttpContext.Current.Items.Remove(configurationFile);
 			HttpContext.Current.Items.Add(configurationFile, session);
 			return session;
+		}
+
+		private string GetFileName(string file)
+		{
+			var fileName = file;
+
+			var fileExists = File.Exists(file);
+
+			if (!fileExists && HttpContext.Current != null)
+			{
+				var binPath = Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "bin");
+				fileName = Path.Combine(binPath, fileName);
+			}
+
+			if (!File.Exists(fileName))
+			{
+				var message = string.Format("Could not locate NHibernate configuration file at: {0}", fileName);
+				throw new ApplicationException(message);
+			}
+
+			return fileName;
 		}
 	}
 }

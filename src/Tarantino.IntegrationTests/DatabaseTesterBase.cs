@@ -67,7 +67,7 @@ namespace Tarantino.IntegrationTests
 			{
 				session.SaveOrUpdate(persistentObject);
 			}
-			
+
 			session.Flush();
 		}
 

@@ -76,6 +76,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\Commons\Services\Environment\GuidGeneratorTester.cs" />
     <Compile Include="InfrastructureIntegrationTester.cs" />
     <Compile Include="Core\Commons\Services\Configuration\ApplicationConfigurationTester.cs" />
     <Compile Include="Core\Commons\Services\Configuration\ServiceLocatorTester.cs" />
@@ -107,10 +108,6 @@
     <Compile Include="IntegrationTester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\StructureMap.config">
-      <Link>StructureMap.config</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="App.config">
     </None>
     <EmbeddedResource Include="Core\Commons\Services\DataFileManagement\Files\Sample.tab" />

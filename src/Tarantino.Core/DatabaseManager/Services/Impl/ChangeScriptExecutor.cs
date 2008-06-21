@@ -8,9 +8,9 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 	
 	public class ChangeScriptExecutor : IChangeScriptExecutor
 	{
-		private IScriptExecutionTracker _executionTracker;
-		private IQueryExecutor _executor;
-		private IFileSystem _fileSystem;
+		private readonly IScriptExecutionTracker _executionTracker;
+		private readonly IQueryExecutor _executor;
+		private readonly IFileSystem _fileSystem;
 
 		public ChangeScriptExecutor(IScriptExecutionTracker executionTracker, IQueryExecutor executor, IFileSystem fileSystem)
 		{

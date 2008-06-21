@@ -1,8 +1,7 @@
 using System;
+using System.IO;
 using System.Security.Principal;
 using System.Web;
-using StructureMap;
-using Tarantino.Core;
 using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Infrastructure.Commons.UI.Services
@@ -12,26 +11,26 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 	{
 		public bool UserIsAuthenticated()
 		{
-			bool isAuthenticated = HttpContext.Current.Request.IsAuthenticated;
+			var isAuthenticated = HttpContext.Current.Request.IsAuthenticated;
 			return isAuthenticated;
 		}
 
 		public string GetRequestItem(string key)
 		{
-			string value = HttpContext.Current.Request[key];
+			var value = HttpContext.Current.Request[key];
 			return value;
 		}
 
 		public IIdentity GetUserIdentity()
 		{
-			IPrincipal user = HttpContext.Current.User;
-			IIdentity identity = user != null ? user.Identity : null;
+			var user = HttpContext.Current.User;
+			var identity = user != null ? user.Identity : null;
 			return identity;
 		}
 
 		public IPrincipal GetUserPrinciple()
 		{
-			IPrincipal user = HttpContext.Current.User;
+			var user = HttpContext.Current.User;
 			return user;
 		}
 
@@ -42,7 +41,7 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 
 		public T GetItem<T>(string key)
 		{
-			object item = HttpContext.Current.Items[key];
+			var item = HttpContext.Current.Items[key];
 			return (T)item;
 		}
 
@@ -58,13 +57,13 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 
 		public T GetSessionItem<T>(string key)
 		{
-			object item = HttpContext.Current.Session[key];
+			var item = HttpContext.Current.Session[key];
 			return (T)item;
 		}
 
 		public T GetCacheItem<T>(string key)
 		{
-			object item = HttpContext.Current.Cache[key];
+			var item = HttpContext.Current.Cache[key];
 			return (T) item;
 		}
 
@@ -90,13 +89,13 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 
 		public string GetCurrentUrl()
 		{
-			string url = HttpContext.Current.Request.Path;
+			var url = HttpContext.Current.Request.Path;
 			return url;
 		}
 
 		public void SetHttpResponseStatus(int code, string description)
 		{
-			HttpResponse response = HttpContext.Current.Response;
+			var response = HttpContext.Current.Response;
 			response.StatusCode = code;
 			response.StatusDescription = description;
 		}
@@ -114,6 +113,12 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		public string GetServerVariable(string variableName)
 		{
 			return HttpContext.Current.Request.ServerVariables[variableName];
+		}
+
+		public string GetBaseDirectory()
+		{
+			var baseDirectory = Path.Combine(HttpContext.Current.Request.ApplicationPath, "bin");
+			return baseDirectory;
 		}
 	}
 }

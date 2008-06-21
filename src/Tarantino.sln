@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		databaseManagerTargets.build = databaseManagerTargets.build
 		..\default.build = ..\default.build
 		Log4Net.config = Log4Net.config
-		StructureMap.config = StructureMap.config
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.UnitTests", "Tarantino.UnitTests\Tarantino.UnitTests.csproj", "{98F35D85-A0E4-4E30-8274-E0771122B401}"

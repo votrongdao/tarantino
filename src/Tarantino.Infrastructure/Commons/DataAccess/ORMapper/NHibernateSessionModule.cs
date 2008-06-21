@@ -15,6 +15,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 		private void context_EndRequest(object sender, EventArgs e)
 		{
 			var builder = new HybridSessionBuilder();
+
 			var session = builder.GetExistingWebSession();
 			if (session != null)
 			{

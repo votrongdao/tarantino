@@ -1,4 +1,3 @@
-
 using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl

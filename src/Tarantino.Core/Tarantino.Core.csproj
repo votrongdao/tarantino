@@ -78,6 +78,7 @@
     <Compile Include="Commons\Services\Environment\IDateContext.cs" />
     <Compile Include="Commons\Services\Environment\IFileStreamFactory.cs" />
     <Compile Include="Commons\Services\Environment\IFileSystem.cs" />
+    <Compile Include="Commons\Services\Environment\IGuidGenerator.cs" />
     <Compile Include="Commons\Services\Environment\Impl\ApplicationDomain.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -91,6 +92,7 @@
     <Compile Include="Commons\Services\Environment\Impl\FileSystem.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commons\Services\Environment\Impl\GuidGenerator.cs" />
     <Compile Include="Commons\Services\Environment\Impl\ResourceFileLocator.cs">
       <SubType>Code</SubType>
     </Compile>

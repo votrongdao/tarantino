@@ -9,5 +9,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 		Configuration GetConfiguration();
 		ISession GetSession(string configurationFile);
 		Configuration GetConfiguration(string configurationFile);
+		ISession GetExistingWebSession(string configurationFile);
+		ISession GetExistingWebSession();
 	}
 }

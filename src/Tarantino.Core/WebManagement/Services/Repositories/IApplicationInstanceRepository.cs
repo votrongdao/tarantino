@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-
 using Tarantino.Core.WebManagement.Model;
 
 namespace Tarantino.Core.WebManagement.Services.Repositories
 {
-	
 	public interface IApplicationInstanceRepository
 	{
 		IEnumerable<ApplicationInstance> GetAll();

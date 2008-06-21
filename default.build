@@ -11,7 +11,7 @@
 	<property name="copyright" value="${company}, ${datetime::get-year(datetime::now())}"/>
 
 	<!-- Compilation settings -->
-	<property name="project.config" value="release" />
+	<property name="project.config" value="debug" />
 	<property name="dir.test" value="${dir.build}\test" dynamic="true" />
 	<property name="dir.build" value="build" />
 
