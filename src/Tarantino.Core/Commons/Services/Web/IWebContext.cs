@@ -27,5 +27,7 @@ namespace Tarantino.Core.Commons.Services.Web
 		void SetSessionItem(string key, object item);
 		T GetSessionItem<T>(string key);
 		string GetBaseDirectory();
+		string GetPhysicalApplicationPath();
+		void SaveUploadedFileAs(string fileNameWithPath);
 	}
 }

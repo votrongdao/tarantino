@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using NHibernate;
 using NHibernate.Expression;
 using Tarantino.Core.Commons.Model;
 using Tarantino.Core.Commons.Model.Enumerations;
@@ -11,15 +10,13 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 {
 	public class PersistentObjectRepository : RepositoryBase, IPersistentObjectRepository
 	{
-		public string ConfigurationFile { get; set; }
-
 		public PersistentObjectRepository(ISessionBuilder sessionBuilder) : base(sessionBuilder)
 		{
 		}
 
 		public IEnumerable<T> GetAll<T>()
 		{
-			var session = CreateSession();
+			var session = GetSession();
 			var criteria = session.CreateCriteria(typeof (T));
 			criteria.SetCacheable(true);
 			var list = criteria.List<T>();
@@ -28,27 +25,27 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 
 		public T GetById<T>(Guid id) where T : PersistentObject
 		{
-			return CreateSession().Load<T>(id);
+			return GetSession().Load<T>(id);
 		}
 
 		public void Delete(PersistentObject persistentObject)
 		{
-			CreateSession().Delete(persistentObject);
+			GetSession().Delete(persistentObject);
 		}
 
 		public void Save(PersistentObject persistentObject)
 		{
-			CreateSession().SaveOrUpdate(persistentObject);
+			GetSession().SaveOrUpdate(persistentObject);
 		}
 
 		public void Revert(PersistentObject persistentObject)
 		{
-			CreateSession().Refresh(persistentObject);
+			GetSession().Refresh(persistentObject);
 		}
 
 		public IEnumerable<T> FindAll<T>(CriterionSet criterionSet)
 		{
-			var session = CreateSession();
+			var session = GetSession();
 
 			var persistentObjects = new List<T>();
 
@@ -121,11 +118,6 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 			var persistentObject = (persistentObjects.Count > 0) ? persistentObjects[0] : null;
 
 			return persistentObject;
-		}
-
-		private ISession CreateSession()
-		{
-			return GetSession(ConfigurationFile);
 		}
 	}
 }

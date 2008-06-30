@@ -9,7 +9,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess
 			return new[]{"ApplicationInstance"};
 		}
 
-		protected override string ConfigurationFile
+		public override string ConfigurationFile
 		{
 			get { return "webmanagement.hibernate.cfg.xml"; }
 		}

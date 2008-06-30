@@ -6,7 +6,6 @@ using Tarantino.Core.Commons.Services.Web;
 
 namespace Tarantino.Infrastructure.Commons.UI.Services
 {
-	
 	public class WebContext : IWebContext
 	{
 		public bool UserIsAuthenticated()
@@ -48,6 +47,23 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		public void SetSessionItem(string key, object item)
 		{
 			HttpContext.Current.Session[key] = item;
+		}
+
+		public string GetPhysicalApplicationPath()
+		{
+			return HttpContext.Current.Request.PhysicalApplicationPath;
+		}
+
+		public void SaveUploadedFileAs(string fileNameWithPath)
+		{
+			var files = HttpContext.Current.Request.Files;
+
+			if (files.Count == 0)
+			{
+				throw new ApplicationException("No upload files found");
+			}
+
+			files[0].SaveAs(fileNameWithPath);
 		}
 
 		public bool HasSessionItem(string key)

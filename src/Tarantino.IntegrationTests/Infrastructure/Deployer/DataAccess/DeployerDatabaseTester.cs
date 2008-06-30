@@ -9,7 +9,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 			return new[] {"Deployment"};
 		}
 
-		protected override string ConfigurationFile
+		public override string ConfigurationFile
 		{
 			get { return "deployer.hibernate.cfg.xml"; }
 		}
