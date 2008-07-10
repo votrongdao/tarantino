@@ -4,8 +4,7 @@
 	auto-import="true"
 	namespace="Tarantino.Core.Deployer.Model"
 	assembly="Tarantino.Core"
-	default-access="field.camelcase-underscore"
-	default-lazy="false">
+	default-lazy="true">
 
 	<class name="Deployment" dynamic-update="true">
 		<id	name="Id" column="DeploymentId" type="Guid" access="property">

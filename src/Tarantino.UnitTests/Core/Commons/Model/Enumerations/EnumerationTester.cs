@@ -30,6 +30,12 @@ namespace Tarantino.UnitTests.Core.Commons.Model.Enumerations
 		}
 
 		[Test]
+		public void Should_compare_objects_of_other_types()
+		{
+			Assert.That(PersistenceMode.Live.Equals(DBNull.Value), Is.False);
+		}
+
+		[Test]
 		public void Can_sort_enumeration_values()
 		{
 			PersistenceMode[] modes = new PersistenceMode[] {PersistenceMode.Archive, PersistenceMode.Live};

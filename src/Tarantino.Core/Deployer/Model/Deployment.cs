@@ -11,73 +11,19 @@ namespace Tarantino.Core.Deployer.Model
 		public const string CERTIFIED_ON = "CertifiedOn";
 		public const string RESULT = "Result";
 
-		private string _application;
-		private string _environment;
-		private int _revision;
-		private DateTime _deployedOn;
-		private string _deployedBy;
-		private DateTime? _certifiedOn;
-		private string _certifiedBy;
-		private string _output;
-		private DeploymentResult _result;
-
-		public string Application
-		{
-			get { return _application; }
-			set { _application = value; }
-		}
-
-		public string Environment
-		{
-			get { return _environment; }
-			set { _environment = value; }
-		}
-
-		public int Revision
-		{
-			get { return _revision; }
-			set { _revision = value; }
-		}
-
-		public DateTime DeployedOn
-		{
-			get { return _deployedOn; }
-			set { _deployedOn = value; }
-		}
-
-		public DateTime? CertifiedOn
-		{
-			get { return _certifiedOn; }
-			set { _certifiedOn = value; }
-		}
-
-		public string DeployedBy
-		{
-			get { return _deployedBy; }
-			set { _deployedBy = value; }
-		}
-
-		public string CertifiedBy
-		{
-			get { return _certifiedBy; }
-			set { _certifiedBy = value; }
-		}
-
-		public string Output
-		{
-			get { return _output; }
-			set { _output = value; }
-		}
-
-		public DeploymentResult Result
-		{
-			get { return _result; }
-			set { _result = value; }
-		}
+		public virtual string Application { get; set; }
+		public virtual string Environment { get; set; }
+		public virtual int Revision { get; set; }
+		public virtual DateTime DeployedOn { get; set; }
+		public virtual DateTime? CertifiedOn { get; set; }
+		public virtual string DeployedBy { get; set; }
+		public virtual string CertifiedBy { get; set; }
+		public virtual string Output { get; set; }
+		public virtual DeploymentResult Result { get; set; }
 
 		public override string ToString()
 		{
-			return _revision.ToString();
+			return Revision.ToString();
 		}
 	}
 }

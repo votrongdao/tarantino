@@ -54,7 +54,12 @@ namespace Tarantino.Core.Commons.Model.Enumerations
 
 		public override bool Equals(object obj)
 		{
-			var otherValue = (Enumeration)obj;
+			var otherValue = obj as Enumeration;
+
+			if (otherValue == null)
+			{
+				return false;
+			}
 
 			var typeMatches = GetType().Equals(obj.GetType());
 			var valueMatches = _value.Equals(otherValue.Value);

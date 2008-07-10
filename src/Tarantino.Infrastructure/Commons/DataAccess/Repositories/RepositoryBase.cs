@@ -21,7 +21,6 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 
 		protected ISession GetSession()
 		{
-			Console.Out.WriteLine("Configuration File: {0}", ConfigurationFile);
 			var session = ConfigurationFile == null ? _sessionBuilder.GetSession() : _sessionBuilder.GetSession(ConfigurationFile);
 			return session;
 		}
@@ -44,7 +43,6 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 
 		protected static void AssertObjectsMatch(object obj1, object obj2)
 		{
-			Assert.AreEqual(obj1.GetType(), obj2.GetType());
 			Assert.AreNotSame(obj1, obj2);
 			Assert.AreEqual(obj1, obj2);
 
