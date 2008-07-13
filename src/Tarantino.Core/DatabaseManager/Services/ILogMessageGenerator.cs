@@ -1,6 +1,6 @@
 
+using Tarantino.Core.DatabaseManager.Model;
 using Tarantino.Core.DatabaseManager.Services.Impl;
-using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services
 {

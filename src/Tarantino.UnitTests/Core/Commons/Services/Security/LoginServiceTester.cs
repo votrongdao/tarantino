@@ -6,7 +6,7 @@ using Tarantino.Core.Commons.Services.Security;
 using Tarantino.Core.Commons.Services.Security.Impl;
 using Tarantino.Core.Commons.Services.Web;
 
-namespace h2u.UI.UnitTests.Services.Security
+namespace Tarantino.UnitTests.Core.Commons.Services.Security
 {
 	[TestFixture]
 	public class LoginServiceTester

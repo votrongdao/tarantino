@@ -4,7 +4,7 @@ using Rhino.Mocks;
 using Tarantino.Core.Commons.Services.Security;
 using Tarantino.Core.Commons.Services.Security.Impl;
 
-namespace h2u.UI.UnitTests.Services.ContextManagement
+namespace Tarantino.UnitTests.Core.Commons.Services.Security
 {
 	[TestFixture]
 	public class PrincipalFactoryTester

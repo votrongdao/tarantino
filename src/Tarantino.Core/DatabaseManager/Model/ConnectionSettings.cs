@@ -1,4 +1,4 @@
-﻿namespace Tarantino.DatabaseManager.Model
+﻿namespace Tarantino.Core.DatabaseManager.Model
 {
 	public class ConnectionSettings
 	{

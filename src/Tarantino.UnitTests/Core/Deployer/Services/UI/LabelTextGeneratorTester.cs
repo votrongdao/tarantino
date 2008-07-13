@@ -3,8 +3,8 @@ using Tarantino.Core.Deployer.Model;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rhino.Mocks;
-using Tarantino.Deployer.Services.UI;
-using Tarantino.Deployer.Services.UI.Impl;
+using Tarantino.Core.Deployer.Services.UI;
+using Tarantino.Core.Deployer.Services.UI.Impl;
 using Environment=Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
 
 namespace Tarantino.UnitTests.Core.Deployer.Services.UI

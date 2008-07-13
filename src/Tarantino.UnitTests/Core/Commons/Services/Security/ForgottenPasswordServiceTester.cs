@@ -5,7 +5,7 @@ using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Commons.Services.Security;
 using Tarantino.Core.Commons.Services.Security.Impl;
 
-namespace h2u.UI.UnitTests.Services.Security
+namespace Tarantino.UnitTests.Core.Commons.Services.Security
 {
 	[TestFixture]
 	public class ForgottenPasswordServiceTester

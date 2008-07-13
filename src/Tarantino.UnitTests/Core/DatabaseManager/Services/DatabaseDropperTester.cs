@@ -1,9 +1,9 @@
 using System;
 using NUnit.Framework;
 using Rhino.Mocks;
+using Tarantino.Core.DatabaseManager.Model;
 using Tarantino.Core.DatabaseManager.Services;
 using Tarantino.Core.DatabaseManager.Services.Impl;
-using Tarantino.DatabaseManager.Model;
 
 namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 {

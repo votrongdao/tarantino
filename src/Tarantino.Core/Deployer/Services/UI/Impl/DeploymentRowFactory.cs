@@ -1,11 +1,9 @@
 using Tarantino.Core;
 using Tarantino.Core.Deployer.Model;
+using Tarantino.Core.Deployer.Services.UI;
 
-using Tarantino.Deployer.Services.UI;
-
-namespace Tarantino.Deployer.Services.UI.Impl
+namespace Tarantino.Core.Deployer.Services.UI.Impl
 {
-	
 	public class DeploymentRowFactory : IDeploymentRowFactory
 	{
 		public string[] ConstructRow(Deployment deployment)

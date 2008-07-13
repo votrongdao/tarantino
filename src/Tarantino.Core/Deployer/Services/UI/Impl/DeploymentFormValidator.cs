@@ -1,6 +1,5 @@
 
 using Tarantino.Core;
-using Tarantino.Deployer.Services.UI;
 using Environment = Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
 
 namespace Tarantino.Core.Deployer.Services.UI.Impl

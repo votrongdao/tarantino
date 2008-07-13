@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
-using Tarantino.DatabaseManager.Model;
+using Tarantino.Core.DatabaseManager.Model;
 
 namespace Tarantino.UnitTests.Core.DatabaseManager.Model
 {

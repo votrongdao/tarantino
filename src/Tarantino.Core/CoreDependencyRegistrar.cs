@@ -21,13 +21,12 @@ using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.Deployer.Services.Configuration;
 using Tarantino.Core.Deployer.Services.Configuration.Impl;
 using Tarantino.Core.Deployer.Services.Impl;
+using Tarantino.Core.Deployer.Services.UI;
 using Tarantino.Core.Deployer.Services.UI.Impl;
 using Tarantino.Core.WebManagement.Services;
 using Tarantino.Core.WebManagement.Services.Impl;
 using Tarantino.Core.WebManagement.Services.Views;
 using Tarantino.Core.WebManagement.Services.Views.Impl;
-using Tarantino.Deployer.Services.UI;
-using Tarantino.Deployer.Services.UI.Impl;
 
 namespace Tarantino.Core
 {

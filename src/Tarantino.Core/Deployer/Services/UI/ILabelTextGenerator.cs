@@ -3,9 +3,8 @@ using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services.Configuration.Impl;
 
 
-namespace Tarantino.Deployer.Services.UI
+namespace Tarantino.Core.Deployer.Services.UI
 {
-	
 	public interface ILabelTextGenerator
 	{
 		string GetDeploymentText(Environment environment, string revisionNumberText, Deployment deployment);

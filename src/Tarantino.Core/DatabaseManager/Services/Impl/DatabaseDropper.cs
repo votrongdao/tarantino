@@ -1,6 +1,5 @@
 using System;
-
-using Tarantino.DatabaseManager.Model;
+using Tarantino.Core.DatabaseManager.Model;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
