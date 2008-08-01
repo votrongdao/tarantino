@@ -141,6 +141,7 @@
     <Compile Include="Commons\Services\Security\IForgottenPasswordMailer.cs" />
     <Compile Include="Commons\Services\Security\IForgottenPasswordMailFactory.cs" />
     <Compile Include="Commons\Services\Security\IForgottenPasswordService.cs" />
+    <Compile Include="Commons\Services\Security\IHashAlgorithm.cs" />
     <Compile Include="Commons\Services\Security\ILoginChecker.cs" />
     <Compile Include="Commons\Services\Security\ILoginService.cs" />
     <Compile Include="Commons\Services\Security\Impl\AesEncryptionEngine.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Commons\Services\Security\Impl\PrincipalFactory.cs" />
     <Compile Include="Commons\Services\Security\Impl\RoleManager.cs" />
     <Compile Include="Commons\Services\Security\Impl\SecurityContext.cs" />
+    <Compile Include="Commons\Services\Security\Impl\SHA512HashAlgorithm.cs" />
     <Compile Include="Commons\Services\Security\Impl\SystemUserContextManager.cs" />
     <Compile Include="Commons\Services\Security\Impl\WindowsIdentity.cs" />
     <Compile Include="Commons\Services\Security\IPrincipalFactory.cs" />

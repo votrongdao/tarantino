@@ -3,10 +3,8 @@ using System.IO;
 using Tarantino.Core.Commons.Model.Enumerations;
 using Tarantino.Core.Commons.Services.Environment;
 
-
 namespace Tarantino.Core.Commons.Services.DataFileManagement.Impl
 {
-	
 	public class DataFileReader : IDataFileReader
 	{
 		private readonly IResourceFileLocator _resourceFileLocator;

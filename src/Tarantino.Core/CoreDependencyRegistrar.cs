@@ -113,6 +113,7 @@ namespace Tarantino.Core
 			StructureMapConfiguration.BuildInstancesOf<IPageView>().TheDefaultIsConcreteType<PageView>();
 			StructureMapConfiguration.BuildInstancesOf<IDatabaseActionExecutorFactory>().TheDefaultIsConcreteType<DatabaseActionExecutorFactory>();
 			StructureMapConfiguration.BuildInstancesOf<IGuidGenerator>().TheDefaultIsConcreteType<GuidGenerator>();
+			StructureMapConfiguration.BuildInstancesOf<IHashAlgorithm>().TheDefaultIsConcreteType<SHA512HashAlgorithm>();
 		}
 	}
 }

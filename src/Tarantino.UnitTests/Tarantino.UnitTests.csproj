@@ -72,6 +72,7 @@
     <Compile Include="Core\Commons\Services\Security\LoginServiceTester.cs" />
     <Compile Include="Core\Commons\Services\Security\PrincipalFactoryTester.cs" />
     <Compile Include="Core\Commons\Services\Security\RoleManagerTester.cs" />
+    <Compile Include="Core\Commons\Services\Security\SHA512HashAlgorithmTester.cs" />
     <Compile Include="Core\Commons\Services\Security\SystemUserContextManagerTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\DatabaseActionExecutorFactoryTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\DatabaseActionResolverTester.cs" />
