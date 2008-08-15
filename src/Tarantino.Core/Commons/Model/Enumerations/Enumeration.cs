@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace Tarantino.Core.Commons.Model.Enumerations
 {
+	[Serializable]
 	public abstract class Enumeration : IComparable
 	{
 		private readonly int _value;

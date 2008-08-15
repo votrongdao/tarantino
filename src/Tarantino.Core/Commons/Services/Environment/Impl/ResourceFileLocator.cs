@@ -40,6 +40,11 @@ namespace Tarantino.Core.Commons.Services.Environment.Impl
 			return fileExists;
 		}
 
+		public Stream ReadFileAsStream(string assembly, string resourceName)
+		{
+			return getStream(assembly, resourceName);
+		}
+
 		private Stream getStream(string assembly, string resourceName)
 		{
 			Stream stream = constructStream(assembly, resourceName);
