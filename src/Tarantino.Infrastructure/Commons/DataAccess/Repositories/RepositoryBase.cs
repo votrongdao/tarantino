@@ -1,4 +1,3 @@
-using System;
 using System.Reflection;
 using NHibernate;
 using NUnit.Framework;
@@ -27,18 +26,19 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 
 		protected void AssertObjectCanBePersisted<T>(T persistentObject) where T : PersistentObject
 		{
-			var session = GetSession();
+			using (ISession session = GetSession())
+			{
+				session.SaveOrUpdate(persistentObject);
+				session.Flush();
+			}
 
-			session.SaveOrUpdate(persistentObject);
-			session.Flush();
-			session.Evict(persistentObject);
-
-			var reloadedObject = session.Load<T>(persistentObject.Id);
-
-			Assert.That(reloadedObject, Is.EqualTo(persistentObject));
-			Assert.That(reloadedObject, Is.Not.SameAs(persistentObject));
-
-			AssertObjectsMatch(persistentObject, reloadedObject);
+			using (ISession session = GetSession())
+			{
+				var reloadedObject = session.Load<T>(persistentObject.Id);
+				Assert.That(reloadedObject, Is.EqualTo(persistentObject));
+				Assert.That(reloadedObject, Is.Not.SameAs(persistentObject));
+				AssertObjectsMatch(persistentObject, reloadedObject);
+			}
 		}
 
 		protected static void AssertObjectsMatch(object obj1, object obj2)
