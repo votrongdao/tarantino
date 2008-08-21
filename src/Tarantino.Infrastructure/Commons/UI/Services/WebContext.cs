@@ -49,6 +49,11 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 			HttpContext.Current.Session[key] = item;
 		}
 
+		public string GetReferrerUrl(string key, object item)
+		{
+			return HttpContext.Current.Request.UrlReferrer.ToString();
+		}
+
 		public string GetPhysicalApplicationPath()
 		{
 			return HttpContext.Current.Request.PhysicalApplicationPath;

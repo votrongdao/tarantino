@@ -29,5 +29,6 @@ namespace Tarantino.Core.Commons.Services.Web
 		string GetBaseDirectory();
 		string GetPhysicalApplicationPath();
 		void SaveUploadedFileAs(string fileNameWithPath);
+		string GetReferrerUrl(string key, object item);
 	}
 }
