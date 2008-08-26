@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using NHibernate.Expression;
+using NHibernate.Criterion;
 using Tarantino.Core.Commons.Model;
 using Tarantino.Core.Commons.Model.Enumerations;
 using Tarantino.Core.Commons.Services.Repositories;
@@ -31,6 +31,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 		public void Delete(PersistentObject persistentObject)
 		{
 			GetSession().Delete(persistentObject);
+			GetSession().Flush();
 		}
 
 		public void Save(PersistentObject persistentObject)
@@ -58,32 +59,32 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 
 				if (criterion.Operator == ComparisonOperator.GreaterThan)
 				{
-					expression = Expression.Gt(criterion.Attribute, criterion.Value);
+					expression = Restrictions.Gt(criterion.Attribute, criterion.Value);
 				}
 				else if (criterion.Operator == ComparisonOperator.LessThan)
 				{
-					expression = Expression.Lt(criterion.Attribute, criterion.Value);
+					expression = Restrictions.Lt(criterion.Attribute, criterion.Value);
 				}
 				else if (criterion.Operator == ComparisonOperator.NotEqual)
 				{
 					if (criterion.Value == null)
 					{
-						expression = Expression.IsNotNull(criterion.Attribute);
+						expression = Restrictions.IsNotNull(criterion.Attribute);
 					}
 					else
 					{
-						expression = Expression.Not(Expression.Eq(criterion.Attribute, criterion.Value));
+						expression = Restrictions.Not(Restrictions.Eq(criterion.Attribute, criterion.Value));
 					}
 				}
 				else
 				{
 					if (criterion.Value == null)
 					{
-						expression = Expression.IsNull(criterion.Attribute);
+						expression = Restrictions.IsNull(criterion.Attribute);
 					}
 					else
 					{
-						expression = Expression.Eq(criterion.Attribute, criterion.Value);
+						expression = Restrictions.Eq(criterion.Attribute, criterion.Value);
 					}
 				}
 

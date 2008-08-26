@@ -1,12 +1,13 @@
 using System;
 using System.Data;
+using NHibernate.Dialect;
 using Tarantino.Core.Commons.Model.Enumerations;
 using NHibernate.SqlTypes;
 using NHibernate.Type;
 
 namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
-	public class EnumerationType<T> : ValueTypeType where T : Enumeration, new()
+	public class EnumerationType<T> : PrimitiveType where T : Enumeration, new()
 	{
 		public EnumerationType() : base(new SqlType(DbType.Int32))
 		{
@@ -29,11 +30,6 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			get { return typeof (T); }
 		}
 
-		public override string ObjectToSQLString(object value)
-		{
-			return value.ToString();
-		}
-
 		public override object FromStringValue(string xml)
 		{
 			return int.Parse(xml);
@@ -53,19 +49,19 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			parameter.Value = val.Value;
 		}
 
-		public override bool Equals(object x, object y)
+		public override string ObjectToSQLString(object value, Dialect dialect)
 		{
-			//get boxed values.
-			if (x == null && y == null)
-				return true;
-			
-			if (x == null || y == null)
-				return false;
+			return value.ToString();
+		}
 
-			var xTyped = (Enumeration)x;
-			var yTyped = (Enumeration)y;
+		public override Type PrimitiveClass
+		{
+			get { return typeof(int); }
+		}
 
-			return xTyped.Equals(yTyped);
+		public override object DefaultValue
+		{
+			get { return 0; }
 		}
 	}
 }

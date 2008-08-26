@@ -49,7 +49,7 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 			HttpContext.Current.Session[key] = item;
 		}
 
-		public string GetReferrerUrl(string key, object item)
+		public string GetReferrerUrl()
 		{
 			return HttpContext.Current.Request.UrlReferrer.ToString();
 		}
@@ -140,6 +140,16 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		{
 			var baseDirectory = Path.Combine(HttpContext.Current.Request.ApplicationPath, "bin");
 			return baseDirectory;
+		}
+
+		public void AppendResponseHeader(string name, string value)
+		{
+			HttpContext.Current.Response.AppendHeader(name, value);
+		}
+
+		public void SetCharacterSet(string charSet)
+		{
+			HttpContext.Current.Response.Charset = charSet;
 		}
 	}
 }

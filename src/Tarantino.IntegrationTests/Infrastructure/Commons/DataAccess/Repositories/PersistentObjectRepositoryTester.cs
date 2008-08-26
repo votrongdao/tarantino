@@ -41,13 +41,6 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons.DataAccess.Repositor
 			Assert.That(repository.FindFirst<Deployment>(set), Is.EqualTo(_deployment2));
 		}
 
-		private IPersistentObjectRepository getRepository()
-		{
-			var repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
-			repository.ConfigurationFile = ConfigurationFile;
-			return repository;
-		}
-
 		[Test]
 		public void Can_find_deployment_using_null_string_criteria()
 		{
@@ -127,6 +120,13 @@ namespace Tarantino.IntegrationTests.Infrastructure.Commons.DataAccess.Repositor
 
 			var deployments = repository.GetAll<Deployment>();
 			EnumerableAssert.That(deployments, Is.EquivalentTo(new[] { _deployment2 }));
+		}
+
+		private IPersistentObjectRepository getRepository()
+		{
+			var repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+			repository.ConfigurationFile = ConfigurationFile;
+			return repository;
 		}
 	}
 }

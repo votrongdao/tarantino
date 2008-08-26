@@ -1,10 +1,8 @@
 using System;
 using System.Security.Principal;
 
-
 namespace Tarantino.Core.Commons.Services.Web
 {
-	
 	public interface IWebContext
 	{
 		bool UserIsAuthenticated();
@@ -29,6 +27,8 @@ namespace Tarantino.Core.Commons.Services.Web
 		string GetBaseDirectory();
 		string GetPhysicalApplicationPath();
 		void SaveUploadedFileAs(string fileNameWithPath);
-		string GetReferrerUrl(string key, object item);
+		string GetReferrerUrl();
+		void AppendResponseHeader(string name, string value);
+		void SetCharacterSet(string charSet);
 	}
 }
