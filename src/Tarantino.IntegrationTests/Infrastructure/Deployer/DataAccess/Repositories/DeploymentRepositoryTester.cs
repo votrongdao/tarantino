@@ -1,4 +1,5 @@
 using System;
+using NHibernate;
 using Tarantino.Core.Deployer.Model;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
@@ -73,7 +74,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 			_certified_Application1_Environment2.Application = "A1";
 			_certified_Application2_Environment1.Application = "A2";
 			_certified_Application2_Environment2.Application = "A2";
-			
+
 			_uncertified_Application1_Environment1.Environment = "E1";
 			_uncertified_Application1_Environment2.Environment = "E2";
 			_uncertified_Application2_Environment1.Environment = "E1";
@@ -110,13 +111,13 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 			_certified_failure.CertifiedOn = new DateTime(2007, 6, 5);
 
 			Save(
-				_certified_Application1_Environment1, 
+				_certified_Application1_Environment1,
 				_certified_Application1_Environment2,
-				_certified_Application2_Environment1, 
-				_certified_Application2_Environment2, 
-				_uncertified_Application1_Environment1, 
-				_uncertified_Application1_Environment2, 
-				_uncertified_Application2_Environment1, 
+				_certified_Application2_Environment1,
+				_certified_Application2_Environment2,
+				_uncertified_Application1_Environment1,
+				_uncertified_Application1_Environment2,
+				_uncertified_Application2_Environment1,
 				_uncertified_Application2_Environment2,
 				_uncertified_failure,
 				_certified_failure);
@@ -162,6 +163,22 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 			                                         	{
 			                                         		_certified_Application1_Environment2
 			                                         	}));
+		}
+
+		[Test]
+		public void Saves_new_deployment()
+		{
+			var deploymentRepository = getRepository();
+
+			var deployment = new Deployment {Application = "MyApplication", DeployedOn = new DateTime(2008, 8, 15)};
+			deploymentRepository.Save(deployment);
+
+			GetSession().Dispose();
+			using (ISession session = GetSession())
+			{
+				var reloadedDeployment = session.Load<Deployment>(deployment.Id);
+				Assert.That(reloadedDeployment, Is.EqualTo(deployment));
+			}
 		}
 
 		private IDeploymentRepository getRepository()

@@ -1,6 +1,8 @@
 ﻿using StructureMap;
 using Tarantino.Core;
 using Tarantino.Core.Commons.Services.Configuration;
+using Tarantino.Core.Commons.Services.Environment;
+using Tarantino.Core.Commons.Services.Environment.Impl;
 using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Commons.Services.Security;
 using Tarantino.Core.Commons.Services.Security.Impl;
@@ -40,6 +42,8 @@ namespace Tarantino.Infrastructure
 			StructureMapConfiguration.BuildInstancesOf<IForgottenPasswordMailFactory>().TheDefaultIsConcreteType<ForgottenPasswordMailFactory>();
 			StructureMapConfiguration.BuildInstancesOf<IForgottenPasswordService>().TheDefaultIsConcreteType<ForgottenPasswordService>();
 			StructureMapConfiguration.BuildInstancesOf<ILoginService>().TheDefaultIsConcreteType<LoginService>();
+			StructureMapConfiguration.BuildInstancesOf<IMachineConsole>().TheDefaultIsConcreteType<MachineConsole>();
+			StructureMapConfiguration.BuildInstancesOf<IMachineEnvironment>().TheDefaultIsConcreteType<MachineEnvironment>();
 
 			StructureMapConfiguration.BuildInstancesOf<ISessionBuilder>().TheDefaultIsConcreteType<HybridSessionBuilder>();
 

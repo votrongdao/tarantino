@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NHibernate;
 using NHibernate.Criterion;
 using Tarantino.Core.Commons.Model;
 using Tarantino.Core.Commons.Model.Enumerations;
@@ -16,100 +17,117 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 
 		public IEnumerable<T> GetAll<T>()
 		{
-			var session = GetSession();
-			var criteria = session.CreateCriteria(typeof (T));
-			criteria.SetCacheable(true);
-			var list = criteria.List<T>();
-			return list;
+			using (ISession session = GetSession())
+			{
+				var criteria = session.CreateCriteria(typeof(T));
+				criteria.SetCacheable(true);
+				var list = criteria.List<T>();
+				return list;
+			}
 		}
 
 		public T GetById<T>(Guid id) where T : PersistentObject
 		{
-			return GetSession().Load<T>(id);
+			using (ISession session = GetSession())
+			{
+				T item = session.Load<T>(id);
+				return item;
+			}
 		}
 
 		public void Delete(PersistentObject persistentObject)
 		{
-			GetSession().Delete(persistentObject);
-			GetSession().Flush();
+			using (ISession session = GetSession())
+			{
+				session.Delete(persistentObject);
+				session.Flush();
+			}
 		}
 
 		public void Save(PersistentObject persistentObject)
 		{
-			GetSession().SaveOrUpdate(persistentObject);
+			using (ISession session = GetSession())
+			{
+				session.SaveOrUpdate(persistentObject);
+				session.Flush();
+			}
 		}
 
 		public void Revert(PersistentObject persistentObject)
 		{
-			GetSession().Refresh(persistentObject);
+			using (ISession session = GetSession())
+			{
+				session.Refresh(persistentObject);
+			}
 		}
 
 		public IEnumerable<T> FindAll<T>(CriterionSet criterionSet)
 		{
-			var session = GetSession();
-
-			var persistentObjects = new List<T>();
-
-			var criteria = session.CreateCriteria(typeof (T));
-			criteria.SetCacheable(true);
-
-			foreach (var criterion in criterionSet.GetCriteria())
+			using (ISession session = GetSession())
 			{
-				ICriterion expression;
+				var persistentObjects = new List<T>();
 
-				if (criterion.Operator == ComparisonOperator.GreaterThan)
+				var criteria = session.CreateCriteria(typeof(T));
+				criteria.SetCacheable(true);
+
+				foreach (var criterion in criterionSet.GetCriteria())
 				{
-					expression = Restrictions.Gt(criterion.Attribute, criterion.Value);
-				}
-				else if (criterion.Operator == ComparisonOperator.LessThan)
-				{
-					expression = Restrictions.Lt(criterion.Attribute, criterion.Value);
-				}
-				else if (criterion.Operator == ComparisonOperator.NotEqual)
-				{
-					if (criterion.Value == null)
+					ICriterion expression;
+
+					if (criterion.Operator == ComparisonOperator.GreaterThan)
 					{
-						expression = Restrictions.IsNotNull(criterion.Attribute);
+						expression = Restrictions.Gt(criterion.Attribute, criterion.Value);
+					}
+					else if (criterion.Operator == ComparisonOperator.LessThan)
+					{
+						expression = Restrictions.Lt(criterion.Attribute, criterion.Value);
+					}
+					else if (criterion.Operator == ComparisonOperator.NotEqual)
+					{
+						if (criterion.Value == null)
+						{
+							expression = Restrictions.IsNotNull(criterion.Attribute);
+						}
+						else
+						{
+							expression = Restrictions.Not(Restrictions.Eq(criterion.Attribute, criterion.Value));
+						}
 					}
 					else
 					{
-						expression = Restrictions.Not(Restrictions.Eq(criterion.Attribute, criterion.Value));
+						if (criterion.Value == null)
+						{
+							expression = Restrictions.IsNull(criterion.Attribute);
+						}
+						else
+						{
+							expression = Restrictions.Eq(criterion.Attribute, criterion.Value);
+						}
 					}
+
+					criteria.Add(expression);
 				}
-				else
+
+				if (criterionSet.OrderBy != null)
 				{
-					if (criterion.Value == null)
+					if (criterionSet.SortOrder == SortOrder.Descending)
 					{
-						expression = Restrictions.IsNull(criterion.Attribute);
+						criteria.AddOrder(Order.Desc(criterionSet.OrderBy));
 					}
 					else
 					{
-						expression = Restrictions.Eq(criterion.Attribute, criterion.Value);
+						criteria.AddOrder(Order.Asc(criterionSet.OrderBy));
 					}
 				}
 
-				criteria.Add(expression);
-			}
-
-			if (criterionSet.OrderBy != null)
-			{
-				if (criterionSet.SortOrder == SortOrder.Descending)
+				var list = criteria.List();
+				foreach (T entity in list)
 				{
-					criteria.AddOrder(Order.Desc(criterionSet.OrderBy));
+					persistentObjects.Add(entity);
 				}
-				else
-				{
-					criteria.AddOrder(Order.Asc(criterionSet.OrderBy));
-				}
-			}
 
-			var list = criteria.List();
-			foreach (T entity in list)
-			{
-				persistentObjects.Add(entity);
+				return persistentObjects;
 			}
-
-			return persistentObjects;
 		}
 
 		public T FindFirst<T>(CriterionSet criterionSet) where T : class

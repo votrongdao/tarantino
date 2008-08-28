@@ -24,6 +24,11 @@ namespace Tarantino.Infrastructure.Deployer.DataAccess.Repositories
 			return deployments;
 		}
 
+		public void Save(Deployment deployment)
+		{
+			_repository.Save(deployment);
+		}
+
 		public IEnumerable<Deployment> FindSuccessfulUncertified(string application, string environment)
 		{
 			var criteria = getCriteria(application, environment);

@@ -75,14 +75,17 @@
     <Compile Include="Commons\Services\DataFileManagement\Impl\ExcelWorksheetReader.cs" />
     <Compile Include="Commons\Services\Environment\IApplicationDomain.cs" />
     <Compile Include="Commons\Services\Environment\IAssemblyContext.cs" />
+    <Compile Include="Commons\Services\Environment\IMachineConsole.cs" />
     <Compile Include="Commons\Services\Environment\IDateContext.cs" />
     <Compile Include="Commons\Services\Environment\IFileStreamFactory.cs" />
     <Compile Include="Commons\Services\Environment\IFileSystem.cs" />
     <Compile Include="Commons\Services\Environment\IGuidGenerator.cs" />
+    <Compile Include="Commons\Services\Environment\IMachineEnvironment.cs" />
     <Compile Include="Commons\Services\Environment\Impl\ApplicationDomain.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commons\Services\Environment\Impl\AssemblyContext.cs" />
+    <Compile Include="Commons\Services\Environment\Impl\MachineConsole.cs" />
     <Compile Include="Commons\Services\Environment\Impl\DateContext.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +96,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commons\Services\Environment\Impl\GuidGenerator.cs" />
+    <Compile Include="Commons\Services\Environment\Impl\MachineEnvironment.cs" />
     <Compile Include="Commons\Services\Environment\Impl\ResourceFileLocator.cs">
       <SubType>Code</SubType>
     </Compile>

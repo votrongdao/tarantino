@@ -14,12 +14,12 @@ namespace Tarantino.Daemon.Console
 			{
 				CoreDependencyRegistrar.Register();
 				var serviceRunner = ObjectFactory.GetInstance<IServiceRunner>();
-				Logger.Info(serviceRunner, "Tarantino.Daemon Console starting");
+				Logger.Info(serviceRunner, "Tarantino.Daemon MachineConsole starting");
 				serviceRunner.Start();
 			}
 			catch (Exception exc)
 			{
-				System.Console.WriteLine("Console failed to run: {0}", exc);
+				System.Console.WriteLine("MachineConsole failed to run: {0}", exc);
 				throw;
 			}
 		}

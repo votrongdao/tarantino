@@ -1,4 +1,3 @@
-using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.Deployer.Services.Impl;
@@ -14,12 +13,12 @@ namespace Tarantino.UnitTests.Core.Deployer.Services
 		[Test]
 		public void Records_deployment()
 		{
-			Deployment deployment = new Deployment();
+			var deployment = new Deployment();
 
-			MockRepository mocks = new MockRepository();
-			IDeploymentFactory factory = mocks.CreateMock<IDeploymentFactory>();
-			IPersistentObjectRepository repository = mocks.CreateMock<IPersistentObjectRepository>();
-			ISecurityContext context = mocks.CreateMock<ISecurityContext>();
+			var mocks = new MockRepository();
+			var factory = mocks.CreateMock<IDeploymentFactory>();
+			var repository = mocks.CreateMock<IDeploymentRepository>();
+			var context = mocks.CreateMock<ISecurityContext>();
 
 			using (mocks.Record())
 			{

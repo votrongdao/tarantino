@@ -1,4 +1,3 @@
-using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Commons.Services.Security;
 
@@ -10,9 +9,9 @@ namespace Tarantino.Core.Deployer.Services.Impl
 	{
 		private readonly ISecurityContext _securityContext;
 		private readonly IDeploymentFactory _factory;
-		private readonly IPersistentObjectRepository _repository;
+		private readonly IDeploymentRepository _repository;
 
-		public DeploymentRecorder(ISecurityContext securityContext, IDeploymentFactory factory, IPersistentObjectRepository repository)
+		public DeploymentRecorder(ISecurityContext securityContext, IDeploymentFactory factory, IDeploymentRepository repository)
 		{
 			_securityContext = securityContext;
 			_factory = factory;

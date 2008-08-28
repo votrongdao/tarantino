@@ -45,6 +45,28 @@ namespace Tarantino.UnitTests.Infrastructure.Deployer.DataAccess.Repositories
 		}
 
 		[Test]
+		public void Correctly_saves_deployment()
+		{
+			var deployment = new Deployment();
+
+			var mocks = new MockRepository();
+			var repository = mocks.CreateMock<IPersistentObjectRepository>();
+
+			using (mocks.Record())
+			{
+				repository.ConfigurationFile = "deployer.hibernate.cfg.xml";
+				repository.Save(deployment);
+			}
+
+			using (mocks.Playback())
+			{
+				IDeploymentRepository deploymentRepository = new DeploymentRepository(repository);
+
+				deploymentRepository.Save(deployment);
+			}
+		}
+
+		[Test]
 		public void Returns_uncertified_deployments_by_application_and_environment()
 		{
 			var criteria = new CriterionSet();
