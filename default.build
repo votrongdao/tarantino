@@ -134,6 +134,7 @@
 				<include name="**\bin\${project.config}\Subversion\**" />
 				<include name="**\bin\${project.config}\*.config" />
 				<include name="**\bin\${project.config}\StructureMap.config" />
+				<include name="**\bin\${project.config}\*.cfg.xml" />
 			</fileset>
 		</copy>
 

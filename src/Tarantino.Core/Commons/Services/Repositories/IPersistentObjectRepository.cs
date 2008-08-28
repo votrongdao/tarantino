@@ -6,7 +6,6 @@ using Tarantino.Core.Commons.Services.Repositories;
 
 namespace Tarantino.Core.Commons.Services.Repositories
 {
-	
 	public interface IPersistentObjectRepository
 	{
 		IEnumerable<T> GetAll<T>();
