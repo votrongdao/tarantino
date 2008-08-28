@@ -1,5 +1,4 @@
 using System;
-using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.Deployer.Services.Impl;
@@ -17,12 +16,12 @@ namespace Tarantino.UnitTests.Core.Deployer.Services
 		[Test]
 		public void Certifies_deployment()
 		{
-			Deployment deployment = new Deployment();
+			var deployment = new Deployment();
 
-			MockRepository mocks = new MockRepository();
-			ISystemClock clock = mocks.CreateMock<ISystemClock>();
-			ISecurityContext securityContext = mocks.CreateMock<ISecurityContext>();
-			IPersistentObjectRepository repository = mocks.CreateMock<IPersistentObjectRepository>();
+			var mocks = new MockRepository();
+			var clock = mocks.CreateMock<ISystemClock>();
+			var securityContext = mocks.CreateMock<ISecurityContext>();
+			var repository = mocks.CreateMock<IDeploymentRepository>();
 
 			using (mocks.Record())
 			{

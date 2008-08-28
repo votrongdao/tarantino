@@ -1,19 +1,16 @@
-using Tarantino.Core.Commons.Services.Repositories;
-using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.Commons.Services.Security;
-
+using Tarantino.Core.Deployer.Model;
 
 namespace Tarantino.Core.Deployer.Services.Impl
 {
-	
 	public class RevisionCertifier : IRevisionCertifier
 	{
 		private readonly ISystemClock _clock;
 		private readonly ISecurityContext _securityContext;
-		private readonly IPersistentObjectRepository _repository;
+		private readonly IDeploymentRepository _repository;
 
-		public RevisionCertifier(ISystemClock clock, ISecurityContext securityContext, IPersistentObjectRepository repository)
+		public RevisionCertifier(ISystemClock clock, ISecurityContext securityContext, IDeploymentRepository repository)
 		{
 			_clock = clock;
 			_securityContext = securityContext;
