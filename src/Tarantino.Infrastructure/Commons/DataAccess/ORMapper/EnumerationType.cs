@@ -9,13 +9,15 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public class EnumerationType<T> : PrimitiveType where T : Enumeration, new()
 	{
-		public EnumerationType() : base(new SqlType(DbType.Int32))
+		public EnumerationType()
+			: base(new SqlType(DbType.Int32))
 		{
 		}
 
 		public override object Get(IDataReader rs, int index)
 		{
-			var value = (int) rs[index];
+			object o = rs[index];
+			var value = Convert.ToInt32(o);
 			return Enumeration.FromValue<T>(value);
 		}
 
@@ -27,7 +29,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public override Type ReturnedClass
 		{
-			get { return typeof (T); }
+			get { return typeof(T); }
 		}
 
 		public override object FromStringValue(string xml)
@@ -42,7 +44,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public override void Set(IDbCommand cmd, object value, int index)
 		{
-			var parameter = (IDataParameter) cmd.Parameters[index];
+			var parameter = (IDataParameter)cmd.Parameters[index];
 
 			var val = (Enumeration)value;
 
