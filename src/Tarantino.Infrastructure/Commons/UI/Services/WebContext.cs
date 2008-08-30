@@ -114,6 +114,12 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 			return url;
 		}
 
+		public string GetCurrentFullUrl()
+		{
+			var url = HttpContext.Current.Request.RawUrl;
+			return url;
+		}
+
 		public void SetHttpResponseStatus(int code, string description)
 		{
 			var response = HttpContext.Current.Response;
@@ -140,6 +146,12 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		{
 			var baseDirectory = Path.Combine(HttpContext.Current.Request.ApplicationPath, "bin");
 			return baseDirectory;
+		}
+
+		public string GetApplicationPath()
+		{
+			var path = HttpContext.Current.Request.ApplicationPath;
+			return path;
 		}
 
 		public void AppendResponseHeader(string name, string value)
