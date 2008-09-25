@@ -4,5 +4,6 @@ namespace Tarantino.Core.Commons.Services.Configuration
 	{
 		T CreateInstance<T>(string instanceKey);
 		T CreateInstance<T>();
+		T[] CreateAllInstances<T>();
 	}
 }

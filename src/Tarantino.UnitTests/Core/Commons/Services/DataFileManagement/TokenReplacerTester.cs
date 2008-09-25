@@ -11,10 +11,10 @@ namespace Tarantino.UnitTests.Core.Commons.Services.DataFileManagement
 		[Test]
 		public void CorrectlyReplacesToken()
 		{
-			string script = "X ||Token|| X";
+			const string script = "X ||Token|| X";
 
-			ITokenReplacer replacer = new TokenReplacer();
-			replacer.Text = script;
+			ITokenReplacer replacer = new TokenReplacer {Text = script};
+
 			replacer.Replace("Token", "TokenValue");
 			Assert.AreEqual("X TokenValue X", replacer.Text);
 		}

@@ -38,10 +38,10 @@ namespace Tarantino.UnitTests.Core.Commons.Model.Enumerations
 		[Test]
 		public void Can_sort_enumeration_values()
 		{
-			PersistenceMode[] modes = new PersistenceMode[] {PersistenceMode.Archive, PersistenceMode.Live};
+			var modes = new[] {PersistenceMode.Archive, PersistenceMode.Live};
 			Array.Sort(modes);
 
-			Assert.That(modes, Is.EqualTo(new PersistenceMode[] { PersistenceMode.Live, PersistenceMode.Archive }));
+			Assert.That(modes, Is.EqualTo(new[] { PersistenceMode.Live, PersistenceMode.Archive }));
 		}
 
 		[Test]
@@ -84,7 +84,7 @@ namespace Tarantino.UnitTests.Core.Commons.Model.Enumerations
 		[Test]
 		public void Should_return_enumerated_value_by_display_name()
 		{
-			TestEnumeration value = Enumeration.FromDisplayName<TestEnumeration>("Red");
+			var value = Enumeration.FromDisplayName<TestEnumeration>("Red");
 
 			Assert.AreNotSame(TestEnumeration.Blue, value);
 			Assert.AreSame(TestEnumeration.Red, value);

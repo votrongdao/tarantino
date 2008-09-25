@@ -1,3 +1,4 @@
+using System.Linq;
 using StructureMap;
 using Tarantino.Core.Commons.Services.Configuration;
 
@@ -15,6 +16,12 @@ namespace Tarantino.Infrastructure.Commons.Services.Configuration
 		{
 			var instance = ObjectFactory.GetNamedInstance<T>(instanceKey);
 			return instance;
+		}
+
+		public T[] CreateAllInstances<T>()
+		{
+			var instances = ObjectFactory.GetAllInstances<T>();
+			return instances.ToArray();
 		}
 	}
 }

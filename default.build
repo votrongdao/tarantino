@@ -204,7 +204,6 @@
 		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
 
 		<exec program="${svn.exe}" workingdir="." commandline="ci LatestVersion ${svn.args} -m&quot;automatic check-in ${project.fullversion}&quot;" verbose="true"  />
-
 	</target>
 
 	<!-- Database change management -->
