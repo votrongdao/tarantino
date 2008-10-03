@@ -1,9 +1,11 @@
 using NUnit.Framework.SyntaxHelpers;
 using StructureMap;
+using Tarantino.Core;
 using Tarantino.Core.Deployer.Services.Configuration;
 using Tarantino.Core.Deployer.Services.Configuration.Impl;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
 using NUnit.Framework;
+using Tarantino.Infrastructure;
 
 namespace Tarantino.IntegrationTests.Core.Deployer.Services.Configuration
 {
@@ -13,6 +15,8 @@ namespace Tarantino.IntegrationTests.Core.Deployer.Services.Configuration
 		[Test]
 		public void Reads_application_collection_from_configuration_file()
 		{
+			InfrastructureDependencyRegistrar.RegisterInfrastructure();
+
 			IApplicationRepository repository = ObjectFactory.GetInstance<IApplicationRepository>();
 			ElementCollection<Application> applications = repository.GetAll();
 

@@ -38,9 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NHibernate\1.2.1\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="StructureMap, Version=2.5.0.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\StructureMap\2.0\StructureMap.dll</HintPath>
+      <HintPath>..\..\lib\StructureMap\2.5\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -169,6 +169,7 @@
     <Compile Include="Commons\Services\Web\Impl\SmtpMailSender.cs" />
     <Compile Include="Commons\Services\Web\IWebContext.cs" />
     <Compile Include="Commons\Services\Web\IWebDataReader.cs" />
+    <Compile Include="CoreDependencyRegistry.cs" />
     <Compile Include="Daemon\Services\Impl\ServiceAgentAggregator.cs" />
     <Compile Include="Daemon\Services\Impl\ServiceRunner.cs" />
     <Compile Include="Daemon\Services\IServiceAgent.cs" />
