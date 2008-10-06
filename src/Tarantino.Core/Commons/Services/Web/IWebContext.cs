@@ -32,5 +32,6 @@ namespace Tarantino.Core.Commons.Services.Web
 		void SetCharacterSet(string charSet);
 		string GetCurrentFullUrl();
 		string GetApplicationPath();
+		void Abandon();
 	}
 }

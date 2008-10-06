@@ -108,6 +108,11 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 			HttpContext.Current.User = user;
 		}
 
+		public void Abandon()
+		{
+			HttpContext.Current.Session.Abandon();
+		}
+
 		public string GetCurrentUrl()
 		{
 			var url = HttpContext.Current.Request.Path;
