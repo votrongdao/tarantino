@@ -69,14 +69,20 @@ namespace Tarantino.Core.Commons.Services.Logging
 
 		private static ILog getLogger(Type source)
 		{
-			if (_loggers.ContainsKey(source))
+			if (!_loggers.ContainsKey(source))
 			{
-				return _loggers[source];
+				lock(_loggers)
+				{
+					if (!_loggers.ContainsKey(source))
+					{
+						ILog logger = LogManager.GetLogger(source);
+						_loggers.Add(source, logger);
+					}
+				}
 			}
 			
-			ILog logger = LogManager.GetLogger(source);
-			_loggers.Add(source, logger);
-			return logger;
+
+			return _loggers[source];
 		}
 
 		public static void Debug(object source, object message)
