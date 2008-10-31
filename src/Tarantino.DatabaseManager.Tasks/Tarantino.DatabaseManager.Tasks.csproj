@@ -53,6 +53,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ImportExcelToSqlTask.cs" />
     <Compile Include="ManageSqlDatabaseTask.cs" />
   </ItemGroup>
   <ItemGroup>

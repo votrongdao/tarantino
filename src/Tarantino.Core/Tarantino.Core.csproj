@@ -183,6 +183,8 @@
     <Compile Include="DatabaseManager\Services\IDatabaseActionExecutor.cs" />
     <Compile Include="DatabaseManager\Services\IDatabaseActionResolver.cs" />
     <Compile Include="DatabaseManager\Services\IDatabaseConnectionDropper.cs" />
+    <Compile Include="DatabaseManager\Services\IExcelImporter.cs" />
+    <Compile Include="DatabaseManager\Services\Impl\ExcelImporter.cs" />
     <Compile Include="DatabaseManager\Services\Impl\ScriptFolderExecutor.cs" />
     <Compile Include="DatabaseManager\Services\IScriptFolderExecutor.cs" />
     <Compile Include="DatabaseManager\Services\ISqlDatabaseManager.cs" />
@@ -312,6 +314,9 @@
     <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingRowOneFragment.html" />
     <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingRowNFragment.html" />
     <EmbeddedResource Include="WebManagement\Services\Views\Resources\ApplicationListingReadOnlyRowNFragment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DatabaseManager\SqlFiles\ImportExcel.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
