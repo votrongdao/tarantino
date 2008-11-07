@@ -10,12 +10,19 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public class HybridSessionBuilder : ISessionBuilder
 	{
-		private static readonly Dictionary<string, ISessionFactory> _sessionFactories =
-			new Dictionary<string, ISessionFactory>();
+		private static readonly Dictionary<string, ISessionFactory>
+			_sessionFactories =
+				new Dictionary<string, ISessionFactory>();
 
-		private static readonly Dictionary<string, ISession> _currentSessions = new Dictionary<string, ISession>();
+		private static readonly Dictionary<string, ISession> _currentSessions =
+			new Dictionary<string, ISession>();
 
 		private const string _defaultConfigFileName = "hibernate.cfg.xml";
+
+		public ISessionFactory GetSessionFactory()
+		{
+			return GetSessionFactory(_defaultConfigFileName);
+		}
 
 		public ISession GetSession()
 		{
@@ -29,9 +36,25 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 		public ISession GetSession(string configurationFile)
 		{
-			var factory = getSessionFactory(configurationFile);
+			var factory = GetSessionFactory(configurationFile);
 			var session = getExistingOrNewSession(factory, configurationFile);
-			Logger.Debug(this, string.Format("Using ISession {0}", session.GetHashCode()));
+			Logger.Debug(this,
+			             string.Format("Using ISession {0}", session.GetHashCode()));
+			return session;
+		}
+
+		public IStatelessSession GetStatelessSession()
+		{
+			return GetStatelessSession(_defaultConfigFileName);
+		}
+
+		public IStatelessSession GetStatelessSession(string configurationFile)
+		{
+			var factory = GetSessionFactory(configurationFile);
+			var session = factory.OpenStatelessSession();
+			Logger.Debug(this,
+			             string.Format("Using IStatelessSession {0}",
+			                           session.GetHashCode()));
 			return session;
 		}
 
@@ -62,7 +85,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			new HybridSessionBuilder().GetSession(configurationFile).Dispose();
 		}
 
-		private ISessionFactory getSessionFactory(string configurationFile)
+		public ISessionFactory GetSessionFactory(string configurationFile)
 		{
 			if (!_sessionFactories.ContainsKey(configurationFile))
 			{
@@ -73,7 +96,8 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return _sessionFactories[configurationFile];
 		}
 
-		private ISession getExistingOrNewSession(ISessionFactory factory, string configurationFile)
+		private ISession getExistingOrNewSession(ISessionFactory factory,
+		                                         string configurationFile)
 		{
 			if (HttpContext.Current != null)
 			{
@@ -87,7 +111,9 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 				return session;
 			}
 
-			var currentSession = _currentSessions.ContainsKey(configurationFile) ? _currentSessions[configurationFile] : null;
+			var currentSession = _currentSessions.ContainsKey(configurationFile)
+			                     	? _currentSessions[configurationFile]
+			                     	: null;
 			if (currentSession == null || !currentSession.IsOpen)
 			{
 				_currentSessions[configurationFile] = factory.OpenSession();
@@ -96,7 +122,8 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return _currentSessions[configurationFile];
 		}
 
-		private ISession openSessionAndAddToContext(ISessionFactory factory, string configurationFile)
+		private static ISession openSessionAndAddToContext(ISessionFactory factory,
+		                                                   string configurationFile)
 		{
 			var session = factory.OpenSession();
 			HttpContext.Current.Items.Remove(configurationFile);
@@ -104,7 +131,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return session;
 		}
 
-		private string GetFileName(string file)
+		private static string GetFileName(string file)
 		{
 			var fileName = file;
 
@@ -112,13 +139,16 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 
 			if (!fileExists && HttpContext.Current != null)
 			{
-				var binPath = Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "bin");
+				var binPath =
+					Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "bin");
 				fileName = Path.Combine(binPath, fileName);
 			}
 
 			if (!File.Exists(fileName))
 			{
-				var message = string.Format("Could not locate NHibernate configuration file at: {0}", fileName);
+				var message =
+					string.Format("Could not locate NHibernate configuration file at: {0}",
+					              fileName);
 				throw new ApplicationException(message);
 			}
 
