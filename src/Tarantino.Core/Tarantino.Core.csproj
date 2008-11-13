@@ -62,6 +62,11 @@
     <Compile Include="Commons\Model\Enumerations\TimePeriod.cs" />
     <Compile Include="Commons\Model\ISystemUser.cs" />
     <Compile Include="Commons\Model\PersistentObject.cs" />
+    <Compile Include="Commons\Model\Specifications\AndSpecification.cs" />
+    <Compile Include="Commons\Model\Specifications\BaseSpecification.cs" />
+    <Compile Include="Commons\Model\Specifications\ISpecification.cs" />
+    <Compile Include="Commons\Model\Specifications\NotSpecification.cs" />
+    <Compile Include="Commons\Model\Specifications\OrSpecification.cs" />
     <Compile Include="Commons\Services\Caching\ICacheManager.cs" />
     <Compile Include="Commons\Services\Caching\Impl\Cache.cs" />
     <Compile Include="Commons\Services\Caching\Impl\CacheManager.cs" />

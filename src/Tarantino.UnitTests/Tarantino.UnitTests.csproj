@@ -59,6 +59,11 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CoreDependencyRegistrarTester.cs" />
+    <Compile Include="Core\Commons\Model\Specifications\AndSpecificationTester.cs" />
+    <Compile Include="Core\Commons\Model\Specifications\BaseSpecificationTester.cs" />
+    <Compile Include="Core\Commons\Model\Specifications\NotSpecificationTester.cs" />
+    <Compile Include="Core\Commons\Model\Specifications\OrSpecificationTester.cs" />
+    <Compile Include="Core\Commons\Model\Specifications\SpecTestBase.cs" />
     <Compile Include="Core\Commons\Services\Environment\AssemblyContextTester.cs" />
     <Compile Include="Core\Commons\Services\RandomDataCreation\CodeGeneratorTester.cs" />
     <Compile Include="Core\Commons\Services\RandomDataCreation\RandomCharacterGeneratorTester.cs" />
@@ -144,6 +149,7 @@
     <Compile Include="Core\Deployer\Services\UI\LabelTextGeneratorTester.cs" />
     <Compile Include="Infrastructure\Deployer\DataAccess\Repositories\DeploymentRepositoryTester.cs" />
     <Compile Include="Infrastructure\WebManagement\DataAccess\Repositories\ApplicationInstanceRepositoryTester.cs" />
+    <Compile Include="TestExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tarantino.Core\Tarantino.Core.csproj">
