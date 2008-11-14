@@ -29,12 +29,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return GetSession(_defaultConfigFileName);
 		}
 
-		public Configuration GetConfiguration()
-		{
-			return GetConfiguration(_defaultConfigFileName);
-		}
-
-		public ISession GetSession(string configurationFile)
+		public virtual ISession GetSession(string configurationFile)
 		{
 			var factory = GetSessionFactory(configurationFile);
 			var session = getExistingOrNewSession(factory, configurationFile);
@@ -48,7 +43,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return GetStatelessSession(_defaultConfigFileName);
 		}
 
-		public IStatelessSession GetStatelessSession(string configurationFile)
+		public virtual IStatelessSession GetStatelessSession(string configurationFile)
 		{
 			var factory = GetSessionFactory(configurationFile);
 			var session = factory.OpenStatelessSession();
@@ -58,7 +53,12 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return session;
 		}
 
-		public Configuration GetConfiguration(string configurationFile)
+		public Configuration GetConfiguration()
+		{
+			return GetConfiguration(_defaultConfigFileName);
+		}
+
+		public virtual Configuration GetConfiguration(string configurationFile)
 		{
 			var configuration = new Configuration();
 			configuration.Configure(GetFileName(configurationFile));
@@ -70,7 +70,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			return GetExistingWebSession(_defaultConfigFileName);
 		}
 
-		public ISession GetExistingWebSession(string configurationFile)
+		public virtual ISession GetExistingWebSession(string configurationFile)
 		{
 			return HttpContext.Current.Items[configurationFile] as ISession;
 		}
@@ -85,7 +85,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			new HybridSessionBuilder().GetSession(configurationFile).Dispose();
 		}
 
-		public ISessionFactory GetSessionFactory(string configurationFile)
+		public virtual ISessionFactory GetSessionFactory(string configurationFile)
 		{
 			if (!_sessionFactories.ContainsKey(configurationFile))
 			{
