@@ -17,5 +17,12 @@ namespace Tarantino.UnitTests.Core.Commons.Services.Environment
 
 			Assert.That(assembly, Is.Not.Null);
 		}
+
+		[Test]
+		public void Correctly_returns_version_info()
+		{
+			IAssemblyContext context = new AssemblyContext();
+			Assert.That(context.GetAssemblyVersion().StartsWith("1."));
+		}
 	}
 }
