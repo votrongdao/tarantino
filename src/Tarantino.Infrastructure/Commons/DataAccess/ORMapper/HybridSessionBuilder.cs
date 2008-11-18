@@ -116,16 +116,21 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 			                     	: null;
 			if (currentSession == null || !currentSession.IsOpen)
 			{
-				_currentSessions[configurationFile] = factory.OpenSession();
+				_currentSessions[configurationFile] = OpenSession(factory);
 			}
 
 			return _currentSessions[configurationFile];
 		}
 
-		private static ISession openSessionAndAddToContext(ISessionFactory factory,
+		protected virtual ISession OpenSession(ISessionFactory factory)
+		{
+			return factory.OpenSession();
+		}
+
+		private ISession openSessionAndAddToContext(ISessionFactory factory,
 		                                                   string configurationFile)
 		{
-			var session = factory.OpenSession();
+			var session = OpenSession(factory);
 			HttpContext.Current.Items.Remove(configurationFile);
 			HttpContext.Current.Items.Add(configurationFile, session);
 			return session;
