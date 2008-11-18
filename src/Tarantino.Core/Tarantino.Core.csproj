@@ -237,11 +237,9 @@
     <Compile Include="Deployer\Services\Impl\RevisionNumberParser.cs" />
     <Compile Include="Deployer\Services\IRevisionCertifier.cs" />
     <Compile Include="Deployer\Services\IRevisionNumberParser.cs" />
-    <Compile Include="Deployer\Services\UI\IDeploymentFormValidator.cs" />
     <Compile Include="Deployer\Services\UI\IDeploymentRowFactory.cs" />
     <Compile Include="Deployer\Services\UI\IDeploymentSelectionValidator.cs" />
     <Compile Include="Deployer\Services\UI\ILabelTextGenerator.cs" />
-    <Compile Include="Deployer\Services\UI\Impl\DeploymentFormValidator.cs" />
     <Compile Include="Deployer\Services\UI\Impl\DeploymentRowFactory.cs" />
     <Compile Include="Deployer\Services\UI\Impl\DeploymentSelectionValidator.cs" />
     <Compile Include="Deployer\Services\UI\Impl\LabelTextGenerator.cs" />

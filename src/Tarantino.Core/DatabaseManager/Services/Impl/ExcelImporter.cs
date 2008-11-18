@@ -20,6 +20,8 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 		public void Import(string excelFile, string server, string database, bool integrated, string username, string password,
 		                   ITaskObserver taskObserver)
 		{
+			string message = string.Format("\nImporting Excel File '{0}' to Database '{1}' on Server '{2}'\n", excelFile, database, server);
+			taskObserver.Log(message);
 			var settings = new ConnectionSettings(server, database, integrated, username, password);
 
 			string sql = _fileLocator.ReadTextFile("Tarantino.Core", "Tarantino.Core.DatabaseManager.SqlFiles.ImportExcel.sql");

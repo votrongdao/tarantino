@@ -143,7 +143,6 @@
     <Compile Include="Core\Deployer\Services\DeploymentResultCalculatorTester.cs" />
     <Compile Include="Core\Deployer\Services\RevisionCertifierTester.cs" />
     <Compile Include="Core\Deployer\Services\RevisionNumberParserTester.cs" />
-    <Compile Include="Core\Deployer\Services\UI\DeploymentFormValidatorTester.cs" />
     <Compile Include="Core\Deployer\Services\UI\DeploymentRowFactoryTester.cs" />
     <Compile Include="Core\Deployer\Services\UI\DeploymentSelectionValidatorTester.cs" />
     <Compile Include="Core\Deployer\Services\UI\LabelTextGeneratorTester.cs" />

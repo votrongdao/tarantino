@@ -30,7 +30,7 @@ namespace Tarantino.Deployer
 
 		private void populateRevisions()
 		{
-			IDeploymentRepository repository = ObjectFactory.GetInstance<IDeploymentRepository>();
+			var repository = ObjectFactory.GetInstance<IDeploymentRepository>();
 
 			IEnumerable<Deployment> certified = repository.FindCertified(SelectedApplication.Name, SelectedEnvironment.Predecessor);
 			IEnumerable<Deployment> uncertified = repository.FindSuccessfulUncertified(SelectedApplication.Name, SelectedEnvironment.Name);
@@ -43,7 +43,7 @@ namespace Tarantino.Deployer
 
 		private void populateDeploymentGrid(IDeploymentRepository repository)
 		{
-			IDeploymentRowFactory rowFactory = ObjectFactory.GetInstance<IDeploymentRowFactory>();
+			var rowFactory = ObjectFactory.GetInstance<IDeploymentRowFactory>();
 		
 			grdDeployments.Rows.Clear();
 
@@ -66,9 +66,9 @@ namespace Tarantino.Deployer
 
 		private void btnCertify_Click(object sender, EventArgs e)
 		{
-			Deployment selectedRevision = cboCertifyRevision.SelectedItem as Deployment;
+			var selectedRevision = cboCertifyRevision.SelectedItem as Deployment;
 
-			IRevisionCertifier certifier = ObjectFactory.GetInstance<IRevisionCertifier>();
+			var certifier = ObjectFactory.GetInstance<IRevisionCertifier>();
 			certifier.Certify(selectedRevision);
 
 			if (selectedRevision != null)
@@ -83,7 +83,7 @@ namespace Tarantino.Deployer
 
 		private void btnDeploy_OnClick(object sender, EventArgs e)
 		{
-			StringBuilder arguments = new StringBuilder("-buildfile:Deployer.build");
+			var arguments = new StringBuilder("-buildfile:Deployer.build");
 			addArgument(arguments, "application", SelectedApplication.Name);
 			addArgument(arguments, "revision", cboRevision.Text);
 			addArgument(arguments, "environment", SelectedEnvironment.Name);
@@ -92,16 +92,7 @@ namespace Tarantino.Deployer
 			addArgument(arguments, "username", txtUsername.Text);
 			addArgument(arguments, "password", txtPassword.Text);
 
-			IDeploymentFormValidator validator = new DeploymentFormValidator();
-
-			if (validator.IsValid(SelectedEnvironment, cboRevision.Text))
-			{
-				RunCommandLine(@"NAnt\nant.exe", arguments.ToString());
-			}
-			else
-			{
-				MessageBox.Show("Please complete the form above before continuing");
-			}
+			RunCommandLine(@"NAnt\nant.exe", arguments.ToString());
 		}
 
 		private void grdDeployments_OnDoubleClick(object sender, EventArgs e)
@@ -112,16 +103,14 @@ namespace Tarantino.Deployer
 			{
 				string output = selectedRows[0].Cells["Output"].Value.ToString();
 
-				DeploymentOutput outputWindow = new DeploymentOutput();
-				outputWindow.Output = output;
+				var outputWindow = new DeploymentOutput {Output = output};
 				outputWindow.ShowDialog();
 			}
 		}
 
 		private void RunCommandLine(string executable, string arguments)
 		{
-			ProcessProgressForm processForm = new ProcessProgressForm();
-			processForm.ProcessCompleted = processCompleted;
+			var processForm = new ProcessProgressForm {ProcessCompleted = processCompleted};
 
 			string workingDir = AppDomain.CurrentDomain.BaseDirectory;
 			string executableWithPath = string.Format(@"{0}{1}", workingDir, executable);
@@ -140,13 +129,13 @@ namespace Tarantino.Deployer
 
 		private void processCompleted(string output)
 		{
-			IDeploymentRecorder recorder = ObjectFactory.GetInstance<IDeploymentRecorder>();
+			var recorder = ObjectFactory.GetInstance<IDeploymentRecorder>();
 			recorder.RecordDeployment(SelectedApplication.Name, SelectedEnvironment.Name, output);
 
 			populateRevisions();
 		}
 
-		private void populateRevisionDropdown(IEnumerable<Deployment> deployments, ComboBox combo)
+		private static void populateRevisionDropdown(IEnumerable<Deployment> deployments, ComboBox combo)
 		{
 			combo.Text = string.Empty;
 			combo.DataSource = deployments;
@@ -181,7 +170,7 @@ namespace Tarantino.Deployer
 
 		private void populateApplicationDropdown()
 		{
-			IApplicationRepository repository = ObjectFactory.GetInstance<IApplicationRepository>();
+			var repository = ObjectFactory.GetInstance<IApplicationRepository>();
 
 			foreach (Application application in repository.GetAll())
 			{
@@ -193,10 +182,10 @@ namespace Tarantino.Deployer
 
 		private void cboRevision_OnTextChanged(object sender, EventArgs e)
 		{
-			Deployment deployment = cboRevision.SelectedItem as Deployment;
+			var deployment = cboRevision.SelectedItem as Deployment;
 			string revision = cboRevision.Text;
 
-			ILabelTextGenerator generator = ObjectFactory.GetInstance<ILabelTextGenerator>();
+			var generator = ObjectFactory.GetInstance<ILabelTextGenerator>();
 			lblDeployed.Text = generator.GetDeploymentText(SelectedEnvironment, revision, deployment);
 			lblCertified.Text = generator.GetCertificationText(revision, deployment);
 		}
@@ -223,14 +212,14 @@ namespace Tarantino.Deployer
 			grdDeployments.DoubleClick += grdDeployments_OnDoubleClick;
 		}
 
-		private StringBuilder addArgument(StringBuilder sb, string argName, string argValue)
+		private static void addArgument(StringBuilder sb, string argName, string argValue)
 		{
 			sb.Append(" -D:");
 			sb.Append(argName);
 			sb.Append("=\"");
 			sb.Append(argValue);
 			sb.Append("\"");
-			return sb;
+			return;
 		}
 	}
 }
