@@ -39,5 +39,18 @@ namespace Tarantino.Core.Deployer.Services.Configuration.Impl
 		{
 			return "Application";
 		}
+
+		public Environment GetEnvironmentByName(string environmentName)
+		{
+			foreach (Environment environment in Environments)
+			{
+				if (environment.Name == environmentName)
+				{
+					return environment;
+				}
+			}
+
+			return null;
+		}
 	}
 }

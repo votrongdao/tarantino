@@ -35,6 +35,12 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.Repositories
 			}
 		}
 
+		public T GetByIdWithoutClosingSession<T>(Guid id) where T : PersistentObject
+		{
+			var item = GetSession().Load<T>(id);
+			return item;
+		}
+
 		public void Delete(PersistentObject persistentObject)
 		{
 			using (ISession session = GetSession())

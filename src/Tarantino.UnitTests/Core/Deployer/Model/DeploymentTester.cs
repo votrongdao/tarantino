@@ -43,14 +43,20 @@ namespace Tarantino.UnitTests.Core.Deployer.Model
 			deployment.CertifiedBy = "CertifiedBy";
 			Assert.AreEqual("CertifiedBy", deployment.CertifiedBy);
 
-			Assert.AreEqual(null, deployment.Output);
-			deployment.Output = "Output";
-			Assert.AreEqual("Output", deployment.Output);
-
 			Assert.AreEqual(null, deployment.Result);
 			deployment.Result = DeploymentResult.Failure;
 			Assert.AreSame(DeploymentResult.Failure, deployment.Result);
+		}
 
+		[Test]
+		public void Can_set_output()
+		{
+			var deployment = new Deployment();
+			var output = new DeploymentOutput();
+			deployment.SetOutput(output);
+
+			Assert.That(deployment.Output, Is.SameAs(output));
+			Assert.That(output.Deployment, Is.SameAs(deployment));
 		}
 
 		[Test]

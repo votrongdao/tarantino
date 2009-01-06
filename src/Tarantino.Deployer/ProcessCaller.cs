@@ -77,14 +77,19 @@ namespace Tarantino.Deployer
 
 		protected virtual void StartProcess()
 		{
-			_process = new Process();
-			_process.StartInfo.UseShellExecute = false;
-			_process.StartInfo.RedirectStandardOutput = true;
-			_process.StartInfo.RedirectStandardError = true;
-			_process.StartInfo.CreateNoWindow = true;
-			_process.StartInfo.FileName = FileName;
-			_process.StartInfo.Arguments = Arguments;
-			_process.StartInfo.WorkingDirectory = WorkingDirectory;
+			_process = new Process
+			           	{
+			           		StartInfo =
+			           			{
+			           				UseShellExecute = false,
+			           				RedirectStandardOutput = true,
+			           				RedirectStandardError = true,
+			           				CreateNoWindow = true,
+			           				FileName = FileName,
+			           				Arguments = Arguments,
+			           				WorkingDirectory = WorkingDirectory
+			           			}
+			           	};
 			_process.Start();
 
 			new MethodInvoker(ReadStdOut).BeginInvoke(null, null);

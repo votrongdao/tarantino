@@ -33,6 +33,7 @@
   <ItemGroup>
     <None Include="Update\001_CreateDeploymentTable.sql" />
     <None Include="Update\002_AddResultAndOutputColumns.sql" />
+    <None Include="Update\003_AddDeploymentOutputTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

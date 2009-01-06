@@ -1,4 +1,3 @@
-using Tarantino.Core;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services.UI;
 
@@ -14,9 +13,9 @@ namespace Tarantino.Core.Deployer.Services.UI.Impl
 			string result = deployment.Result.DisplayName;
 			string certifiedOn = deployment.CertifiedOn != null ? deployment.CertifiedOn.Value.ToString("g") : string.Empty;
 			string certifiedBy = deployment.CertifiedBy;
-			string output = deployment.Output;
+			string deploymentId = deployment.Id.ToString();
 
-			return new string[] { revision, deployedOn, deployedBy, result, certifiedOn, certifiedBy, output };
+			return new[] { revision, deployedOn, deployedBy, result, certifiedOn, certifiedBy, deploymentId };
 		}
 	}
 }

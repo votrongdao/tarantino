@@ -18,12 +18,18 @@ namespace Tarantino.Core.Deployer.Model
 		public virtual DateTime? CertifiedOn { get; set; }
 		public virtual string DeployedBy { get; set; }
 		public virtual string CertifiedBy { get; set; }
-		public virtual string Output { get; set; }
+		public virtual DeploymentOutput Output { get; set; }
 		public virtual DeploymentResult Result { get; set; }
 
 		public override string ToString()
 		{
 			return Revision.ToString();
+		}
+
+		public virtual void SetOutput(DeploymentOutput output)
+		{
+			Output = output;
+			output.Deployment = this;
 		}
 	}
 }

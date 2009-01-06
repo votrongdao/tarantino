@@ -20,14 +20,16 @@ namespace Tarantino.Core.Deployer.Services.Impl
 
 		public Deployment CreateDeployment(string application, string environment, string deployedBy, string output)
 		{
-			Deployment deployment = new Deployment();
-			deployment.Application = application;
-			deployment.Environment = environment;
-			deployment.Revision = _revisionNumberParser.Parse(output);
-			deployment.DeployedBy = deployedBy;
-			deployment.DeployedOn = _clock.GetCurrentDateTime();
-			deployment.Output = output;
-			deployment.Result = _resultCalculator.GetResult(output);
+			var deployment = new Deployment
+			                 	{
+			                 		Application = application,
+			                 		Environment = environment,
+			                 		Revision = _revisionNumberParser.Parse(output),
+			                 		DeployedBy = deployedBy,
+			                 		DeployedOn = _clock.GetCurrentDateTime(),
+			                 		Output = new DeploymentOutput {Output = output},
+			                 		Result = _resultCalculator.GetResult(output)
+			                 	};
 
 			return deployment;
 		}

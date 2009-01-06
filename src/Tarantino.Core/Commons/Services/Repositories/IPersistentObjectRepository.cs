@@ -17,5 +17,6 @@ namespace Tarantino.Core.Commons.Services.Repositories
 		T FindFirst<T>(CriterionSet set) where T : class;
 
 		string ConfigurationFile { get; set; }
+		T GetByIdWithoutClosingSession<T>(Guid id) where T : PersistentObject;
 	}
 }

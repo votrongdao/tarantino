@@ -1,7 +1,6 @@
 using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
 
-
 namespace Tarantino.Core.Deployer.Services.Configuration.Impl
 {
 	
@@ -18,9 +17,22 @@ namespace Tarantino.Core.Deployer.Services.Configuration.Impl
 		{
 			object sectionObject = _configuration.GetSection("DeployerSettings");
 
-			DeployerSettingsConfigurationHandler handler = (DeployerSettingsConfigurationHandler) sectionObject;
+			var handler = (DeployerSettingsConfigurationHandler) sectionObject;
 
 			return handler.Applications;
+		}
+
+		public Application GetByName(string applicationName)
+		{
+			foreach (Application application in GetAll())
+			{
+				if (application.Name == applicationName)
+				{
+					return application;
+				}
+			}
+
+			return null;
 		}
 	}
 }

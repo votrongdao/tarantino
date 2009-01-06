@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.Deployer.Services.Configuration;
 using Tarantino.Core.Deployer.Services.UI;
-using Tarantino.Core.Deployer.Services.UI.Impl;
 using Tarantino.Deployer;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
 using StructureMap;
@@ -44,7 +44,7 @@ namespace Tarantino.Deployer
 		private void populateDeploymentGrid(IDeploymentRepository repository)
 		{
 			var rowFactory = ObjectFactory.GetInstance<IDeploymentRowFactory>();
-		
+
 			grdDeployments.Rows.Clear();
 
 			IEnumerable<Deployment> deployments = repository.Find(SelectedApplication.Name, SelectedEnvironment.Name);
@@ -101,9 +101,13 @@ namespace Tarantino.Deployer
 
 			if (selectedRows.Count == 1)
 			{
-				string output = selectedRows[0].Cells["Output"].Value.ToString();
+				var deploymentId = new Guid(grdDeployments.Rows[0].Cells[6].FormattedValue.ToString());
+				var repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
+				repository.ConfigurationFile = "deployer.hibernate.cfg.xml";
 
-				var outputWindow = new DeploymentOutput {Output = output};
+				var deployment = repository.GetByIdWithoutClosingSession<Deployment>(deploymentId);
+				var outputText = deployment.Output.Output;
+				var outputWindow = new DeploymentOutput { Output = outputText};
 				outputWindow.ShowDialog();
 			}
 		}

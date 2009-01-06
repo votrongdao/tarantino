@@ -18,11 +18,13 @@ namespace Tarantino.Core.Deployer.Services.Impl
 			_repository = repository;
 		}
 
-		public void RecordDeployment(string application, string environment, string output)
+		public int RecordDeployment(string application, string environment, string output)
 		{
 			string deployedBy = _securityContext.GetCurrentUsername();
 			Deployment deployment = _factory.CreateDeployment(application, environment, deployedBy, output);
 			_repository.Save(deployment);
+
+			return deployment.Revision;
 		}
 	}
 }

@@ -15,10 +15,10 @@ namespace Tarantino.UnitTests.Core.Deployer.Services
 		[Test]
 		public void Constructs_deployment()
 		{
-			MockRepository mocks = new MockRepository();
-			ISystemClock clock = mocks.CreateMock<ISystemClock>();
-			IRevisionNumberParser parser = mocks.CreateMock<IRevisionNumberParser>();
-			IDeploymentResultCalculator calculator = mocks.CreateMock<IDeploymentResultCalculator>();
+			var mocks = new MockRepository();
+			var clock = mocks.CreateMock<ISystemClock>();
+			var parser = mocks.CreateMock<IRevisionNumberParser>();
+			var calculator = mocks.CreateMock<IDeploymentResultCalculator>();
 
 			using (mocks.Record())
 			{
@@ -37,7 +37,7 @@ namespace Tarantino.UnitTests.Core.Deployer.Services
 				Assert.That(deployment.DeployedBy, Is.EqualTo("jsmith"));
 				Assert.That(deployment.DeployedOn, Is.EqualTo(new DateTime(2007, 4, 15)));
 				Assert.That(deployment.Revision, Is.EqualTo(785));
-				Assert.That(deployment.Output, Is.EqualTo("Output..."));
+				Assert.That(deployment.Output.Output, Is.EqualTo("Output..."));
 				Assert.That(deployment.Result, Is.SameAs(DeploymentResult.Failure));
 			}
 

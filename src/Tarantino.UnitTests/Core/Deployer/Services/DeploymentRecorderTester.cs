@@ -1,3 +1,4 @@
+using NUnit.Framework.SyntaxHelpers;
 using Tarantino.Core.Deployer.Model;
 using Tarantino.Core.Deployer.Services;
 using Tarantino.Core.Deployer.Services.Impl;
@@ -13,7 +14,7 @@ namespace Tarantino.UnitTests.Core.Deployer.Services
 		[Test]
 		public void Records_deployment()
 		{
-			var deployment = new Deployment();
+			var deployment = new Deployment {Revision = 1234};
 
 			var mocks = new MockRepository();
 			var factory = mocks.CreateMock<IDeploymentFactory>();
@@ -30,7 +31,9 @@ namespace Tarantino.UnitTests.Core.Deployer.Services
 			using (mocks.Playback())
 			{
 				IDeploymentRecorder recorder = new DeploymentRecorder(context, factory, repository);
-				recorder.RecordDeployment("application", "environment", "Output...");
+				int revision = recorder.RecordDeployment("application", "environment", "Output...");
+
+				Assert.That(revision, Is.EqualTo(revision));
 			}
 
 			mocks.VerifyAll();

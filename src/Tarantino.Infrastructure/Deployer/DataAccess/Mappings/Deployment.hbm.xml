@@ -18,10 +18,8 @@
 		<property name="CertifiedOn" type="DateTime" />
 		<property name="CertifiedBy" />
 		<property name="Revision" type="int" />
-		<property name="Output" />
+		<many-to-one name="Output" class="DeploymentOutput" unique="true" column="DeploymentOutputId" cascade="all-delete-orphan"/>
 
 		<property name="Result" type="Tarantino.Infrastructure.Commons.DataAccess.ORMapper.EnumerationType`1[[Tarantino.Core.Deployer.Model.DeploymentResult, Tarantino.Core]], Tarantino.Infrastructure" />
-
 	</class>
-
 </hibernate-mapping>

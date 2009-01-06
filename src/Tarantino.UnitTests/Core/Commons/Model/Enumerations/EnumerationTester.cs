@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Tarantino.Core.Commons.Model.Enumerations;
 using NUnit.Framework;
@@ -64,6 +65,22 @@ namespace Tarantino.UnitTests.Core.Commons.Model.Enumerations
 			EnumerableAssert.That(values, Has.Count(2));
 			EnumerableAssert.Contains(values, TestEnumeration.Red);
 			EnumerableAssert.Contains(values, TestEnumeration.Blue);
+		}
+
+		[Test]
+		public void Should_return_all_enumerated_values_from_type()
+		{
+			IEnumerable values = Enumeration.GetAll(typeof(TestEnumeration));
+
+			var strongTypeValues = new List<TestEnumeration>();
+			foreach (var enumValue in values)
+			{
+				strongTypeValues.Add((TestEnumeration)enumValue);
+			}
+
+			EnumerableAssert.That(strongTypeValues, Has.Count(2));
+			EnumerableAssert.Contains(strongTypeValues, TestEnumeration.Red);
+			EnumerableAssert.Contains(strongTypeValues, TestEnumeration.Blue);
 		}
 
 		[Test]

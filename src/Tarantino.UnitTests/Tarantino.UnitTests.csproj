@@ -82,6 +82,7 @@
     <Compile Include="Core\DatabaseManager\Services\DatabaseUpdaterTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\LogMessageGeneratorTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\ScriptFolderExecutorTester.cs" />
+    <Compile Include="Core\Deployer\Services\Configuration\ApplicationTester.cs" />
     <Compile Include="Core\WebManagement\Model\ApplicationInstanceTester.cs" />
     <Compile Include="Core\WebManagement\Services\AdministratorSecurityCheckerTester.cs" />
     <Compile Include="Core\WebManagement\Services\ApplicationInstanceCacheTester.cs" />

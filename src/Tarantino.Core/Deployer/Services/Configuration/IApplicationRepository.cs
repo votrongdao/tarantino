@@ -8,5 +8,6 @@ namespace Tarantino.Core.Deployer.Services.Configuration
 	public interface IApplicationRepository
 	{
 		ElementCollection<Application> GetAll();
+		Application GetByName(string applicationName);
 	}
 }

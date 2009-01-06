@@ -181,7 +181,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess.Reposito
 			}
 		}
 
-		private IDeploymentRepository getRepository()
+		private static IDeploymentRepository getRepository()
 		{
 			var repository = ObjectFactory.GetInstance<IDeploymentRepository>();
 			return repository;

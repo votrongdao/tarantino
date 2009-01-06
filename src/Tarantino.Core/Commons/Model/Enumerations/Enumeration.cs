@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
@@ -50,6 +51,17 @@ namespace Tarantino.Core.Commons.Model.Enumerations
 				{
 					yield return locatedValue;
 				}
+			}
+		}
+
+		public static IEnumerable GetAll(Type type)
+		{
+			var fields = type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
+
+			foreach (var info in fields)
+			{
+				object instance = Activator.CreateInstance(type);
+				yield return info.GetValue(instance);
 			}
 		}
 

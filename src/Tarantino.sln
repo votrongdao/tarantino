@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Deployer.Database
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.DatabaseResearcher.Database", "Tarantino.DatabaseResearcher.Database\Tarantino.DatabaseResearcher.Database.csproj", "{3B966BF0-3F93-4E12-8E8D-BA97F5B3C4C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Deployer.Console", "Tarantino.Deployer.Console\Tarantino.Deployer.Console.csproj", "{E3585B26-999B-4CB0-B134-06D061912ADE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{53967760-40E5-426A-A0B6-CE4C693557F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B966BF0-3F93-4E12-8E8D-BA97F5B3C4C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B966BF0-3F93-4E12-8E8D-BA97F5B3C4C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3585B26-999B-4CB0-B134-06D061912ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3585B26-999B-4CB0-B134-06D061912ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3585B26-999B-4CB0-B134-06D061912ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3585B26-999B-4CB0-B134-06D061912ADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,12 +10,8 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 {
 	public class HybridSessionBuilder : ISessionBuilder
 	{
-		private static readonly Dictionary<string, ISessionFactory>
-			_sessionFactories =
-				new Dictionary<string, ISessionFactory>();
-
-		private static readonly Dictionary<string, ISession> _currentSessions =
-			new Dictionary<string, ISession>();
+		private static readonly Dictionary<string, ISessionFactory> _sessionFactories = new Dictionary<string, ISessionFactory>();
+		private static readonly Dictionary<string, ISession> _currentSessions = new Dictionary<string, ISession>();
 
 		private const string _defaultConfigFileName = "hibernate.cfg.xml";
 
@@ -33,8 +29,7 @@ namespace Tarantino.Infrastructure.Commons.DataAccess.ORMapper
 		{
 			var factory = GetSessionFactory(configurationFile);
 			var session = getExistingOrNewSession(factory, configurationFile);
-			Logger.Debug(this,
-			             string.Format("Using ISession {0}", session.GetHashCode()));
+			Logger.Debug(this, string.Format("Using ISession {0}", session.GetHashCode()));
 			return session;
 		}
 

@@ -6,7 +6,7 @@ namespace Tarantino.IntegrationTests.Infrastructure.Deployer.DataAccess
 	{
 		protected override IEnumerable<string> GetTablesToDelete()
 		{
-			return new[] {"Deployment"};
+			return new[] {"DeploymentOutput", "Deployment"};
 		}
 
 		public override string ConfigurationFile

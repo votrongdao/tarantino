@@ -8,11 +8,11 @@ namespace Tarantino.Deployer
 {
 	public class ProcessProgressForm : Form
 	{
-		private Container components = null;
+		private const Container components = null;
 		private RichTextBox rtbOutput;
 		private Button btnCancel;
 		private Button btnClose;
-		private ProcessCaller _processCaller;
+		private readonly ProcessCaller _processCaller;
 		private Color _stdOutColor = Color.Black;
 		private Color _strErrColor = Color.Maroon;
 		private string _errorDialogMessage = "Error running process";
@@ -28,11 +28,11 @@ namespace Tarantino.Deployer
 		{
 			InitializeComponent();
 			_processCaller = new ProcessCaller(this);
-			_processCaller.StdErrReceived += new DataReceivedHandler(_processCaller_StdErrReceived);
-			_processCaller.StdOutReceived += new DataReceivedHandler(_processCaller_StdOutReceived);
-			_processCaller.Completed += new EventHandler(ProcessCallerCompletedOrCancelled);
-			_processCaller.Cancelled += new EventHandler(ProcessCallerCompletedOrCancelled);
-			_processCaller.Failed += new ThreadExceptionEventHandler(_processCaller_Failed);
+			_processCaller.StdErrReceived += _processCaller_StdErrReceived;
+			_processCaller.StdOutReceived += _processCaller_StdOutReceived;
+			_processCaller.Completed += ProcessCallerCompletedOrCancelled;
+			_processCaller.Cancelled += ProcessCallerCompletedOrCancelled;
+			_processCaller.Failed += _processCaller_Failed;
 
 			Text = "Output";
 			

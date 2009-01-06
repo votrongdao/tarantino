@@ -219,6 +219,7 @@
     <Compile Include="DatabaseManager\Services\ITaskObserver.cs" />
     <Compile Include="Commons\Services\DataFileManagement\ITokenReplacer.cs" />
     <Compile Include="CoreDependencyRegistrar.cs" />
+    <Compile Include="Deployer\Model\DeploymentOutput.cs" />
     <Compile Include="Deployer\Model\Deployment.cs" />
     <Compile Include="Deployer\Model\DeploymentResult.cs" />
     <Compile Include="Deployer\Services\Configuration\IApplicationRepository.cs" />
