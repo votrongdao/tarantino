@@ -1,5 +1,4 @@
 using StructureMap.Configuration.DSL;
-using StructureMap.Graph;
 using Tarantino.Core.Commons.Services.Security;
 using Tarantino.Core.Commons.Services.Security.Impl;
 
@@ -11,8 +10,9 @@ namespace Tarantino.Core
 		{
 			Scan(x =>
 			     	{
-			     		x.AssemblyContainingType(GetType());
-			     		x.With<DefaultConventionScanner>();
+			     		x.TheCallingAssembly();
+						x.LookForRegistries();
+			     		x.WithDefaultConventions();
 			     	});
 
 			BuildInstancesOf<IEncryptionEngine>().TheDefaultIsConcreteType<AesEncryptionEngine>();

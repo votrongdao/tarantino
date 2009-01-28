@@ -14,8 +14,8 @@ namespace Tarantino.Infrastructure
 		{
 			Scan(y =>
 			     	{
-			     		y.Assembly("Tarantino.Infrastructure");
-			     		y.With(new DefaultConventionScanner());
+						y.TheCallingAssembly();
+						y.WithDefaultConventions();
 			     	});
 
 			ForRequestedType<IDatabaseActionExecutor>()

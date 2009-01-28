@@ -11,6 +11,8 @@ namespace Tarantino.Infrastructure
 			                                     	{
 			                                     		s.AssemblyContainingType<InfrastructureDependencyRegistry>();
 			                                     		s.AssemblyContainingType<CoreDependencyRegistry>();
+														s.LookForRegistries();
+														s.WithDefaultConventions();
 			                                     	}));
 		}
 	}

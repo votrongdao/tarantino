@@ -6,7 +6,11 @@ namespace Tarantino.Core
 	{
 		public static void Register()
 		{
-			ObjectFactory.Initialize(x => x.Scan(s => s.AssemblyContainingType<CoreDependencyRegistry>()));
+			ObjectFactory.Initialize(x => x.Scan(s =>
+				{
+					s.TheCallingAssembly();
+					s.LookForRegistries();
+				}));
 		}
 	}
 }
