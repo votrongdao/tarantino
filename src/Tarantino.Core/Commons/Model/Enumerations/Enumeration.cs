@@ -116,7 +116,7 @@ namespace Tarantino.Core.Commons.Model.Enumerations
 			return matchingItem;
 		}
 
-		public int CompareTo(object other)
+		public virtual int CompareTo(object other)
 		{
 			return Value.CompareTo(((Enumeration)other).Value);
 		}

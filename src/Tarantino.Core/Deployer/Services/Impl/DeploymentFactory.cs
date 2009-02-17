@@ -27,9 +27,10 @@ namespace Tarantino.Core.Deployer.Services.Impl
 			                 		Revision = _revisionNumberParser.Parse(output),
 			                 		DeployedBy = deployedBy,
 			                 		DeployedOn = _clock.GetCurrentDateTime(),
-			                 		Output = new DeploymentOutput {Output = output},
 			                 		Result = _resultCalculator.GetResult(output)
 			                 	};
+
+			deployment.SetOutput(new DeploymentOutput {Output = output});
 
 			return deployment;
 		}

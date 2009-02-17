@@ -39,6 +39,7 @@ namespace Tarantino.UnitTests.Core.Deployer.Services
 				Assert.That(deployment.Revision, Is.EqualTo(785));
 				Assert.That(deployment.Output.Output, Is.EqualTo("Output..."));
 				Assert.That(deployment.Result, Is.SameAs(DeploymentResult.Failure));
+				Assert.That(deployment.Output.Deployment, Is.SameAs(deployment));
 			}
 
 			mocks.VerifyAll();
