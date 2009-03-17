@@ -1,6 +1,4 @@
 using System.Web.Security;
-using StructureMap;
-using Tarantino.Core;
 using Tarantino.Core.Commons.Services.Security;
 
 namespace Tarantino.Infrastructure.Commons.UI.Services
@@ -10,6 +8,11 @@ namespace Tarantino.Infrastructure.Commons.UI.Services
 		public void RedirectFromLoginPage(string emailAddress, bool rememberMe)
 		{
 			FormsAuthentication.RedirectFromLoginPage(emailAddress, rememberMe);
+		}
+
+		public void SetAuthCookie(string username, bool createPersistentCookie)
+		{
+			FormsAuthentication.SetAuthCookie(username, createPersistentCookie);
 		}
 
 		public void Logout()

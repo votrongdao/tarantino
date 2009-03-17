@@ -1,5 +1,3 @@
-using Tarantino.Core;
-
 namespace Tarantino.Core.Commons.Services.Security
 {
 	public interface IAuthenticationService
@@ -7,5 +5,6 @@ namespace Tarantino.Core.Commons.Services.Security
 		void RedirectFromLoginPage(string emailAddress, bool rememberMe);
 		void Logout();
 		string GetLoginUrl();
+		void SetAuthCookie(string username, bool createPersistentCookie);
 	}
 }
