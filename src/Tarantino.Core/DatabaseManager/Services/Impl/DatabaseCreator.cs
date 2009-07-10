@@ -13,12 +13,12 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			_folderExecutor = folderExecutor;
 		}
 
-		public void Execute(string scriptFolder, ConnectionSettings settings, ITaskObserver taskObserver)
+		public void Execute(TaskAttributes taskAttributes, ITaskObserver taskObserver)
 		{
-			string sql = string.Format("create database {0}", settings.Database);
-			_queryExecutor.ExecuteNonQuery(settings, sql, false);
+            string sql = string.Format("create database {0}", taskAttributes.ConnectionSettings.Database);
+            _queryExecutor.ExecuteNonQuery(taskAttributes.ConnectionSettings, sql, false);
 
-			_folderExecutor.ExecuteScriptsInFolder(scriptFolder, "ExistingSchema", settings, taskObserver);
+            _folderExecutor.ExecuteScriptsInFolder(taskAttributes, "ExistingSchema", taskObserver);
 		}
 	}
 }

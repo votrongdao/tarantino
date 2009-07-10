@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using StructureMap;
+using Tarantino.Core.DatabaseManager.Model;
 using Tarantino.Core.DatabaseManager.Services;
 using Tarantino.Core.DatabaseManager.Services.Impl;
 using NAnt.Core.Attributes;
@@ -68,13 +69,23 @@ namespace Tarantino.DatabaseManager.Tasks
 			set { _password = value; }
 		}
 
-		protected override void ExecuteTask()
+        [TaskAttribute("skipFileNameContaining")]
+        public string SkipFileNameContaining { get; set;}
+
+        protected override void ExecuteTask()
 		{
 			try
 			{
 				InfrastructureDependencyRegistrar.RegisterInfrastructure();
 				var manager = ObjectFactory.GetInstance<ISqlDatabaseManager>();
-				manager.Upgrade(ScriptDirectory.FullName, Server, Database, IntegratedAuthentication, Username, Password, Action, this);
+                var settings = new ConnectionSettings(Server, Database, IntegratedAuthentication, Username, Password);
+                var taskAttributes = new TaskAttributes(settings, ScriptDirectory.FullName)
+                                         {
+                                             SkipFileNameContaining = SkipFileNameContaining,
+                                             RequestedDatabaseAction = Action,
+                                         };
+
+                manager.Upgrade(taskAttributes, this);
 			}
 			catch
 			{

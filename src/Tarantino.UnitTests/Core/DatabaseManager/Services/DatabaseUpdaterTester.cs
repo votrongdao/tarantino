@@ -12,21 +12,22 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		[Test]
 		public void Updates_database()
 		{
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+            var taskAttributes = new TaskAttributes(settings, "c:\\scripts");
 
-			MockRepository mocks = new MockRepository();
-			IScriptFolderExecutor executor = mocks.CreateMock<IScriptFolderExecutor>();
-			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
+			var mocks = new MockRepository();
+			var executor = mocks.CreateMock<IScriptFolderExecutor>();
+			var taskObserver = mocks.CreateMock<ITaskObserver>();
 
 			using (mocks.Record())
 			{
-				executor.ExecuteScriptsInFolder("c:\\scripts", "Update", settings, taskObserver);
+				executor.ExecuteScriptsInFolder(taskAttributes, "Update", taskObserver);
 			}
 
 			using (mocks.Playback())
 			{
 				IDatabaseActionExecutor updater = new DatabaseUpdater(executor);
-				updater.Execute("c:\\scripts", settings, taskObserver);
+                updater.Execute(taskAttributes, taskObserver);
 			}
 
 			mocks.VerifyAll();

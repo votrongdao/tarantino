@@ -14,19 +14,18 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			_queryExecutor = queryExecutor;
 		}
 
-		public void Execute(string scriptFolder, ConnectionSettings settings, ITaskObserver taskObserver)
+		public void Execute(TaskAttributes taskAttributes, ITaskObserver taskObserver)
 		{
-			_connectionDropper.Drop(settings, taskObserver);
-			var sql = string.Format("drop database {0}", settings.Database);
+            _connectionDropper.Drop(taskAttributes.ConnectionSettings, taskObserver);
+            var sql = string.Format("drop database {0}", taskAttributes.ConnectionSettings.Database);
 
 			try
 			{
-				_queryExecutor.ExecuteNonQuery(settings, sql, false);
+                _queryExecutor.ExecuteNonQuery(taskAttributes.ConnectionSettings, sql, false);
 			}
 			catch(Exception)
 			{
-				taskObserver.Log(string.Format("Database '{0}' could not be dropped.",
-					settings.Database));
+				taskObserver.Log(string.Format("Database '{0}' could not be dropped.", taskAttributes.ConnectionSettings.Database));
 			}
 		}
 	}

@@ -80,6 +80,7 @@
     <Compile Include="Core\DatabaseManager\Services\DatabaseCreatorTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\DatabaseDropperTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\DatabaseUpdaterTester.cs" />
+    <Compile Include="Core\DatabaseManager\Services\FileFilterServiceTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\LogMessageGeneratorTester.cs" />
     <Compile Include="Core\DatabaseManager\Services\ScriptFolderExecutorTester.cs" />
     <Compile Include="Core\Deployer\Services\Configuration\ApplicationTester.cs" />

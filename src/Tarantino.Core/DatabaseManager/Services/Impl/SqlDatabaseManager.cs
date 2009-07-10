@@ -18,24 +18,17 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			_actionExecutorFactory = actionExecutorFactory;
 		}
 
-		#region ISqlDatabaseManager Members
-
-		public void Upgrade(string scriptDirectory, string server, string database, bool integrated, string username,
-		                    string password, RequestedDatabaseAction requestedAction, ITaskObserver taskObserver)
+	    public void Upgrade(TaskAttributes taskAttributes, ITaskObserver taskObserver)
 		{
-			var settings = new ConnectionSettings(server, database, integrated, username, password);
-
-			string initializationMessage = _logMessageGenerator.GetInitialMessage(requestedAction, scriptDirectory, settings);
+            string initializationMessage = _logMessageGenerator.GetInitialMessage(taskAttributes);
 			taskObserver.Log(initializationMessage);
 
-			IEnumerable<IDatabaseActionExecutor> executors = _actionExecutorFactory.GetExecutors(requestedAction);
+            IEnumerable<IDatabaseActionExecutor> executors = _actionExecutorFactory.GetExecutors(taskAttributes.RequestedDatabaseAction);
 
 			foreach (IDatabaseActionExecutor executor in executors)
 			{
-				executor.Execute(scriptDirectory, settings, taskObserver);
+                executor.Execute(taskAttributes, taskObserver);
 			}
 		}
-
-		#endregion
 	}
 }

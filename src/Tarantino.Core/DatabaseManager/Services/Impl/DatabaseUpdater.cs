@@ -11,9 +11,9 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			_folderExecutor = folderExecutor;
 		}
 
-		public void Execute(string scriptFolder, ConnectionSettings settings, ITaskObserver taskObserver)
+		public void Execute(TaskAttributes taskAttributes, ITaskObserver taskObserver)
 		{
-			_folderExecutor.ExecuteScriptsInFolder(scriptFolder, "Update", settings, taskObserver);
+            _folderExecutor.ExecuteScriptsInFolder(taskAttributes, "Update", taskObserver);
 		}
 	}
 }

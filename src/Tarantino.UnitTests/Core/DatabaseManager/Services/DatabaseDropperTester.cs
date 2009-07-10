@@ -13,12 +13,13 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		[Test]
 		public void Drops_database()
 		{
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+            var taskAttributes = new TaskAttributes(settings, null);
 
-			MockRepository mocks = new MockRepository();
-			IDatabaseConnectionDropper connectionDropper = mocks.CreateMock<IDatabaseConnectionDropper>();
-			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
-			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
+			var mocks = new MockRepository();
+			var connectionDropper = mocks.CreateMock<IDatabaseConnectionDropper>();
+			var taskObserver = mocks.CreateMock<ITaskObserver>();
+			var queryExecutor = mocks.CreateMock<IQueryExecutor>();
 
 			using (mocks.Record())
 			{
@@ -29,7 +30,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			using (mocks.Playback())
 			{
 				IDatabaseActionExecutor dropper = new DatabaseDropper(connectionDropper, queryExecutor);
-				dropper.Execute(null, settings, taskObserver);
+				dropper.Execute(taskAttributes, taskObserver);
 			}
 
 			mocks.VerifyAll();
@@ -38,12 +39,13 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		[Test]
 		public void Should_not_fail_if_datebase_does_not_exist()
 		{
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+            var taskAttributes = new TaskAttributes(settings, null);
 
-			MockRepository mocks = new MockRepository();
-			IDatabaseConnectionDropper connectionDropper = mocks.DynamicMock<IDatabaseConnectionDropper>();
-			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
-			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
+			var mocks = new MockRepository();
+			var connectionDropper = mocks.DynamicMock<IDatabaseConnectionDropper>();
+			var taskObserver = mocks.CreateMock<ITaskObserver>();
+			var queryExecutor = mocks.CreateMock<IQueryExecutor>();
 
 			using (mocks.Record())
 			{
@@ -55,7 +57,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			using (mocks.Playback())
 			{
 				IDatabaseActionExecutor dropper = new DatabaseDropper(connectionDropper, queryExecutor);
-				dropper.Execute(null, settings, taskObserver);
+                dropper.Execute(taskAttributes, taskObserver);
 			}
 
 			mocks.VerifyAll();

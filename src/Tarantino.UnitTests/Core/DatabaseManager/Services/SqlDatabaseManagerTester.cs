@@ -12,34 +12,35 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		[Test]
 		public void Manages_database()
 		{
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
-			string scriptDirectory = @"c:\scripts";
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+            var scriptDirectory = @"c:\scripts"; 
+            var taskAttributes = new TaskAttributes(settings, scriptDirectory);
 
-			MockRepository mocks = new MockRepository();
-			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
-			ILogMessageGenerator generator = mocks.CreateMock<ILogMessageGenerator>();
-			IDatabaseActionExecutorFactory factory = mocks.CreateMock<IDatabaseActionExecutorFactory>();
+			var mocks = new MockRepository();
+			var taskObserver = mocks.CreateMock<ITaskObserver>();
+			var generator = mocks.CreateMock<ILogMessageGenerator>();
+			var factory = mocks.CreateMock<IDatabaseActionExecutorFactory>();
 
-			IDatabaseActionExecutor creator = mocks.CreateMock<IDatabaseActionExecutor>();
-			IDatabaseActionExecutor updater = mocks.CreateMock<IDatabaseActionExecutor>();
+			var creator = mocks.CreateMock<IDatabaseActionExecutor>();
+			var updater = mocks.CreateMock<IDatabaseActionExecutor>();
 
-			IDatabaseActionExecutor[] executors = new IDatabaseActionExecutor[] { creator, updater };
+			var executors = new IDatabaseActionExecutor[] { creator, updater };
 
 			using (mocks.Record())
 			{
-				Expect.Call(generator.GetInitialMessage(RequestedDatabaseAction.Create, scriptDirectory, settings)).Return("starting...");
+				Expect.Call(generator.GetInitialMessage(taskAttributes)).Return("starting...");
 				taskObserver.Log("starting...");
 				Expect.Call(factory.GetExecutors(RequestedDatabaseAction.Create)).Return(executors);
 
-				creator.Execute("c:\\scripts", settings, taskObserver);
-				updater.Execute("c:\\scripts", settings, taskObserver);
+                creator.Execute(taskAttributes, taskObserver);
+                updater.Execute(taskAttributes, taskObserver);
 			}
 
 			using (mocks.Playback())
 			{
 				ISqlDatabaseManager manager = new SqlDatabaseManager(generator, factory);
 
-				manager.Upgrade(scriptDirectory, settings.Server, settings.Database, settings.IntegratedAuthentication, null, null, RequestedDatabaseAction.Create, taskObserver);
+				manager.Upgrade(taskAttributes, taskObserver);
 			}
 
 			mocks.VerifyAll();

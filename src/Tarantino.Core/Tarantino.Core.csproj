@@ -182,6 +182,7 @@
     <Compile Include="Daemon\Services\IServiceAgentFactory.cs" />
     <Compile Include="Daemon\Services\IServiceRunner.cs" />
     <Compile Include="DatabaseManager\Model\ConnectionSettings.cs" />
+    <Compile Include="DatabaseManager\Model\TaskAttributes.cs" />
     <Compile Include="DatabaseManager\Services\IChangeScriptExecutor.cs" />
     <Compile Include="DatabaseManager\Services\IConnectionStringGenerator.cs" />
     <Compile Include="DatabaseManager\Services\IDatabaseActionExecutorFactory.cs" />
@@ -189,7 +190,9 @@
     <Compile Include="DatabaseManager\Services\IDatabaseActionResolver.cs" />
     <Compile Include="DatabaseManager\Services\IDatabaseConnectionDropper.cs" />
     <Compile Include="DatabaseManager\Services\IExcelImporter.cs" />
+    <Compile Include="DatabaseManager\Services\IFileFilterService.cs" />
     <Compile Include="DatabaseManager\Services\Impl\ExcelImporter.cs" />
+    <Compile Include="DatabaseManager\Services\Impl\FileFilterService.cs" />
     <Compile Include="DatabaseManager\Services\Impl\ScriptFolderExecutor.cs" />
     <Compile Include="DatabaseManager\Services\IScriptFolderExecutor.cs" />
     <Compile Include="DatabaseManager\Services\ISqlDatabaseManager.cs" />

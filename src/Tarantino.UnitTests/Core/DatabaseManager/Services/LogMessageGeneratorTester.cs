@@ -13,10 +13,10 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		public void Creates_initial_log_message_for_database_rebuild()
 		{
 			ILogMessageGenerator generator = new LogMessageGenerator();
-
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
-
-			string message = generator.GetInitialMessage(RequestedDatabaseAction.Rebuild, "c:\\scripts", settings);
+            
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+		    var taskAttributes = new TaskAttributes(settings, "c:\\scripts") {RequestedDatabaseAction = RequestedDatabaseAction.Rebuild};
+			string message = generator.GetInitialMessage(taskAttributes);
 
 			Assert.That(message, Is.EqualTo("Rebuild db on server using scripts from c:\\scripts\n"));
 		}
@@ -26,9 +26,9 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		{
 			ILogMessageGenerator generator = new LogMessageGenerator();
 
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
-
-			string message = generator.GetInitialMessage(RequestedDatabaseAction.Create, "c:\\scripts", settings);
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+            var taskAttributes = new TaskAttributes(settings, "c:\\scripts");
+			string message = generator.GetInitialMessage(taskAttributes);
 
 			Assert.That(message, Is.EqualTo("Create db on server using scripts from c:\\scripts\n"));
 		}
@@ -38,9 +38,9 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		{
 			ILogMessageGenerator generator = new LogMessageGenerator();
 
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
-
-			string message = generator.GetInitialMessage(RequestedDatabaseAction.Update, "c:\\scripts", settings);
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+            var taskAttributes = new TaskAttributes(settings, "c:\\scripts") {RequestedDatabaseAction = RequestedDatabaseAction.Update};
+			string message = generator.GetInitialMessage(taskAttributes);
 
 			Assert.That(message, Is.EqualTo("Update db on server using scripts from c:\\scripts\n"));
 		}
@@ -50,11 +50,23 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		{
 			ILogMessageGenerator generator = new LogMessageGenerator();
 
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
-
-			string message = generator.GetInitialMessage(RequestedDatabaseAction.Drop, null, settings);
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+            var taskAttributes = new TaskAttributes(settings, "c:\\scripts") {RequestedDatabaseAction = RequestedDatabaseAction.Drop};
+			string message = generator.GetInitialMessage(taskAttributes);
 
 			Assert.That(message, Is.EqualTo("Drop db on server\n"));
 		}
+
+        [Test]
+        public void Creates_initial_log_message_for_database_create_while_skiping_some_files()
+        {
+            ILogMessageGenerator generator = new LogMessageGenerator();
+
+            var settings = new ConnectionSettings("server", "db", true, null, null);
+            var taskAttributes = new TaskAttributes(settings, "c:\\scripts") { SkipFileNameContaining = "_data_"};
+            string message = generator.GetInitialMessage(taskAttributes);
+
+            Assert.That(message, Is.EqualTo("Create db on server using scripts from c:\\scripts while skipping file containing _data_\n"));
+        }
 	}
 }

@@ -6,14 +6,17 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 	
 	public class LogMessageGenerator : ILogMessageGenerator
 	{
-		public string GetInitialMessage(RequestedDatabaseAction requestedDatabaseAction, string scriptDirectory, ConnectionSettings settings)
+		public string GetInitialMessage(TaskAttributes taskAttributes)
 		{
-			string scriptFolder = requestedDatabaseAction != RequestedDatabaseAction.Drop
-															? string.Format(" using scripts from {0}", scriptDirectory)
+            var scriptFolder = taskAttributes.RequestedDatabaseAction != RequestedDatabaseAction.Drop
+															? string.Format(" using scripts from {0}", taskAttributes.ScriptDirectory)
 															: string.Empty;
 
-			string logMessage = string.Format("{0} {1} on {2}{3}\n", requestedDatabaseAction, 
-				settings.Database, settings.Server, scriptFolder);
+		    var skipFiles = !string.IsNullOrEmpty(taskAttributes.SkipFileNameContaining)
+		                        ? string.Format(" while skipping file containing {0}",taskAttributes.SkipFileNameContaining)
+		                        : string.Empty;
+
+            var logMessage = string.Format("{0} {1} on {2}{3}{4}\n", taskAttributes.RequestedDatabaseAction,taskAttributes.ConnectionSettings.Database, taskAttributes.ConnectionSettings.Server, scriptFolder,skipFiles);
 
 			return logMessage;
 		}

@@ -12,23 +12,24 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 		[Test]
 		public void Creates_database()
 		{
-			ConnectionSettings settings = new ConnectionSettings("server", "db", true, null, null);
+			var settings = new ConnectionSettings("server", "db", true, null, null);
+            var taskAttributes = new TaskAttributes(settings, "c:\\scripts");
 
-			MockRepository mocks = new MockRepository();
-			IQueryExecutor queryExecutor = mocks.CreateMock<IQueryExecutor>();
-			IScriptFolderExecutor executor = mocks.CreateMock<IScriptFolderExecutor>();
-			ITaskObserver taskObserver = mocks.CreateMock<ITaskObserver>();
+			var mocks = new MockRepository();
+			var queryExecutor = mocks.CreateMock<IQueryExecutor>();
+			var executor = mocks.CreateMock<IScriptFolderExecutor>();
+			var taskObserver = mocks.CreateMock<ITaskObserver>();
 			
 			using (mocks.Record())
 			{
 				queryExecutor.ExecuteNonQuery(settings, "create database db", false);
-				executor.ExecuteScriptsInFolder("c:\\scripts", "ExistingSchema", settings, taskObserver);
+				executor.ExecuteScriptsInFolder(taskAttributes, "ExistingSchema", taskObserver);
 			}
 
 			using (mocks.Playback())
 			{
 				IDatabaseActionExecutor creator = new DatabaseCreator(queryExecutor, executor);
-				creator.Execute("c:\\scripts", settings, taskObserver);
+				creator.Execute(taskAttributes, taskObserver);
 			}
 
 			mocks.VerifyAll();
