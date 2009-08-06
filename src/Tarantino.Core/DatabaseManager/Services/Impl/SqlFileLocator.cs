@@ -2,6 +2,7 @@
 using System.IO;
 
 using Tarantino.Core.Commons.Services.Environment;
+using System.Linq;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
@@ -26,8 +27,7 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			{
 				list.Add(sqlFilename);
 			}
-
-			return list.ToArray();
+		    return list.OrderBy(x => x).ToArray();
 		}
 	}
 }

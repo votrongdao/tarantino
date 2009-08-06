@@ -10,11 +10,11 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 	public class SqlFileLocatorTester
 	{
 		[Test]
-		public void Correctly_locates_sql_scripts()
+		public void Correctly_locates_sql_scripts_and_return_in_asc_order()
 		{
 			string scriptFolder = @"c:\scripts";
 
-			string[] updateSqlFiles = new string[] { "01_Update.sql", "02_Update.sql" };
+			string[] updateSqlFiles = new string[] { "02_Update.sql", "01_Update.sql" };
 
 			MockRepository mocks = new MockRepository();
 			IFileSystem fileSystem = mocks.CreateMock<IFileSystem>();
