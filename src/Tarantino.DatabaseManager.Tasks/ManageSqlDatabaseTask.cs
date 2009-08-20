@@ -1,10 +1,9 @@
 ﻿using System.IO;
-using StructureMap;
 using Tarantino.Core.DatabaseManager.Model;
 using Tarantino.Core.DatabaseManager.Services;
 using Tarantino.Core.DatabaseManager.Services.Impl;
 using NAnt.Core.Attributes;
-using Tarantino.Infrastructure;
+using Tarantino.DatabaseManager.Core;
 using Tarantino.Infrastructure.DatabaseManager.BuildTasks;
 
 namespace Tarantino.DatabaseManager.Tasks
@@ -76,8 +75,7 @@ namespace Tarantino.DatabaseManager.Tasks
 		{
 			try
 			{
-				InfrastructureDependencyRegistrar.RegisterInfrastructure();
-				var manager = ObjectFactory.GetInstance<ISqlDatabaseManager>();
+			    var manager = new SqlDatabaseManager();
                 var settings = new ConnectionSettings(Server, Database, IntegratedAuthentication, Username, Password);
                 var taskAttributes = new TaskAttributes(settings, ScriptDirectory.FullName)
                                          {

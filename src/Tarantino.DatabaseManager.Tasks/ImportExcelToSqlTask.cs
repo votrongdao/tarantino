@@ -1,8 +1,7 @@
 ﻿using System.IO;
-using StructureMap;
 using Tarantino.Core.DatabaseManager.Services;
 using NAnt.Core.Attributes;
-using Tarantino.Infrastructure;
+using Tarantino.DatabaseManager.Core;
 using Tarantino.Infrastructure.DatabaseManager.BuildTasks;
 
 namespace Tarantino.DatabaseManager.Tasks
@@ -39,7 +38,7 @@ namespace Tarantino.DatabaseManager.Tasks
 			try
 			{
 				InfrastructureDependencyRegistrar.RegisterInfrastructure();
-				var importer = ObjectFactory.GetInstance<IExcelImporter>();
+				var importer = new ServiceLocator().CreateInstance<IExcelImporter>();
 				importer.Import(ExcelFile.FullName, Server, Database, IntegratedAuthentication, Username, Password, this);
 			}
 			catch

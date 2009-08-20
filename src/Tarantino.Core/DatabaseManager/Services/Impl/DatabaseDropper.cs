@@ -16,8 +16,8 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 
 		public void Execute(TaskAttributes taskAttributes, ITaskObserver taskObserver)
 		{
-            _connectionDropper.Drop(taskAttributes.ConnectionSettings, taskObserver);
-            var sql = string.Format("drop database {0}", taskAttributes.ConnectionSettings.Database);
+	               _connectionDropper.Drop(taskAttributes.ConnectionSettings, taskObserver);
+			var sql = string.Format("ALTER DATABASE {0} SET SINGLE_USER WITH ROLLBACK IMMEDIATE drop database {0}", taskAttributes.ConnectionSettings.Database);
 
 			try
 			{

@@ -9,6 +9,7 @@ namespace Tarantino.IntegrationTests
 		public void Setup()
 		{
 			InfrastructureDependencyRegistrar.RegisterInfrastructure();
+           // DatabaseManager.Core.InfrastructureDependencyRegistrar.RegisterInfrastructure();
 		}
 	}
 }

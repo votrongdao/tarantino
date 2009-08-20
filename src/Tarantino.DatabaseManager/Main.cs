@@ -2,9 +2,8 @@ using System;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Tarantino.Core.Commons.Services.Configuration;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
-using Tarantino.Infrastructure;
+using Tarantino.DatabaseManager.Core;
 
 namespace Tarantino.DatabaseManager
 {
@@ -12,7 +11,7 @@ namespace Tarantino.DatabaseManager
 	{
 		public Main()
 		{
-			InfrastructureDependencyRegistrar.RegisterInfrastructure();
+			
 
 			InitializeComponent();
 

@@ -6,6 +6,7 @@ using Tarantino.Core.Commons.Services.Environment;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using StructureMap;
+using Tarantino.Infrastructure;
 
 namespace Tarantino.IntegrationTests.Core.Commons.Services.DataFileManagement
 {
@@ -18,6 +19,8 @@ namespace Tarantino.IntegrationTests.Core.Commons.Services.DataFileManagement
 		[Test]
 		public void Correctly_Reads_Excel_File()
 		{
+            InfrastructureDependencyRegistrar.RegisterInfrastructure();
+   
 			IResourceFileLocator fileLocator = ObjectFactory.GetInstance<IResourceFileLocator>();
 
 			byte[] excelFileBytes = fileLocator.ReadBinaryFile(_testAssembly, string.Format(_resourceTemplate, "Sample.xls"));

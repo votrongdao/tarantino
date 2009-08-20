@@ -23,12 +23,13 @@
 	<!-- Package settings -->
 	<property name="svn.exe" value="lib\subversion\1.4.3\svn.exe" />
 	<property name="dir.package" value="${dir.build}\package" dynamic="true"  />
+  <property name="dir.dbmanager.package" value="${dir.build}\dbmanagerpackage" dynamic="true"  />
 
-	<!-- External targets -->
+  <!-- External targets -->
 	<target name="local" depends="debug, rebuildDatabases, compile, move, test"/>
 	<target name="localWithVersion" depends="debug, rebuildDatabases, version, compile, move, test"/>
 	<target name="localWithCoverage" depends="debug, rebuildDatabases, version, compile, move, coverage"/>
-	<target name="localWithPackage" depends="rebuildDatabases, compile, move, test, package"/>
+	<target name="localWithPackage" depends="rebuildDatabases, compile, move, test, merge, package"/>
 	<target name="localWithPackageAndCommit" depends="rebuildDatabases, version, compile, move, test, package, commit"/>
 
 	<target name="debug">
@@ -110,8 +111,30 @@
 		</asminfo>
 	</target>
 
+  <target name="merge">
+    <exec program="lib\ilmerge\ilmerge.exe" 
+          commandline="/t:library /out:src\Tarantino.DatabaseManager.tasks\bin\${project.config}\Tarantino.Nant.Tasks.dll  src\Tarantino.DatabaseManager.tasks\bin\${project.config}\tarantino.databasemanager.tasks.dll src\Tarantino.DatabaseManager.tasks\bin\${project.config}\tarantino.databasemanager.core.dll " 
+          workingdir="." />
+  </target>
+
 	<target name="package">
-		<delete dir="${dir.package}" failonerror="false" />
+    <delete dir="${dir.dbmanager.package}" failonerror="false" />
+    <copy todir="${dir.dbmanager.package}\Console" verbose="false" flatten="true" >
+      <fileset basedir="src">
+        <include name="**\Tarantino.DatabaseManager\bin\${project.config}\*.dll" />
+        <include name="**\Tarantino.DatabaseManager\bin\${project.config}\*.exe" />
+        <include name="**\Tarantino.DatabaseManager\bin\${project.config}\*.config" />
+        <include name="**\Tarantino.DatabaseManager\bin\${project.config}\StructureMap.config" />
+      </fileset>
+    </copy>
+    <copy todir="${dir.dbmanager.package}\Nant" verbose="false" flatten="true" >
+      <fileset basedir=".">
+        <include name="src\Tarantino.DatabaseManager.Tasks\bin\${project.config}\Tarantino.Nant.Tasks.dll" />
+      </fileset>
+    </copy>
+
+
+    <delete dir="${dir.package}" failonerror="false" />
 
 		<copy todir="${dir.package}\NAnt" verbose="false">
 			<fileset basedir="lib\NAnt">
@@ -124,8 +147,10 @@
 				<include name="**" />
 			</fileset>
 		</copy>
+    
+    
 
-		<copy todir="${dir.package}" verbose="false" flatten="true" >
+    <copy todir="${dir.package}" verbose="false" flatten="true" >
 			<fileset basedir="src">
 				<include name="**\bin\${project.config}\*.dll" />
 				<include name="**\bin\${project.config}\*.exe" />
@@ -198,7 +223,17 @@
 				<include name="**" />
 			</fileset>
 		</zip>
-	</target>
+
+    <property name="zipFile" value="LatestVersion/DatabaseManagement.zip"/>
+
+    <delete file="${zipFile}" failonerror="false" />
+
+    <zip zipfile="${zipFile}" includeemptydirs="true" >
+      <fileset basedir="${dir.dbmanager.package}">
+        <include name="**" />
+      </fileset>
+    </zip>
+  </target>
 
 	<target name="commit">
 		<exec program="${svn.exe}" workingdir="." commandline="up LatestVersion ${svn.args}" verbose="true" />
