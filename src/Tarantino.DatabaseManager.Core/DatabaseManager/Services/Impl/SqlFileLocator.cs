@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Tarantino.DatabaseManager.Core;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
@@ -32,7 +31,13 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 			{
 				list.Add(sqlFilename);
 			}
-		    return list.OrderBy(x => x).ToArray();
+            list.Sort(Comparison);
+		    return list.ToArray();
 		}
+
+	    private int Comparison(string x, string y)
+	    {
+	        return x.CompareTo(y);
+	    }
 	}
 }

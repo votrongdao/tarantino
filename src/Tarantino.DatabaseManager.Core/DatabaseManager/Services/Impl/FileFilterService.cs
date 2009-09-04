@@ -1,4 +1,6 @@
-using System.Linq;
+//using System.Linq;
+
+using System.Collections.Generic;
 
 namespace Tarantino.Core.DatabaseManager.Services.Impl
 {
@@ -6,14 +8,20 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
     {
         public string[] GetFilteredFilenames(string[] allFiles, string excludeFilenameContaining)
         {
+            List<string> itemsToReturn=new List<string>();
             if (string.IsNullOrEmpty(excludeFilenameContaining))
                 return allFiles;
 
-            return allFiles.Where(x =>
-                                      {
-                                          var beginningOfFileName = x.LastIndexOfAny(new[]{'\\','/'});
-                                          return !x.Substring(beginningOfFileName) .Contains(excludeFilenameContaining);
-                                      }).ToArray();
+
+            foreach (var x in allFiles)
+            {
+                var beginningOfFileName = x.LastIndexOfAny(new[]{'\\','/'});
+                if (!x.Substring(beginningOfFileName).Contains(excludeFilenameContaining))
+                {
+                    itemsToReturn.Add(x);
+                }
+            }
+            return itemsToReturn.ToArray();
         }
     }
 }

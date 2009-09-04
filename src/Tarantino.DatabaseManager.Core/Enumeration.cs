@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Linq;
+//using System.Linq;
 
 namespace Tarantino.DatabaseManager.Core
 {
@@ -91,30 +91,30 @@ namespace Tarantino.DatabaseManager.Core
             return absoluteDifference;
         }
 
-        public static T FromValue<T>(int value) where T : Enumeration, new()
-        {
-            var matchingItem = parse<T, int>(value, "value", item => item.Value == value);
-            return matchingItem;
-        }
+        //public static T FromValue<T>(int value) where T : Enumeration, new()
+        //{
+        //    var matchingItem = parse<T, int>(value, "value", item => item.Value == value);
+        //    return matchingItem;
+        //}
 
-        public static T FromDisplayName<T>(string displayName) where T : Enumeration, new()
-        {
-            var matchingItem = parse<T, string>(displayName, "display name", item => item.DisplayName == displayName);
-            return matchingItem;
-        }
+        //public static T FromDisplayName<T>(string displayName) where T : Enumeration, new()
+        //{
+        //    var matchingItem = parse<T, string>(displayName, "display name", item => item.DisplayName == displayName);
+        //    return matchingItem;
+        //}
 
-        private static T parse<T, K>(K value, string description, Func<T, bool> predicate) where T : Enumeration, new()
-        {
-            var matchingItem = GetAll<T>().FirstOrDefault(predicate);
+        //private static T parse<T, K>(K value, string description, Func<T, bool> predicate) where T : Enumeration, new()
+        //{
+        //    var matchingItem = GetAll<T>().FirstOrDefault(predicate);
 
-            if (matchingItem == null)
-            {
-                var message = string.Format("'{0}' is not a valid {1} in {2}", value, description, typeof(T));
-                throw new ApplicationException(message);
-            }
+        //    if (matchingItem == null)
+        //    {
+        //        var message = string.Format("'{0}' is not a valid {1} in {2}", value, description, typeof(T));
+        //        throw new ApplicationException(message);
+        //    }
 
-            return matchingItem;
-        }
+        //    return matchingItem;
+        //}
 
         public virtual int CompareTo(object other)
         {

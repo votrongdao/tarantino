@@ -51,10 +51,10 @@ namespace Tarantino.DatabaseManager.Console
                 do
                 {
                     Log("Failure: " + ex.Message);
-                    ex = exception.InnerException;    
-                } while (ex.InnerException!=null);
+                    ex = ex.InnerException;    
+                } while (ex!=null);
 
-                Log(exception.ToString());
+                //Log(exception.ToString());
                 
 
             }
