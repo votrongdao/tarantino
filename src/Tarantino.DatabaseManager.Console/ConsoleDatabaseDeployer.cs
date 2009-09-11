@@ -27,7 +27,7 @@ namespace Tarantino.DatabaseManager.Console
             
         }
 
-        public void UpdateDatabase(string Server, string Database, string ScriptDirectory, RequestedDatabaseAction Action)
+        public bool UpdateDatabase(string Server, string Database, string ScriptDirectory, RequestedDatabaseAction Action)
         {
             var manager = new SqlDatabaseManager();
             var settings = new ConnectionSettings(Server, Database, true, null, null);
@@ -43,7 +43,7 @@ namespace Tarantino.DatabaseManager.Console
                 {
                     Log(property.Key +": " + property.Value);
                 }
-
+                return true;
             }
             catch (Exception exception)
             {                
@@ -58,7 +58,7 @@ namespace Tarantino.DatabaseManager.Console
                 
 
             }
-            
+            return false;
         }
     }
 }

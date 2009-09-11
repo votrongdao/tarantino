@@ -16,25 +16,18 @@ namespace Tarantino.DatabaseManager.Console
                 string Database = args[2];
                 string ScriptDirectory = args[3];
 
-                if (Action != RequestedDatabaseAction.Create && Action != RequestedDatabaseAction.Update)
-                {
-                    System.Console.WriteLine("The Action must be Create or Update");
-                    InvalidArguments();
-                    return;
-                }
-
                 var deployer = new ConsoleDatabaseDeployer();
-                deployer.UpdateDatabase(Server, Database, ScriptDirectory, Action);
+                if(deployer.UpdateDatabase(Server, Database, ScriptDirectory, Action))
+                {
+                    return; 
+                }                
                 
-            }
-            else if(args.Length==6)
-            {
-                throw  new NotImplementedException("This should be considnered not secure");
             }
             else
             {
                 InvalidArguments();
             }
+            Environment.ExitCode = 1;
         }
 
         private static void InvalidArguments()
