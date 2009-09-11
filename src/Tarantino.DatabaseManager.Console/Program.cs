@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Tarantino.Core.DatabaseManager.Services.Impl;
 using Tarantino.DatabaseManager.Core;
 
@@ -8,7 +9,6 @@ namespace Tarantino.DatabaseManager.Console
     {
         private static void Main(string[] args)
         {
-            //"DeployDatabase.exe Action(Create|Update) .\SqlExpress CEMS_DEV  .\Database\ [[username] [password]]"
             if(args.Length==4)
             {
                 RequestedDatabaseAction Action = (RequestedDatabaseAction) Enum.Parse(typeof(RequestedDatabaseAction), args[0]);
@@ -20,8 +20,7 @@ namespace Tarantino.DatabaseManager.Console
                 if(deployer.UpdateDatabase(Server, Database, ScriptDirectory, Action))
                 {
                     return; 
-                }                
-                
+                }                                
             }
             else
             {
@@ -33,8 +32,7 @@ namespace Tarantino.DatabaseManager.Console
         private static void InvalidArguments()
         {
             System.Console.WriteLine("Invalid Arguments");
-            System.Console.WriteLine(
-                @"DeployDatabase.exe Action(Create|Update) .\SqlExpress DatabaseName  .\DatabaseScripts\ [[username] [password]]");
+            System.Console.WriteLine( Path.GetFileName(typeof(Program).Assembly.Location) + @" Action(Create|Update|Rebuild) .\SqlExpress DatabaseName  .\DatabaseScripts\ ");
         }
     }
 }
