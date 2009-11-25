@@ -22,7 +22,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			
 			using (mocks.Record())
 			{
-				queryExecutor.ExecuteNonQuery(settings, "create database db", false);
+				queryExecutor.ExecuteNonQuery(settings, "create database [db]", false);
 				executor.ExecuteScriptsInFolder(taskAttributes, "ExistingSchema", taskObserver);
 			}
 

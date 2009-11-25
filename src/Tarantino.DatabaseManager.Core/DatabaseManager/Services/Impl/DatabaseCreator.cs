@@ -22,7 +22,7 @@ namespace Tarantino.Core.DatabaseManager.Services.Impl
 
 	    public void Execute(TaskAttributes taskAttributes, ITaskObserver taskObserver)
 		{
-            string sql = string.Format("create database {0}", taskAttributes.ConnectionSettings.Database);
+            string sql = string.Format("create database [{0}]", taskAttributes.ConnectionSettings.Database);
             _queryExecutor.ExecuteNonQuery(taskAttributes.ConnectionSettings, sql, false);
 
             _folderExecutor.ExecuteScriptsInFolder(taskAttributes, "ExistingSchema", taskObserver);

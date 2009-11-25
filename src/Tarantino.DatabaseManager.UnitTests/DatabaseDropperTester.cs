@@ -25,7 +25,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 			{
 				connectionDropper.Drop(settings, taskObserver);
                 
-                queryExecutor.ExecuteNonQuery(settings, "ALTER DATABASE db SET SINGLE_USER WITH ROLLBACK IMMEDIATE drop database db", false);
+                queryExecutor.ExecuteNonQuery(settings, "ALTER DATABASE [db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE drop database [db]", false);
 			    
 			}
 
@@ -51,7 +51,7 @@ namespace Tarantino.UnitTests.Core.DatabaseManager.Services
 
 			using (mocks.Record())
 			{
-                Expect.Call(() => queryExecutor.ExecuteNonQuery(settings, "ALTER DATABASE db SET SINGLE_USER WITH ROLLBACK IMMEDIATE drop database db", false))
+                Expect.Call(() => queryExecutor.ExecuteNonQuery(settings, "ALTER DATABASE [db] SET SINGLE_USER WITH ROLLBACK IMMEDIATE drop database [db]", false))
 					.Throw(new Exception("foo message"));
 				Expect.Call(() => taskObserver.Log("Database 'db' could not be dropped."));
 			}
