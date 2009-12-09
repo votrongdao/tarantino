@@ -23,6 +23,7 @@
 	<!-- Package settings -->
 	<property name="svn.exe" value="lib\subversion\1.4.3\svn.exe" />
 	<property name="dir.package" value="${dir.build}\package" dynamic="true"  />
+  <property name="dir.batchjobs.package" value="${dir.build}\batchjobspackage" dynamic="true"  />
   <property name="dir.dbmanager.package" value="${dir.build}\dbmanagerpackage" dynamic="true"  />
   <property name="dir.deployer.package" value="${dir.build}\deployerpackage" dynamic="true"  />
 
@@ -143,7 +144,14 @@
       </fileset>
     </copy>
 
-    
+
+    <delete dir="${dir.batchjobs.package}" failonerror="false" />
+    <copy todir="${dir.batchjobs.package}" verbose="false">
+      <fileset basedir="src\BatchJobs.Console\bin\${project.config}" >
+        <include name="*.*" />
+      </fileset>
+    </copy>
+
     <delete dir="${dir.deployer.package}" failonerror="false" />
     <copy todir="${dir.deployer.package}\Setup" verbose="false">
         <fileset basedir="src\Tarantino.DatabaseManager\bin\${project.config}" >
@@ -269,6 +277,16 @@
 
     <zip zipfile="${zipFile}" includeemptydirs="true" >
       <fileset basedir="${dir.dbmanager.package}">
+        <include name="**" />
+      </fileset>
+    </zip>
+
+    <property name="zipFile" value="LatestVersion/BatchJobs.zip"/>
+
+    <delete file="${zipFile}" failonerror="false" />
+
+    <zip zipfile="${zipFile}" includeemptydirs="true" >
+      <fileset basedir="${dir.batchjobs.package}">
         <include name="**" />
       </fileset>
     </zip>
