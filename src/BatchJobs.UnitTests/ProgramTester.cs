@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using BatchJobs.Console;
 using BatchJobs.Core;
 using NUnit.Framework;
@@ -63,5 +65,9 @@ namespace BatchJobs.UnitTests
             return JobAgent;
         }
 
+        public IEnumerable<string> GetInstanceNames()
+        {
+            return new string[0];
+        }
     }
 }

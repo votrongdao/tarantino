@@ -1,9 +1,10 @@
-﻿using BatchJobs.Core;
+﻿using System.Collections.Generic;
 
-namespace BatchJobs.UnitTests
+namespace BatchJobs.Core
 {
     public interface IJobAgentFactory
     {
         IJobAgent Create(string name);
+        IEnumerable<string> GetInstanceNames();
     }
 }

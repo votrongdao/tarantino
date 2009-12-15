@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Reflection;
 using BatchJobs.Core;
-using BatchJobs.UnitTests;
 
 namespace BatchJobs.Console
 {
@@ -21,22 +21,42 @@ namespace BatchJobs.Console
             }
             catch (Exception e)
             {                
-                System.Console.WriteLine(e);
-            }
-            
+                System.Console.WriteLine(e.Message);
+                Environment.ExitCode = 100;                    
+            }            
         }
 
         public virtual void Run(string[] args)
         {
-            IJobAgent jobAgent = Factory().Create(args[0]);
-            jobAgent.Execute();
+            if(args.Length==0)
+            {
+                System.Console.WriteLine("One of the following instance names must be specified:");
+                foreach(var name in Factory().GetInstanceNames())
+                {
+                    System.Console.WriteLine(name);
+                }
+            }
+            else
+            {
+                IJobAgent jobAgent = Factory().Create(args[0]);
+                jobAgent.Execute();                
+            }
         }
 
         public virtual IJobAgentFactory Factory()
         {
             string typename = GetFactoryTypeName();
-            string assemblyname = typename.Split(',')[1].Trim();
-            typename = typename.Split(',')[0].Trim();
+            string assemblyname;
+
+            try
+            {
+                assemblyname = typename.Split(',')[1].Trim();
+                typename = typename.Split(',')[0].Trim();
+            }
+            catch(Exception)
+            {
+                throw new InvalidOperationException("Could not parse the typename from the application configuration.");
+            }            
 
             Assembly a = null;
             try
@@ -57,6 +77,11 @@ namespace BatchJobs.Console
         {
             System.Console.WriteLine(name);
             return new DebugerJobAgent();
+        }
+
+        public IEnumerable<string> GetInstanceNames()
+        {
+            return new string[]{"Foo","Bar"};            
         }
     }
 
