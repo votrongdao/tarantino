@@ -6,6 +6,6 @@
 		<property name="show_sql">false</property>
 		<property name="dialect">NHibernate.Dialect.MsSql2005Dialect</property>
 
-		<mapping assembly="Tarantino.Infrastructure" />
+		<mapping assembly="Tarantino.Deployer.Infrastructure" />
 	</session-factory>
 </hibernate-configuration>

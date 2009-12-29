@@ -100,11 +100,10 @@ namespace Tarantino.Deployer
 
 			if (selectedRows.Count == 1)
 			{
-				var deploymentId = new Guid(grdDeployments.Rows[0].Cells[6].FormattedValue.ToString());
-				var repository = ObjectFactory.GetInstance<IPersistentObjectRepository>();
-				repository.ConfigurationFile = "deployer.hibernate.cfg.xml";
+				var repository = ObjectFactory.GetInstance<IDeploymentRepository>();
 
-				var deployment = repository.GetByIdWithoutClosingSession<Deployment>(deploymentId);
+				var deploymentId = new Guid(selectedRows[0].Cells[6].FormattedValue.ToString());
+				var deployment = repository.GetById(deploymentId);
 				var outputText = deployment.Output.Output;
 				var outputWindow = new DeploymentOutput { Output = outputText};
 				outputWindow.ShowDialog();

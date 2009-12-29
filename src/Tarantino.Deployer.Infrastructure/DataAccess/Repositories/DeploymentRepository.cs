@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Tarantino.Core.Commons.Model.Enumerations;
 using Tarantino.Core.Commons.Services.Repositories;
@@ -14,6 +15,12 @@ namespace Tarantino.Deployer.Infrastructure.DataAccess.Repositories
 		{
 			_repository = repository;
 			_repository.ConfigurationFile = "deployer.hibernate.cfg.xml";
+		}
+
+		public Deployment GetById(Guid id)
+		{
+			var item = _repository.GetByIdWithoutClosingSession<Deployment>(id);
+			return item;
 		}
 
 		public IEnumerable<Deployment> Find(string application, string environment)
