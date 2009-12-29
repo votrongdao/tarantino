@@ -7,7 +7,7 @@ using Tarantino.Deployer.Core.Model;
 using Tarantino.Deployer.Core.Services;
 using Tarantino.Deployer.Core.Services.Configuration;
 using Tarantino.Deployer.Core.Services.Configuration.Impl;
-using Tarantino.Infrastructure;
+using Tarantino.Deployer.Infrastructure;
 using Environment=System.Environment;
 
 namespace Tarantino.Deployer.Console
@@ -18,7 +18,7 @@ namespace Tarantino.Deployer.Console
 
 		public static void Main(string[] args)
 		{
-			InfrastructureDependencyRegistrar.RegisterInfrastructure();
+			DeployerInfrastructureDependencyRegistrar.RegisterInfrastructure();
 
 			if (args.Length != 4)
 			{
