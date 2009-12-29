@@ -4,7 +4,7 @@ using StructureMap;
 using Tarantino.Core.WebManagement.Model;
 using Tarantino.Core.WebManagement.Services.Repositories;
 
-namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Repositories
+namespace Tarantino.Infrastructure.IntegrationTests.WebManagement.DataAccess.Repositories
 {
 	[TestFixture]
 	public class ApplicationInstanceRepositoryTester : WebManagementDatabaseTester

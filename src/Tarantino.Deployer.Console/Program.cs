@@ -3,10 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using StructureMap;
-using Tarantino.Core.Deployer.Model;
-using Tarantino.Core.Deployer.Services;
-using Tarantino.Core.Deployer.Services.Configuration;
-using Tarantino.Core.Deployer.Services.Configuration.Impl;
+using Tarantino.Deployer.Core.Model;
+using Tarantino.Deployer.Core.Services;
+using Tarantino.Deployer.Core.Services.Configuration;
+using Tarantino.Deployer.Core.Services.Configuration.Impl;
 using Tarantino.Infrastructure;
 using Environment=System.Environment;
 

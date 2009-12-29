@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Tarantino.Core.WebManagement.Model;
 
-namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess.Mappings
+namespace Tarantino.Infrastructure.IntegrationTests.WebManagement.DataAccess.Mappings
 {
 	[TestFixture]
 	public class ApplicationInstanceMappingTester : WebManagementDatabaseTester

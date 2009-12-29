@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3F02EEBD-5B3B-4C5F-B2E7-4F5DFF6B3F03}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -184,31 +184,6 @@
     <Compile Include="Commons\Services\DataFileManagement\Impl\TokenReplacer.cs" />
     <Compile Include="Commons\Services\DataFileManagement\ITokenReplacer.cs" />
     <Compile Include="CoreDependencyRegistrar.cs" />
-    <Compile Include="Deployer\Model\DeploymentOutput.cs" />
-    <Compile Include="Deployer\Model\Deployment.cs" />
-    <Compile Include="Deployer\Model\DeploymentResult.cs" />
-    <Compile Include="Deployer\Services\Configuration\IApplicationRepository.cs" />
-    <Compile Include="Deployer\Services\Configuration\Impl\Application.cs" />
-    <Compile Include="Deployer\Services\Configuration\Impl\ApplicationRepository.cs" />
-    <Compile Include="Deployer\Services\Configuration\Impl\DeployerSettingsConfigurationHandler.cs" />
-    <Compile Include="Deployer\Services\Configuration\Impl\Environment.cs" />
-    <Compile Include="Deployer\Services\IDeploymentFactory.cs" />
-    <Compile Include="Deployer\Services\IDeploymentRecorder.cs" />
-    <Compile Include="Deployer\Services\IDeploymentRepository.cs" />
-    <Compile Include="Deployer\Services\IDeploymentResultCalculator.cs" />
-    <Compile Include="Deployer\Services\Impl\DeploymentFactory.cs" />
-    <Compile Include="Deployer\Services\Impl\DeploymentRecorder.cs" />
-    <Compile Include="Deployer\Services\Impl\DeploymentResultCalculator.cs" />
-    <Compile Include="Deployer\Services\Impl\RevisionCertifier.cs" />
-    <Compile Include="Deployer\Services\Impl\RevisionNumberParser.cs" />
-    <Compile Include="Deployer\Services\IRevisionCertifier.cs" />
-    <Compile Include="Deployer\Services\IRevisionNumberParser.cs" />
-    <Compile Include="Deployer\Services\UI\IDeploymentRowFactory.cs" />
-    <Compile Include="Deployer\Services\UI\IDeploymentSelectionValidator.cs" />
-    <Compile Include="Deployer\Services\UI\ILabelTextGenerator.cs" />
-    <Compile Include="Deployer\Services\UI\Impl\DeploymentRowFactory.cs" />
-    <Compile Include="Deployer\Services\UI\Impl\DeploymentSelectionValidator.cs" />
-    <Compile Include="Deployer\Services\UI\Impl\LabelTextGenerator.cs" />
     <Compile Include="Keys.cs" />
     <Compile Include="WebManagement\Model\ApplicationInstance.cs" />
     <Compile Include="WebManagement\Services\IAdministratorSecurityChecker.cs" />

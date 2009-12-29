@@ -50,9 +50,16 @@
 		<!-- copy test assemblies -->
 		<foreach item="String" in="${test.types}" delim="," property="test.type">
 			<property name="assembly" value="${project}.${test.type}Tests" />
+			<property name="deployer.assembly" value="${project}.Deployer.${test.type}Tests" />
 
 			<copy todir="${dir.test}" verbose="false">
 				<fileset basedir="src/${assembly}/bin/${project.config}">
+					<include name="**"/>
+				</fileset>
+			</copy>
+
+			<copy todir="${dir.test}" verbose="false">
+				<fileset basedir="src/${deployer.assembly}/bin/${project.config}">
 					<include name="**"/>
 				</fileset>
 			</copy>
@@ -62,6 +69,7 @@
 	<target name="test">
 		<foreach item="String" in="${test.types}" delim="," property="test.type">
 			<property name="assembly" value="${dir.test}\${project}.${test.type}Tests.dll" />
+			<property name="deployer.assembly" value="${dir.test}\${project}.Deployer.${test.type}Tests.dll" />
 
 			<echo message="Testing: ${assembly}" />
 
@@ -69,7 +77,15 @@
 				<formatter type="Plain" />
 				<test assemblyname="${assembly}" />
 			</nunit2>
+
+			<echo message="Testing: ${deployer.assembly}" />
+
+			<nunit2 failonerror="true" verbose="true">
+				<formatter type="Plain" />
+				<test assemblyname="${deployer.assembly}" />
+			</nunit2>
 		</foreach>
+
 	</target>
 
 	<target name="coverage">

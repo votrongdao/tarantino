@@ -3,8 +3,9 @@ using StructureMap;
 using Tarantino.Core;
 using Tarantino.Core.Commons.Services.Environment;
 using Tarantino.Core.WebManagement.Services.Views.Impl;
+using Tarantino.IntegrationTests;
 
-namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.Services.Views
+namespace Tarantino.Infrastructure.IntegrationTests.WebManagement.Services.Views
 {
 	[TestFixture]
 	public class ResourceTester : IntegrationTester

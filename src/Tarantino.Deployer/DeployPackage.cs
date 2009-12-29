@@ -4,16 +4,15 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Tarantino.Core.Commons.Services.Repositories;
-using Tarantino.Core.Deployer.Model;
-using Tarantino.Core.Deployer.Services;
-using Tarantino.Core.Deployer.Services.Configuration;
-using Tarantino.Core.Deployer.Services.UI;
-using Tarantino.Deployer;
+using Tarantino.Deployer.Core.Model;
+using Tarantino.Deployer.Core.Services;
+using Tarantino.Deployer.Core.Services.Configuration;
+using Tarantino.Deployer.Core.Services.UI;
 using Tarantino.Core.Commons.Services.Configuration.Impl;
 using StructureMap;
-using Tarantino.Infrastructure;
-using Application=Tarantino.Core.Deployer.Services.Configuration.Impl.Application;
-using Environment=Tarantino.Core.Deployer.Services.Configuration.Impl.Environment;
+using Tarantino.Deployer.Infrastructure;
+using Application = Tarantino.Deployer.Core.Services.Configuration.Impl.Application;
+using Environment = Tarantino.Deployer.Core.Services.Configuration.Impl.Environment;
 
 namespace Tarantino.Deployer
 {
@@ -21,7 +20,7 @@ namespace Tarantino.Deployer
 	{
 		public DeployPackage()
 		{
-			InfrastructureDependencyRegistrar.RegisterInfrastructure();
+			DeployerInfrastructureDependencyRegistrar.RegisterInfrastructure();
 
 			InitializeComponent();
 			wireEvents();

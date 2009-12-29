@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Tarantino.IntegrationTests;
 
-namespace Tarantino.IntegrationTests.Infrastructure.WebManagement.DataAccess
+namespace Tarantino.Infrastructure.IntegrationTests.WebManagement.DataAccess
 {
 	public abstract class WebManagementDatabaseTester : DatabaseTesterBase
 	{
