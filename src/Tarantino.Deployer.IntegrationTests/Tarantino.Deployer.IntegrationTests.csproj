@@ -58,8 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Model\DeploymentTester.cs" />
-    <Compile Include="Core\Services\Configuration\ApplicationRepositoryTester.cs" />
     <Compile Include="Infrastructure\DataAccess\DeployerDatabaseTester.cs" />
     <Compile Include="Infrastructure\DataAccess\Mappings\DeploymentMappingsTester.cs" />
     <Compile Include="Infrastructure\DataAccess\Repositories\DeploymentRepositoryTester.cs" />

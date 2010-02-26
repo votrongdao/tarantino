@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Tarantino.Core.Commons.Services.Logging;
 
 namespace BatchJobs.Core
 {
@@ -13,15 +15,29 @@ namespace BatchJobs.Core
 
         public void Execute()
         {
+        	Logger.Debug(this, "Getting transitions");
             IEnumerable<IStateTransition<T>> transitions = _factory.GetAll<T>();
+			Logger.Debug(this, "Retrieved transitions");
             T[] batches = GetNextEntites();
+			Logger.Debug(this, string.Format("Found {0} batches", batches.Length));
 
             foreach (T batch in batches)
             {
                 foreach (var transition in transitions)
                 {
-                    if (transition.IsValid(batch))
-                        transition.Execute(batch);
+					Logger.Debug(this, string.Format("Examining transition {0} in batch {1}", transition, batch));
+					if (transition.IsValid(batch))
+					{
+						Logger.Debug(this, string.Format("Transition {0} is valid for batch {1}, executing", transition, batch));
+						try
+						{
+							transition.Execute(batch);
+						} catch(Exception e)
+						{
+							Logger.Fatal(this, Logger.SerializeException(e));
+							throw;
+						}
+					}
                 }
             }
         }
