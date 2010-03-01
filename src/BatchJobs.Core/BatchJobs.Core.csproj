@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IJobAgentFactory.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="JobAgentBase.cs" />
     <Compile Include="IJobAgent.cs" />
     <Compile Include="IStateTransitionFactory.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Net.Mail;
 using System.Reflection;
 using BatchJobs.Core;
@@ -47,7 +48,16 @@ namespace BatchJobs.Console
 				Logger.Debug(this, string.Format("Command Line Specified Instance Name: {0}", args[0]));
 				IJobAgent jobAgent = Factory().Create(args[0]);
 				Logger.Debug(this, "Executing the Job");
-				jobAgent.Execute();
+				try
+				{
+					jobAgent.Execute();
+					Logger.Debug(this, string.Format("Job Execution Complete: {0}", args[0]));
+				}
+				catch ( Exception e)
+				{
+					Logger.Fatal(this, Logger.SerializeException(e));
+					throw;
+				}
 			}
 		}
 
@@ -82,7 +92,12 @@ namespace BatchJobs.Console
 			}
 			Type classType = a.GetType(typename);
 			Logger.Debug(this, string.Format("Creating instance of {0}", classType));
+			if (classType.GetConstructors().Any( x => x.GetParameters().Length == 1))
+			{
+				return (IJobAgentFactory)Activator.CreateInstance(classType, new LoggerProxy());
+			} 
 			return (IJobAgentFactory)Activator.CreateInstance(classType);
+
 		}
 	}
 

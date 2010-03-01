@@ -29,14 +29,7 @@ namespace BatchJobs.Core
 					if (transition.IsValid(batch))
 					{
 						Logger.Debug(this, string.Format("Transition {0} is valid for batch {1}, executing", transition, batch));
-						try
-						{
-							transition.Execute(batch);
-						} catch(Exception e)
-						{
-							Logger.Fatal(this, Logger.SerializeException(e));
-							throw;
-						}
+						transition.Execute(batch);
 					}
                 }
             }
