@@ -35,36 +35,71 @@ namespace BatchJobs.UnitTests
     	public void Should_create_a_logging_factory()
     	{
 			var program = new Program();
-			program.GetFactoryTypeName = () => typeof(FactoryLoggingStub).FullName + "," + GetType().Assembly.FullName;
+			program.GetFactoryTypeName = () => typeof(LoggingFactoryStub).FullName + "," + GetType().Assembly.FullName;
 			IJobAgentFactory factory = program.Factory();
-			Assert.AreEqual("BatchJobs.UnitTests.FactoryLoggingStub", factory.GetType().ToString());
+			Assert.AreEqual("BatchJobs.UnitTests.LoggingFactoryStub", factory.GetType().ToString());
 
     	}
+
+		[Test]
+		public void Should_rethrow_and_log_exceptions_from_job()
+		{
+			//Logger.EnsureInitialized(); //view sample error logging in output by uncommenting
+			var agent = new ExceptionThrowingStubJob();
+			ExceptionThrowingFactoryStub.JobAgent = agent;
+			var program = new Program();
+			program.GetFactoryTypeName = () => typeof(ExceptionThrowingFactoryStub).FullName + "," + GetType().Assembly.FullName;
+
+			try
+			{
+				program.Run(new[] {"foo"});
+				Assert.Fail("Should not have reached here-Program should have thrown");
+			}catch
+			{
+
+			}
+		}
     }
 
-    public class StubJob : IJobAgent
-    {
-        public bool Executed { get; set; }
-
-
-        public void Execute()
-        {
-            Executed = true;
-        }
-    }
-
-	public class StubJobWithContructorParam : IJobAgent
+	public class ExceptionThrowingStubJob : IJobAgent
 	{
+		public ExceptionThrowingStubJob()
+		{
+		}
 
-		public StubJobWithContructorParam(ILogger logger)
+		public ExceptionThrowingStubJob(ILogger logger)
+		{
+		}
+
+		public bool Executed { get; set; }
+
+
+		public void Execute()
+		{
+			Executed = true;
+			throw new Exception("fake error occurred");
+		}
+	}
+
+	public class StubJob : IJobAgent
+	{
+		public bool Executed = false;
+		public StubJob()
+		{
+		}
+
+
+		public StubJob(ILogger logger)
 		{
 		}
 
 		public void Execute()
 		{
-
+			Executed = true;
 		}
 	}
+
+
 
     public class FactoryStub : IJobAgentFactory
     {
@@ -94,26 +129,45 @@ namespace BatchJobs.UnitTests
         }
     }
 
-	public class FactoryLoggingStub : IJobAgentFactory
+	public class LoggingFactoryStub : IJobAgentFactory
 	{
-		private readonly ILogger _logger;
+		protected readonly ILogger _logger;
 
-		public FactoryLoggingStub(ILogger logger)
-		{
-			_logger = logger;
-		}
-
-		public FactoryLoggingStub()
+		public LoggingFactoryStub()
 		{
 			if (JobAgent == null)
 			{
-				JobAgent = new StubJobWithContructorParam(_logger);
+				JobAgent = new StubJob(_logger);
 			}
 		}
 
 		public static IJobAgent JobAgent { get; set; }
 
 		public static string Name { get; set; }
+
+
+		public IJobAgent Create(string name)
+		{
+			System.Console.WriteLine(name);
+			Name = name;
+			return JobAgent;
+		}
+
+		public IEnumerable<string> GetInstanceNames()
+		{
+			return new string[0];
+		}
+	}
+
+	public class ExceptionThrowingFactoryStub : IJobAgentFactory
+	{
+		protected readonly ILogger _logger;
+		public static IJobAgent JobAgent { get; set; }
+		public static string Name { get; set; }
+		public ExceptionThrowingFactoryStub()
+		{
+			JobAgent = new ExceptionThrowingStubJob(_logger);
+		}
 
 
 		public IJobAgent Create(string name)
