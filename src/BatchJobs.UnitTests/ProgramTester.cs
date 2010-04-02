@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BatchJobs.Console;
 using BatchJobs.Core;
+using BatchJobs.Core.Logging;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 

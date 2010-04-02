@@ -1,6 +1,6 @@
 using System;
 
-namespace BatchJobs.Core
+namespace BatchJobs.Core.Logging
 {
 	public interface ILogger
 	{

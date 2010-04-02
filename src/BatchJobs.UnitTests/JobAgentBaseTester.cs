@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BatchJobs.Core;
+using BatchJobs.Core.Logging;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 
@@ -12,6 +13,7 @@ namespace BatchJobs.UnitTests
         [Test]
         public void Should_loop_through_the_batches()
         {
+        	BatchLoggerFactory.Default = () => new StubLogger();
             StateTransitions.Called = 0;
             var agent = new JobAgentStub(new StubAgentFactory(1));
             agent.Execute();
@@ -21,6 +23,7 @@ namespace BatchJobs.UnitTests
         [Test]
         public void Should_loop_through_each_transitions_for_each_batch()
         {
+			BatchLoggerFactory.Default = () => new StubLogger();
             StateTransitions.Called = 0;
             var agent = new JobAgentStub(new StubAgentFactory(3));
             agent.Execute();

@@ -23,6 +23,8 @@ namespace BatchJobs.Console
 			catch (Exception e)
 			{
 				System.Console.WriteLine(e.Message);
+				Logger.Fatal(typeof(Program), string.Format("Failure in Job, bubbled to Batch Runner: {0}", Logger.SerializeException(e)));
+
 				var sender = new LogFileToEmailSender();
 				
 				sender.Send(string.Join(",", args));
@@ -46,16 +48,9 @@ namespace BatchJobs.Console
 				Logger.Info(this, string.Format("Command Line Specified Instance Name: {0}", args[0]));
 				IJobAgent jobAgent = Factory().Create(args[0]);
 				Logger.Info(this, "Executing the Job");
-				try
-				{
-					jobAgent.Execute();
-					Logger.Info(this, string.Format("Job Execution Complete: {0}", args[0]));
-				}
-				catch ( Exception e)
-				{
-					Logger.Fatal(typeof(Program), string.Format("Failure in Job, bubbled to Batch Runner: {0}", Logger.SerializeException(e)));
-					throw;
-				}
+
+				jobAgent.Execute();
+				Logger.Info(this, string.Format("Job Execution Complete: {0}", args[0]));
 			}
 		}
 

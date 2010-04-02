@@ -69,6 +69,7 @@
     <Compile Include="DebugerJobAgentFactory.cs" />
     <Compile Include="LogFileToEmailSender.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="LoggerProxy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
