@@ -27,13 +27,13 @@ namespace Tarantino.DatabaseManager.Console
             
         }
 
-        public bool UpdateDatabase(string Server, string Database, string ScriptDirectory, RequestedDatabaseAction Action)
+        public bool UpdateDatabase(ConnectionSettings settings, string scriptDirectory, RequestedDatabaseAction action)
         {
             var manager = new SqlDatabaseManager();
-            var settings = new ConnectionSettings(Server, Database, true, null, null);
-            var taskAttributes = new TaskAttributes(settings, ScriptDirectory)
+            
+            var taskAttributes = new TaskAttributes(settings, scriptDirectory)
                                      {
-                                         RequestedDatabaseAction = Action,
+                                         RequestedDatabaseAction = action,
                                      };
             try
             {
