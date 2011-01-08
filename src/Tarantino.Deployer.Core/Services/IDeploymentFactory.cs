@@ -5,6 +5,6 @@ namespace Tarantino.Deployer.Core.Services
 	
 	public interface IDeploymentFactory
 	{
-		Deployment CreateDeployment(string application, string environment, string deployedBy, string output);
+		Deployment CreateDeployment(string application, string environment, string deployedBy, string output, string revision, bool failed);
 	}
 }

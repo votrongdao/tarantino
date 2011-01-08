@@ -8,6 +8,7 @@ namespace Tarantino.Deployer
 {
 	public class ProcessProgressForm : Form
 	{
+		private bool _failed;
 		private const Container components = null;
 		private RichTextBox rtbOutput;
 		private Button btnCancel;
@@ -17,15 +18,16 @@ namespace Tarantino.Deployer
 		private Color _strErrColor = Color.Maroon;
 		private string _errorDialogMessage = "Error running process";
 
-		private Action<string> _processCompleted;
+		private Action<string, bool> _processCompleted;
 
-		public Action<string> ProcessCompleted
+		public Action<string, bool> ProcessCompleted
 		{
 			set { _processCompleted = value; }
 		}
 
 		public ProcessProgressForm()
 		{
+			_failed = false;
 			InitializeComponent();
 			_processCaller = new ProcessCaller(this);
 			_processCaller.StdErrReceived += _processCaller_StdErrReceived;
@@ -85,7 +87,7 @@ namespace Tarantino.Deployer
 		private void AppendOutputToRichTextBox(string data, Color color)
 		{
 			rtbOutput.ForeColor = color;
-			rtbOutput.AppendText(data + System.Environment.NewLine);
+			rtbOutput.AppendText(data + Environment.NewLine);
 			rtbOutput.Focus();
 			rtbOutput.ScrollToCaret();
 		}
@@ -109,6 +111,7 @@ namespace Tarantino.Deployer
 
 		private void _processCaller_StdErrReceived(object sender, DataReceivedEventArgs e)
 		{
+			_failed = true;
 			AppendOutputToRichTextBox(e.Text, _strErrColor);
 		}
 
@@ -127,7 +130,7 @@ namespace Tarantino.Deployer
 
 			if (_processCompleted != null)
 			{
-				_processCompleted(output);
+				_processCompleted(output, _failed);
 			}
 		}
 

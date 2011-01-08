@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using Tarantino.Core.Commons.Services.Repositories;
 using Tarantino.Deployer.Core.Model;
 using Tarantino.Deployer.Core.Services;
 using Tarantino.Deployer.Core.Services.Configuration;
 using Tarantino.Deployer.Core.Services.UI;
-using Tarantino.Core.Commons.Services.Configuration.Impl;
 using StructureMap;
 using Tarantino.Deployer.Infrastructure;
 using Application = Tarantino.Deployer.Core.Services.Configuration.Impl.Application;
@@ -18,8 +15,11 @@ namespace Tarantino.Deployer
 {
 	public partial class DeployPackage : Form
 	{
+		private string _version;
+
 		public DeployPackage()
 		{
+			_version = null;
 			DeployerInfrastructureDependencyRegistrar.RegisterInfrastructure();
 
 			InitializeComponent();
@@ -31,8 +31,8 @@ namespace Tarantino.Deployer
 		{
 			var repository = ObjectFactory.GetInstance<IDeploymentRepository>();
 
-			IEnumerable<Deployment> certified = repository.FindCertified(SelectedApplication.Name, SelectedEnvironment.Predecessor);
-			IEnumerable<Deployment> uncertified = repository.FindSuccessfulUncertified(SelectedApplication.Name, SelectedEnvironment.Name);
+			var certified = repository.FindCertified(SelectedApplication.Name, SelectedEnvironment.Predecessor);
+			var uncertified = repository.FindSuccessfulUncertified(SelectedApplication.Name, SelectedEnvironment.Name);
 
 			populateRevisionDropdown(certified, cboRevision);
 			populateRevisionDropdown(uncertified, cboCertifyRevision);
@@ -46,14 +46,14 @@ namespace Tarantino.Deployer
 
 			grdDeployments.Rows.Clear();
 
-			IEnumerable<Deployment> deployments = repository.Find(SelectedApplication.Name, SelectedEnvironment.Name);
+			var deployments = repository.Find(SelectedApplication.Name, SelectedEnvironment.Name);
 
-			int rowNumber = 0;
-			foreach (Deployment deployment in deployments)
+			var rowNumber = 0;
+			foreach (var deployment in deployments)
 			{
 				string[] deploymentRow = rowFactory.ConstructRow(deployment);
 				grdDeployments.Rows.Add(deploymentRow);
-				
+
 				if (deployment.Result == DeploymentResult.Failure)
 				{
 					grdDeployments.Rows[rowNumber].DefaultCellStyle.BackColor = Color.Pink;
@@ -82,21 +82,18 @@ namespace Tarantino.Deployer
 
 		private void btnDeploy_OnClick(object sender, EventArgs e)
 		{
-			var arguments = new StringBuilder("-buildfile:Deployer.build");
-			addArgument(arguments, "application", SelectedApplication.Name);
-			addArgument(arguments, "revision", cboRevision.Text);
-			addArgument(arguments, "environment", SelectedEnvironment.Name);
-			addArgument(arguments, "url", SelectedApplication.Url);
-			addArgument(arguments, "zip.file", SelectedApplication.ZipFile);
-			addArgument(arguments, "username", txtUsername.Text);
-			addArgument(arguments, "password", txtPassword.Text);
+			var result = PackageDownloader.DownloadAndExtract(SelectedApplication.Name, SelectedEnvironment.Name, cboRevision.Text,
+			                                                              SelectedApplication.Url, SelectedApplication.ZipFile, txtUsername.Text,
+			                                                              txtPassword.Text);
 
-			RunCommandLine(@"NAnt\nant.exe", arguments.ToString());
+			_version = result.Version;
+
+			RunCommandLine(result.Executable, result.WorkingDirectory);
 		}
 
 		private void grdDeployments_OnDoubleClick(object sender, EventArgs e)
 		{
-			DataGridViewSelectedRowCollection selectedRows = grdDeployments.SelectedRows;
+			var selectedRows = grdDeployments.SelectedRows;
 
 			if (selectedRows.Count == 1)
 			{
@@ -110,29 +107,26 @@ namespace Tarantino.Deployer
 			}
 		}
 
-		private void RunCommandLine(string executable, string arguments)
+		private void RunCommandLine(string executable, string workingDirectory, string arguments = null)
 		{
 			var processForm = new ProcessProgressForm {ProcessCompleted = processCompleted};
 
-			string workingDir = AppDomain.CurrentDomain.BaseDirectory;
-			string executableWithPath = string.Format(@"{0}{1}", workingDir, executable);
-
-			processForm.ProcessCommand = executableWithPath;
+			processForm.ProcessCommand = executable;
 
 			if (arguments != null)
 			{
 				processForm.ProcessArguments = arguments;
 			}
 
-			processForm.ProcessWorkingDir = workingDir;
+			processForm.ProcessWorkingDir = workingDirectory;
 			processForm.BeginProcess();
 			processForm.ShowDialog(this);
 		}
 
-		private void processCompleted(string output)
+		private void processCompleted(string output, bool failed)
 		{
 			var recorder = ObjectFactory.GetInstance<IDeploymentRecorder>();
-			recorder.RecordDeployment(SelectedApplication.Name, SelectedEnvironment.Name, output);
+			recorder.RecordDeployment(SelectedApplication.Name, SelectedEnvironment.Name, output, _version, failed);
 
 			populateRevisions();
 		}
@@ -147,7 +141,7 @@ namespace Tarantino.Deployer
 		{
 			cboEnvironment.Items.Clear();
 
-			ElementCollection<Environment> environments = SelectedApplication.Environments;
+			var environments = SelectedApplication.Environments;
 
 			if (environments.Count > 0)
 			{
@@ -185,7 +179,7 @@ namespace Tarantino.Deployer
 		private void cboRevision_OnTextChanged(object sender, EventArgs e)
 		{
 			var deployment = cboRevision.SelectedItem as Deployment;
-			string revision = cboRevision.Text;
+			var revision = cboRevision.Text;
 
 			var generator = ObjectFactory.GetInstance<ILabelTextGenerator>();
 			lblDeployed.Text = generator.GetDeploymentText(SelectedEnvironment, revision, deployment);
@@ -212,16 +206,6 @@ namespace Tarantino.Deployer
 			cboRevision.TextChanged += cboRevision_OnTextChanged;
 			btnDeploy.Click += btnDeploy_OnClick;
 			grdDeployments.DoubleClick += grdDeployments_OnDoubleClick;
-		}
-
-		private static void addArgument(StringBuilder sb, string argName, string argValue)
-		{
-			sb.Append(" -D:");
-			sb.Append(argName);
-			sb.Append("=\"");
-			sb.Append(argValue);
-			sb.Append("\"");
-			return;
 		}
 	}
 }

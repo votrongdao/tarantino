@@ -15,7 +15,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services.UI
 		{
 			var deployment = new Deployment
 			                 	{
-			                 		Revision = 845,
+			                 		Revision = "845",
 			                 		DeployedOn = new DateTime(2007, 4, 15, 6, 45, 32),
 			                 		DeployedBy = "khurwitz",
 			                 		Result = DeploymentResult.Failure,

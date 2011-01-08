@@ -14,10 +14,10 @@ namespace Tarantino.Deployer.UnitTests.Core.Services.Configuration
 		[Test]
 		public void Reads_application_collection_from_configuration_file()
 		{
-			DeployerSettingsConfigurationHandler handler = new DeployerSettingsConfigurationHandler();
+			var handler = new DeployerSettingsConfigurationHandler();
 
-			MockRepository mocks = new MockRepository();
-			IApplicationConfiguration configuration = mocks.CreateMock<IApplicationConfiguration>();
+			var mocks = new MockRepository();
+			var configuration = mocks.CreateMock<IApplicationConfiguration>();
 
 			using (mocks.Record())
 			{

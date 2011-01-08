@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B4BBF8D-B63B-4AC4-A29D-7D68B3F0A787}"
 	ProjectSection(SolutionItems) = preProject
 		..\build.bat = ..\build.bat
@@ -8,6 +8,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\default.build = ..\default.build
 		Log4Net.config = Log4Net.config
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseManager", "DatabaseManager", "{AE91826A-2689-4B7C-BB5C-9B580E265A2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployer", "Deployer", "{92521A2A-F2B9-4C47-971A-C032254D812B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BatchJobs", "BatchJobs", "{A1C92749-EFCF-481C-A00F-3134AA6C0503}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.UnitTests", "Tarantino.UnitTests\Tarantino.UnitTests.csproj", "{98F35D85-A0E4-4E30-8274-E0771122B401}"
 EndProject
@@ -37,17 +43,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.DatabaseResearche
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.Deployer.Console", "Tarantino.Deployer.Console\Tarantino.Deployer.Console.csproj", "{E3585B26-999B-4CB0-B134-06D061912ADE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseManager", "DatabaseManager", "{AE91826A-2689-4B7C-BB5C-9B580E265A2D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.DatabaseManager.Core", "Tarantino.DatabaseManager.Core\Tarantino.DatabaseManager.Core.csproj", "{1C8083DC-FF7D-4525-8724-49FD434A02D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.DatabaseManager.UnitTests", "Tarantino.DatabaseManager.UnitTests\Tarantino.DatabaseManager.UnitTests.csproj", "{4BD61AE4-68B6-489F-B433-A456FE10B5BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tarantino.DatabaseManager.Console", "Tarantino.DatabaseManager.Console\Tarantino.DatabaseManager.Console.csproj", "{6C1BCF01-0508-42C0-9C95-8E9D3401400F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployer", "Deployer", "{92521A2A-F2B9-4C47-971A-C032254D812B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BatchJobs", "BatchJobs", "{A1C92749-EFCF-481C-A00F-3134AA6C0503}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchJobs.Core", "BatchJobs.Core\BatchJobs.Core.csproj", "{AD917904-9A71-4E80-96C3-91A0F8E77B2D}"
 EndProject
@@ -164,14 +164,14 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E0ACA030-DF95-4326-B574-89851F18D3AB} = {AE91826A-2689-4B7C-BB5C-9B580E265A2D}
 		{D248BD38-7A55-4316-AA47-00E276596F22} = {AE91826A-2689-4B7C-BB5C-9B580E265A2D}
+		{E0ACA030-DF95-4326-B574-89851F18D3AB} = {AE91826A-2689-4B7C-BB5C-9B580E265A2D}
 		{1C8083DC-FF7D-4525-8724-49FD434A02D7} = {AE91826A-2689-4B7C-BB5C-9B580E265A2D}
 		{4BD61AE4-68B6-489F-B433-A456FE10B5BE} = {AE91826A-2689-4B7C-BB5C-9B580E265A2D}
 		{6C1BCF01-0508-42C0-9C95-8E9D3401400F} = {AE91826A-2689-4B7C-BB5C-9B580E265A2D}
+		{001C4DB4-F834-486F-BD22-6D3F074B57AE} = {92521A2A-F2B9-4C47-971A-C032254D812B}
 		{53967760-40E5-426A-A0B6-CE4C693557F8} = {92521A2A-F2B9-4C47-971A-C032254D812B}
 		{E3585B26-999B-4CB0-B134-06D061912ADE} = {92521A2A-F2B9-4C47-971A-C032254D812B}
-		{001C4DB4-F834-486F-BD22-6D3F074B57AE} = {92521A2A-F2B9-4C47-971A-C032254D812B}
 		{B8A3C121-563B-4DBE-AB99-8B18CEFFE611} = {92521A2A-F2B9-4C47-971A-C032254D812B}
 		{8D37B5F4-AC69-4A31-9A94-1B45E9D516E9} = {92521A2A-F2B9-4C47-971A-C032254D812B}
 		{CBAF6E29-BAE5-4B15-B1C3-4B6C753F6ADA} = {92521A2A-F2B9-4C47-971A-C032254D812B}

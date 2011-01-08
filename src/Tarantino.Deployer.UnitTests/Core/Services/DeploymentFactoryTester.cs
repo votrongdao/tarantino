@@ -29,8 +29,8 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 
 			using (mocks.Playback())
 			{
-				IDeploymentFactory factory = new DeploymentFactory(clock, parser, calculator);
-				Deployment deployment = factory.CreateDeployment("A1", "E1", "jsmith", "Output...");
+				IDeploymentFactory factory = new DeploymentFactory(clock);
+				Deployment deployment = factory.CreateDeployment("A1", "E1", "jsmith", "Output...", "1.0", false);
 
 				Assert.That(deployment.Application, Is.EqualTo("A1"));
 				Assert.That(deployment.Environment, Is.EqualTo("E1"));

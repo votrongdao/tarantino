@@ -8,26 +8,22 @@ namespace Tarantino.Deployer.Core.Services.Impl
 	public class DeploymentFactory : IDeploymentFactory
 	{
 		private readonly ISystemClock _clock;
-		private readonly IRevisionNumberParser _revisionNumberParser;
-		private readonly IDeploymentResultCalculator _resultCalculator;
 
-		public DeploymentFactory(ISystemClock clock, IRevisionNumberParser revisionNumberParser, IDeploymentResultCalculator resultCalculator)
+		public DeploymentFactory(ISystemClock clock)
 		{
 			_clock = clock;
-			_revisionNumberParser = revisionNumberParser;
-			_resultCalculator = resultCalculator;
 		}
 
-		public Deployment CreateDeployment(string application, string environment, string deployedBy, string output)
+		public Deployment CreateDeployment(string application, string environment, string deployedBy, string output, string revision, bool failed)
 		{
 			var deployment = new Deployment
 			                 	{
 			                 		Application = application,
 			                 		Environment = environment,
-			                 		Revision = _revisionNumberParser.Parse(output),
+			                 		Revision = revision,
 			                 		DeployedBy = deployedBy,
 			                 		DeployedOn = _clock.GetCurrentDateTime(),
-			                 		Result = _resultCalculator.GetResult(output)
+			                 		Result = failed ? DeploymentResult.Failure : DeploymentResult.Success
 			                 	};
 
 			deployment.SetOutput(new DeploymentOutput {Output = output});

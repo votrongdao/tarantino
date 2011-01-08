@@ -14,7 +14,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 		[Test]
 		public void Records_deployment()
 		{
-			var deployment = new Deployment {Revision = 1234};
+			var deployment = new Deployment {Revision = "1234"};
 
 			var mocks = new MockRepository();
 			var factory = mocks.CreateMock<IDeploymentFactory>();
@@ -24,14 +24,14 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 			using (mocks.Record())
 			{
 				Expect.Call(context.GetCurrentUsername()).Return("jsmith");
-				Expect.Call(factory.CreateDeployment("application", "environment", "jsmith", "Output...")).Return(deployment);
+				Expect.Call(factory.CreateDeployment("application", "environment", "jsmith", "Output...", "1.0", false)).Return(deployment);
 				repository.Save(deployment);
 			}
 
 			using (mocks.Playback())
 			{
 				IDeploymentRecorder recorder = new DeploymentRecorder(context, factory, repository);
-				int revision = recorder.RecordDeployment("application", "environment", "Output...");
+				string revision = recorder.RecordDeployment("application", "environment", "Output...", "1.0", false);
 
 				Assert.That(revision, Is.EqualTo(revision));
 			}

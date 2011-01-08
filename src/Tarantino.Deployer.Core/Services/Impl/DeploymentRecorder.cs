@@ -1,10 +1,7 @@
 using Tarantino.Core.Commons.Services.Security;
-using Tarantino.Deployer.Core.Model;
-
 
 namespace Tarantino.Deployer.Core.Services.Impl
 {
-	
 	public class DeploymentRecorder : IDeploymentRecorder
 	{
 		private readonly ISecurityContext _securityContext;
@@ -18,10 +15,10 @@ namespace Tarantino.Deployer.Core.Services.Impl
 			_repository = repository;
 		}
 
-		public int RecordDeployment(string application, string environment, string output)
+		public string RecordDeployment(string application, string environment, string output, string revision, bool failed)
 		{
-			string deployedBy = _securityContext.GetCurrentUsername();
-			Deployment deployment = _factory.CreateDeployment(application, environment, deployedBy, output);
+			var deployedBy = _securityContext.GetCurrentUsername();
+			var deployment = _factory.CreateDeployment(application, environment, deployedBy, output, revision, failed);
 			_repository.Save(deployment);
 
 			return deployment.Revision;

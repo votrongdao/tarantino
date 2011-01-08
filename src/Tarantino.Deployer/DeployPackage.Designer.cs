@@ -74,7 +74,7 @@ namespace Tarantino.Deployer
 			this.btnDeploy.Location = new System.Drawing.Point(451, 143);
 			this.btnDeploy.Name = "btnDeploy";
 			this.btnDeploy.Size = new System.Drawing.Size(75, 23);
-			this.btnDeploy.TabIndex = 0;
+			this.btnDeploy.TabIndex = 19;
 			this.btnDeploy.Text = "&Deploy";
 			this.btnDeploy.UseVisualStyleBackColor = true;
 			// 
@@ -135,7 +135,7 @@ namespace Tarantino.Deployer
 			this.cboRevision.Location = new System.Drawing.Point(74, 63);
 			this.cboRevision.Name = "cboRevision";
 			this.cboRevision.Size = new System.Drawing.Size(452, 21);
-			this.cboRevision.TabIndex = 9;
+			this.cboRevision.TabIndex = 18;
 			// 
 			// lblDeployedLabel
 			// 
@@ -195,6 +195,7 @@ namespace Tarantino.Deployer
 									| System.Windows.Forms.AnchorStyles.Right)));
 			this.txtPassword.Location = new System.Drawing.Point(74, 37);
 			this.txtPassword.Name = "txtPassword";
+			this.txtPassword.PasswordChar = '*';
 			this.txtPassword.Size = new System.Drawing.Size(452, 20);
 			this.txtPassword.TabIndex = 17;
 			// 
@@ -250,7 +251,7 @@ namespace Tarantino.Deployer
 			this.tabCertify.Location = new System.Drawing.Point(4, 22);
 			this.tabCertify.Name = "tabCertify";
 			this.tabCertify.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCertify.Size = new System.Drawing.Size(532, 190);
+			this.tabCertify.Size = new System.Drawing.Size(532, 172);
 			this.tabCertify.TabIndex = 1;
 			this.tabCertify.Text = "Certify";
 			this.tabCertify.UseVisualStyleBackColor = true;
@@ -292,7 +293,7 @@ namespace Tarantino.Deployer
 			this.tabCheckVersion.Location = new System.Drawing.Point(4, 22);
 			this.tabCheckVersion.Name = "tabCheckVersion";
 			this.tabCheckVersion.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCheckVersion.Size = new System.Drawing.Size(532, 190);
+			this.tabCheckVersion.Size = new System.Drawing.Size(532, 172);
 			this.tabCheckVersion.TabIndex = 2;
 			this.tabCheckVersion.Text = "Check Version";
 			this.tabCheckVersion.UseVisualStyleBackColor = true;

@@ -4,8 +4,6 @@ namespace Tarantino.Deployer.Core.Services.UI.Impl
 {
 	public class DeploymentRowFactory : IDeploymentRowFactory
 	{
-		#region IDeploymentRowFactory Members
-
 		public string[] ConstructRow(Deployment deployment)
 		{
 			string revision = deployment.Revision.ToString();
@@ -18,7 +16,5 @@ namespace Tarantino.Deployer.Core.Services.UI.Impl
 
 			return new[] {revision, deployedOn, deployedBy, result, certifiedOn, certifiedBy, deploymentId};
 		}
-
-		#endregion
 	}
 }

@@ -1,5 +1,4 @@
 using System;
-using NHibernate;
 using NUnit.Framework;
 using Tarantino.Deployer.Core.Model;
 
@@ -19,7 +18,7 @@ namespace Tarantino.Deployer.IntegrationTests.Infrastructure.DataAccess.Mappings
 				DeployedBy = "Deployer",
 				DeployedOn = new DateTime(2007, 3, 15),
 				CertifiedOn = new DateTime(2007, 4, 15),
-				Revision = 250,
+				Revision = "250",
 				Result = DeploymentResult.Failure
 			};
 

@@ -39,18 +39,18 @@ namespace Tarantino.Deployer.IntegrationTests.Infrastructure.DataAccess.Reposito
 			_uncertified_failure = new Deployment();
 			_certified_failure = new Deployment();
 
-			_uncertified_Application1_Environment1.Revision = 1;
-			_uncertified_Application1_Environment2.Revision = 2;
-			_uncertified_Application2_Environment1.Revision = 3;
-			_uncertified_Application2_Environment2.Revision = 4;
+			_uncertified_Application1_Environment1.Revision = "1";
+			_uncertified_Application1_Environment2.Revision = "2";
+			_uncertified_Application2_Environment1.Revision = "3";
+			_uncertified_Application2_Environment2.Revision = "4";
 
-			_certified_Application1_Environment1.Revision = 5;
-			_certified_Application1_Environment2.Revision = 6;
-			_certified_Application2_Environment1.Revision = 7;
-			_certified_Application2_Environment2.Revision = 8;
+			_certified_Application1_Environment1.Revision = "5";
+			_certified_Application1_Environment2.Revision = "6";
+			_certified_Application2_Environment1.Revision = "7";
+			_certified_Application2_Environment2.Revision = "8";
 
-			_uncertified_failure.Revision = 9;
-			_certified_failure.Revision = 10;
+			_uncertified_failure.Revision = "9";
+			_certified_failure.Revision = "10";
 
 			_uncertified_Application1_Environment1.Result = DeploymentResult.Success;
 			_uncertified_Application1_Environment2.Result = DeploymentResult.Success;
