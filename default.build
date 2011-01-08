@@ -3,7 +3,7 @@
 <project name="Tarantino" default="local" xmlns="http://nant.sf.net/release/0.85-rc4/nant.xsd">
 
 	<!-- NAnt settings -->
-	<property name="nant.settings.currentframework" value="net-3.5" />
+	<property name="nant.settings.currentframework" value="net-4.0" />
 
 	<!-- Version settings -->
 	<property name="company" value="${project::get-name()}"/>
