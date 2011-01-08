@@ -24,7 +24,7 @@ CREATE TABLE [dbo].[Deployment]
 [DeploymentId] [uniqueidentifier] NOT NULL,
 [Application] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [Environment] [varchar] (25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[Revision] [varchar] (20) NULL,
+[Version] [varchar] (20) NULL,
 [DeployedOn] [datetime] NULL,
 [DeployedBy] [varchar] (30) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [CertifiedOn] [datetime] NULL,

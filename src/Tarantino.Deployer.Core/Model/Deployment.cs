@@ -13,7 +13,7 @@ namespace Tarantino.Deployer.Core.Model
 
 		public virtual string Application { get; set; }
 		public virtual string Environment { get; set; }
-		public virtual string Revision { get; set; }
+		public virtual string Version { get; set; }
 		public virtual DateTime DeployedOn { get; set; }
 		public virtual DateTime? CertifiedOn { get; set; }
 		public virtual string DeployedBy { get; set; }
@@ -23,7 +23,7 @@ namespace Tarantino.Deployer.Core.Model
 
 		public override string ToString()
 		{
-			return Revision.ToString();
+			return Version.ToString();
 		}
 
 		public virtual void SetOutput(DeploymentOutput output)

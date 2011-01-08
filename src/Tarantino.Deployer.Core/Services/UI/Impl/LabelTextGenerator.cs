@@ -1,6 +1,4 @@
-using System;
 using System.Text;
-using Tarantino.Deployer.Core.Services.UI;
 using Tarantino.Deployer.Core.Model;
 using Environment=Tarantino.Deployer.Core.Services.Configuration.Impl.Environment;
 
@@ -15,25 +13,25 @@ namespace Tarantino.Deployer.Core.Services.UI.Impl
 			_validator = validator;
 		}
 
-		public string GetDeploymentText(Configuration.Impl.Environment environment, string revisionNumberText, Deployment deployment)
+		public string GetDeploymentText(Environment environment, string versionNumberText, Deployment deployment)
 		{
-			return getText(environment, revisionNumberText, deployment, Action.Deploy);
+			return getText(environment, versionNumberText, deployment, Action.Deploy);
 		}
 
-		public string GetCertificationText(string revisionNumberText, Deployment deployment)
+		public string GetCertificationText(string versionNumberText, Deployment deployment)
 		{
-			return getText(null, revisionNumberText, deployment, Action.Certify);
+			return getText(null, versionNumberText, deployment, Action.Certify);
 		}
 
-		private string getText(Configuration.Impl.Environment environment, string revisionNumberText, Deployment deployment, Action action)
+		private string getText(Environment environment, string versionNumber, Deployment deployment, Action action)
 		{
-			StringBuilder text = new StringBuilder();
+			var text = new StringBuilder();
 
-			if (_validator.IsValid(revisionNumberText, deployment))
+			if (_validator.IsValid(versionNumber, deployment))
 			{
-				bool isDeployment = action == Action.Deploy;
-				string username = isDeployment ? deployment.DeployedBy : deployment.CertifiedBy;
-				DateTime date = isDeployment ? deployment.DeployedOn : deployment.CertifiedOn.Value;
+				var isDeployment = action == Action.Deploy;
+				var username = isDeployment ? deployment.DeployedBy : deployment.CertifiedBy;
+				var date = isDeployment ? deployment.DeployedOn : deployment.CertifiedOn.GetValueOrDefault();
 
 				if (environment != null)
 				{

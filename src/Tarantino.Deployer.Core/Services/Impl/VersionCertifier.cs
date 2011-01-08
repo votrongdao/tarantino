@@ -4,13 +4,13 @@ using Tarantino.Deployer.Core.Model;
 
 namespace Tarantino.Deployer.Core.Services.Impl
 {
-	public class RevisionCertifier : IRevisionCertifier
+	public class VersionCertifier : IVersionCertifier
 	{
 		private readonly ISystemClock _clock;
 		private readonly ISecurityContext _securityContext;
 		private readonly IDeploymentRepository _repository;
 
-		public RevisionCertifier(ISystemClock clock, ISecurityContext securityContext, IDeploymentRepository repository)
+		public VersionCertifier(ISystemClock clock, ISecurityContext securityContext, IDeploymentRepository repository)
 		{
 			_clock = clock;
 			_securityContext = securityContext;

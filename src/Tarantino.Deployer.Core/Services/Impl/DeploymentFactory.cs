@@ -14,13 +14,13 @@ namespace Tarantino.Deployer.Core.Services.Impl
 			_clock = clock;
 		}
 
-		public Deployment CreateDeployment(string application, string environment, string deployedBy, string output, string revision, bool failed)
+		public Deployment CreateDeployment(string application, string environment, string deployedBy, string output, string version, bool failed)
 		{
 			var deployment = new Deployment
 			                 	{
 			                 		Application = application,
 			                 		Environment = environment,
-			                 		Revision = revision,
+			                 		Version = version,
 			                 		DeployedBy = deployedBy,
 			                 		DeployedOn = _clock.GetCurrentDateTime(),
 			                 		Result = failed ? DeploymentResult.Failure : DeploymentResult.Success

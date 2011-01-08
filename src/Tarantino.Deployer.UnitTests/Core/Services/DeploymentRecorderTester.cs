@@ -14,7 +14,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 		[Test]
 		public void Records_deployment()
 		{
-			var deployment = new Deployment{ Revision = "1.0"};
+			var deployment = new Deployment{ Version = "1.0"};
 
 			var mocks = new MockRepository();
 			var factory = mocks.CreateMock<IDeploymentFactory>();
@@ -31,9 +31,9 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 			using (mocks.Playback())
 			{
 				IDeploymentRecorder recorder = new DeploymentRecorder(context, factory, repository);
-				string revision = recorder.RecordDeployment("application", "environment", "Output...", "1.0", false);
+				var version = recorder.RecordDeployment("application", "environment", "Output...", "1.0", false);
 
-				Assert.That(revision, Is.EqualTo("1.0"));
+				Assert.That(version, Is.EqualTo("1.0"));
 			}
 
 			mocks.VerifyAll();

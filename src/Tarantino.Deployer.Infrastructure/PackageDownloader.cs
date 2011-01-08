@@ -5,7 +5,7 @@ using System.Net;
 using System.Xml;
 using Ionic.Zip;
 
-namespace Tarantino.Deployer
+namespace Tarantino.Deployer.Infrastructure
 {
 	public class ExtractResult
 	{
@@ -25,9 +25,9 @@ namespace Tarantino.Deployer
 
 			var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 			var applicationDirectory = baseDirectory + @"packages\" + application;
-			var revisionDirectory = applicationDirectory + @"\" + version;
+			var versionDirectory = applicationDirectory + @"\" + version;
 
-			if (!Directory.Exists(revisionDirectory))
+			if (!Directory.Exists(versionDirectory))
 			{
 				var fullZipFile = baseDirectory + @"/" + zipFile + ".zip";
 				File.Delete(fullZipFile);
@@ -43,24 +43,24 @@ namespace Tarantino.Deployer
 
 				try
 				{
-					Directory.Delete(revisionDirectory, true);
+					Directory.Delete(versionDirectory, true);
 				}
 				catch (DirectoryNotFoundException) { }
 
-				Directory.CreateDirectory(revisionDirectory);
+				Directory.CreateDirectory(versionDirectory);
 
 				using (var zip = ZipFile.Read(fullZipFile))
 				{
 					foreach (var entry in zip)
 					{
-						entry.Extract(revisionDirectory, ExtractExistingFileAction.OverwriteSilently);
+						entry.Extract(versionDirectory, ExtractExistingFileAction.OverwriteSilently);
 					}
 				}
 			}
 
-			var environmentDeploymentBat = revisionDirectory + @"\" + environment + ".bat";
+			var environmentDeploymentBat = versionDirectory + @"\" + environment + ".bat";
 
-			var result = new ExtractResult { Version = version, Executable = environmentDeploymentBat, WorkingDirectory = revisionDirectory };
+			var result = new ExtractResult { Version = version, Executable = environmentDeploymentBat, WorkingDirectory = versionDirectory };
 			return result;
 		}
 

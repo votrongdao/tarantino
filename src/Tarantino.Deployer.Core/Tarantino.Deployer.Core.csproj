@@ -89,10 +89,10 @@
     <Compile Include="Services\Impl\DeploymentFactory.cs" />
     <Compile Include="Services\Impl\DeploymentRecorder.cs" />
     <Compile Include="Services\Impl\DeploymentResultCalculator.cs" />
-    <Compile Include="Services\Impl\RevisionCertifier.cs" />
-    <Compile Include="Services\Impl\RevisionNumberParser.cs" />
-    <Compile Include="Services\IRevisionCertifier.cs" />
-    <Compile Include="Services\IRevisionNumberParser.cs" />
+    <Compile Include="Services\Impl\VersionCertifier.cs" />
+    <Compile Include="Services\Impl\VersionNumberParser.cs" />
+    <Compile Include="Services\IVersionCertifier.cs" />
+    <Compile Include="Services\IVersionNumberParser.cs" />
     <Compile Include="Services\UI\IDeploymentRowFactory.cs" />
     <Compile Include="Services\UI\IDeploymentSelectionValidator.cs" />
     <Compile Include="Services\UI\ILabelTextGenerator.cs" />

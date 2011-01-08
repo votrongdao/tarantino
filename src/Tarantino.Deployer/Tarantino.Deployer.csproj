@@ -91,7 +91,6 @@
     <Compile Include="DeployPackage.Designer.cs">
       <DependentUpon>DeployPackage.cs</DependentUpon>
     </Compile>
-    <Compile Include="PackageDownloader.cs" />
     <Compile Include="ProcessCaller.cs" />
     <Compile Include="ProcessProgressForm.cs">
       <SubType>Form</SubType>
@@ -121,12 +120,6 @@
     </Compile>
     <None Include="App.config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Deploy.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Deployer.build">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -27,15 +27,15 @@ namespace Tarantino.Deployer
 			populateApplicationDropdown();
 		}
 
-		private void populateRevisions()
+		private void populateVersions()
 		{
 			var repository = ObjectFactory.GetInstance<IDeploymentRepository>();
 
 			var certified = repository.FindCertified(SelectedApplication.Name, SelectedEnvironment.Predecessor);
 			var uncertified = repository.FindSuccessfulUncertified(SelectedApplication.Name, SelectedEnvironment.Name);
 
-			populateRevisionDropdown(certified, cboRevision);
-			populateRevisionDropdown(uncertified, cboCertifyRevision);
+			populateVersionDropdown(certified, cboVersion);
+			populateVersionDropdown(uncertified, cboCertifyVersion);
 
 			populateDeploymentGrid(repository);
 		}
@@ -65,24 +65,24 @@ namespace Tarantino.Deployer
 
 		private void btnCertify_Click(object sender, EventArgs e)
 		{
-			var selectedRevision = cboCertifyRevision.SelectedItem as Deployment;
+			var selectedVersion = cboCertifyVersion.SelectedItem as Deployment;
 
-			var certifier = ObjectFactory.GetInstance<IRevisionCertifier>();
-			certifier.Certify(selectedRevision);
+			var certifier = ObjectFactory.GetInstance<IVersionCertifier>();
+			certifier.Certify(selectedVersion);
 
-			if (selectedRevision != null)
+			if (selectedVersion != null)
 			{
-				populateRevisions();
+				populateVersions();
 			}
 			else
 			{
-				MessageBox.Show("Please select a revision!");
+				MessageBox.Show("Please select a version!");
 			}
 		}
 
 		private void btnDeploy_OnClick(object sender, EventArgs e)
 		{
-			var result = PackageDownloader.DownloadAndExtract(SelectedApplication.Name, SelectedEnvironment.Name, cboRevision.Text,
+			var result = PackageDownloader.DownloadAndExtract(SelectedApplication.Name, SelectedEnvironment.Name, cboVersion.Text,
 			                                                              SelectedApplication.Url, SelectedApplication.ZipFile, txtUsername.Text,
 			                                                              txtPassword.Text);
 
@@ -128,10 +128,10 @@ namespace Tarantino.Deployer
 			var recorder = ObjectFactory.GetInstance<IDeploymentRecorder>();
 			recorder.RecordDeployment(SelectedApplication.Name, SelectedEnvironment.Name, output, _version, failed);
 
-			populateRevisions();
+			populateVersions();
 		}
 
-		private static void populateRevisionDropdown(IEnumerable<Deployment> deployments, ComboBox combo)
+		private static void populateVersionDropdown(IEnumerable<Deployment> deployments, ComboBox combo)
 		{
 			combo.Text = string.Empty;
 			combo.DataSource = deployments;
@@ -176,14 +176,14 @@ namespace Tarantino.Deployer
 			cboApplication.SelectedIndex = 0;
 		}
 
-		private void cboRevision_OnTextChanged(object sender, EventArgs e)
+		private void CboVersionOnTextChanged(object sender, EventArgs e)
 		{
-			var deployment = cboRevision.SelectedItem as Deployment;
-			var revision = cboRevision.Text;
+			var deployment = cboVersion.SelectedItem as Deployment;
+			var version = cboVersion.Text;
 
 			var generator = ObjectFactory.GetInstance<ILabelTextGenerator>();
-			lblDeployed.Text = generator.GetDeploymentText(SelectedEnvironment, revision, deployment);
-			lblCertified.Text = generator.GetCertificationText(revision, deployment);
+			lblDeployed.Text = generator.GetDeploymentText(SelectedEnvironment, version, deployment);
+			lblCertified.Text = generator.GetCertificationText(version, deployment);
 		}
 
 		private void cboApplication_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -196,14 +196,14 @@ namespace Tarantino.Deployer
 
 		private void cboEnvironment_OnSelectedIndexChanged(object sender, EventArgs e)
 		{
-			populateRevisions();
+			populateVersions();
 		}
 
 		private void wireEvents()
 		{
 			cboApplication.SelectedIndexChanged += cboApplication_OnSelectedIndexChanged;
 			cboEnvironment.SelectedIndexChanged += cboEnvironment_OnSelectedIndexChanged;
-			cboRevision.TextChanged += cboRevision_OnTextChanged;
+			cboVersion.TextChanged += CboVersionOnTextChanged;
 			btnDeploy.Click += btnDeploy_OnClick;
 			grdDeployments.DoubleClick += grdDeployments_OnDoubleClick;
 		}

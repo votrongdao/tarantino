@@ -83,8 +83,8 @@
     <Compile Include="Core\Services\DeploymentFactoryTester.cs" />
     <Compile Include="Core\Services\DeploymentRecorderTester.cs" />
     <Compile Include="Core\Services\DeploymentResultCalculatorTester.cs" />
-    <Compile Include="Core\Services\RevisionCertifierTester.cs" />
-    <Compile Include="Core\Services\RevisionNumberParserTester.cs" />
+    <Compile Include="Core\Services\VersionCertifierTester.cs" />
+    <Compile Include="Core\Services\VersionNumberParserTester.cs" />
     <Compile Include="Core\Services\UI\DeploymentRowFactoryTester.cs" />
     <Compile Include="Core\Services\UI\DeploymentSelectionValidatorTester.cs" />
     <Compile Include="Core\Services\UI\LabelTextGeneratorTester.cs" />

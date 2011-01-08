@@ -15,13 +15,13 @@ namespace Tarantino.Deployer.Core.Services.Impl
 			_repository = repository;
 		}
 
-		public string RecordDeployment(string application, string environment, string output, string revision, bool failed)
+		public string RecordDeployment(string application, string environment, string output, string version, bool failed)
 		{
 			var deployedBy = _securityContext.GetCurrentUsername();
-			var deployment = _factory.CreateDeployment(application, environment, deployedBy, output, revision, failed);
+			var deployment = _factory.CreateDeployment(application, environment, deployedBy, output, version, failed);
 			_repository.Save(deployment);
 
-			return deployment.Revision;
+			return deployment.Version;
 		}
 	}
 }

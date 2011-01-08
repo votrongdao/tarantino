@@ -1,9 +1,6 @@
-
-
 namespace Tarantino.Deployer.Core.Services
 {
-	
-	public interface IRevisionNumberParser
+	public interface IVersionNumberParser
 	{
 		int Parse(string output);
 	}

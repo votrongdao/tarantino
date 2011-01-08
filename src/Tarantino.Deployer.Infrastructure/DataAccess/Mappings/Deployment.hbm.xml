@@ -17,7 +17,7 @@
 		<property name="DeployedBy" />
 		<property name="CertifiedOn" type="DateTime" />
 		<property name="CertifiedBy" />
-		<property name="Revision" />
+		<property name="Version" />
 		<many-to-one name="Output" class="DeploymentOutput" unique="true" column="DeploymentOutputId" cascade="all-delete-orphan"/>
 
 		<property name="Result" type="Tarantino.Infrastructure.Commons.DataAccess.ORMapper.EnumerationType`1[[Tarantino.Deployer.Core.Model.DeploymentResult, Tarantino.Deployer.Core]], Tarantino.Infrastructure" />

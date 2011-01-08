@@ -5,9 +5,9 @@ namespace Tarantino.Deployer.Core.Services.UI.Impl
 {
 	public class DeploymentSelectionValidator : IDeploymentSelectionValidator
 	{
-		public bool IsValid(string revisionNumberText, Deployment selectedDeployment)
+		public bool IsValid(string versionNumberText, Deployment selectedDeployment)
 		{
-			bool isValidDeployment = (revisionNumberText != string.Empty) && (selectedDeployment != null);
+			bool isValidDeployment = (versionNumberText != string.Empty) && (selectedDeployment != null);
 			return isValidDeployment;
 		}
 	}

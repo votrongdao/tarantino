@@ -11,7 +11,7 @@ using Rhino.Mocks;
 namespace Tarantino.Deployer.UnitTests.Core.Services
 {
 	[TestFixture]
-	public class RevisionCertifierTester
+	public class VersionCertifierTester
 	{
 		[Test]
 		public void Certifies_deployment()
@@ -32,7 +32,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 
 			using (mocks.Playback())
 			{
-				IRevisionCertifier certifier = new RevisionCertifier(clock, securityContext, repository);
+				IVersionCertifier certifier = new VersionCertifier(clock, securityContext, repository);
 				certifier.Certify(deployment);
 				
 				Assert.That(deployment.CertifiedBy, Is.EqualTo("khurwitz"));
@@ -45,7 +45,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 		[Test]
 		public void Does_not_certify_undefined_deployment()
 		{
-			IRevisionCertifier certifier = new RevisionCertifier(null, null, null);
+			IVersionCertifier certifier = new VersionCertifier(null, null, null);
 			certifier.Certify(null);
 		}
 	}

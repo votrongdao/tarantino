@@ -1,10 +1,8 @@
 using Tarantino.Deployer.Core.Model;
 
-
 namespace Tarantino.Deployer.Core.Services
 {
-	
-	public interface IRevisionCertifier
+	public interface IVersionCertifier
 	{
 		void Certify(Deployment deployment);
 	}

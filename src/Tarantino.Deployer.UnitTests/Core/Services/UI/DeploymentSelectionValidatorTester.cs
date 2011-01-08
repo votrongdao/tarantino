@@ -18,7 +18,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services.UI
 		}
 
 		[Test]
-		public void Correctly_determines_existing_deployment_with_empty_revision_number_is_invalid()
+		public void Correctly_determines_existing_deployment_with_empty_version_number_is_invalid()
 		{
 			IDeploymentSelectionValidator validator = new DeploymentSelectionValidator();
 			
@@ -26,7 +26,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services.UI
 		}
 
 		[Test]
-		public void Correctly_determines_existing_deployment_with_revision_number_is_valid()
+		public void Correctly_determines_existing_deployment_with_version_number_is_valid()
 		{
 			IDeploymentSelectionValidator validator = new DeploymentSelectionValidator();
 
@@ -34,7 +34,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services.UI
 		}
 
 		[Test]
-		public void Correctly_determines_null_deployment_with_empty_revision_number_is_invalid()
+		public void Correctly_determines_null_deployment_with_empty_version_number_is_invalid()
 		{
 			IDeploymentSelectionValidator validator = new DeploymentSelectionValidator();
 

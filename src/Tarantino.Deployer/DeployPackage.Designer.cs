@@ -34,8 +34,8 @@ namespace Tarantino.Deployer
 			this.cboApplication = new System.Windows.Forms.ComboBox();
 			this.cboEnvironment = new System.Windows.Forms.ComboBox();
 			this.lblEnvironment = new System.Windows.Forms.Label();
-			this.lblRevision = new System.Windows.Forms.Label();
-			this.cboRevision = new System.Windows.Forms.ComboBox();
+			this.lblVersion = new System.Windows.Forms.Label();
+			this.cboVersion = new System.Windows.Forms.ComboBox();
 			this.lblDeployedLabel = new System.Windows.Forms.Label();
 			this.lblDeployed = new System.Windows.Forms.Label();
 			this.tabMenu = new System.Windows.Forms.TabControl();
@@ -47,12 +47,12 @@ namespace Tarantino.Deployer
 			this.lblCertified = new System.Windows.Forms.Label();
 			this.lblCertifiedLabel = new System.Windows.Forms.Label();
 			this.tabCertify = new System.Windows.Forms.TabPage();
-			this.cboCertifyRevision = new System.Windows.Forms.ComboBox();
+			this.cboCertifyVersion = new System.Windows.Forms.ComboBox();
 			this.btnCertify = new System.Windows.Forms.Button();
-			this.lblCertifyRevision = new System.Windows.Forms.Label();
+			this.lblCertifyVersion = new System.Windows.Forms.Label();
 			this.tabCheckVersion = new System.Windows.Forms.TabPage();
 			this.grdDeployments = new System.Windows.Forms.DataGridView();
-			this.Revision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Version = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DeployedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DeployedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Result = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -118,24 +118,24 @@ namespace Tarantino.Deployer
 			this.lblEnvironment.TabIndex = 4;
 			this.lblEnvironment.Text = "Environment:";
 			// 
-			// lblRevision
+			// lblVersion
 			// 
-			this.lblRevision.AutoSize = true;
-			this.lblRevision.Location = new System.Drawing.Point(17, 66);
-			this.lblRevision.Name = "lblRevision";
-			this.lblRevision.Size = new System.Drawing.Size(51, 13);
-			this.lblRevision.TabIndex = 6;
-			this.lblRevision.Text = "Revision:";
+			this.lblVersion.AutoSize = true;
+			this.lblVersion.Location = new System.Drawing.Point(17, 66);
+			this.lblVersion.Name = "lblVersion";
+			this.lblVersion.Size = new System.Drawing.Size(51, 13);
+			this.lblVersion.TabIndex = 6;
+			this.lblVersion.Text = "Version:";
 			// 
-			// cboRevision
+			// cboVersion
 			// 
-			this.cboRevision.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.cboVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.cboRevision.FormattingEnabled = true;
-			this.cboRevision.Location = new System.Drawing.Point(74, 63);
-			this.cboRevision.Name = "cboRevision";
-			this.cboRevision.Size = new System.Drawing.Size(452, 21);
-			this.cboRevision.TabIndex = 18;
+			this.cboVersion.FormattingEnabled = true;
+			this.cboVersion.Location = new System.Drawing.Point(74, 63);
+			this.cboVersion.Name = "cboVersion";
+			this.cboVersion.Size = new System.Drawing.Size(452, 21);
+			this.cboVersion.TabIndex = 18;
 			// 
 			// lblDeployedLabel
 			// 
@@ -176,11 +176,11 @@ namespace Tarantino.Deployer
 			this.tabDeploy.Controls.Add(this.lblUsername);
 			this.tabDeploy.Controls.Add(this.lblCertified);
 			this.tabDeploy.Controls.Add(this.lblCertifiedLabel);
-			this.tabDeploy.Controls.Add(this.cboRevision);
+			this.tabDeploy.Controls.Add(this.cboVersion);
 			this.tabDeploy.Controls.Add(this.btnDeploy);
 			this.tabDeploy.Controls.Add(this.lblDeployed);
 			this.tabDeploy.Controls.Add(this.lblDeployedLabel);
-			this.tabDeploy.Controls.Add(this.lblRevision);
+			this.tabDeploy.Controls.Add(this.lblVersion);
 			this.tabDeploy.Location = new System.Drawing.Point(4, 22);
 			this.tabDeploy.Name = "tabDeploy";
 			this.tabDeploy.Padding = new System.Windows.Forms.Padding(3);
@@ -245,9 +245,9 @@ namespace Tarantino.Deployer
 			// 
 			// tabCertify
 			// 
-			this.tabCertify.Controls.Add(this.cboCertifyRevision);
+			this.tabCertify.Controls.Add(this.cboCertifyVersion);
 			this.tabCertify.Controls.Add(this.btnCertify);
-			this.tabCertify.Controls.Add(this.lblCertifyRevision);
+			this.tabCertify.Controls.Add(this.lblCertifyVersion);
 			this.tabCertify.Location = new System.Drawing.Point(4, 22);
 			this.tabCertify.Name = "tabCertify";
 			this.tabCertify.Padding = new System.Windows.Forms.Padding(3);
@@ -256,16 +256,16 @@ namespace Tarantino.Deployer
 			this.tabCertify.Text = "Certify";
 			this.tabCertify.UseVisualStyleBackColor = true;
 			// 
-			// cboCertifyRevision
+			// cboCertifyVersion
 			// 
-			this.cboCertifyRevision.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.cboCertifyVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 									| System.Windows.Forms.AnchorStyles.Right)));
-			this.cboCertifyRevision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboCertifyRevision.FormattingEnabled = true;
-			this.cboCertifyRevision.Location = new System.Drawing.Point(74, 13);
-			this.cboCertifyRevision.Name = "cboCertifyRevision";
-			this.cboCertifyRevision.Size = new System.Drawing.Size(452, 21);
-			this.cboCertifyRevision.TabIndex = 18;
+			this.cboCertifyVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cboCertifyVersion.FormattingEnabled = true;
+			this.cboCertifyVersion.Location = new System.Drawing.Point(74, 13);
+			this.cboCertifyVersion.Name = "cboCertifyVersion";
+			this.cboCertifyVersion.Size = new System.Drawing.Size(452, 21);
+			this.cboCertifyVersion.TabIndex = 18;
 			// 
 			// btnCertify
 			// 
@@ -278,14 +278,14 @@ namespace Tarantino.Deployer
 			this.btnCertify.UseVisualStyleBackColor = true;
 			this.btnCertify.Click += new System.EventHandler(this.btnCertify_Click);
 			// 
-			// lblCertifyRevision
+			// lblCertifyVersion
 			// 
-			this.lblCertifyRevision.AutoSize = true;
-			this.lblCertifyRevision.Location = new System.Drawing.Point(17, 16);
-			this.lblCertifyRevision.Name = "lblCertifyRevision";
-			this.lblCertifyRevision.Size = new System.Drawing.Size(51, 13);
-			this.lblCertifyRevision.TabIndex = 17;
-			this.lblCertifyRevision.Text = "Revision:";
+			this.lblCertifyVersion.AutoSize = true;
+			this.lblCertifyVersion.Location = new System.Drawing.Point(17, 16);
+			this.lblCertifyVersion.Name = "lblCertifyVersion";
+			this.lblCertifyVersion.Size = new System.Drawing.Size(51, 13);
+			this.lblCertifyVersion.TabIndex = 17;
+			this.lblCertifyVersion.Text = "Version:";
 			// 
 			// tabCheckVersion
 			// 
@@ -307,7 +307,7 @@ namespace Tarantino.Deployer
 			this.grdDeployments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
 			this.grdDeployments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.grdDeployments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Revision,
+            this.Version,
             this.DeployedOn,
             this.DeployedBy,
             this.Result,
@@ -323,12 +323,12 @@ namespace Tarantino.Deployer
 			this.grdDeployments.Size = new System.Drawing.Size(526, 184);
 			this.grdDeployments.TabIndex = 0;
 			// 
-			// Revision
+			// Version
 			// 
-			this.Revision.HeaderText = "Revision";
-			this.Revision.Name = "Revision";
-			this.Revision.ReadOnly = true;
-			this.Revision.Width = 73;
+			this.Version.HeaderText = "Version";
+			this.Version.Name = "Version";
+			this.Version.ReadOnly = true;
+			this.Version.Width = 73;
 			// 
 			// DeployedOn
 			// 
@@ -404,22 +404,22 @@ namespace Tarantino.Deployer
 		private System.Windows.Forms.ComboBox cboApplication;
 		private System.Windows.Forms.ComboBox cboEnvironment;
 		private System.Windows.Forms.Label lblEnvironment;
-		private System.Windows.Forms.Label lblRevision;
-		private System.Windows.Forms.ComboBox cboRevision;
+		private System.Windows.Forms.Label lblVersion;
+		private System.Windows.Forms.ComboBox cboVersion;
 		private System.Windows.Forms.Label lblDeployedLabel;
 		private System.Windows.Forms.Label lblDeployed;
 		private System.Windows.Forms.TabControl tabMenu;
 		private System.Windows.Forms.TabPage tabDeploy;
 		private System.Windows.Forms.TabPage tabCertify;
-		private System.Windows.Forms.ComboBox cboCertifyRevision;
+		private System.Windows.Forms.ComboBox cboCertifyVersion;
 		private System.Windows.Forms.Button btnCertify;
-		private System.Windows.Forms.Label lblCertifyRevision;
+		private System.Windows.Forms.Label lblCertifyVersion;
 		private System.Windows.Forms.TabPage tabCheckVersion;
 		private System.Windows.Forms.Label lblCertified;
 		private System.Windows.Forms.Label lblCertifiedLabel;
 		private System.Windows.Forms.BindingSource bndDeployments;
 		private System.Windows.Forms.DataGridView grdDeployments;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Revision;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Version;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DeployedOn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DeployedBy;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Result;

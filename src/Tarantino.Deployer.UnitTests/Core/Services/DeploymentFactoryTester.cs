@@ -32,7 +32,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 				Assert.That(deployment.Environment, Is.EqualTo("E1"));
 				Assert.That(deployment.DeployedBy, Is.EqualTo("jsmith"));
 				Assert.That(deployment.DeployedOn, Is.EqualTo(new DateTime(2007, 4, 15)));
-				Assert.That(deployment.Revision, Is.EqualTo("1.0"));
+				Assert.That(deployment.Version, Is.EqualTo("1.0"));
 				Assert.That(deployment.Output.Output, Is.EqualTo("Output..."));
 				Assert.That(deployment.Result, Is.SameAs(DeploymentResult.Failure));
 				Assert.That(deployment.Output.Deployment, Is.SameAs(deployment));
