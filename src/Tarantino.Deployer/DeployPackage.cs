@@ -82,11 +82,15 @@ namespace Tarantino.Deployer
 
 		private void btnDeploy_OnClick(object sender, EventArgs e)
 		{
+			Cursor = Cursors.WaitCursor;
+
 			var result = PackageDownloader.DownloadAndExtract(SelectedApplication.Name, SelectedEnvironment.Name, cboVersion.Text,
 			                                                              SelectedApplication.Url, SelectedApplication.ZipFile, txtUsername.Text,
 			                                                              txtPassword.Text);
 
 			_version = result.Version;
+
+			Cursor = Cursors.Arrow;
 
 			RunCommandLine(result.Executable, result.WorkingDirectory);
 		}

@@ -31,7 +31,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 		public void Correctly_determines_deployment_is_a_failure()
 		{
 			IDeploymentResultCalculator calculator = new DeploymentResultCalculator();
-			DeploymentResult result = calculator.GetResult("some text BUILD FAILED some more text");
+			DeploymentResult result = calculator.GetResult("some text RuntimeException some more text");
 			
 			Assert.That(result, Is.SameAs(DeploymentResult.Failure));
 		}

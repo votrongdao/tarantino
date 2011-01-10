@@ -7,7 +7,7 @@ namespace Tarantino.Deployer.Core.Services.Impl
 	{
 		public DeploymentResult GetResult(string output)
 		{
-			bool buildFailed = output.Contains("BUILD FAILED");
+			bool buildFailed = output.Contains("RuntimeException");
 			DeploymentResult result = buildFailed ? DeploymentResult.Failure : DeploymentResult.Success;
 			return result;
 		}

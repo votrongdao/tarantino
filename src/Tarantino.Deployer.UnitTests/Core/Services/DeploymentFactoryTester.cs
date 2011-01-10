@@ -17,6 +17,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 		{
 			var mocks = new MockRepository();
 			var clock = mocks.CreateMock<ISystemClock>();
+			var resultCalculator = mocks.CreateMock<IDeploymentResultCalculator>();
 
 			using (mocks.Record())
 			{
@@ -25,7 +26,7 @@ namespace Tarantino.Deployer.UnitTests.Core.Services
 
 			using (mocks.Playback())
 			{
-				IDeploymentFactory factory = new DeploymentFactory(clock);
+				IDeploymentFactory factory = new DeploymentFactory(clock, resultCalculator);
 				Deployment deployment = factory.CreateDeployment("A1", "E1", "jsmith", "Output...", "1.0", true);
 
 				Assert.That(deployment.Application, Is.EqualTo("A1"));
