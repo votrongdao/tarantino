@@ -37,7 +37,8 @@ namespace Tarantino.Deployer.Infrastructure
 					Credentials = new NetworkCredential(username, password)
 				};
 
-				client.DownloadFile(downloadUrl + "/" + version + "/" + zipFile + ".zip", fullZipFile);
+				var fullUrl = downloadUrl + "/" + version + "/" + zipFile + ".zip";
+				client.DownloadFile(fullUrl, fullZipFile);
 
 				Directory.CreateDirectory(applicationDirectory);
 

@@ -65,6 +65,10 @@ namespace Tarantino.Deployer.Console
 								versionNumber = lastCertified.Version;
 							}
 						}
+						else if (requestedVersion == "Current")
+						{
+							versionNumber = null;
+						}
 
 						var result = PackageDownloader.DownloadAndExtract(selectedApplication.Name, selectedEnvironment.Name, versionNumber,
 						                                                              selectedApplication.Url, selectedApplication.ZipFile,
