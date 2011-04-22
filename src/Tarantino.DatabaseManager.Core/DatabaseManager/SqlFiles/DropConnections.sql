@@ -17,7 +17,7 @@ FROM
     Master.dbo.SYSPROCESSES sp
       inner join sys.dm_exec_sessions es on es.host_process_id = sp.hostprocess
 WHERE 
-    dbid IN (SELECT dbid FROM Master.dbo.SYSDATABASES WHERE name = 'ETT') 
+    dbid IN (SELECT dbid FROM Master.dbo.SYSDATABASES WHERE name = '||DatabaseName||') 
 AND spid <> @@SPID 
 AND es.is_user_process = 1
 
