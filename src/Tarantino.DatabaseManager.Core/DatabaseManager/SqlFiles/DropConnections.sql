@@ -11,11 +11,15 @@ SET @i = 1
 TRUNCATE TABLE #LIVE_SPIDS
 
 INSERT INTO #LIVE_SPIDS
-SELECT 
-	spid
-FROM Master.dbo.SYSPROCESSES
-WHERE dbid IN (SELECT dbid FROM Master.dbo.SYSDATABASES WHERE name = '||DatabaseName||')
-	AND spid <> @@SPID AND spid > 50
+SELECT distinct
+    spid
+FROM 
+    Master.dbo.SYSPROCESSES sp
+      inner join sys.dm_exec_sessions es on es.host_process_id = sp.hostprocess
+WHERE 
+    dbid IN (SELECT dbid FROM Master.dbo.SYSDATABASES WHERE name = 'ETT') 
+AND spid <> @@SPID 
+AND es.is_user_process = 1
 
 SET @x = (SELECT MIN(nid) FROM #LIVE_SPIDS)
 
